@@ -1,3 +1,120 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <app-custom-loader *ngIf="showSplash"></app-custom-loader>
+  <ion-menu side="start" menuId="m1">
+    <ion-header class="side-menu-header">
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-no-padding ion-text-center">
+            <ion-menu-toggle>
+              <ion-item lines="none" class="list-item" color="transparent" routerLinkActive="router-link-active">
+                <ion-avatar style='height:60px !important; width:60px !important;' class='my-custom-avatar'>
+                  <img src="../assets/images/user_dumme.png">
+                </ion-avatar>
+                <ion-label class="ion-text-left txt-large userName">Max</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-header>
+
+    <ion-content class="side-menu-content ion-no-padding ion-margin">
+      <div class="seperate-div">
+        <ion-list class="side-menu-ion-list">
+          <ion-menu-toggle>
+            <ion-item lines='none' button>
+              <div slot='start'>
+                <img class="segment-img" src="../assets/icon/inbox.svg">
+              </div>
+              <ion-label> Inbox
+              </ion-label>
+              <ion-button class="right-button" color="light" fill="outline">6</ion-button>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item lines='none' button>
+              <div slot='start'>
+                <img class="segment-img" src="../assets/icon/unassigned.svg">
+              </div>
+              <ion-label> Unassigned
+              </ion-label>
+              <ion-button class="right-button" color="light"fill="outline">6</ion-button>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item lines='none' button>
+              <div slot='start'>
+                <img class="segment-img" src="../assets/icon/participated.svg">
+              </div>
+              <ion-label> Participated
+              </ion-label>
+              <ion-button class="right-button" color="light" fill="outline">6</ion-button>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item lines='none' button>
+              <div slot='start'>
+                <img class="segment-img" src="../assets/icon/draft.svg">
+              </div>
+              <ion-label> Draft
+              </ion-label>
+              <ion-button class="right-button" color="light" fill="outline">6</ion-button>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </div>
+      <div>
+        <ion-list class="side-menu-ion-list">
+          <ion-menu-toggle>
+            <ion-item lines='none' button>
+              <div slot='start'>
+                <img class="segment-img" src="../assets/icon/settings .svg">
+              </div>
+              <ion-label> Setting
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item lines='none' button>
+              <div slot='start'>
+                <img class="segment-img" src="../assets/icon/help.svg">
+              </div>
+              <ion-label> Help
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item lines='none' button>
+              <div slot='start'>
+                <img class="segment-img" src="../assets/icon/about.svg">
+              </div>
+              <ion-label> About
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </div>
+      <!-- <div class="seperate-div">
+        <ion-list class="side-menu-ion-list">
+          <ion-menu-toggle>
+            <ion-item lines='none' button (click)='switchMode()'>
+              <ion-icon name='contrast' slot='start'>
+              </ion-icon>
+              <ion-label> Switch Mode </ion-label>
+              <ion-toggle slot="end" color="dark"></ion-toggle>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle>
+            <ion-item lines='none' button (click)='presentExitConfirm()'>
+              <ion-icon name='exit' slot='start'>
+              </ion-icon>
+              <ion-label> Exit App </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </div> -->
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
 </ion-app>

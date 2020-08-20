@@ -24,3 +24,59 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+/***
+**  Custom Tool Bar Setting
+***/
+
+ion-toolbar {
+    --background: none !important;
+    background-color: #202454 !important;
+    color: var(--ion-color-primary) !important;
+    ion-title{
+      color:var(--ion-color-light) !important;
+    }
+}
+
+ion-back-button{
+  margin-left: -15px !important;
+}
+
+
+.avatar-custom{
+  width: 38px;
+  height: 38px;
+  background-color: #0000001a;
+  border-radius: 11px;
+  ion-button{
+    color: var(--ion-color-primary);
+    width: 42px;
+    /* margin: 0px; */
+    margin-left: -2px;
+    margin-right: 0px;
+  }
+} 
+.my-custom-avatar{
+  margin: 10px;
+  width: 80px;
+  height: 80px;
+  background-color: azure !important;
+  --background: azure !important;
+  padding: 3px;
+  background-image: linear-gradient(to right, green , orange, red,yellow);
+  margin-left: 0px;
+}
+
+.txt-small{
+  font-size: small !important;
+}
+.txt-large{
+  font-size: large !important;
+}
+.txt-xlarge{
+  font-size: x-large !important;
+}
+.txt-xxlarge{
+  font-size: xx-large;
+}
