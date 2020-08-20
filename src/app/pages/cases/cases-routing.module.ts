@@ -11,11 +11,17 @@ const routes: Routes = [
   {
     path: 'all-cases',
     loadChildren: () => import('./all-cases/all-cases.module').then( m => m.AllCasesPageModule)
+  },
+  {
+    path: 'single-page/:caseId',
+    loadChildren: () => import('./single-page/single-page.module').then( m => m.SinglePagePageModule)
   }
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+
 })
 export class CasesPageRoutingModule {}

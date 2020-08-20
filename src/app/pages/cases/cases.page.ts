@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CasesService } from 'src/app/services/pages-apis/cases.service';
+
 
 @Component({
   selector: 'app-cases',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CasesPage implements OnInit {
 
-  constructor() { }
+  constructor(private casesService : CasesService) { 
+   
+   }
 
   ngOnInit() {
   }

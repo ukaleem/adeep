@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CasesPageRoutingModule } from './cases-routing.module';
 
 import { CasesPage } from './cases.page';
+import { StartNewComponent } from './start-new/start-new.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { CasesPage } from './cases.page';
     IonicModule,
     CasesPageRoutingModule
   ],
-  declarations: [CasesPage]
+  declarations: [CasesPage ,StartNewComponent],
+  entryComponents: [StartNewComponent],
 })
 export class CasesPageModule {}
