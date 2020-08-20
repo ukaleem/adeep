@@ -15,7 +15,7 @@ export class ApiService {
   apiUrl = '';
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/json',
       // 'Content-Type': undefined
     }),
   };
