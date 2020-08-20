@@ -17,6 +17,12 @@ export class EndpointsService {
   GET_VARIABLES(TASK_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases/'+TASK_ID+'/variables';
   }
+  GET_STEPS(PROJECT_ID,TASK_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'project/'+PROJECT_ID+'/activity/'+TASK_ID+'/steps';
+  }
+  GET_DYNA_FORM(PROJECT_ID,FORM_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'project/'+PROJECT_ID+'/dynaform/'+FORM_ID;
+  }
 
   constructor(private config: ConfigService) { }
 }
