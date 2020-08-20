@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-button (click)='closeModal()'>X</ion-button>
+</ion-header>
+<ion-content>
+  <h2 *ngIf='images.length == 0'>Please Select images</h2>
+  <ion-list>
+    <ion-item *ngFor="let img of images;index as i"> 
+      <ion-thumbnail slot="start">
+        <img [src]="img.path">
+      </ion-thumbnail>
+      <ion-label>{{img.name}}</ion-label>
+      <ion-button (click)="startUpload(img,i)">Upload</ion-button>
+      <ion-button (click)="deleteImage(img,i)">Delete</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-button (click)='selectImage()'>Select image</ion-button>
+</ion-footer>

@@ -1,0 +1,35 @@
+<ion-content fullscreen="true" translucent="true">
+<ion-grid class='ion-no-padding'>
+  <ion-row>
+    <ion-col class='ion-no-padding'>
+      <ion-card>
+        <div #map id="map"></div>
+        <ion-card-header>
+          <ion-item>
+            <ion-label>Country Name: </ion-label> <span class=""> {{userCurrentLocationData.countryName}}</span>
+          </ion-item>
+          <ion-item>
+            <ion-label>Latitude: </ion-label> <span class=""> {{userCurrentLocationData.latitude}}</span>
+          </ion-item>
+          <ion-item>
+            <ion-label>Longitude: </ion-label> <span class=""> {{userCurrentLocationData.longitude}}</span>
+          </ion-item>
+          <ion-item>
+            <ion-label>Address: </ion-label> <span class=""> {{userCurrentLocationData.thoroughfare}}
+              {{userCurrentLocationData.locality}}</span>
+          </ion-item>
+        </ion-card-header>
+      </ion-card>
+
+      <!-- <div id="address">
+        <span>{{address}}</span>
+      </div> -->
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>
+<ion-footer>
+<ion-button (click)="afterMapContineu()" color="primary" shape="round" expand="block">
+  continue
+</ion-button>
+</ion-footer>
