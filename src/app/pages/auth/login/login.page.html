@@ -14,23 +14,28 @@
   </ion-header>
 
   <form #form="ngForm" (ngSubmit)="register(form)">
-    <ion-item>
-      <ion-label>App</ion-label>
-      <ion-input name="appName" type="text" readonly  value="MOEPIIKPXCZPHZETAZTTJMGYYTLLWARH"></ion-input>
+    <ion-item *ngIf=false>
+      <ion-label>Grant type</ion-label>
+      <ion-input name="grant_type" type="text" readonly ngModel value="password"></ion-input>
     </ion-item> 
-    <ion-item>
-      <ion-label>Secret</ion-label>
-      <ion-input name="appSecret" type="text" readonly  value="6787116325f3dffbfa69216052519218"></ion-input>
+    <ion-item *ngIf=false>
+      <ion-input name="scope" type="text" readonly  ngModel value="*"></ion-input>
+    </ion-item> 
+    <ion-item *ngIf=false>
+      <ion-input name="client_id" type="text" readonly ngModel  value="MOEPIIKPXCZPHZETAZTTJMGYYTLLWARH"></ion-input>
+    </ion-item> 
+    <ion-item *ngIf=false>
+      <ion-input name="client_secret" type="text" readonly  ngModel value="6787116325f3dffbfa69216052519218"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>User name</ion-label>
-      <ion-input name="userName" type="text" ngModel required></ion-input>
+      <ion-label position="floating">User name</ion-label>
+      <ion-input name="username" type="text" ngModel required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Password</ion-label>
-      <ion-input name="userPassword" type="text" ngModel required></ion-input>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input name="password" type="password" ngModel required></ion-input>
     </ion-item>
     
     <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">Register</ion-button>
   </form>
-</ion-content>
+</ion-content> 

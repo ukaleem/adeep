@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/services/pages-apis/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,28 +13,31 @@ export class LoginPage implements OnInit {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
-      // 'Content-Type': undefined
     }),
   };
-  constructor(public httpClient: HttpClient) {}
+  constructor(private loginService: AuthService, private router: Router) {}
 
   register(form) {
     let postData = {
-            "name": "Customer004",
-            "email": "customer004@email.com",
-            "tel": "0000252525"
+      grant_type   : 'password',
+      scope        : '*',
+      client_id    : 'FMHZNRPPTGTDANXZWAFPLFJJCSUXSOIX',
+      client_secret: '62051212054b530c27f0783019474502',
+      username     : form.value.grant_type,
+      password     : form.value.grant_type 
     }
-
-    this.httpClient.post("http://192.236.147.77:8082/workflow/oauth2/token", form.value, this.httpOptions)
-      .subscribe(data => {
-        console.log(data);
-       }, error => {
-        console.log(error);
-      });
-
-    // this.authService.register(form.value).subscribe((res) => {
-    //   this.router.navigateByUrl('home');
-    // });
+    form.value.push({grant_type: '*'});
+    this.loginService.login(form.value).subscribe(data=> {
+      console.log(data);
+      if(data.access_token){
+        this.router.navigateByUrl('home');
+        localStorage.setItem('token',JSON.stringify(data));
+        localStorage.setItem('token_time',new Date().toDateString());
+      }
+       //   
+    },error=>{
+      console.log(error);
+    });
   }
 
   ngOnInit() {
