@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { UploadImagePickerComponent } from './upload-image-picker.component';
+import { AllCasesPage } from './all-cases.page';
 
-describe('UploadImagePickerComponent', () => {
-  let component: UploadImagePickerComponent;
-  let fixture: ComponentFixture<UploadImagePickerComponent>;
+describe('AllCasesPage', () => {
+  let component: AllCasesPage;
+  let fixture: ComponentFixture<AllCasesPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UploadImagePickerComponent ],
+      declarations: [ AllCasesPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UploadImagePickerComponent);
+    fixture = TestBed.createComponent(AllCasesPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
