@@ -5,13 +5,12 @@ import { IonicModule } from '@ionic/angular';
 import { CustomLoaderComponent } from './custom-loader/custom-loader.component';
 import { UploadImagePickerComponent } from './upload-image-picker/upload-image-picker.component';
 import { ImgPickerComponent } from './img-picker/img-picker.component';
-import { LoadMapComponent } from './load-map/load-map.component';
 
 @NgModule({
   entryComponents: [CustomLoaderComponent, ImagePickerComponent , ImgPickerComponent],
-  declarations: [ImagePickerComponent , CustomLoaderComponent,ImgPickerComponent, UploadImagePickerComponent, LoadMapComponent],
+  declarations: [ImagePickerComponent , CustomLoaderComponent,ImgPickerComponent ],
   imports: [CommonModule, IonicModule],
-  exports: [CustomLoaderComponent, ImagePickerComponent, UploadImagePickerComponent, LoadMapComponent],
+  exports: [CustomLoaderComponent, ImagePickerComponent, UploadImagePickerComponent],
 })
 
 export class SharedModule { }
