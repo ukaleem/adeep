@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true">
+<!-- <ion-content [fullscreen]="true">
   <form #form="ngForm" (ngSubmit)="register(form)">
     <ion-item *ngIf=false>
       <ion-label>Grant type</ion-label>
@@ -24,4 +24,83 @@
     
     <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">Register</ion-button>
   </form>
-</ion-content> 
+</ion-content>  -->
+<ion-content>
+
+  <form  #form="ngForm" (ngSubmit)="register(form)">
+      <ion-grid class="ion-no-padding ion-no-margin">
+        <ion-row class="lg-image-row ion-align-items-baseline">
+          <ion-col class="lg-image ion-no-padding ion-no-margin">
+              <div class="image-overlay-div">
+                  <div>
+                      <ion-img [routerLink]="['/inicial-screens']"  src="../../../../assets/logo/showLogoFile.png"></ion-img>
+                  </div>
+              </div>
+          </ion-col>
+      </ion-row>
+          <ion-row class="ion-margin">
+              <ion-col size="12" size-sm="6" offset-sm="3">
+                  <ion-list>
+
+                    <ion-item *ngIf=false lines="none">
+                      <ion-label>Grant type</ion-label>
+                      <ion-input name="grant_type" type="text" readonly ngModel value="password"></ion-input>
+                    </ion-item> 
+                    <ion-item *ngIf=false lines="none">
+                      <ion-input name="scope" type="text" readonly  ngModel value="*"></ion-input>
+                    </ion-item> 
+                    <ion-item *ngIf=false lines="none">
+                      <ion-input name="client_id" type="text" readonly ngModel  value="MOEPIIKPXCZPHZETAZTTJMGYYTLLWARH"></ion-input>
+                    </ion-item> 
+                    <ion-item *ngIf=false lines="none">
+                      <ion-input name="client_secret" type="text" readonly  ngModel value="6787116325f3dffbfa69216052519218"></ion-input>
+                    </ion-item>
+
+                      <ion-item lines="none">
+                          <ion-label position="floating">User Name
+                              <!-- <span class="span-error" *ngIf="!emailCtrl.valid && emailCtrl.touched">✖</span>
+                              <span class="span-success" *ngIf="emailCtrl.valid && emailCtrl.touched">✔</span> -->
+                          </ion-label>
+                          <ion-input name="username" type="text" ngModel required></ion-input>
+                          <span class="validity"></span>
+                      </ion-item>
+                      <!-- <ion-label class='ion-label'>
+                          User Name should be like Max                     
+                       </ion-label> -->
+                  </ion-list>
+              </ion-col>
+
+              <ion-col size="12" size-sm="6" offset-sm="3">
+                  <ion-list>
+                      <ion-item lines="none">
+                          <ion-label position="floating">Password 
+                              <!-- <span class="span-error" *ngIf="!passwordCtrl.valid && passwordCtrl.touched">✖</span>
+                              <span class="span-success" *ngIf="passwordCtrl.valid && passwordCtrl.touched">✔</span> -->
+                          </ion-label>
+                          <ion-input name="password" type="password" ngModel required></ion-input>
+                          <div class="keep-eye-on" slot="end" (click)="managePassword()">
+                              <ion-icon size='medium' color="light" size="small" name="{{passeye}}"></ion-icon>
+                          </div>
+                      </ion-item>
+                      <!-- <ion-label class='ion-label'>
+                          Password should be 5 characters long.
+                      </ion-label> -->
+                  </ion-list>
+              </ion-col>
+          </ion-row>
+          <ion-row class="ion-margin">
+              <ion-col size-sm="6" offset-sm="3">
+                  <ion-button type="button" color="primary" fill="clear" expand="block">
+                      forget Password?
+                  </ion-button>
+                  <ion-button type="submit" color="primary" expand="block" type="submit" [disabled]="form.invalid" expand="block">
+                      Login
+                  </ion-button>
+                  <ion-button fill='outline' color="primary" expand="block">
+                      Register
+                  </ion-button>
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+  </form>
+</ion-content>
