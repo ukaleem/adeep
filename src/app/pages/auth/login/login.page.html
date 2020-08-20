@@ -1,9 +1,36 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>
+      Tab 1
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 1</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
+  <form #form="ngForm" (ngSubmit)="register(form)">
+    <ion-item>
+      <ion-label>App</ion-label>
+      <ion-input name="appName" type="text" readonly  value="MOEPIIKPXCZPHZETAZTTJMGYYTLLWARH"></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label>Secret</ion-label>
+      <ion-input name="appSecret" type="text" readonly  value="6787116325f3dffbfa69216052519218"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>User name</ion-label>
+      <ion-input name="userName" type="text" ngModel required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input name="userPassword" type="text" ngModel required></ion-input>
+    </ion-item>
+    
+    <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">Register</ion-button>
+  </form>
 </ion-content>
