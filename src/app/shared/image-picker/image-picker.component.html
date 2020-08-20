@@ -15,23 +15,23 @@
 
         <div class="picker">
 
-          <ion-img role="button" class="image" (click)="onPickImage()" [src]="selectedImage" *ngIf="selectedImage">
+          <ion-img role="button" class="image" [src]="selectedImage" *ngIf="selectedImage">
           </ion-img>
           <div class='outer-icon-div'>
-            <ion-button class="camera-btn" *ngIf="!selectedImage" color="warning" fill='outline' shape='round' (click)="onPickImage()">
+            <ion-button class="camera-btn" *ngIf="!selectedImage" color="warning" fill='outline' shape='round'>
               <ion-icon size='large' name="camera"></ion-icon>
             </ion-button>
           </div>
 
         </div>
-        <input accept="image/jpeg" type="file" #filePiker *ngIf="usePicker" (change)="onFileChosen($event)" />
+        <input accept="image/jpeg" type="file" #filePiker *ngIf="usePicker"/>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
 
 <ion-footer>
-  <ion-button *ngIf="selectedImage" (click)="uploadFileStart()" expand="block">
+  <ion-button *ngIf="selectedImage" expand="block">
     upload
   </ion-button>
 </ion-footer>

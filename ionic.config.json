@@ -1,7 +1,8 @@
 {
   "name": "adeeb",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
