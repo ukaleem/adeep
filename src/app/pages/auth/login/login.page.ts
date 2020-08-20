@@ -21,13 +21,12 @@ export class LoginPage implements OnInit {
     let postData = {
       grant_type   : 'password',
       scope        : '*',
-      client_id    : 'FMHZNRPPTGTDANXZWAFPLFJJCSUXSOIX',
-      client_secret: '62051212054b530c27f0783019474502',
-      username     : form.value.grant_type,
-      password     : form.value.grant_type 
+      client_id    : 'MOEPIIKPXCZPHZETAZTTJMGYYTLLWARH',
+      client_secret: '6787116325f3dffbfa69216052519218',
+      username     : form.value.username,
+      password     : form.value.password 
     }
-    form.value.push({grant_type: '*'});
-    this.loginService.login(form.value).subscribe(data=> {
+    this.loginService.login(postData).subscribe(data=> {
       console.log(data);
       if(data.access_token){
         this.router.navigateByUrl('home');
