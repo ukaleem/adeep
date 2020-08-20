@@ -16,6 +16,7 @@ export class ApiService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+'d619061d3c37b2ece781023c9f7dfaae6eb2e7e1'
       // 'Content-Type': undefined
     }),
   };
@@ -122,9 +123,23 @@ export class ApiService {
     return apiResponse;
   }
 
+  getUserToken(){
+    var allToken = localStorage.getItem('token');
+    if(allToken){
+      var tokenObject = JSON.parse(allToken);
+      return tokenObject.access_token;
+    }
+    
+    
+  }
   makeUrl(postObject: PostConfigObject, isGet: boolean): string {
-    this.apiUrl = this.api.SERVER_API;
-    this.apiUrl += postObject.endPointUrl;
+    if(postObject.isToken){
+      let tokenObject ='Bearer '+ this.getUserToken();
+
+      this.httpOptions.headers.append('Authorization' ,tokenObject );
+    }
+    console.log(this.httpOptions);
+      this.apiUrl = postObject.endPointUrl;
     return this.apiUrl;
   }
 }

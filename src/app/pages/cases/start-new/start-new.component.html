@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Start New Case
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Start New Case</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-card *ngFor="let single of allCasesNew">
+      <ion-item>
+        <ion-icon name="document" slot="start"></ion-icon>
+        <ion-label>{{single.pro_title}}</ion-label>
+        <ion-button fill="outline" slot="end">start</ion-button>
+      </ion-item>
+
+      <ion-card-content>
+        {{single.pro_title}}
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>
