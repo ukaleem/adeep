@@ -1,5 +1,5 @@
 class PostConfigObject {
     isToken : boolean;
-    endPointUrl : number;
+    endPointUrl : string;
     showLoading : boolean;
 }
