@@ -33,5 +33,8 @@ export class CasesService {
   getDynaForm(project_id,formId) {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_DYNA_FORM(project_id,formId),showLoading : true});
   }
+  getCustomQueryData(frmData) {
+    return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.CUSTOM_QUERY_DATA,showLoading : true});
+  } 
 }
 
