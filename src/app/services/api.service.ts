@@ -16,7 +16,7 @@ export class ApiService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer '+'d619061d3c37b2ece781023c9f7dfaae6eb2e7e1'
+      'Authorization': 'Bearer '+'ea25dc52edaad7f2c4df1687cde5781da60dc91d'
     }),
   };
   constructor(
@@ -80,6 +80,57 @@ export class ApiService {
     });
     return apiResponse;
   }
+
+  commonPut(dataObject: any, postObject: PostConfigObject): Observable<any> {
+    console.log(postObject);
+    if (postObject.showLoading) {
+      this.loadingLoader.prsentLoading();
+    }
+    const apiResponse = new Observable((observer) => {
+      this.http
+        .put(
+          this.makeUrl(postObject, false),
+          dataObject,
+          this.httpOptions
+        )
+        .subscribe(
+          (response) => {
+            if (postObject.showLoading) {
+              this.loadingLoader.closeLoading();
+            }
+            if (response && response['error']) {
+              this.showAlerts.showAlertNormal(
+                response['error'],
+                response['message']
+                // response['error'],
+                // response['message']
+              );
+              this.toast.ErrorToast('Try Again', 1500);
+            }
+            console.log(response);
+            observer.next(response);
+          },
+          (error) => {
+            this.showAlerts.showAlertNormal(
+              'Connection Error!',
+              'Error in Connection to Server!'
+            );
+            if (postObject.showLoading) {
+              this.loadingLoader.closeLoading();
+            }
+            console.log(error);
+            observer.error(error);
+          }
+        );
+      return {
+        unsubscribe() {
+          this.http.post.unsubscribe();
+        },
+      };
+    });
+    return apiResponse;
+  }
+
 
   commonGet(postObject: PostConfigObject): Observable<any> {
     console.log(postObject);

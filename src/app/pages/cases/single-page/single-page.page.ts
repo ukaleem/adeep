@@ -80,5 +80,12 @@ export class SinglePagePage implements OnInit {
     // });
 
   }
+  updateVariable(){
+    this.casesService.updateVariable('','','','').subscribe(data=>{
+      console.log('Variables',data);
+      this.caseData = data;
+    });
+    
+  }
 }
 

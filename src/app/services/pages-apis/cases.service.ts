@@ -36,5 +36,8 @@ export class CasesService {
   getCustomQueryData(frmData) {
     return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.CUSTOM_QUERY_DATA,showLoading : true});
   } 
+  updateVariable(frmData,app,index,name) {
+    return this.api.commonPut(frmData,{isToken :false,endPointUrl : this.endPoints.UPDATE_VARIABLE(app,index,name),showLoading : true});
+  } 
 }
 
