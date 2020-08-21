@@ -6,7 +6,7 @@
         <ion-row>
           <ion-col class="ion-no-padding ion-text-center">
             <ion-menu-toggle>
-              <ion-item lines="none" class="list-item" color="transparent" routerLinkActive="router-link-active">
+              <ion-item lines="none" color="transparent" routerLinkActive="router-link-active">
                 <ion-avatar style='height:60px !important; width:60px !important;' class='my-custom-avatar'>
                   <img src="../assets/images/user_dumme.png">
                 </ion-avatar>
@@ -22,7 +22,7 @@
       <div class="seperate-div">
         <ion-list class="side-menu-ion-list">
           <ion-menu-toggle>
-            <ion-item lines='none' button>
+            <ion-item lines='none' button [routerLink]="['/','cases','all-cases']">
               <div slot='start'>
                 <img class="segment-img" src="../assets/icon/inbox.svg">
               </div>
@@ -32,7 +32,7 @@
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle>
-            <ion-item lines='none' button>
+            <ion-item lines='none' button  [routerLink]="['/','cases','unassigned-cases']">
               <div slot='start'>
                 <img class="segment-img" src="../assets/icon/unassigned.svg">
               </div>
@@ -52,7 +52,7 @@
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle>
-            <ion-item lines='none' button>
+            <ion-item lines='none' button  [routerLink]="['/','cases','draft-cases']">
               <div slot='start'>
                 <img class="segment-img" src="../assets/icon/draft.svg">
               </div>

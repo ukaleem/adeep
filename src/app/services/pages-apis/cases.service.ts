@@ -12,6 +12,12 @@ export class CasesService {
   getAllProcess() {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ALL_CASES,showLoading : true});
   } 
+  getDraftCases() {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ALL_DRAFT_CASES,showLoading : true});
+  }
+  getAllUnassignedCases() {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ALL_UNASSIGNED_CASES,showLoading : true});
+  }
   getStartCases() {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ALL_CASES_START,showLoading : true});
   } 
