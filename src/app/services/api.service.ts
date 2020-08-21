@@ -17,7 +17,6 @@ export class ApiService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer '+'d619061d3c37b2ece781023c9f7dfaae6eb2e7e1'
-      // 'Content-Type': undefined
     }),
   };
   constructor(
@@ -136,7 +135,7 @@ export class ApiService {
     if(postObject.isToken){
       let tokenObject ='Bearer '+ this.getUserToken();
 
-      this.httpOptions.headers.append('Authorization' ,tokenObject );
+      // this.httpOptions.headers.append('Authorization' ,tokenObject );
     }
     console.log(this.httpOptions);
       this.apiUrl = postObject.endPointUrl;

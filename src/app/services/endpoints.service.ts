@@ -24,6 +24,7 @@ export class EndpointsService {
   GET_DYNA_FORM(PROJECT_ID,FORM_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'project/'+PROJECT_ID+'/dynaform/'+FORM_ID;
   }
+  CUSTOM_QUERY_DATA = ConfigService.SERVER_ADDRESS+'/'+ConfigService.WORKSPACE+'en/classic/customPage/customPageApplicationAjax';
 
   constructor(private config: ConfigService) { }
 }

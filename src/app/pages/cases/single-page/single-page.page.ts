@@ -32,36 +32,55 @@ export class SinglePagePage implements OnInit {
     });
   }
 
+  allForms: any = [];
   loadCaseData(){
     this.casesService.getSingleCase(this.caseId).subscribe(data=>{
-      console.log(data);
+      console.log('Single Case',data);
+      this.caseData = data;
+      let projectId = data.pro_uid;
+      let caseID = data.current_task[0].tas_uid;
+
+      this.casesService.getSteps(projectId,caseID).subscribe(data=>{
+        console.log(data);
+        this.caseData = data;
+        this.casesService.getDynaForm(projectId, this.caseData[0].step_uid_obj).subscribe(data1=>{
+          console.log('DynaForm',data1);
+          
+          // this.caseData = data;
+          var allResult = JSON.parse(data1.dyn_content);
+          this.allForms = allResult.items;
+
+          console.log(allResult);
+        });
+      });
+
+    });
+
+    let frmData = {
+      option: 'LST',
+      pageSize: 15,
+      limit: 15,
+      start: 0
+    }
+     this.casesService.getCustomQueryData(frmData).subscribe(data=>{
+      console.log('Variables',data);
       this.caseData = data;
     });
-    this.casesService.getCurrentTask(this.caseId).subscribe(data=>{
-      console.log(data);
-      this.caseData = data;
-    })
-    this.casesService.getCurrentTasks(this.caseId).subscribe(data=>{
-      console.log(data);
-      this.caseData = data;
-    })
-    this.casesService.getCaseVariables(this.caseId).subscribe(data=>{
-      console.log(data);
-      this.caseData = data;
-    });
-    this.casesService.getSteps('9889347885f336c48542fb2083536155' , '4928001005f3e40f0eb7f67073400016').subscribe(data=>{
-      console.log(data);
-      this.caseData = data;
-      this.casesService.getDynaForm('9889347885f336c48542fb2083536155' , this.caseData[0].step_uid_obj).subscribe(data1=>{
-        console.log('DynaForm',data1);
-        // this.caseData = data;
-        var allResult = JSON.parse(data1.dyn_content);
-        console.log(allResult);
+    
+    // this.casesService.getCurrentTask(this.caseId).subscribe(data=>{
+    //   console.log('currentTask',data);
+    //   let currentTask  = data.tas_uid;
+    //   this.caseData = data;
+    // })
+    // this.casesService.getCurrentTasks(this.caseId).subscribe(data=>{
+    //   console.log(data);
+    //   this.caseData = data;
+    // })
+    // this.casesService.getCaseVariables(this.caseId).subscribe(data=>{
+    //   console.log('Variables',data);
+    //   this.caseData = data;
+    // });
 
-
-        
-      })
-    })
   }
 }
 
