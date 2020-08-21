@@ -12,6 +12,12 @@ export class CasesService {
   getAllProcess() {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ALL_CASES,showLoading : true});
   } 
+  getDraftCases() {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ALL_DRAFT_CASES,showLoading : true});
+  }
+  getAllUnassignedCases() {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ALL_UNASSIGNED_CASES,showLoading : true});
+  }
   getStartCases() {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ALL_CASES_START,showLoading : true});
   } 
@@ -27,7 +33,10 @@ export class CasesService {
   getCaseVariables(caseId) {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_VARIABLES(caseId),showLoading : true});
   }
-  getSteps(project_id,caseId) {
+  getAllParticipants() {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ALL_PARTICIPANTS,showLoading : true});
+  }
+    getSteps(project_id,caseId) {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_STEPS(project_id,caseId),showLoading : true});
   }
   getDynaForm(project_id,formId) {
@@ -40,4 +49,3 @@ export class CasesService {
     return this.api.commonPut(frmData,{isToken :false,endPointUrl : this.endPoints.UPDATE_VARIABLE(app,index,name),showLoading : true});
   } 
 }
-

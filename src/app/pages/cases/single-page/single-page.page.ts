@@ -12,7 +12,9 @@ export class SinglePagePage implements OnInit {
 
   caseData:any = [];
   caseId: any = '';
-  constructor(private router:ActivatedRoute, private navCtrl: NavController,
+  constructor(
+    private router:ActivatedRoute, 
+    private navCtrl: NavController,
     private casesService: CasesService) { }
 
   ngOnInit() {

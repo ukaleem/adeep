@@ -17,8 +17,10 @@ export class AllCasesPage implements OnInit {
       this.allCases = data;
     })
   }
-  constructor(private casesService : CasesService ,
-    private modalController:ModalController) { 
+  constructor(
+    private casesService : CasesService ,
+    private modalController:ModalController,
+    ) { 
    
   }
 

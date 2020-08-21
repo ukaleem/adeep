@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Draft Cases</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <div *ngFor="let case of allDraftCases">
+      <p class="ion-text-end date-class">{{ case.app_create_date }}</p>
+      <ion-item  class="list-item" detail>
+        <ion-badge mode="ios" color="success" slot="end">{{ case.app_thread_status }}</ion-badge>
+        <ion-label>
+          <h2>#{{ case.app_pro_title }} : {{ case.app_tas_title }}</h2>
+          <p> {{case.app_current_user }} </p>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>
