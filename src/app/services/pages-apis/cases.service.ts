@@ -30,4 +30,10 @@ export class CasesService {
   getAllParticipants() {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ALL_PARTICIPANTS,showLoading : true});
   }
+    getSteps(project_id,caseId) {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_STEPS(project_id,caseId),showLoading : true});
+  }
+  getDynaForm(project_id,formId) {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_DYNA_FORM(project_id,formId),showLoading : true});
+  }
 }

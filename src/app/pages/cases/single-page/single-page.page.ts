@@ -48,6 +48,20 @@ export class SinglePagePage implements OnInit {
     this.casesService.getCaseVariables(this.caseId).subscribe(data=>{
       console.log(data);
       this.caseData = data;
+    });
+    this.casesService.getSteps('9889347885f336c48542fb2083536155' , '4928001005f3e40f0eb7f67073400016').subscribe(data=>{
+      console.log(data);
+      this.caseData = data;
+      this.casesService.getDynaForm('9889347885f336c48542fb2083536155' , this.caseData[0].step_uid_obj).subscribe(data1=>{
+        console.log('DynaForm',data1);
+        // this.caseData = data;
+        var allResult = JSON.parse(data1.dyn_content);
+        console.log(allResult);
+
+
+        
+      })
     })
   }
 }
+
