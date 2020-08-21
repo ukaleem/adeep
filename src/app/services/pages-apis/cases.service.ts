@@ -27,5 +27,7 @@ export class CasesService {
   getCaseVariables(caseId) {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_VARIABLES(caseId),showLoading : true});
   }
+  getAllParticipants() {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ALL_PARTICIPANTS,showLoading : true});
+  }
 }
-

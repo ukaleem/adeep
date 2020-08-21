@@ -80,3 +80,84 @@ ion-back-button{
 .txt-xxlarge{
   font-size: xx-large;
 }
+
+.date-class {
+  margin-right: 10px !important;
+  font-size: small;
+  color: #a19e9e;
+  margin-bottom: -5px !important;
+  margin-top: 7px !important;
+}
+.list-item {
+  border-radius: 5px;
+  margin: 6px !important;
+  box-shadow: 0px 2px rgb(231, 226, 226) !important;
+  border-top: 1px solid #e7e2e2 !important;
+  border-right: 1px solid #e7e2e2 !important;
+}
+.custom-ion-segment{
+  margin: 5px;
+  background-color: #e0dfd9  !important;
+  border-radius: 10px;
+  height: 40px !important;
+
+  ion-segment-button{
+    margin-top: -3px !important;
+    border-radius: 5px !important;
+  }
+
+  .segment-button-checked{
+      color: white;
+      ion-label{
+          color: white !important;
+          padding: 5px;
+          border-radius: 8px;
+      }
+  }
+}
+.back-icon{
+  margin-right: 0px;
+  color: white;
+  width: 32px !important;
+  height: 48px !important;
+
+}
+ion-toolbar {
+  --background: none !important;
+  ion-title{
+    color: var(--ion-color-light) !important;
+    text-align: center;
+  }
+}
+.bg-none {
+  --background:none !important;
+  background: none !important;
+  background-color: none !important;
+}
+ion-segment-button {
+  --color-checked: var(--ion-color-light) !important;
+  --background-checked: var(--ion-color-primary);
+}
+ion-segment-button ion-label{
+  color: var(--ion-color-dark) !important;
+}
+.left-col{
+  background-color: #EFF2EE !important;
+  border-radius: 9% !important;
+}
+.heading-p{
+  margin-top: 21px !important;
+  margin-bottom: 14px !important;
+}
+.single-view-card{
+  ion-item{
+    background-color: #eff2ee;
+    margin: 0px 6px;
+    border-radius: 10px;
+    height: 100%;
+  }
+  ion-card-header{
+    padding: 10px;
+    border-radius: 10px;
+  }
+}

@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Participants</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <div *ngFor="let participate of allParticipants" [routerLink]="['/','participants','single-participants',participate.app_uid]">
+      <p class="ion-text-end date-class">{{ participate.app_create_date }}</p>
+      <ion-item  class="list-item" detail>
+        <ion-badge mode="ios" color="success" slot="end">{{ participate.app_status }}</ion-badge>
+        <ion-label>
+          <h2>#{{ participate.app_number }} : {{ participate.usr_firstname }}</h2>
+          <p> {{participate.app_tas_title }} </p>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

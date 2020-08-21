@@ -1,29 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
 import { CasesService } from 'src/app/services/pages-apis/cases.service';
+import { ModalController, NavController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-single-page',
-  templateUrl: './single-page.page.html',
-  styleUrls: ['./single-page.page.scss'],
+  selector: 'app-single-participants',
+  templateUrl: './single-participants.page.html',
+  styleUrls: ['./single-participants.page.scss'],
 })
-export class SinglePagePage implements OnInit {
+export class SingleParticipantsPage implements OnInit {
 
-  caseData:any = [];
   caseId: any = '';
+  activeSegment = 'basic';
+  participatedCase:any = [];
+  caseData = [];
+  basicDetails  = [];
   constructor(
+    private casesService : CasesService ,
+    private modalController:ModalController,
     private router:ActivatedRoute, 
     private navCtrl: NavController,
-    private casesService: CasesService) { }
-
-  ngOnInit() {
-  }
-
+  ) { }
+ 
   ionViewWillEnter(){
     this.router.paramMap.subscribe((paramMap) => {
       if (!paramMap.has('caseId')) {
-        console.log('No resId In exit');
         this.navCtrl.back();
         return;
       }
@@ -31,23 +32,24 @@ export class SinglePagePage implements OnInit {
       this.loadCaseData();
     });
   }
-
   loadCaseData(){
     this.casesService.getSingleCase(this.caseId).subscribe(data=>{
       console.log(data);
-      this.caseData = data;
+      this.basicDetails = data;
     });
     this.casesService.getCurrentTask(this.caseId).subscribe(data=>{
       console.log(data);
       this.caseData = data;
-    })
-    this.casesService.getCurrentTasks(this.caseId).subscribe(data=>{
-      console.log(data);
-      this.caseData = data;
-    })
+    });
     this.casesService.getCaseVariables(this.caseId).subscribe(data=>{
       console.log(data);
       this.caseData = data;
-    })
+    });
+  }
+  ngOnInit() {
+  }
+  segmentChanged(ev: any) {
+    console.log(ev.detail.value);
+    this.activeSegment = ev.detail.value;
   }
 }
