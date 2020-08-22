@@ -18,8 +18,8 @@ export class LoginPage implements OnInit {
   constructor(private loginService: AuthService, private router: Router) {}
 
   register(form) {
-    this.router.navigateByUrl('cases/all-cases');
-    return;
+    // this.router.navigateByUrl('cases/all-cases');
+    // return;
     let postData = {
       grant_type   : 'password',
       scope        : '*',
@@ -33,6 +33,7 @@ export class LoginPage implements OnInit {
       if(data.access_token){
         this.router.navigateByUrl('cases/all-cases');
         localStorage.setItem('token',JSON.stringify(data));
+        localStorage.setItem('token_access',data.access_token);
         localStorage.setItem('token_time',new Date().toDateString());
       }
        //   

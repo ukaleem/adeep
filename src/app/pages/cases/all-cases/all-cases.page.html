@@ -5,6 +5,11 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
   <ion-card *ngFor="let single of allCases">
     <ion-item [routerLink]="['/','cases','single-page',single.app_uid]">
       <ion-icon name="document" slot="start"></ion-icon>

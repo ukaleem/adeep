@@ -5,50 +5,36 @@
 </ion-header>
 
 <ion-content>
-  <form>
-    Forms
-    <ng-container *ngFor="let item of allForms">
-      All Forms
-      <ng-container *ngFor="let singleItem of item.items">
-        Single Items
-        <ng-container *ngFor="let singleField of singleItem">
-          single Field
-          <!-- //INPUT DROPDOWN -->
-          <ng-container *ngIf="singleField.type == 'dropdown'">
-            <ion-item>
-              <ion-label position="floating">
-                {{singleField.label}}
-              </ion-label>
-              <ion-select>
-                <ion-option *ngFor="let opt of singleField.options">
+  <form #form="ngForm" (ngSubmit)="doNextStep(form)">
+    <ng-container *ngFor="let item of allVariables">
+      <!-- <p>All VariaAbles</p> -->
+      <!-- //INPUT DROPDOWN -->
+      <ng-container *ngIf="item.itemType == 'dropdown'">
+        <ion-item>
+          <ion-label position="floating">
+            {{item.itemLabel}}
+          </ion-label>
+          <ion-select [name]="item.itemName" [required]="item.isRequired" [(ngModel)]="item.itemValue"
+            [ngModelOptions]="{standalone: true}">
+            <ion-option *ngFor="let opt of item.allOptions">
 
-                </ion-option>
-              </ion-select>
-            </ion-item>
-          </ng-container>
-          <!-- //INPUT TEXTFIELD -->
-          <ng-container *ngIf="singleField.type == 'text'">
-            <ion-item>
-              <ion-label position="floating">
-                {{singleField.label}}
-              </ion-label>
-              <ion-input type="text">
+            </ion-option>
+          </ion-select>
+        </ion-item>
+      </ng-container>
+      <!-- //INPUT TEXTFIELD -->
+      <ng-container *ngIf="item.itemType == 'text'">
+        <ion-item>
+          <ion-label position="floating">
+            {{item.itemLabel}}
+          </ion-label>
+          <ion-input [name]="item.itemName" type="text" [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="item.itemValue" [readonly]="" [required]="item.isRequired">
 
-              </ion-input>
-            </ion-item>
-          </ng-container>
-
-        </ng-container>
-
+          </ion-input>
+        </ion-item>
       </ng-container>
     </ng-container>
+    <ion-button type="submit">Submit</ion-button>
   </form>
-  <button (click)="updateVariable()">
-    Update
-  </button>
-  <button (click)="caseRoute()">
-    Update
-  </button>
-
 </ion-content>
-

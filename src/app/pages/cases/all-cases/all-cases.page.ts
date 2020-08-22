@@ -35,4 +35,12 @@ export class AllCasesPage implements OnInit {
     return await modal.present();
   }
 
+  doRefresh(event) {
+    this.ionViewWillEnter();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+
 }

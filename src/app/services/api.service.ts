@@ -16,7 +16,7 @@ export class ApiService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer '+'ea25dc52edaad7f2c4df1687cde5781da60dc91d'
+      // 'Authorization': 'Bearer '+'ea25dc52edaad7f2c4df1687cde5781da60dc91d'
     }),
   };
   constructor(
@@ -28,7 +28,14 @@ export class ApiService {
     private showAlerts: AlertsService,
     private toast: ToastService
   ) {
+    let token  = localStorage.getItem('token_access');
+    console.log(token);
+    this.httpOptions.headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+token
+    });
     this.apiUrl = api.SERVER_API;
+    
   }
 
   commonPost(dataObject: any, postObject: PostConfigObject): Observable<any> {
