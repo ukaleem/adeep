@@ -48,4 +48,10 @@ export class CasesService {
   updateVariable(frmData,app,index,name) {
     return this.api.commonPut(frmData,{isToken :false,endPointUrl : this.endPoints.UPDATE_VARIABLE(app,index,name),showLoading : true});
   } 
+  updateVariables(frmData,app) {
+    return this.api.commonPut(frmData,{isToken :false,endPointUrl : this.endPoints.UPDATE_VARIABLES(app),showLoading : true});
+  } 
+  caseRoute(frmData,app) {
+    return this.api.commonPut(frmData,{isToken :false,endPointUrl : this.endPoints.CASE_ROUTED(app),showLoading : true});
+  } 
 }

@@ -66,6 +66,17 @@ export class SinglePagePage implements OnInit {
       console.log('Variables',data);
       this.caseData = data;
     });
+
+    this.casesService.getDynaForm('9889347885f336c48542fb2083536155', '6343624405f362b93c5ef77004296138').subscribe(data1=>{
+      console.log('DynaForm',data1);
+      
+      // this.caseData = data;
+      var allResult = JSON.parse(data1.dyn_content);
+      this.allForms = allResult.items;
+
+      console.log(allResult);
+    });
+    
     
     // this.casesService.getCurrentTask(this.caseId).subscribe(data=>{
     //   console.log('currentTask',data);
@@ -83,7 +94,20 @@ export class SinglePagePage implements OnInit {
 
   }
   updateVariable(){
-    this.casesService.updateVariable('','','','').subscribe(data=>{
+    var oVars = {
+      "textVar001"      : "Kelly Cline",      //textbox with string variable
+      "dropdownVar001"        : 56789,              //textbox with integer variable
+   };
+
+    this.casesService.updateVariables(oVars,'3614823735f3e41b3746319025944715').subscribe(data=>{
+      console.log('Variables',data);
+      this.caseData = data;
+    });
+    
+  }
+
+  caseRoute(){
+    this.casesService.caseRoute([],'3614823735f3e41b3746319025944715').subscribe(data=>{
       console.log('Variables',data);
       this.caseData = data;
     });
