@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Case Page</ion-title>
     <ion-buttons slot="end">
-      <ion-button type="submit" (click)="doNextStep()" color="light">Submit</ion-button>
+      <ion-button type="submit" (click)="doNextStep(null)" color="light">Submit</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -18,9 +18,9 @@
           </ion-label>
           <ion-select [name]="item.itemName" [required]="item.isRequired" [(ngModel)]="item.itemValue"
             [ngModelOptions]="{standalone: true}">
-            <ion-option *ngFor="let opt of item.allOptions">
+            <ion-select-option *ngFor="let opt of item.allOptions">
 
-            </ion-option>
+            </ion-select-option>
           </ion-select>
         </ion-item>
       </ng-container>

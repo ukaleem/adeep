@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
+  passeye = 'eye';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -43,6 +44,10 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  managePassword(){
+
   }
 
 }
