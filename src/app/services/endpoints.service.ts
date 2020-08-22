@@ -30,7 +30,13 @@ export class EndpointsService {
   CUSTOM_QUERY_DATA = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'/customPage/customPageApplicationAjax';
   UPDATE_VARIABLE(APP_ID,DEL_INDEX,VARIABLE_NAME){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'variable/'+APP_ID+'/'+DEL_INDEX+'/variable/'+VARIABLE_NAME;
-  }  
+  }
+  UPDATE_VARIABLES(APP_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases/'+APP_ID+'/variable';
+  }
+  CASE_ROUTED(APP_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases/'+APP_ID+'/route-case';
+  }
 
   constructor(private config: ConfigService) { }
 }
