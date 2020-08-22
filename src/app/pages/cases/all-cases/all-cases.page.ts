@@ -15,7 +15,7 @@ export class AllCasesPage implements OnInit {
     this.casesService.getAllProcess().subscribe(data=>{
       console.log(data);
       this.allCases = data;
-    })
+    });
   }
   constructor(
     private casesService : CasesService ,

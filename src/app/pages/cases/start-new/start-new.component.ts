@@ -10,7 +10,10 @@ import { ModalController } from '@ionic/angular';
 export class StartNewComponent implements OnInit {
 
   allCasesNew :any = [];
-  constructor(private casesService : CasesService , private modalCtrl: ModalController) { 
+  constructor(
+    private casesService : CasesService ,
+     private modalCtrl: ModalController,
+     ) { 
     this.casesService.getStartCases().subscribe(data=>{
       console.log(data);
       this.allCasesNew = data as any;
@@ -22,5 +25,11 @@ export class StartNewComponent implements OnInit {
   closeModal(){
     this.modalCtrl.dismiss();
   }
-
+  startCase(caseDetail: any) {
+    console.log("From Start Case");
+    console.log(caseDetail);
+    this.casesService.startCase(caseDetail).subscribe(data=>{
+      console.log(data);
+    });
+  }
 }
