@@ -1,20 +1,24 @@
-<ion-header [translucent]="true">
+<ion-header no-border [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Start New Case
-    </ion-title>
-    <ion-buttons>
-      <ion-button (click)="closeModal()">
-        <ion-icon name="close"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-item class='bg-none' lines='none'>  
+      <ion-buttons slot="start">
+         <ion-button (click)="closeModal()">
+          <ion-icon class="back-icon" src="../../../../assets/icon/chervon-back.svg"></ion-icon>
+         </ion-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">New Case</ion-title>
+        <ion-buttons slot="end">
+          <ion-button>
+            <ion-icon slot="end" name-="none"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
   </ion-toolbar>
-</ion-header>
-
+  </ion-header>
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Start New Case</ion-title>
+      <ion-title size="large">New Case</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-list>
@@ -22,7 +26,7 @@
       <ion-item>
         <ion-icon name="document" slot="start"></ion-icon>
         <ion-label>{{single.pro_title}}</ion-label>
-        <ion-button fill="outline" slot="end">start</ion-button>
+        <ion-button fill="outline" slot="end" (click)="startCase(single)">Start</ion-button>
       </ion-item>
 
       <ion-card-content>

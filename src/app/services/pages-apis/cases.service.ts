@@ -48,4 +48,9 @@ export class CasesService {
   updateVariable(frmData,app,index,name) {
     return this.api.commonPut(frmData,{isToken :false,endPointUrl : this.endPoints.UPDATE_VARIABLE(app,index,name),showLoading : true});
   } 
+  startCase(frmData) {
+    console.log(frmData);
+    // return frmData;
+    return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.START_CASE,showLoading : true});
+  }
 }
