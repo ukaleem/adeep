@@ -1,14 +1,16 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Case Page</ion-title>
+    <ion-buttons slot="end">
+      <ion-button type="submit" (click)="doNextStep()" color="light">Submit</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <form #form="ngForm" (ngSubmit)="doNextStep(form)">
+    <h2 class="ion-text-center">{{formName}}</h2>
     <ng-container *ngFor="let item of allVariables">
-      <!-- <p>All VariaAbles</p> -->
-      <!-- //INPUT DROPDOWN -->
       <ng-container *ngIf="item.itemType == 'dropdown'">
         <ion-item>
           <ion-label position="floating">
@@ -34,7 +36,26 @@
           </ion-input>
         </ion-item>
       </ng-container>
+      <ng-container *ngIf="item.itemType == 'radio'">
+        <ion-radio-group allow-empty-selection value="anchovies">
+          <ion-list-header>
+            <ion-label>{{item.itemLabel}}</ion-label>
+          </ion-list-header>
+          <ion-item *ngFor="let option of radioOptions">
+            <ion-label>{{ option.label }}</ion-label>
+            <ion-radio mode="ios" slot="end" color="primary" [value]="option.value"></ion-radio>
+          </ion-item>          
+        </ion-radio-group>
+      </ng-container>
+      <ng-container *ngIf="item.itemType == 'checkgroup'">
+        <ion-list>
+          <ion-list-header>{{ item.itemLabel }}</ion-list-header>
+            <ion-item *ngFor="let option of checkBoxOptions">
+              <ion-label>{{ option.label }}</ion-label>
+              <ion-checkbox color="primary" mode="ios" slot="start" [value]="option.value"></ion-checkbox>
+            </ion-item>
+            </ion-list>
+      </ng-container>
     </ng-container>
-    <ion-button type="submit">Submit</ion-button>
   </form>
 </ion-content>

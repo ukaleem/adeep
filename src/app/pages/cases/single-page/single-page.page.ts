@@ -14,6 +14,9 @@ export class SinglePagePage implements OnInit {
   allForms: any = [];
   allVariables:any = [];
   caseId: any = '';
+  formName : any = '';
+  radioOptions = [];
+  checkBoxOptions = [];
   constructor(
     private router:ActivatedRoute, 
     private navCtrl: NavController,
@@ -25,7 +28,6 @@ export class SinglePagePage implements OnInit {
   ionViewWillEnter(){
     this.router.paramMap.subscribe((paramMap) => {
       if (!paramMap.has('caseId')) {
-        console.log('No resId In exit');
         this.navCtrl.back();
         return;
       }
@@ -55,8 +57,7 @@ export class SinglePagePage implements OnInit {
 
           this.casesService.getCaseVariables(this.caseId).subscribe(data3=>{
             console.log('Variables',data3);
-
-           
+            
             this.allForms.forEach(element => {
               element.items.forEach(element2 => {
                 element2.forEach(element3 => {
@@ -75,7 +76,6 @@ export class SinglePagePage implements OnInit {
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
                   }else if(element3.type == 'text'){
-
                     let items = {
                       itemName : element3.variable,
                       itemValue : '',
@@ -87,25 +87,51 @@ export class SinglePagePage implements OnInit {
                     };
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
+                  } else if(element3.type === 'radio') {
+                    element3.options.forEach(item => {
+                      this.radioOptions.push(item);
+                    });
+                    let items = {
+                      itemName : element3.variable,
+                      itemValue : this.radioOptions,
+                      itemLabel : element3.label,
+                      isRequired : element3.required,
+                      isReadonly : element3.variable,
+                      itemType : element3.type,
+                    };
+                    items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
+                    this.allVariables.push(items);
+                  } else if(element3.type == 'checkgroup') {
+                    element3.options.forEach(item => {
+                      this.checkBoxOptions.push(item);
+                    });
+                    let items = {
+                      itemName : element3.variable,
+                      itemValue : this.checkBoxOptions,
+                      itemLabel : element3.label,
+                      isRequired : element3.required,
+                      isReadonly : element3.variable,
+                      itemType : element3.type,
+                    };
+                    items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
+                    this.allVariables.push(items);
+                  } else if(element3.type == 'grid') {
+                    console.log('From Form Grid Type');
+                    // element3.items['1'].columns.forEach(item => {
+                    //   console.log('From Grid Box');
+                    //   console.log(item);
+                    //   this.checkBoxOptions.push(item);
+                    // });
                   }
-
-
                 });
               });
             });
             console.log(this.allVariables);
-  
             console.log(allResult);
-    
-            // this.caseData = data3;
+            this.formName = allResult.name;
           });
-
-          
-          // this.caseData = data;
-         
         });
       });
-
     });
 
     let frmData = {

@@ -5,7 +5,7 @@
 </ion-header>
 <ion-content>
   <ion-list>
-    <div *ngFor="let case of allDraftCases">
+    <div *ngFor="let case of allDraftCases" [routerLink]="['/','cases','single-page',case.app_uid]">
       <p class="ion-text-end date-class">{{ case.app_create_date }}</p>
       <ion-item  class="list-item" detail>
         <ion-badge mode="ios" color="success" slot="end">{{ case.app_thread_status }}</ion-badge>
