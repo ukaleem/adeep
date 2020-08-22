@@ -28,17 +28,21 @@ export class ApiService {
     private showAlerts: AlertsService,
     private toast: ToastService
   ) {
+    
+    this.apiUrl = api.SERVER_API;
+    
+  }
+
+  setToken(){
     let token  = localStorage.getItem('token_access');
     console.log(token);
     this.httpOptions.headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer '+token
     });
-    this.apiUrl = api.SERVER_API;
-    
   }
-
   commonPost(dataObject: any, postObject: PostConfigObject): Observable<any> {
+    this.setToken();
     console.log(postObject);
     if (postObject.showLoading) {
       this.loadingLoader.prsentLoading();
@@ -89,6 +93,7 @@ export class ApiService {
   }
 
   commonPut(dataObject: any, postObject: PostConfigObject): Observable<any> {
+    this.setToken();
     console.log(postObject);
     if (postObject.showLoading) {
       this.loadingLoader.prsentLoading();
@@ -140,6 +145,7 @@ export class ApiService {
 
 
   commonGet(postObject: PostConfigObject): Observable<any> {
+    this.setToken();
     console.log(postObject);
     if (postObject.showLoading) {
       this.loadingLoader.prsentLoading();
@@ -191,9 +197,7 @@ export class ApiService {
   }
   makeUrl(postObject: PostConfigObject, isGet: boolean): string {
     if(postObject.isToken){
-      let tokenObject ='Bearer '+ this.getUserToken();
-
-      // this.httpOptions.headers.append('Authorization' ,tokenObject );
+     
     }
     console.log(this.httpOptions);
       this.apiUrl = postObject.endPointUrl;
