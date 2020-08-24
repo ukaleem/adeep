@@ -140,10 +140,10 @@ export class SinglePagePage implements OnInit {
       limit: 15,
       start: 0
     }
-     this.casesService.getCustomQueryData(frmData).subscribe(data=>{
-      console.log('Variables',data);
-      this.caseData = data;
-    });
+    //  this.casesService.getCustomQueryData(frmData).subscribe(data=>{
+    //   console.log('Variables',data);
+    //   this.caseData = data;
+    // });
 
     // this.casesService.getDynaForm('9889347885f336c48542fb2083536155', '6343624405f362b93c5ef77004296138').subscribe(data1=>{
     // this.casesService.getDynaForm('9889347885f336c48542fb2083536155', '6343624405f362b93c5ef77004296138').subscribe(data1=>{
