@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { DomSanitizer} from '@angular/platform-browser';
 import { Pipe, PipeTransform } from '@angular/core';
 import { SecurityContext } from '@angular/compiler/src/core';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
   selector: 'app-single-case',
@@ -61,7 +61,12 @@ export class SingleCaseComponent implements OnInit {
   testIframe = '';
 
   loadBrowser(){
-    const browser = this.iab.create(this.testIframe,'_self');
+    var xyz: InAppBrowserOptions = {
+      location : 'yes',
+      closebuttoncolor : 'red',
+      closebuttoncaption: 'X',
+    }
+    const browser = this.iab.create('http://192.236.147.77:8082/pm/loadpage.php','_self',xyz);
   }
 
 }
