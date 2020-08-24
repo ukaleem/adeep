@@ -54,7 +54,6 @@ export class CasesService {
   caseRoute(frmData,app) {
     return this.api.commonPut(frmData,{isToken :false,endPointUrl : this.endPoints.CASE_ROUTED(app),showLoading : true});
   } 
-    
   startCase(frmData) {
     return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.START_CASE,showLoading : true});
   }

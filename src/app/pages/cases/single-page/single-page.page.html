@@ -56,6 +56,43 @@
             </ion-item>
             </ion-list>
       </ng-container>
+      <ng-container *ngIf="item.itemType == 'grid'">
+        <ng-container *ngFor="let option of gridOptions">
+          <ion-item *ngIf="option.type == 'text'">
+            <ion-label position="floating">
+              {{option.title}}
+            </ion-label>
+            <ion-input man="option.maxLength" [name]="option.name" type="text" [ngModelOptions]="{standalone: true}"
+               [readonly]="" [required]="option.required">
+            </ion-input>
+          </ion-item>
+          <ion-item *ngIf="option.type == 'dropdown'">
+            <ion-label position="floating">
+              {{option.title}}
+            </ion-label>
+            <ion-select mode ="ios" [name]="option.name" [required]="option.required"
+            [ngModelOptions]="{standalone: true}">
+            <ion-select-option  *ngFor="let optn of option.options"  [value]="optn.value">
+              {{ optn.label }}
+            </ion-select-option>
+          </ion-select>
+          </ion-item>
+          <ion-item *ngIf="option.type == 'textarea'">
+            <ion-label position="floating"> {{option.title}}</ion-label>
+            <ion-textarea></ion-textarea>
+          </ion-item>
+          <div *ngIf="option.type == 'checkbox'">
+            <ion-item *ngFor="let optn of option.options">
+              <ion-label>{{ optn.label }}</ion-label>
+              <ion-checkbox color="primary" mode="ios" slot="end" [value]="optn.value"></ion-checkbox>
+            </ion-item>
+          </div>
+          <ion-item *ngIf="option.type == 'datetime'">
+            <ion-label position="floating"> {{option.title}}</ion-label>
+            <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T07:43Z"></ion-datetime>
+          </ion-item>
+        </ng-container>
+      </ng-container>
     </ng-container>
   </form>
 </ion-content>

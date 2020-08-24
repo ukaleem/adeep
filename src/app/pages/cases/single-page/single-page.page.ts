@@ -17,6 +17,7 @@ export class SinglePagePage implements OnInit {
   formName : any = '';
   radioOptions = [];
   checkBoxOptions = [];
+  gridOptions = [];
   constructor(
     private router:ActivatedRoute, 
     private navCtrl: NavController,
@@ -35,17 +36,13 @@ export class SinglePagePage implements OnInit {
       this.loadCaseData();
     });
   }
-
-
   loadCaseData(){
     this.casesService.getSingleCase(this.caseId).subscribe(data=>{
-      console.log('Single Case',data);
       this.caseData = data;
       let projectId = data.pro_uid;
       let caseID = data.current_task[0].tas_uid;
 
       this.casesService.getSteps(projectId,caseID).subscribe(data=>{
-        console.log(data);
         this.caseData = data;
         this.casesService.getDynaForm(projectId, this.caseData[0].step_uid_obj).subscribe(data1=>{
           console.log('DynaForm',data1);
@@ -117,11 +114,21 @@ export class SinglePagePage implements OnInit {
                     this.allVariables.push(items);
                   } else if(element3.type == 'grid') {
                     console.log('From Form Grid Type');
-                    // element3.items['1'].columns.forEach(item => {
-                    //   console.log('From Grid Box');
-                    //   console.log(item);
-                    //   this.checkBoxOptions.push(item);
-                    // });
+                    console.log(element3);
+                    element3.columns.forEach(item => {
+                      console.log(item);
+                      this.gridOptions.push(item);
+                    });
+                    let items = {
+                      itemName : element3.variable,
+                      itemValue : this.gridOptions,
+                      itemLabel : element3.label,
+                      isRequired : element3.required,
+                      isReadonly : element3.variable,
+                      itemType : element3.type,
+                    };
+                    items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
+                    this.allVariables.push(items);
                   }
                 });
               });

@@ -63,8 +63,6 @@ export class ApiService {
               this.showAlerts.showAlertNormal(
                 response['error'],
                 response['message']
-                // response['error'],
-                // response['message']
               );
               this.toast.ErrorToast('Try Again', 1500);
             }
@@ -114,8 +112,6 @@ export class ApiService {
               this.showAlerts.showAlertNormal(
                 response['error'],
                 response['message']
-                // response['error'],
-                // response['message']
               );
               this.toast.ErrorToast('Try Again', 1500);
             }
@@ -192,14 +188,10 @@ export class ApiService {
       var tokenObject = JSON.parse(allToken);
       return tokenObject.access_token;
     }
-    
-    
   }
   makeUrl(postObject: PostConfigObject, isGet: boolean): string {
     if(postObject.isToken){
-     
     }
-    console.log(this.httpOptions);
       this.apiUrl = postObject.endPointUrl;
     return this.apiUrl;
   }
