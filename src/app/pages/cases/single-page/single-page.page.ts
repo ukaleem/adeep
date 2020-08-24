@@ -22,6 +22,7 @@ export class SinglePagePage implements OnInit {
   loadScript = '';
   projectId = '';
   caseUid = '';
+  dropDownValues = [];
   constructor(
     private router:ActivatedRoute, 
     private navCtrl: NavController,
@@ -59,7 +60,6 @@ export class SinglePagePage implements OnInit {
 
           this.casesService.getCaseVariables(this.caseId).subscribe(data3=>{
             console.log('Variables',data3);
-            
             this.allForms.forEach(element => {
               console.log(element);
               // element.script.forEach(eachScript => {
@@ -72,19 +72,46 @@ export class SinglePagePage implements OnInit {
                 
                 element2.forEach(element3 => {
                   let readOnly = false;
-                  if(element3.type == 'dropdown'){
-                    let items = {
-                      itemName : element3.variable,
-                      itemValue : '',
-                      itemLabel : element3.label,
-                      isRequired : element3.required,
-                      isReadonly : element3.variable,
-                      SQLQuery : element3.sql,
-                      allOptions : element3.options,
-                      itemType : element3.type,
-                    };
-                    items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
-                    this.allVariables.push(items);
+                  if(element3.type == 'dropdown'){   
+                    this.dropDownValues = [];
+                    element3.options.forEach(item => {
+                      let dropdownoption = {
+                        value:item.value,
+                        label: item.label,
+                      }
+                      this.dropDownValues.push(dropdownoption);
+                    });                          
+                      if(element3.sql != '' || element3.sql != null || element3.sql != 'null') {
+                        let formData  =  {
+                          dyn_uid: data1.dyn_uid,
+                          field_id : element3.var_name,
+                        }
+                        this.casesService.executeQuery(formData,projectId,element3.var_name).subscribe(response => {                          
+                          // this.dropDownValues = [];
+                          console.log('From Case Sql')
+                            console.log(response);
+                          response.forEach(item => {
+                            let dropdownoption = {
+                              value:item.text,
+                              label: item.value,
+                            }
+                            this.dropDownValues.push(dropdownoption);
+                          });
+                        });                      
+                       
+                      }
+                      let items = {
+                        itemName : element3.variable,
+                        itemValue : '',
+                        itemLabel : element3.label,
+                        isRequired : element3.required,
+                        isReadonly : element3.variable,
+                        SQLQuery : element3.sql,
+                        allOptions : this.dropDownValues,
+                        itemType : element3.type,
+                      };
+                      items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
+                      this.allVariables.push(items);
                   }else if(element3.type == 'text'){
                     let items = {
                       itemName : element3.variable,
@@ -112,6 +139,7 @@ export class SinglePagePage implements OnInit {
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
                   } else if(element3.type == 'checkgroup') {
+                    this.checkBoxOptions = [];
                     element3.options.forEach(item => {
                       this.checkBoxOptions.push(item);
                     });
@@ -126,6 +154,7 @@ export class SinglePagePage implements OnInit {
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
                   } else if(element3.type == 'grid') {
+                    this.gridOptions = [];
                     console.log('From Form Grid Type');
                     console.log(element3);
                     element3.columns.forEach(item => {

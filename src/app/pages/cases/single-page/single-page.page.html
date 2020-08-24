@@ -21,8 +21,8 @@
           </ion-label>
           <ion-select [name]="item.itemName" [required]="item.isRequired" [(ngModel)]="item.itemValue"
             [ngModelOptions]="{standalone: true}">
-            <ion-select-option *ngFor="let opt of item.allOptions">
-
+            <ion-select-option *ngFor="let opt of dropDownValues" [value]="opt.value">
+              {{ opt.label }}
             </ion-select-option>
           </ion-select>
         </ion-item>
