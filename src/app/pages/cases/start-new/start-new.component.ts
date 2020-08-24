@@ -26,8 +26,6 @@ export class StartNewComponent implements OnInit {
     this.modalCtrl.dismiss();
   }
   startCase(caseDetail: any) {
-    console.log("From Start Case");
-    console.log(caseDetail);
     this.casesService.startCase(caseDetail).subscribe(data=>{
       console.log(data);
     });
