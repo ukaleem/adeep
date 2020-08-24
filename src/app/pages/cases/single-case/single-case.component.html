@@ -21,16 +21,11 @@
       <ion-title size="large">New Case</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-list>
-    <ion-card *ngFor="let single of allCasesNew">
-      <ion-item>
-        <ion-icon name="document" slot="start"></ion-icon>
-        <ion-label>{{single.pro_title}}</ion-label>
-        <ion-button fill="outline" slot="end" (click)="startCase(single)">Start</ion-button>
-      </ion-item>
-      <ion-card-content>
-        {{single.pro_title}}
-      </ion-card-content>
-    </ion-card>
-  </ion-list>
+
+  <ion-button (click)="loadBrowser()">Browser</ion-button>
+  <div [innerHTML]="testIframe">
+    <!-- <iframe #myFrame width="100%" height="100%" [src]="transform()">
+
+    </iframe> -->
+  </div>
 </ion-content>
