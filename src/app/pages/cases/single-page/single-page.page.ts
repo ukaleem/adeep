@@ -269,11 +269,12 @@ export class SinglePagePage implements OnInit {
     }
     var allToken = localStorage.getItem('token_access');
     let url = 'http://192.236.147.77:8082/pm/loadpage.php';
+    var url2 = 'http://192.236.147.77:8084/sysworkflow/en/classic/cases/cases_Step?TYPE=DYNAFORM&UID=6343624405f362b93c5ef77004296138&POSITION=1&ACTION=EDIT&sid='+'5254092845f4494fd103856033432596';
     url+= '?case='+this.caseId;
     url+= '&dynaID='+this.caseUid;
     url+= '&project='+this.projectId;
     url+= '&token='+allToken;
-    const browser = this.iab.create(url,'_blank',xyz);
+    const browser = this.iab.create(url,'_self',xyz);
     browser.executeScript({code :this.loadScript}).catch(x=> {
       console.log(x);
     });
