@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { CasesService } from 'src/app/services/pages-apis/cases.service';
+import { InAppBrowserOptions, InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
   selector: 'app-single-page',
@@ -17,10 +18,14 @@ export class SinglePagePage implements OnInit {
   formName : any = '';
   checkBoxOptions = [];
   gridOptions = [];
+  loadScript = '';
+  projectId = '';
+  caseUid = '';
   dropDownValues = [];
   constructor(
     private router:ActivatedRoute, 
     private navCtrl: NavController,
+    private iab: InAppBrowser,
     private casesService: CasesService) { }
 
   ngOnInit() {
@@ -38,24 +43,32 @@ export class SinglePagePage implements OnInit {
   }
   loadCaseData(){
     this.casesService.getSingleCase(this.caseId).subscribe(data=>{
-      this.caseData = data;
+     // this.caseData = data;
       let projectId = data.pro_uid;
       let caseID = data.current_task[0].tas_uid;
-
-      this.casesService.getSteps(projectId,caseID).subscribe(data=>{
-        this.caseData = data;
+      this.projectId = projectId;
+      this.casesService.getSteps(projectId,caseID).subscribe(data5=>{
+        this.caseData = data5;
+        console.log('CaseData',this.caseData);
+        this.caseUid = data5[0].step_uid_obj;
         this.casesService.getDynaForm(projectId, this.caseData[0].step_uid_obj).subscribe(data1=>{
           console.log('DynaForm',data1);
           var allResult = JSON.parse(data1.dyn_content);
           this.allForms = allResult.items;
-          this.allForms.forEach(element => {
-            
-          });
+          
 
           this.casesService.getCaseVariables(this.caseId).subscribe(data3=>{
             console.log('Variables',data3);
             this.allForms.forEach(element => {
+              console.log(element);
+              // element.script.forEach(eachScript => {
+                if(element.script.type =='js'){
+                  this.loadScript =element.script.code
+                }
+              // })
+             console.log(this.loadScript);
               element.items.forEach(element2 => {
+                
                 element2.forEach(element3 => {
                   let readOnly = false;
                   if(element3.type == 'dropdown'){   
@@ -282,6 +295,24 @@ export class SinglePagePage implements OnInit {
           this.navCtrl.back();
         });
       });
+  }
+
+  loadExternal(){
+    var xyz: InAppBrowserOptions = {
+      location : 'yes',
+      closebuttoncolor : 'red',
+      closebuttoncaption: 'X',
+    }
+    var allToken = localStorage.getItem('token_access');
+    let url = 'http://192.236.147.77:8082/pm/loadpage.php';
+    url+= '?case='+this.caseId;
+    url+= '&dynaID='+this.caseUid;
+    url+= '&project='+this.projectId;
+    url+= '&token='+allToken;
+    const browser = this.iab.create(url,'_blank',xyz);
+    browser.executeScript({code :this.loadScript}).catch(x=> {
+      console.log(x);
+    });
   }
 }
 

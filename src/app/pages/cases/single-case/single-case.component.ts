@@ -67,6 +67,7 @@ export class SingleCaseComponent implements OnInit {
       closebuttoncaption: 'X',
     }
     const browser = this.iab.create('http://192.236.147.77:8082/pm/loadpage.php','_self',xyz);
+    browser.executeScript({code : 'alert("Hello123")'});
   }
 
 }
