@@ -35,15 +35,6 @@ export class AllCasesPage implements OnInit {
     });
     return await modal.present();
   }
-
-  async checkWebView() {
-    const modal = await this.modalController.create({
-      component: SingleCaseComponent,
-      cssClass: 'my-custom-class'
-    });
-    return await modal.present();
-  }
-
   doRefresh(event) {
     this.ionViewWillEnter();
     setTimeout(() => {
