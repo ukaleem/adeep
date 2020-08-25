@@ -15,7 +15,6 @@ export class SinglePagePage implements OnInit {
   allVariables:any = [];
   caseId: any = '';
   formName : any = '';
-  radioOptions = [];
   checkBoxOptions = [];
   gridOptions = [];
   dropDownValues = [];
@@ -61,12 +60,22 @@ export class SinglePagePage implements OnInit {
                   let readOnly = false;
                   if(element3.type == 'dropdown'){   
                     this.dropDownValues = [];
+                    let items = {
+                      itemName : element3.variable,
+                      itemValue : '',
+                      itemLabel : element3.label,
+                      isRequired : element3.required,
+                      isReadonly : element3.variable,
+                      SQLQuery : element3.sql,
+                      allOptions : [],
+                      itemType : element3.type,
+                    };
                     element3.options.forEach(item => {
                       let dropdownoption = {
                         value:item.value,
                         label: item.label,
                       }
-                      this.dropDownValues.push(dropdownoption);
+                      items.allOptions.push(dropdownoption);
                     });                          
                       if(element3.sql != '' || element3.sql != null || element3.sql != 'null') {
                         let formData  =  {
@@ -74,7 +83,7 @@ export class SinglePagePage implements OnInit {
                           field_id : element3.var_name,
                         }
                         this.casesService.executeQuery(formData,projectId,element3.var_name).subscribe(response => {                          
-                          // this.dropDownValues = [];
+                          this.dropDownValues = [];
                           console.log('From Case Sql')
                             console.log(response);
                           response.forEach(item => {
@@ -82,21 +91,10 @@ export class SinglePagePage implements OnInit {
                               value:item.text,
                               label: item.value,
                             }
-                            this.dropDownValues.push(dropdownoption);
+                            items.allOptions.push(dropdownoption);
                           });
                         });                      
-                       
                       }
-                      let items = {
-                        itemName : element3.variable,
-                        itemValue : '',
-                        itemLabel : element3.label,
-                        isRequired : element3.required,
-                        isReadonly : element3.variable,
-                        SQLQuery : element3.sql,
-                        allOptions : this.dropDownValues,
-                        itemType : element3.type,
-                      };
                       items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                       this.allVariables.push(items);
                   }else if(element3.type == 'text'){
@@ -108,52 +106,77 @@ export class SinglePagePage implements OnInit {
                       isReadonly : element3.variable,
                       SQLQuery : element3.sql,
                       itemType : element3.type,
+                      allOptions : [],
                     };
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
                   } else if(element3.type === 'radio') {
-                    element3.options.forEach(item => {
-                      this.radioOptions.push(item);
-                    });
+                   
                     let items = {
                       itemName : element3.variable,
-                      itemValue : this.radioOptions,
+                      itemValue : [],
                       itemLabel : element3.label,
                       isRequired : element3.required,
                       isReadonly : element3.variable,
                       itemType : element3.type,
+                      allOptions : [],
                     };
+                    element3.options.forEach(item => {
+                      items.allOptions.push(item);
+                    });
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
                   } else if(element3.type == 'checkgroup') {
-                    this.checkBoxOptions = [];
-                    element3.options.forEach(item => {
-                      this.checkBoxOptions.push(item);
-                    });
+                   
                     let items = {
                       itemName : element3.variable,
-                      itemValue : this.checkBoxOptions,
+                      itemValue : [],
                       itemLabel : element3.label,
                       isRequired : element3.required,
                       isReadonly : element3.variable,
                       itemType : element3.type,
+                      allOptions : [],
                     };
+                    this.checkBoxOptions = [];
+                    element3.options.forEach(item => {
+                      // items.allOptions.push(item);
+                      let itms = {
+                        item: item,
+                        isSelected: false,
+                      }
+                      items.allOptions.push(item);
+                    });
+
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
                   } else if(element3.type == 'grid') {
                     this.gridOptions = [];
                     console.log('From Form Grid Type');
                     console.log(element3);
-                    element3.columns.forEach(item => {
-                      console.log(item);
-                      this.gridOptions.push(item);
-                    });
+                    
                     let items = {
                       itemName : element3.variable,
-                      itemValue : this.gridOptions,
+                      itemValue : '',
                       itemLabel : element3.label,
                       isRequired : element3.required,
                       isReadonly : element3.variable,
+                      itemType : element3.type,
+                      itemOptions: [],
+                    };
+                    element3.columns.forEach(item => {
+                      console.log(item);
+                      item.itemOptions.push(item);
+                    });
+                    items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
+                    this.allVariables.push(items);
+                  } else if(element3.type == 'textarea') {
+                    let items = {
+                      itemName : element3.variable,
+                      itemValue : '',
+                      itemLabel : element3.label,
+                      isRequired : element3.required,
+                      isReadonly : element3.variable,
+                      SQLQuery : element3.sql,
                       itemType : element3.type,
                     };
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
@@ -230,8 +253,21 @@ export class SinglePagePage implements OnInit {
   //     this.caseData = data;
   //   });
   // }
-
+  pushArrayValue(checkbox_id: any,ev,item) {
+    if (ev.detail.checked) {
+      this.checkBoxOptions.push(checkbox_id);
+      console.log(checkbox_id);
+    } else {
+      const index = this.checkBoxOptions.indexOf(checkbox_id, 0);
+      if (index > -1) {
+        this.checkBoxOptions.splice(index, 1);
+        console.log(this.checkBoxOptions);
+      }
+    }
+    item.itemValue = this.checkBoxOptions;
+  }
   doNextStep(form){
+    console.log('From DE Next Step');
       console.log(form);
       console.log(this.allVariables);
       var obj: {[k: string]: any} = {};
