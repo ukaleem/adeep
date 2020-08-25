@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { CasesService } from 'src/app/services/pages-apis/cases.service';
 import { InAppBrowserOptions, InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-single-page',
@@ -11,11 +12,11 @@ import { InAppBrowserOptions, InAppBrowser } from '@ionic-native/in-app-browser/
 })
 export class SinglePagePage implements OnInit {
 
-  caseData:any = [];
+  caseData: any = [];
   allForms: any = [];
-  allVariables:any = [];
+  allVariables: any = [];
   caseId: any = '';
-  formName : any = '';
+  formName: any = '';
   checkBoxOptions = [];
   gridOptions = [];
   loadScript = '';
@@ -24,15 +25,17 @@ export class SinglePagePage implements OnInit {
   dropDownValues = [];
   currentTaskId = '';
   constructor(
-    private router:ActivatedRoute, 
+    private router: ActivatedRoute,
     private navCtrl: NavController,
     private iab: InAppBrowser,
-    private casesService: CasesService) { }
+    private casesService: CasesService,
+    private toaster: ToastService,
+  ) { }
 
   ngOnInit() {
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.router.paramMap.subscribe((paramMap) => {
       if (!paramMap.has('caseId')) {
         this.navCtrl.back();
@@ -42,51 +45,51 @@ export class SinglePagePage implements OnInit {
       this.loadCaseData();
     });
   }
-  loadCaseData(){
+  loadCaseData() {
     ///First Request To load Case Detail
-    this.casesService.getSingleCase(this.caseId).subscribe(data=>{
-      console.log('First Single Case',data);
+    this.casesService.getSingleCase(this.caseId).subscribe(data => {
+      console.log('First Single Case', data);
 
-      try{
+      try {
         this.projectId = data.pro_uid;
         this.currentTaskId = data.current_task[0].tas_uid;
-      }catch(ex){
+      } catch (ex) {
         console.log(ex);
       }
-      
+
       ////Second inner Request to load Steps Of case
-      this.casesService.getSteps(this.projectId,this.currentTaskId).subscribe(data5=>{
-        console.log('All stesps 2',data5);
+      this.casesService.getSteps(this.projectId, this.currentTaskId).subscribe(data5 => {
+        console.log('All stesps 2', data5);
         this.caseData = data5;
         this.caseUid = data5[0].step_uid_obj;
-        console.log('0 Steps to load',this.caseUid);
+        console.log('0 Steps to load', this.caseUid);
 
 
 
         /////Third Call to Load DynaForm fields
-        this.casesService.getDynaForm(this.projectId, this.caseUid).subscribe(data1=>{
-          console.log('DynaForm',data1);
+        this.casesService.getDynaForm(this.projectId, this.caseUid).subscribe(data1 => {
+          console.log('DynaForm', data1);
 
-          try{
+          try {
             var allResult = JSON.parse(data1.dyn_content);
             this.allForms = allResult.items;
-          }catch(ex){
+          } catch (ex) {
             console.log(ex);
           }
-         
-          
+
+
 
           //// Fourth Request To load All Variables..
-          this.casesService.getCaseVariables(this.caseId).subscribe(data3=>{
-            console.log('All Variables',data3);
+          this.casesService.getCaseVariables(this.caseId).subscribe(data3 => {
+            console.log('All Variables', data3);
 
 
             this.allForms.forEach(element => {
               console.log('DynaFormElement', element);
-              
+
               ////Set Javascript
-              if(element.script.type =='js'){
-                this.loadScript =element.script.code
+              if (element.script.type == 'js') {
+                this.loadScript = element.script.code
               }
 
               /////Loop Throug Every element
@@ -99,89 +102,91 @@ export class SinglePagePage implements OnInit {
                   let readOnly = false;
 
                   /////Drop Down Value
-                  if(element3.type == 'dropdown'){   
+                  if (element3.type == 'dropdown') {
+
                     this.dropDownValues = [];
                     let items = {
-                      itemName : element3.variable,
-                      itemValue : '',
-                      itemLabel : element3.label,
-                      isRequired : element3.required,
-                      isReadonly : element3.variable,
-                      SQLQuery : element3.sql,
-                      allOptions : [],
-                      itemType : element3.type,
+                      itemName: element3.variable,
+                      itemValue: '',
+                      itemLabel: element3.label,
+                      isRequired: element3.required,
+                      isReadonly: element3.variable,
+                      SQLQuery: element3.sql,
+                      allOptions: [],
+                      itemType: element3.type,
                     };
                     element3.options.forEach(item => {
                       let dropdownoption = {
-                        value:item.value,
+                        value: item.value,
                         label: item.label,
                       }
                       items.allOptions.push(dropdownoption);
-                    });     
+                    });
                     ///Check if SQL EXIST                     
-                    if(element3.sql != '' && element3.sql != null && element3.sql != 'null') {
-                      let formData  =  {
+                    if (element3.sql != '' && element3.sql != null && element3.sql != 'null') {
+                      let formData = {
                         dyn_uid: data1.dyn_uid,
-                        field_id : element3.var_name,
+                        field_id: element3.var_name,
                       }
-                      this.casesService.executeQuery(formData,this.projectId,element3.var_name).subscribe(response => {                          
+                      this.casesService.executeQuery(formData, this.projectId, element3.var_name).subscribe(response => {
                         console.log('From Case Sql')
                         console.log(response);
                         let allFromCheckList = response;
                         allFromCheckList.forEach(item => {
                           let dropdownoption = {
-                            value:item.text,
+                            value: item.text,
+
                             label: item.value,
                           }
                           items.allOptions.push(dropdownoption);
                         });
-                      });                      
+                      });
                     }
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
 
-                  //// Type Text
-                  }else if(element3.type == 'text'){
+                    //// Type Text
+                  } else if (element3.type == 'text') {
+
                     let items = {
-                      itemName : element3.variable,
-                      itemValue : '',
-                      itemLabel : element3.label,
-                      isRequired : element3.required,
-                      isReadonly : element3.variable,
-                      SQLQuery : element3.sql,
-                      itemType : element3.type,
-                      allOptions : [],
+                      itemName: element3.variable,
+                      itemValue: '',
+                      itemLabel: element3.label,
+                      isRequired: element3.required,
+                      isReadonly: element3.variable,
+                      SQLQuery: element3.sql,
+                      itemType: element3.type,
+                      allOptions: [],
                     };
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
 
                     ///Radios
-                  } else if(element3.type === 'radio') {
-                   
+                  } else if (element3.type === 'radio') {
                     let items = {
-                      itemName : element3.variable,
-                      itemValue : [],
-                      itemLabel : element3.label,
-                      isRequired : element3.required,
-                      isReadonly : element3.variable,
-                      itemType : element3.type,
-                      allOptions : [],
+                      itemName: element3.variable,
+                      itemValue: [],
+                      itemLabel: element3.label,
+                      isRequired: element3.required,
+                      isReadonly: element3.variable,
+                      itemType: element3.type,
+                      allOptions: [],
                     };
                     element3.options.forEach(item => {
                       items.allOptions.push(item);
                     });
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
-                  } else if(element3.type == 'checkgroup') {
-                   
+                  } else if (element3.type == 'checkgroup') {
+
                     let items = {
-                      itemName : element3.variable,
-                      itemValue : [],
-                      itemLabel : element3.label,
-                      isRequired : element3.required,
-                      isReadonly : element3.variable,
-                      itemType : element3.type,
-                      allOptions : [],
+                      itemName: element3.variable,
+                      itemValue: [],
+                      itemLabel: element3.label,
+                      isRequired: element3.required,
+                      isReadonly: element3.variable,
+                      itemType: element3.type,
+                      allOptions: [],
                     };
                     this.checkBoxOptions = [];
                     element3.options.forEach(item => {
@@ -195,18 +200,18 @@ export class SinglePagePage implements OnInit {
 
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
-                  } else if(element3.type == 'grid') {
+                  } else if (element3.type == 'grid') {
                     this.gridOptions = [];
                     console.log('From Form Grid Type');
                     console.log(element3);
-                    
+
                     let items = {
-                      itemName : element3.variable,
-                      itemValue : '',
-                      itemLabel : element3.label,
-                      isRequired : element3.required,
-                      isReadonly : element3.variable,
-                      itemType : element3.type,
+                      itemName: element3.variable,
+                      itemValue: '',
+                      itemLabel: element3.label,
+                      isRequired: element3.required,
+                      isReadonly: element3.variable,
+                      itemType: element3.type,
                       itemOptions: [],
                     };
                     element3.columns.forEach(item => {
@@ -215,16 +220,42 @@ export class SinglePagePage implements OnInit {
                     });
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
-                  } else if(element3.type == 'textarea') {
+                  } else if (element3.type == 'textarea') {
                     let items = {
-                      itemName : element3.variable,
-                      itemValue : '',
-                      itemLabel : element3.label,
-                      isRequired : element3.required,
-                      isReadonly : element3.variable,
-                      SQLQuery : element3.sql,
-                      itemType : element3.type,
+                      itemName: element3.variable,
+                      itemValue: '',
+                      itemLabel: element3.label,
+                      isRequired: element3.required,
+                      isReadonly: element3.variable,
+                      SQLQuery: element3.sql,
+                      itemType: element3.type,
                     };
+                    items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
+                    this.allVariables.push(items);
+                  } else if (element3.type == 'disease') {
+                    let items = {
+                      itemName: element3.variable,
+                      itemValue: '',
+                      itemLabel: element3.label,
+                      isRequired: element3.required,
+                      isReadonly: element3.variable,
+                      itemType: element3.type,
+                      allOptions: [],
+                    };
+                    if (element3.sql != '' || element3.sql != null || element3.sql != 'null') {
+                      let formData = {
+                        dyn_uid: data1.dyn_uid,
+                        field_id: element3.var_name,
+                      }
+                      this.casesService.executeQuery(formData, this.projectId, element3.var_name).subscribe(response => {
+                        console.log(response);
+                        response.forEach(item => {
+                          items.allOptions.push(item);
+                        });
+                      });
+                    }
+                    console.log('From Disease List');
+                    console.log(items.allOptions);
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
                   }
@@ -253,7 +284,7 @@ export class SinglePagePage implements OnInit {
     // this.casesService.getDynaForm('9889347885f336c48542fb2083536155', '6343624405f362b93c5ef77004296138').subscribe(data1=>{
     // this.casesService.getDynaForm('9889347885f336c48542fb2083536155', '6343624405f362b93c5ef77004296138').subscribe(data1=>{
     //   console.log('DynaForm',data1);
-      
+
     //   this.casesService.getCaseVariables(this.caseId).subscribe(data3=>{
     //     console.log('Variables',data3);
 
@@ -266,8 +297,8 @@ export class SinglePagePage implements OnInit {
 
     //   console.log(allResult);
     // });
-    
-    
+
+
     // this.casesService.getCurrentTask(this.caseId).subscribe(data=>{
     //   console.log('currentTask',data);
     //   let currentTask  = data.tas_uid;
@@ -277,7 +308,7 @@ export class SinglePagePage implements OnInit {
     //   console.log(data);
     //   this.caseData = data;
     // })
-   
+
 
   }
   // updateVariable(){
@@ -290,7 +321,7 @@ export class SinglePagePage implements OnInit {
   //     console.log('Variables',data);
   //     this.caseData = data;
   //   });
-    
+
   // }
 
   // caseRoute(){
@@ -299,7 +330,7 @@ export class SinglePagePage implements OnInit {
   //     this.caseData = data;
   //   });
   // }
-  pushArrayValue(checkbox_id: any,ev,item) {
+  pushArrayValue(checkbox_id: any, ev, item) {
     if (ev.detail.checked) {
       this.checkBoxOptions.push(checkbox_id);
       console.log(checkbox_id);
@@ -312,39 +343,41 @@ export class SinglePagePage implements OnInit {
     }
     item.itemValue = this.checkBoxOptions;
   }
-  doNextStep(form){
+  doNextStep(form) {
     console.log('From DE Next Step');
-      console.log(form);
-      console.log(this.allVariables);
-      var obj: {[k: string]: any} = {};
-      this.allVariables.forEach(element => {
-        obj[element.itemName] = element.itemValue;
+    console.log(form);
+    console.log(this.allVariables);
+    var obj: { [k: string]: any } = {};
+    this.allVariables.forEach(element => {
+      obj[element.itemName] = element.itemValue;
+    });
+    console.log(obj);
+    this.casesService.updateVariables(obj, this.caseId).subscribe(data => {
+      console.log('Variables', data);
+      this.caseData = data;
+      this.casesService.caseRoute([], this.caseId).subscribe(data2 => {
+        this.toaster.SuccessToast('Success Fully Submit Case', 2000);
+        this.navCtrl.back();
       });
-      console.log(obj);
-      this.casesService.updateVariables(obj,this.caseId).subscribe(data=>{
-        console.log('Variables',data);
-        this.caseData = data;
-        this.casesService.caseRoute([],this.caseId).subscribe(data2=>{
-          this.navCtrl.back();
-        });
-      });
+    });
   }
 
-  loadExternal(){
+  loadExternal() {
     var xyz: InAppBrowserOptions = {
-      location : 'yes',
-      closebuttoncolor : 'red',
+      location: 'yes',
+      closebuttoncolor: 'red',
       closebuttoncaption: 'X',
     }
     var allToken = localStorage.getItem('token_access');
     let url = 'http://192.236.147.77:8082/pm/loadpage.php';
-    var url2 = 'http://192.236.147.77:8084/sysworkflow/en/classic/cases/cases_Step?TYPE=DYNAFORM&UID=6343624405f362b93c5ef77004296138&POSITION=1&ACTION=EDIT&sid='+'5254092845f4494fd103856033432596';
-    url+= '?case='+this.caseId;
-    url+= '&dynaID='+this.caseUid;
-    url+= '&project='+this.projectId;
-    url+= '&token='+allToken;
-    const browser = this.iab.create(url,'_self',xyz);
-    browser.executeScript({code :this.loadScript}).catch(x=> {
+    var url2 = 'http://192.236.147.77:8084/sysworkflow/en/classic/cases/cases_Step?TYPE=DYNAFORM&UID=6343624405f362b93c5ef77004296138&POSITION=1&ACTION=EDIT&sid=' + '5254092845f4494fd103856033432596';
+    url += '?case=' + this.caseId;
+    url += '&dynaID=' + this.caseUid;
+    url += '&project=' + this.projectId;
+    url += '&token=' + allToken;
+    const browser = this.iab.create(url, '_self', xyz);
+    browser.executeScript({ code: this.loadScript }).catch(x => {
+
       console.log(x);
     });
   }
