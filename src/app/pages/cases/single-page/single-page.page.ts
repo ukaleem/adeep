@@ -22,6 +22,7 @@ export class SinglePagePage implements OnInit {
   projectId = '';
   caseUid = '';
   dropDownValues = [];
+  currentTaskId = '';
   constructor(
     private router:ActivatedRoute, 
     private navCtrl: NavController,
@@ -42,35 +43,62 @@ export class SinglePagePage implements OnInit {
     });
   }
   loadCaseData(){
+    ///First Request To load Case Detail
     this.casesService.getSingleCase(this.caseId).subscribe(data=>{
-     // this.caseData = data;
-      let projectId = data.pro_uid;
-      let caseID = data.current_task[0].tas_uid;
-      this.projectId = projectId;
-      this.casesService.getSteps(projectId,caseID).subscribe(data5=>{
+      console.log('First Single Case',data);
+
+      try{
+        this.projectId = data.pro_uid;
+        this.currentTaskId = data.current_task[0].tas_uid;
+      }catch(ex){
+        console.log(ex);
+      }
+      
+      ////Second inner Request to load Steps Of case
+      this.casesService.getSteps(this.projectId,this.currentTaskId).subscribe(data5=>{
+        console.log('All stesps 2',data5);
         this.caseData = data5;
-        console.log('CaseData',this.caseData);
         this.caseUid = data5[0].step_uid_obj;
-        this.casesService.getDynaForm(projectId, this.caseData[0].step_uid_obj).subscribe(data1=>{
+        console.log('0 Steps to load',this.caseUid);
+
+
+
+        /////Third Call to Load DynaForm fields
+        this.casesService.getDynaForm(this.projectId, this.caseUid).subscribe(data1=>{
           console.log('DynaForm',data1);
-          var allResult = JSON.parse(data1.dyn_content);
-          this.allForms = allResult.items;
+
+          try{
+            var allResult = JSON.parse(data1.dyn_content);
+            this.allForms = allResult.items;
+          }catch(ex){
+            console.log(ex);
+          }
+         
           
 
+          //// Fourth Request To load All Variables..
           this.casesService.getCaseVariables(this.caseId).subscribe(data3=>{
-            console.log('Variables',data3);
+            console.log('All Variables',data3);
+
+
             this.allForms.forEach(element => {
-              console.log(element);
-              // element.script.forEach(eachScript => {
-                if(element.script.type =='js'){
-                  this.loadScript =element.script.code
-                }
-              // })
-             console.log(this.loadScript);
+              console.log('DynaFormElement', element);
+              
+              ////Set Javascript
+              if(element.script.type =='js'){
+                this.loadScript =element.script.code
+              }
+
+              /////Loop Throug Every element
               element.items.forEach(element2 => {
-                
+
+                console.log('DynaFormElementSingle', element2);
                 element2.forEach(element3 => {
+
+                  console.log('DynaFormElementSingleInner', element3);
                   let readOnly = false;
+
+                  /////Drop Down Value
                   if(element3.type == 'dropdown'){   
                     this.dropDownValues = [];
                     let items = {
@@ -89,27 +117,30 @@ export class SinglePagePage implements OnInit {
                         label: item.label,
                       }
                       items.allOptions.push(dropdownoption);
-                    });                          
-                      if(element3.sql != '' || element3.sql != null || element3.sql != 'null') {
-                        let formData  =  {
-                          dyn_uid: data1.dyn_uid,
-                          field_id : element3.var_name,
-                        }
-                        this.casesService.executeQuery(formData,projectId,element3.var_name).subscribe(response => {                          
-                          this.dropDownValues = [];
-                          console.log('From Case Sql')
-                            console.log(response);
-                          response.forEach(item => {
-                            let dropdownoption = {
-                              value:item.text,
-                              label: item.value,
-                            }
-                            items.allOptions.push(dropdownoption);
-                          });
-                        });                      
+                    });     
+                    ///Check if SQL EXIST                     
+                    if(element3.sql != '' && element3.sql != null && element3.sql != 'null') {
+                      let formData  =  {
+                        dyn_uid: data1.dyn_uid,
+                        field_id : element3.var_name,
                       }
-                      items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
-                      this.allVariables.push(items);
+                      this.casesService.executeQuery(formData,this.projectId,element3.var_name).subscribe(response => {                          
+                        console.log('From Case Sql')
+                        console.log(response);
+                        let allFromCheckList = response;
+                        allFromCheckList.forEach(item => {
+                          let dropdownoption = {
+                            value:item.text,
+                            label: item.value,
+                          }
+                          items.allOptions.push(dropdownoption);
+                        });
+                      });                      
+                    }
+                    items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
+                    this.allVariables.push(items);
+
+                  //// Type Text
                   }else if(element3.type == 'text'){
                     let items = {
                       itemName : element3.variable,
@@ -123,6 +154,8 @@ export class SinglePagePage implements OnInit {
                     };
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
+
+                    ///Radios
                   } else if(element3.type === 'radio') {
                    
                     let items = {
