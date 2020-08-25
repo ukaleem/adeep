@@ -21,7 +21,7 @@
           </ion-label>
           <ion-select [name]="item.itemName" [required]="item.isRequired" [(ngModel)]="item.itemValue"
             [ngModelOptions]="{standalone: true}">
-            <ion-select-option *ngFor="let opt of dropDownValues" [value]="opt.value">
+            <ion-select-option *ngFor="let opt of item.allOptions" [value]="opt.value">
               {{ opt.label }}
             </ion-select-option>
           </ion-select>
@@ -40,45 +40,57 @@
         </ion-item>
       </ng-container>
       <ng-container *ngIf="item.itemType == 'radio'">
-        <ion-radio-group allow-empty-selection value="anchovies">
+        <ion-radio-group allow-empty-selection value="anchovies" [(ngModel)]="item.itemValue"
+          [ngModelOptions]="{standalone: true}">
           <ion-list-header>
             <ion-label>{{item.itemLabel}}</ion-label>
           </ion-list-header>
-          <ion-item *ngFor="let option of radioOptions">
+          <ion-item *ngFor="let option of item.allOptions">
             <ion-label>{{ option.label }}</ion-label>
             <ion-radio mode="ios" slot="end" color="primary" [value]="option.value"></ion-radio>
-          </ion-item>          
+          </ion-item>
         </ion-radio-group>
       </ng-container>
       <ng-container *ngIf="item.itemType == 'checkgroup'">
         <ion-list>
           <ion-list-header>{{ item.itemLabel }}</ion-list-header>
-            <ion-item *ngFor="let option of checkBoxOptions">
-              <ion-label>{{ option.label }}</ion-label>
-              <ion-checkbox color="primary" mode="ios" slot="start" [value]="option.value"></ion-checkbox>
-            </ion-item>
-            </ion-list>
+          <ion-item *ngFor="let option of item.allOptions">
+            <ion-label>{{ option.label }}</ion-label>
+            <ion-checkbox [ngModelOptions]="{standalone: true}" (ionChange)="pushArrayValue(option.value,$event,item)"
+              [(ngModel)]="option.isSelected" color="primary" mode="ios" slot="start" [value]="option.value">
+            </ion-checkbox>
+          </ion-item>
+        </ion-list>
       </ng-container>
+
+      <ng-container *ngIf="item.itemType == 'textarea'">
+        <ion-item>
+          <ion-label position="floating">{{ item.itemLabel }}</ion-label>
+          <ion-textarea [(ngModel)]="item.itemValue" [ngModelOptions]="{standalone: true}"></ion-textarea>
+        </ion-item>
+      </ng-container>
+
       <ng-container *ngIf="item.itemType == 'grid'">
-        <ng-container *ngFor="let option of gridOptions">
+        <ion-label position="floating" class="ion-text-center">
+          {{item.itemLabel}}
+        </ion-label>
+        <ng-container *ngFor="let option of item.itemOptions">
           <ion-item *ngIf="option.type == 'text'">
             <ion-label position="floating">
               {{option.title}}
             </ion-label>
-            <ion-input man="option.maxLength" [name]="option.name" type="text" [ngModelOptions]="{standalone: true}"
-               [readonly]="" [required]="option.required">
+            <ion-input man="option.maxLength" [name]="option.name" type="text" [readonly]="" [required]="option.required">
             </ion-input>
           </ion-item>
           <ion-item *ngIf="option.type == 'dropdown'">
             <ion-label position="floating">
               {{option.title}}
             </ion-label>
-            <ion-select mode ="ios" [name]="option.name" [required]="option.required"
-            [ngModelOptions]="{standalone: true}">
-            <ion-select-option  *ngFor="let optn of option.options"  [value]="optn.value">
-              {{ optn.label }}
-            </ion-select-option>
-          </ion-select>
+            <ion-select mode="ios" [name]="option.name" [required]="option.required">
+              <ion-select-option *ngFor="let optn of option.options" [value]="optn.value">
+                {{ optn.label }}
+              </ion-select-option>
+            </ion-select>
           </ion-item>
           <ion-item *ngIf="option.type == 'textarea'">
             <ion-label position="floating"> {{option.title}}</ion-label>
