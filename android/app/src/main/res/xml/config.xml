@@ -7,20 +7,6 @@
     <param name="onload" value="true"/>
   </feature>
 
-  <feature name="FirebaseAnalytics">
-    <param name="android-package" value="by.chemerisuk.cordova.firebase.FirebaseAnalyticsPlugin"/>
-    <param name="onload" value="$FIREBASE_ANALYTICS_COLLECTION_ENABLED"/>
-  </feature>
-
-  <feature name="FirebaseConfig">
-    <param name="android-package" value="by.chemerisuk.cordova.firebase.FirebaseConfigPlugin"/>
-  </feature>
-
-  <feature name="FirebasePlugin">
-    <param name="android-package" value="org.apache.cordova.firebase.FirebasePlugin"/>
-    <param name="onload" value="true"/>
-  </feature>
-
   <feature name="InAppBrowser">
     <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser"/>
   </feature>
