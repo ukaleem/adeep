@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
-import { FirebaseX } from '@ionic-native/firebase-x/ngx';
+// import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 
 @NgModule({
   imports: [
@@ -20,6 +20,6 @@ import { FirebaseX } from '@ionic-native/firebase-x/ngx';
   entryComponents: [
   ],
   declarations: [LoginPage],
-  providers: [FirebaseX],
+  providers: [],
 })
 export class LoginPageModule {}
