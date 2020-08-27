@@ -24,6 +24,7 @@ export class SinglePagePage implements OnInit {
   caseUid = '';
   dropDownValues = [];
   currentTaskId = '';
+  addNewGridOption = [];
   constructor(
     private router: ActivatedRoute,
     private rout: Router,
@@ -202,7 +203,8 @@ export class SinglePagePage implements OnInit {
 
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
-                  } else if (element3.type == 'grid') {
+                  } 
+                  else if (element3.type == 'grid') {
                     this.gridOptions = [];
                     console.log('From Form Grid Type');
                     console.log(element3);
@@ -217,12 +219,12 @@ export class SinglePagePage implements OnInit {
                       itemOptions: [],
                     };
                     element3.columns.forEach(item => {
-                      console.log(item);
-                      item.itemOptions.push(item);
+                      items.itemOptions.push(item);
                     });
-                    items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
+                    // items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
-                  } else if (element3.type == 'textarea') {
+                  } 
+                  else if (element3.type == 'textarea') {
                     let items = {
                       itemName: element3.variable,
                       itemValue: '',
@@ -250,14 +252,11 @@ export class SinglePagePage implements OnInit {
                         field_id: element3.var_name,
                       }
                       this.casesService.executeQuery(formData, this.projectId, element3.var_name).subscribe(response => {
-                        console.log(response);
                         response.forEach(item => {
                           items.allOptions.push(item);
                         });
                       });
                     }
-                    console.log('From Disease List');
-                    console.log(items.allOptions);
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
                   }
@@ -414,6 +413,15 @@ export class SinglePagePage implements OnInit {
     });
 
     await alert.present();
+  }
+  addGridItems(item: any) {
+  
+    item.itemOptions.forEach(itm => {
+      this.addNewGridOption.push(itm);
+    });
+    console.log('From Add Grid Items');
+    console.log(item);
+    console.log(this.addNewGridOption);
   }
 }
 
