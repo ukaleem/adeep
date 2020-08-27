@@ -72,6 +72,7 @@ export class AllCasesPage implements OnInit {
                 let user = {
                   user_id: this.user_id,
                   user_access_token: token.value,
+                  // user_access_token: 'sdkfdkbfkdshfkjdshfkjdshfkjsdhf89823874987239ddjsjfsbhsdsdhfvfsdbhscbwgfuwjsdhf988',
                 }
               this.loginService.set_user_token(user).subscribe(response => {
                 console.log(response);
@@ -115,8 +116,4 @@ export class AllCasesPage implements OnInit {
       event.target.complete();
     }, 2000);
   }
-
-
-
-  
 }
