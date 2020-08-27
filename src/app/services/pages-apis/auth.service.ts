@@ -12,4 +12,10 @@ export class AuthService {
   login(frmData) {
     return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.GET_TOKEN,showLoading : true});
   } 
+  get_user_id() {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_LOGIN_USER_ID,showLoading : true});
+  }
+  set_user_token(formData) {
+    return this.api.commonPost(formData,{isToken :false,endPointUrl : this.endPoints.SET_USER_TOKEN,showLoading : true});
+  }
 }

@@ -7,6 +7,8 @@ import { ConfigService } from './config.service';
 export class EndpointsService {
 
   GET_TOKEN = this.config.SERVER_API+'oauth2/token';
+  GET_LOGIN_USER_ID = this.config.SERVER_API+'extraRest/login-user';
+  SET_USER_TOKEN= this.config.SERVER_API + 'extraRest/set-user-token';
   GET_ALL_CASES = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases';
   GET_ALL_DRAFT_CASES = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases/draft';
   GET_ALL_UNASSIGNED_CASES = ConfigService.SERVER_ADDRESS+'/api/1.0/' + ConfigService.WORKSPACE+'cases/unassigned'

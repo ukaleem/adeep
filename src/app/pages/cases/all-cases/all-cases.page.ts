@@ -10,6 +10,7 @@ import {
   PushNotification,
   PushNotificationToken,
   PushNotificationActionPerformed } from '@capacitor/core';
+import { AuthService } from 'src/app/services/pages-apis/auth.service';
 
 const { PushNotifications } = Plugins;
 @Component({
@@ -20,6 +21,7 @@ const { PushNotifications } = Plugins;
 export class AllCasesPage implements OnInit {
 
   allCases:any = [];
+  user_id: any;
   ionViewWillEnter(){
     this.casesService.getAllProcess().subscribe(data=>{
       console.log(data);
@@ -29,6 +31,7 @@ export class AllCasesPage implements OnInit {
   constructor(
     private casesService : CasesService ,
     private modalController:ModalController,
+    private loginService: AuthService,
     // private firebase: Firebase
     ) { }
 
@@ -62,6 +65,20 @@ export class AllCasesPage implements OnInit {
       (token: PushNotificationToken) => {
         console.log('Token is',token);
         alert('Push registration success, token: ' + token.value);
+          // Get User Id Api
+          this.loginService.get_user_id().subscribe(user_recorde => {
+            if(user_recorde) {
+              this.user_id = user_recorde.uid;
+                let user = {
+                  user_id: this.user_id,
+                  user_access_token: token.value,
+                }
+              this.loginService.set_user_token(user).subscribe(response => {
+                console.log(response);
+              });
+            }
+          });
+
       }
     );
 
