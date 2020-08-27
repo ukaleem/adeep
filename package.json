@@ -63,7 +63,9 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-filepath": {},
-      "cordova-plugin-inappbrowser": {}
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-androidx": {},
+      "cordova-plugin-androidx-adapter": {}
     }
   }
 }
