@@ -9,6 +9,7 @@ import { CasesPageRoutingModule } from './cases-routing.module';
 import { CasesPage } from './cases.page';
 import { StartNewComponent } from './start-new/start-new.component';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+// import { Firebase } from '@ionic-native/firebase/ngx';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
   ],
   declarations: [CasesPage ,StartNewComponent,StartNewComponent],
   entryComponents: [StartNewComponent,StartNewComponent],
-  providers: [InAppBrowser],
+  providers: [InAppBrowser ],
 })
 export class CasesPageModule {}

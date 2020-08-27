@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NavController, AlertController } from '@ionic/angular';
 import { CasesService } from 'src/app/services/pages-apis/cases.service';
 import { InAppBrowserOptions, InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { ToastService } from 'src/app/services/toast.service';
@@ -26,10 +26,12 @@ export class SinglePagePage implements OnInit {
   currentTaskId = '';
   constructor(
     private router: ActivatedRoute,
+    private rout: Router,
     private navCtrl: NavController,
     private iab: InAppBrowser,
     private casesService: CasesService,
     private toaster: ToastService,
+    private alertController: AlertController,
   ) { }
 
   ngOnInit() {
@@ -369,17 +371,49 @@ export class SinglePagePage implements OnInit {
       closebuttoncaption: 'X',
     }
     var allToken = localStorage.getItem('token_access');
-    let url = 'http://192.236.147.77:8082/pm/loadpage.php';
-    var url2 = 'http://192.236.147.77:8084/sysworkflow/en/classic/cases/cases_Step?TYPE=DYNAFORM&UID=6343624405f362b93c5ef77004296138&POSITION=1&ACTION=EDIT&sid=' + '5254092845f4494fd103856033432596';
-    url += '?case=' + this.caseId;
-    url += '&dynaID=' + this.caseUid;
-    url += '&project=' + this.projectId;
-    url += '&token=' + allToken;
-    const browser = this.iab.create(url, '_self', xyz);
-    browser.executeScript({ code: this.loadScript }).catch(x => {
-
-      console.log(x);
+   // let url = 'http://192.236.147.77:8082/pm/loadpage.php';
+  //  var url2 = 'http://192.236.147.77:8084/sysworkflow/en/classic/cases/cases_Step?TYPE=DYNAFORM&UID=6343624405f362b93c5ef77004296138&POSITION=1&ACTION=EDIT&sid=' + '5254092845f4494fd103856033432596';
+    var url3 = 'http://192.236.147.77:8082/pm/PMDForms'
+    url3 += '?case=' + this.caseId;
+    url3 += '&dynaID=' + this.caseUid;
+    url3 += '&project=' + this.projectId;
+    url3 += '&token=' + allToken;
+    const browser = this.iab.create(url3, '_self', xyz);
+    browser.on('exit').subscribe(test=> {
+      console.log('Broswe Close now backe');
+      this.rout.navigateByUrl('cases/all-cases');
     });
+
+    browser.on('message').subscribe(msg=> {
+      console.log(msg);
+      browser.close();
+      this.rout.navigateByUrl('cases/all-cases');
+    });
+
+    browser.on('loadstart').subscribe(msg=> {
+      
+      if(msg.url == 'http://192.236.147.77:8082/pm/close') {
+        browser.close();
+      }
+      
+      this.rout.navigateByUrl('cases/all-cases');
+    })
+  }
+
+  isExternal = false;
+  showExternal(){
+    this.isExternal = true;
+    this.presentAlert()
+  }
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Attention',
+      message: 'This Case have Some Extra Action That Cant be Performs in Web Edition, Please Use Web Edition, Click On Browser(top-right) Icon to open Web View',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 }
 

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "271377893470",
+    "firebase_url": "https://adeed-24d43.firebaseio.com",
+    "project_id": "adeed-24d43",
+    "storage_bucket": "adeed-24d43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271377893470:android:e5ca7ffa383df145378ccf",
+        "android_client_info": {
+          "package_name": "io.intellog.adeeb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "271377893470-1p66h0q7kuhgh9lpc87vsr2740kq6ivs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAITf05ASu7zduA9_rdmtwTgvOygA30gEs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "271377893470-1p66h0q7kuhgh9lpc87vsr2740kq6ivs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
