@@ -1,15 +1,20 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="primary">
+    <!-- <ion-buttons slot="primary">
       <ion-button  (click)="loadExternal()" color="light">WEB</ion-button>
-    </ion-buttons>
-    <ion-title>Case Page</ion-title>
-    <ion-buttons slot="end">
+    </ion-buttons> -->
+    <ion-title>Case Page (Loading Data...)</ion-title>
+    <ion-buttons slot="end" *ngIf="nodata">
       <ion-button type="submit" (click)="doNextStep(null)" color="light">Submit</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+<ion-content *ngIf="nodata">
+  
+  Sorry This Process has no Data...
+  Submit to proceed Next Case/Step
+</ion-content>
 <ion-content>
   <form #form="ngForm" (ngSubmit)="doNextStep(form)">
     <h2 class="ion-text-center">{{formName}}</h2>

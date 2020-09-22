@@ -25,6 +25,8 @@ export class SinglePagePage implements OnInit {
   dropDownValues = [];
   currentTaskId = '';
   addNewGridOption = [];
+
+  nodata = false;
   constructor(
     private router: ActivatedRoute,
     private rout: Router,
@@ -64,11 +66,20 @@ export class SinglePagePage implements OnInit {
       this.casesService.getSteps(this.projectId, this.currentTaskId).subscribe(data5 => {
         console.log('All stesps 2', data5);
         this.caseData = data5;
-        this.caseUid = data5[0].step_uid_obj;
+        try{
+          this.caseUid = data5[0].step_uid_obj;
+          this.loadExternal();
+        }catch(ex){
+          console.log(ex);
+          this.nodata = true;
+          // this.navCtrl.back();
+        }
+        //this.caseUid = data5[0].step_uid_obj;
         console.log('0 Steps to load', this.caseUid);
 
 
-
+        
+        return;
         /////Third Call to Load DynaForm fields
         this.casesService.getDynaForm(this.projectId, this.caseUid).subscribe(data1 => {
           console.log('DynaForm', data1);
@@ -269,6 +280,8 @@ export class SinglePagePage implements OnInit {
           });
         });
       });
+    },err => {
+      console.log(err);
     });
 
     let frmData = {
@@ -365,9 +378,14 @@ export class SinglePagePage implements OnInit {
 
   loadExternal() {
     var xyz: InAppBrowserOptions = {
-      location: 'yes',
-      closebuttoncolor: 'red',
-      closebuttoncaption: 'X',
+      // location: 'no',
+      // closebuttoncolor: 'red',
+      closebuttoncaption: 'Done',
+      // toolbar: 'no',
+      toolbarcolor : '#202453',
+      hideurlbar: 'yes', // hide the url toolbar
+      hidenavigationbuttons: 'yes'
+      
     }
     var allToken = localStorage.getItem('token_access');
    // let url = 'http://192.236.147.77:8082/pm/loadpage.php';
@@ -384,6 +402,7 @@ export class SinglePagePage implements OnInit {
     });
 
     browser.on('message').subscribe(msg=> {
+      
       console.log(msg);
       browser.close();
       this.rout.navigateByUrl('cases/all-cases');

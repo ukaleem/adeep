@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/pages-apis/auth.service';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -19,6 +20,7 @@ export class LoginPage implements OnInit {
   constructor(
     private loginService: AuthService,
      private router: Router,
+     private navCtrl: NavController,
     //  private firebaseX: FirebaseX,
     //  private firebaseConfig: FirebaseConfig
      ) {}
@@ -37,7 +39,7 @@ export class LoginPage implements OnInit {
     this.loginService.login(postData).subscribe(data=> {
       console.log(data);
       if(data.access_token){
-        this.router.navigateByUrl('cases/all-cases');
+        this.navCtrl.navigateRoot('cases/all-cases');
         localStorage.setItem('token',JSON.stringify(data));
         localStorage.setItem('token_access',data.access_token);
         localStorage.setItem('token_time',new Date().toDateString());
@@ -52,8 +54,16 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  managePassword(){
-
+  passwordType = 'password';
+  managePassword() {
+    console.log('eye change');
+    if (this.passwordType === 'password') {
+      this.passwordType = 'text';
+      this.passeye = 'eye-off';
+    } else {
+      this.passwordType = 'password';
+      this.passeye = 'eye';
+    }
   }
 
 }

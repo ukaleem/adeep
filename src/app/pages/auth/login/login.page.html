@@ -33,7 +33,7 @@
           <ion-col class="lg-image ion-no-padding ion-no-margin">
               <div class="image-overlay-div">
                   <div>
-                      <ion-img [routerLink]="['/inicial-screens']"  src="../../../../assets/logo/showLogoFile.png"></ion-img>
+                      <ion-img [routerLink]="['/inicial-screens']"  src="../../../../assets/logo/addedfull.jpg"></ion-img>
                   </div>
               </div>
           </ion-col>
@@ -77,9 +77,9 @@
                               <!-- <span class="span-error" *ngIf="!passwordCtrl.valid && passwordCtrl.touched">✖</span>
                               <span class="span-success" *ngIf="passwordCtrl.valid && passwordCtrl.touched">✔</span> -->
                           </ion-label>
-                          <ion-input name="password" type="password" ngModel required></ion-input>
+                          <ion-input name="password" [type]="passwordType" ngModel required></ion-input>
                           <div class="keep-eye-on" slot="end" (click)="managePassword()">
-                              <ion-icon size='medium' color="light" size="small" name="{{passeye}}"></ion-icon>
+                              <ion-icon size='medium' color="dark" size="small" name="{{passeye}}"></ion-icon>
                           </div>
                       </ion-item>
                       <!-- <ion-label class='ion-label'>
@@ -90,15 +90,15 @@
           </ion-row>
           <ion-row class="ion-margin">
               <ion-col size-sm="6" offset-sm="3">
-                  <ion-button type="button" color="primary" fill="clear" expand="block">
+                  <!-- <ion-button type="button" color="primary" fill="clear" expand="block">
                       forget Password?
-                  </ion-button>
+                  </ion-button> -->
                   <ion-button type="submit" color="primary" expand="block" type="submit" [disabled]="form.invalid" expand="block">
                       Login
                   </ion-button>
-                  <ion-button fill='outline' color="primary" expand="block">
+                  <!-- <ion-button fill='outline' color="primary" expand="block">
                       Register
-                  </ion-button>
+                  </ion-button> -->
               </ion-col>
           </ion-row>
       </ion-grid>

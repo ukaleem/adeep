@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CasesService } from 'src/app/services/pages-apis/cases.service';
 import { ModalController, ToastController } from '@ionic/angular';
 import { ToastService } from 'src/app/services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-start-new',
@@ -15,6 +16,7 @@ export class StartNewComponent implements OnInit {
     private casesService : CasesService ,
      private modalCtrl: ModalController,
      private toaster: ToastService,
+     private router:Router,
      private toastController: ToastController,
      ) { 
     this.casesService.getStartCases().subscribe(data=>{
@@ -44,7 +46,9 @@ export class StartNewComponent implements OnInit {
       } else {
         this.toaster.ErrorToast('Cannot Success Fully Start a New Case',2000);
       }
-      this.closeModal();
+      this.modalCtrl.dismiss(null,'ok');
+
+      this.router.navigateByUrl('/cases/draft-cases');
     });
   }
 }

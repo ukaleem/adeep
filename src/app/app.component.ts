@@ -27,6 +27,6 @@ export class AppComponent {
   }
   logOut(){
     localStorage.clear();
-    this.navCtrl.navigateRoot('login');
+    this.navCtrl.navigateRoot('/');
   }
 }

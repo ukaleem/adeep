@@ -35,17 +35,6 @@ export class AllCasesPage implements OnInit {
     // private firebase: Firebase
     ) { }
 
-      // this.firebase.getToken()
-      //   .then(token => console.log(`The token is ${token}`)) // save the token server-side and use it to push notifications to this device
-      //   .catch(error => console.error('Error getting token', error));
-
-      // this.firebase.onNotificationOpen()
-      //   .subscribe(data => console.log(`User opened a notification ${data}`));
-
-      // this.firebase.onTokenRefresh()
-      //   .subscribe((token: string) => console.log(`Got a new token ${token}`));
-      //   }
-
   ngOnInit() {
     console.log('Initializing HomePage');
 
@@ -64,40 +53,43 @@ export class AllCasesPage implements OnInit {
     PushNotifications.addListener('registration',
       (token: PushNotificationToken) => {
         console.log('Token is',token);
-        alert('Push registration success, token: ' + token.value);
+        console.log(token);
+        // alert('Push registration success, token: ' + token.value);
           // Get User Id Api
-          this.loginService.get_user_id().subscribe(user_recorde => {
-            if(user_recorde) {
-              this.user_id = user_recorde.uid;
-                let user = {
-                  user_id: this.user_id,
-                  user_access_token: token.value,
-                  // user_access_token: 'sdkfdkbfkdshfkjdshfkjdshfkjsdhf89823874987239ddjsjfsbhsdsdhfvfsdbhscbwgfuwjsdhf988',
-                }
-              this.loginService.set_user_token(user).subscribe(response => {
-                console.log(response);
-              });
-            }
-          });
+
+
+          // this.loginService.get_user_id().subscribe(user_recorde => {
+          //   if(user_recorde) {
+          //     this.user_id = user_recorde.uid;
+          //       let user = {
+          //         user_id: this.user_id,
+          //         user_access_token: token.value,
+          //         // user_access_token: 'sdkfdkbfkdshfkjdshfkjdshfkjsdhf89823874987239ddjsjfsbhsdsdhfvfsdbhscbwgfuwjsdhf988',
+          //       }
+          //     this.loginService.set_user_token(user).subscribe(response => {
+          //       console.log(response);
+          //     });
+          //   }
+          // });
 
       }
     );
 
     PushNotifications.addListener('registrationError',
       (error: any) => {
-        alert('Error on registration: ' + JSON.stringify(error));
+        // alert('Error on registration: ' + JSON.stringify(error));
       }
     );
 
     PushNotifications.addListener('pushNotificationReceived',
       (notification: PushNotification) => {
-        alert('Push received: ' + JSON.stringify(notification));
+        // alert('Push received: ' + JSON.stringify(notification));
       }
     );
 
     PushNotifications.addListener('pushNotificationActionPerformed',
       (notification: PushNotificationActionPerformed) => {
-        alert('Push action performed: ' + JSON.stringify(notification));
+        // alert('Push action performed: ' + JSON.stringify(notification));
       }
     );
   }
