@@ -38,6 +38,10 @@ ion-toolbar {
       color:var(--ion-color-light) !important;
     }
 }
+
+ion-content {
+  --background: #f0f7fa !important;
+}
 .bg-none{
   background: none;
   --background: none;
@@ -144,11 +148,11 @@ ion-segment-button {
   --background-checked: var(--ion-color-primary);
 }
 ion-segment-button ion-label{
-  color: var(--ion-color-dark) !important;
+  color: var(--ion-color-light) !important;
 }
 .left-col{
-  background-color: #EFF2EE !important;
-  border-radius: 9% !important;
+  // background-color: #EFF2EE !important;
+  // border-radius: 9% !important;
 }
 .heading-p{
   margin-top: 21px !important;

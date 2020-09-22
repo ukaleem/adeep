@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { AdminService } from 'src/app/services/pages-apis/admin.service';
 
 @Component({
@@ -8,7 +10,7 @@ import { AdminService } from 'src/app/services/pages-apis/admin.service';
 })
 export class HomePage implements OnInit {
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService, private router: Router, private navCtrl: NavController) { }
 
   ngOnInit() {
   }
@@ -19,4 +21,8 @@ export class HomePage implements OnInit {
       this.allPatients = data;
     })
   }
+
+  // showPatientDetails(id) {
+  //   this.router.navigateByUrl(['/','admin','patients' ,id]);
+  // }
 }

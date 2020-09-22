@@ -6,10 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./patients.page.scss'],
 })
 export class PatientsPage implements OnInit {
+  segmentVelue = 'personDetails';
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  changeSegment(ev) {
+    this.segmentVelue = ev.detail.value;
+    console.log(this.segmentVelue);
+  }
+
+  doRefresh(event){
+
   }
 
 }

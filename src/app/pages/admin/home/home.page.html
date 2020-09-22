@@ -11,7 +11,7 @@
                   <img class='Logo-img' src="../../../../assets/images/Logo/skill-experts-white-01.svg" alt="" />
               </div> -->
           </ion-title>
-          <ion-icon color="light" [routerLink]="['/','admin','patients','add-new-patient']" routerDirection='forward' name="add-circle-outline"
+          <ion-icon color="light" [routerLink]="['/','admin','patientsForm','add-new-patient']" routerDirection='forward' name="add-circle-outline"
               slot="end">
           </ion-icon>
       </ion-item>
@@ -23,7 +23,7 @@
     <ion-row class='list-bg'>
       <ion-col>
         <div>
-          <ion-item class='bg-none' lines='none'>
+          <ion-item class='bg-none' lines='none' [routerLink]="['/','admin','patients',12]" routerLinkActive="router-link-active">
             <ion-label> Patients Name 
               <p> Age: 67 </p>
             </ion-label>
@@ -45,6 +45,6 @@
         </div>
       </ion-col>
     </ion-row>
-    
+
   </ion-grid>
 </ion-content>

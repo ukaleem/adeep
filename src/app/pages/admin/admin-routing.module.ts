@@ -77,7 +77,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'patients',
+    path: 'patients/:patientId',
+    loadChildren: () => import('./patients/patients.module').then( m => m.PatientsPageModule)
+  },
+  {
+    path: 'patientsForm',
     loadChildren: () => import('./patients/patients.module').then( m => m.PatientsPageModule)
   },
 ];
