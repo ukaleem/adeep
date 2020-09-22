@@ -54,7 +54,7 @@ const routes: Routes = [
 
       {
         path: '',
-        redirectTo: '/admin/home',
+        redirectTo: '/admin/tabs/home',
         pathMatch: 'full'
       }
     ]
@@ -73,7 +73,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/admin/home',
+    redirectTo: '/admin/tabs/home',
     pathMatch: 'full'
   },
 ];
