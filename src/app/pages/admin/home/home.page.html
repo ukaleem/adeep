@@ -20,30 +20,30 @@
 
 <ion-content>
   <ion-grid>
-    <ion-row class='list-bg'>
+    <ion-row class='list-bg' *ngFor="let p of allPatients">
       <ion-col>
         <div>
           <ion-item class='bg-none' lines='none'>
-            <ion-label> Patients Name 
-              <p> Age: 67 </p>
+            <ion-label> {{p.PAITEINT_NAME}} 
+              <p>Dieses {{p.PAT_DISEASE_NAME}}</p>
             </ion-label>
-            <ion-note class='ion-float-right'> 12/01/2020</ion-note>
+            <ion-note class='ion-float-right'> {{p.CREATE_DATE}}</ion-note>
           </ion-item>
         </div>
       </ion-col>
     </ion-row>
 
-    <ion-row class='list-bg'>
+    <!-- <ion-row class='list-bg'>
       <ion-col>
         <div>
           <ion-item class='bg-none' lines='none'>
             <ion-label> Patients Name 
               <p>Age: 70</p>
             </ion-label>
-            <ion-note class='ion-float-right'> 12/01/2020</ion-note>
+            <ion-note class='ion-float-right'>{{p.CREATE_DATE}}</ion-note>
           </ion-item>
         </div>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
   </ion-grid>
 </ion-content>

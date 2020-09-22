@@ -8,15 +8,16 @@ import { AdminService } from 'src/app/services/pages-apis/admin.service';
 })
 export class HomePage implements OnInit {
 
-  constructor(private adminService: AdminService) { }
+  constructor(private admin: AdminService) { }
 
   ngOnInit() {
   }
 
   allPatients :any = [];
   ionViewWillEnter(){
-    this.adminService.getPatients().subscribe(data => {
-      this.allPatients = data;
+    this.admin.getPatients().subscribe(data => {
+      this.allPatients = data.all_data  as any;
+      console.log(this.allPatients);
     })
   }
 }
