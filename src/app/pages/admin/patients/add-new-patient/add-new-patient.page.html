@@ -1,9 +1,219 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>add-new-patient</ion-title>
+      <ion-buttons color="light" size="small" slot="start">
+          <ion-back-button color="light" size="small" defaultHref='/admin/tabs/home'></ion-back-button>
+      </ion-buttons>
+      <ion-item class='bg-none' lines="none">
+          <ion-title color="light" class="ion-text-center">
+           Add new Patient
+          </ion-title>
+      </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form #f="ngForm" (ngSubmit)="savePatient(f)">
+    <ion-grid class='main-grid'>
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> First Name* </ion-label>
+          <ion-input
+            required
+            minlength="5"
+            maxlength="200"
+            name="gigTitle"
+            [(ngModel)]="firstName"
+            ngModel
+            #jobTitleCtrl="ngModel"
+            class="input"
+            id="firstName"
+            type="text"
+            placeholder="First Name?"
+          >
+          </ion-input>
+        </ion-col>
+      </ion-row>
 
-</ion-content>
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label">Last Name*</ion-label>
+            <ion-input
+              class="input"
+              required
+              type="text"
+              name="lastName"
+              ngModel
+              #searchTagCtrl="ngModel"
+              [(ngModel)]="lastName"
+            >
+            </ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> Patient Age* </ion-label>
+          <ion-input
+            required
+            minlength="5"
+            maxlength="40"
+            name="patientAge"
+            [(ngModel)]="patientAge"
+            ngModel
+            #pkgNameCtrl="ngModel"
+            class="input"
+            id="patientAge"
+            type="text"
+            placeholder="Patient Age?"
+          >
+          </ion-input>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> Patient Email* </ion-label>
+          <ion-input
+            required
+            minlength="5"
+            maxlength="40"
+            name="patientEmail"
+            [(ngModel)]="patientEmail"
+            ngModel
+            #pkgDescriptionCtrl="ngModel"
+            class="input"
+            id="patientEmail"
+            type="text"
+            placeholder="Patient Email?"
+          >
+          </ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label">
+            Select Diseases
+          </ion-label>
+          <div>
+            <ion-select
+              class="input"
+              required
+              name="categoryValue"
+              [(ngModel)]="selectedDisease"
+              ngModel
+              #categoryValueCtrl="ngModel"
+              placeholder="select Disease">
+
+              <!-- <ion-select-option *ngFor="let Disease of allDisease" value="{{Disease.id}}">
+                {{Disease.name}}
+              </ion-select-option> -->
+
+              <ion-select-option value="1"> CORONA </ion-select-option>
+              <ion-select-option value="2"> VIRUS </ion-select-option>
+            </ion-select>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> Registration Date* </ion-label>
+          <ion-input
+            required
+            minlength="5"
+            maxlength="40"
+            name="regDate"
+            [(ngModel)]="regDate"
+            ngModel
+            #deliveryTimeCtrl="ngModel"
+            class="input"
+            id="regDate"
+            type="date"
+            placeholder="eg. Registration Date? "
+          >
+          </ion-input>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> Phone No* </ion-label>
+          <ion-input
+            required
+            minlength="5"
+            maxlength="40"
+            name="phoneNo"
+            [(ngModel)]="phoneNo"
+            ngModel
+            #pkgPriceCtrl="ngModel"
+            class="input"
+            id="phoneNo"
+            type="number"
+            placeholder="eg. Phone No?$"
+          >
+          </ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> Postal Code* </ion-label>
+          <ion-input
+            required
+            minlength="5"
+            maxlength="40"
+            name="postalCode"
+            [(ngModel)]="postalCode"
+            ngModel
+            #pkgPriceCtrl="ngModel"
+            class="input"
+            id="postalCode"
+            type="number"
+            placeholder="eg. Postal Code?$"
+          >
+          </ion-input>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> Address* </ion-label>
+          <ion-textarea
+            required
+            minlength="20"
+            maxlength="100"
+            name="address"
+            [(ngModel)]="address"
+            ngModel
+            #serviceDesciptionCtrl="ngModel"
+            class="input1"
+            id="address"
+            type="text"
+            placeholder="eg. Address?"
+            rows="7"
+          >
+          </ion-textarea>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-button
+            type="submit"
+            [disabled]="!f.valid"
+            expand="block"
+            fill="solid"
+            shape="round"
+            color="primary"
+            >Save patient</ion-button
+          >
+        </ion-col>
+    </ion-row>
+    </ion-grid>
+  </form>
+</ion-content> 
