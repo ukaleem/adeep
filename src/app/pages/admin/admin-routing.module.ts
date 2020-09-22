@@ -54,7 +54,7 @@ const routes: Routes = [
 
       {
         path: '',
-        redirectTo: '/admin/home',
+        redirectTo: '/admin/tabs/home',
         pathMatch: 'full'
       }
     ]
@@ -73,8 +73,12 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/admin/home',
+    redirectTo: '/admin/tabs/home',
     pathMatch: 'full'
+  },
+  {
+    path: 'patients',
+    loadChildren: () => import('./patients/patients.module').then( m => m.PatientsPageModule)
   },
 ];
 

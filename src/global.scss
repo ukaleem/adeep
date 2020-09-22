@@ -32,11 +32,15 @@
 
 ion-toolbar {
     --background: none !important;
-    background-color: #202454 !important;
+    background-color: var(--ion-color-primary) !important;
     color: var(--ion-color-primary) !important;
     ion-title{
       color:var(--ion-color-light) !important;
     }
+}
+.bg-none{
+  background: none;
+  --background: none;
 }
 
 ion-back-button{
