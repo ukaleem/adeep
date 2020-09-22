@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/app/services/pages-apis/admin.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(private adminService: AdminService) { }
 
   ngOnInit() {
   }
 
+  allPatients :any = [];
+  ionViewWillEnter(){
+    this.adminService.getPatients().subscribe(data => {
+      this.allPatients = data;
+    })
+  }
 }

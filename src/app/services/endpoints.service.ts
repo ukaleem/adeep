@@ -43,6 +43,17 @@ export class EndpointsService {
   CASE_ROUTED(APP_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases/'+APP_ID+'/route-case';
   }
+  CASE_NOTES(APP_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases/'+APP_ID+'/notes';
+  }
+  GET_FEEDS(APP_ID, TASK_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/feed_backs/'+APP_ID+'/'+TASK_ID;
+  }
 
+
+  //////////ADmin APIS
+  GET_PATIENTS(){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_patients';
+  }
   constructor(private config: ConfigService) { }
 }

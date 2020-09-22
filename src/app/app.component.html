@@ -21,6 +21,18 @@
     <ion-content class="side-menu-content ion-no-padding ion-margin">
       <div class="seperate-div">
         <ion-list class="side-menu-ion-list">
+
+          <ion-menu-toggle>
+            <ion-item lines='none' button [routerLink]="['/','admin' ,'home']">
+              <div slot='start'>
+                <img class="segment-img" src="../assets/icon/inbox.svg">
+              </div>
+              <ion-label> Admin Home
+              </ion-label>
+              <ion-button class="right-button" color="light" fill="outline">6</ion-button>
+            </ion-item>
+          </ion-menu-toggle>
+
           <ion-menu-toggle>
             <ion-item lines='none' button [routerLink]="['/','cases','all-cases']">
               <div slot='start'>

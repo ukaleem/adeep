@@ -31,20 +31,35 @@
 
 
 <ion-content *ngIf="activeSegment == 'steps'">
-<ng-container *ngFor="let step of caseData">
-  <ion-item>
-    <ion-label *ngIf="step.step_type_obj == 'DYNAFORM'">
-      <h2>{{step.obj_title}}</h2>
-      <p>Form</p>
-    </ion-label>
-    <ion-button (click)="singleStep(step)">
-      Start
+  <ng-container *ngFor="let step of caseData">
+    <ion-item>
+      <ion-label *ngIf="step.step_type_obj == 'DYNAFORM'">
+        <h2>{{step.obj_title}}</h2>
+        <p>Form</p>
+      </ion-label>
+      <ion-button (click)="singleStep(step)">
+        Start
+      </ion-button>
+    </ion-item>
+  </ng-container>
+  <ion-button (click)="doNextStep(null)" expand="block">
+    Submit Case
+  </ion-button>
+</ion-content>
+
+<ion-content *ngIf="activeSegment == 'notes'">
+  <ng-container *ngIf="!notePermission">
+    <ion-item>
+      <ion-label>
+        Sorry! You have Not permission to case notes
+      </ion-label>
+    </ion-item>
+  </ng-container>
+  <ng-container *ngIf="notePermission">
+    <ion-button (click)="doNextStep(null)" expand="block">
+      Add Notes
     </ion-button>
-  </ion-item>
-</ng-container>
-<ion-button (click)="doNextStep(null)" expanded="block">
-  Submit Case
-</ion-button>
+  </ng-container>
 </ion-content>
 
 <ion-content *ngIf="activeSegment == 'steps_old'">
@@ -124,13 +139,16 @@
         <ion-label position="floating" class="ion-text-left">
           {{item.itemLabel}}
         </ion-label>
-        <ion-button style='float:right;margin-right: 10px;' (click)="addGridItems(item)" color="primary"><ion-icon name="add"></ion-icon></ion-button>
+        <ion-button style='float:right;margin-right: 10px;' (click)="addGridItems(item)" color="primary">
+          <ion-icon name="add"></ion-icon>
+        </ion-button>
         <ng-container *ngFor="let option of item.itemOptions">
           <ion-item *ngIf="option.type == 'text'">
             <ion-label position="floating">
               {{option.title}}
             </ion-label>
-            <ion-input man="option.maxLength" [name]="option.name" type="text" [readonly]="" [required]="option.required">
+            <ion-input man="option.maxLength" [name]="option.name" type="text" [readonly]=""
+              [required]="option.required">
             </ion-input>
           </ion-item>
           <ion-item *ngIf="option.type == 'dropdown'">
@@ -164,7 +182,8 @@
               <ion-label position="floating">
                 {{option.title}}
               </ion-label>
-              <ion-input man="option.maxLength" [name]="option.name" type="text" [readonly]="" [required]="option.required">
+              <ion-input man="option.maxLength" [name]="option.name" type="text" [readonly]=""
+                [required]="option.required">
               </ion-input>
             </ion-item>
             <ion-item *ngIf="option.type == 'dropdown'">
@@ -194,7 +213,7 @@
           </ng-container>
         </div>
       </ng-container>
-    
+
     </ng-container>
   </form>
 </ion-content>
