@@ -42,7 +42,6 @@ export class SinglePagePage implements OnInit {
 
   activeSegment = 'steps';
   segmentChanged(ev: any) {
-    console.log('Segment changed', ev);
     this.activeSegment = ev.detail.value;
   }
   ionViewWillEnter() {
@@ -70,10 +69,25 @@ export class SinglePagePage implements OnInit {
     this.casesService.caseNotes(this.caseId).subscribe(data => {
       console.log(data);
     }, error=> {
-      if(error.code == 400)[
-        
-      ]
+      this.notePermission = false;
+      console.log(error.error);
+      if(error.error.code == 400){
+        this.notePermission = false;
+      }
     })
+  }
+
+  caseFeeds(){
+    this.casesService.caseFeeds(this.caseId ,this.projectId).subscribe(data => {
+      console.log(data);
+    }, error=> {
+      this.notePermission = false;
+      console.log(error.error);
+      if(error.error.code == 400){
+        this.notePermission = false;
+      }
+    })
+    
   }
   loadCaseData() {
     ///First Request To load Case Detail
@@ -82,6 +96,7 @@ export class SinglePagePage implements OnInit {
 
       try {
         this.projectId = data.pro_uid;
+        this.caseFeeds();
         this.currentTaskId = data.current_task[0].tas_uid;
       } catch (ex) {
         console.log(ex);
