@@ -40,6 +40,11 @@ export class SinglePagePage implements OnInit {
   ngOnInit() {
   }
 
+  activeSegment = 'steps';
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
+    this.activeSegment = ev.detail.value;
+  }
   ionViewWillEnter() {
     this.router.paramMap.subscribe((paramMap) => {
       if (!paramMap.has('caseId')) {
@@ -49,6 +54,15 @@ export class SinglePagePage implements OnInit {
       this.caseId = paramMap.get('caseId');
       this.loadCaseData();
     });
+  }
+
+  singleStep(step){
+    console.log(step);
+    if(step.step_type_obj == 'DYNAFORM'){
+      this.loadExternal(step.step_uid_obj)
+    }
+    
+
   }
   loadCaseData() {
     ///First Request To load Case Detail
@@ -68,7 +82,7 @@ export class SinglePagePage implements OnInit {
         this.caseData = data5;
         try{
           this.caseUid = data5[0].step_uid_obj;
-          this.loadExternal();
+         // this.loadExternal();
         }catch(ex){
           console.log(ex);
           this.nodata = true;
@@ -376,7 +390,7 @@ export class SinglePagePage implements OnInit {
     });
   }
 
-  loadExternal() {
+  loadExternal(task_id) {
     var xyz: InAppBrowserOptions = {
       // location: 'no',
       // closebuttoncolor: 'red',
@@ -392,7 +406,8 @@ export class SinglePagePage implements OnInit {
   //  var url2 = 'http://192.236.147.77:8084/sysworkflow/en/classic/cases/cases_Step?TYPE=DYNAFORM&UID=6343624405f362b93c5ef77004296138&POSITION=1&ACTION=EDIT&sid=' + '5254092845f4494fd103856033432596';
     var url3 = 'http://192.236.147.77:8082/pm/PMDForms'
     url3 += '?case=' + this.caseId;
-    url3 += '&dynaID=' + this.caseUid;
+    url3 += '&dynaID=' + task_id;
+    // url3 += '&dynaID=' + this.caseUid;
     url3 += '&project=' + this.projectId;
     url3 += '&token=' + allToken;
     const browser = this.iab.create(url3, '_self', xyz);

@@ -3,19 +3,51 @@
     <!-- <ion-buttons slot="primary">
       <ion-button  (click)="loadExternal()" color="light">WEB</ion-button>
     </ion-buttons> -->
-    <ion-title>Case Page (Loading Data...)</ion-title>
+    <ion-title>Case Page</ion-title>
     <ion-buttons slot="end" *ngIf="nodata">
-      <ion-button type="submit" (click)="doNextStep(null)" color="light">Submit</ion-button>
+      <!-- <ion-button type="submit" (click)="doNextStep(null)" color="light">Submit</ion-button> -->
     </ion-buttons>
   </ion-toolbar>
+
+  <ion-segment [(ngModel)]="activeSegment" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="steps">
+      <ion-label>Steps</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="notes">
+      <ion-label>Notes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="guides">
+      <ion-label>Guide</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
 </ion-header>
 
-<ion-content *ngIf="nodata">
+<!-- <ion-content *ngIf="nodata">
   
   Sorry This Process has no Data...
   Submit to proceed Next Case/Step
+</ion-content> -->
+
+
+<ion-content *ngIf="activeSegment == 'steps'">
+<ng-container *ngFor="let step of caseData">
+  <ion-item>
+    <ion-label *ngIf="step.step_type_obj == 'DYNAFORM'">
+      <h2>{{step.obj_title}}</h2>
+      <p>Form</p>
+    </ion-label>
+    <ion-button (click)="singleStep(step)">
+      Start
+    </ion-button>
+  </ion-item>
+</ng-container>
+<ion-button (click)="doNextStep(null)" expanded="block">
+  Submit Case
+</ion-button>
 </ion-content>
-<ion-content>
+
+<ion-content *ngIf="activeSegment == 'steps_old'">
   <form #form="ngForm" (ngSubmit)="doNextStep(form)">
     <h2 class="ion-text-center">{{formName}}</h2>
     <ng-container *ngFor="let item of allVariables">
