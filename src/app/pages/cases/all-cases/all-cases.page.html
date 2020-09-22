@@ -13,7 +13,10 @@
   <ion-card *ngFor="let single of allCases">
     <ion-item [routerLink]="['/','cases','single-page',single.app_uid]">
       <ion-icon name="document" slot="start"></ion-icon>
-      <ion-label>{{single.app_tas_title}}</ion-label>
+      <ion-label>
+        <h2>{{single.app_tas_title}}</h2>
+        <p>{{single.patient}}</p>
+      </ion-label>
       <!-- <ion-button fill="outline" slot="end">start</ion-button> -->
     </ion-item>
 

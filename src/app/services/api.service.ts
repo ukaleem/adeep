@@ -162,15 +162,17 @@ export class ApiService {
           observer.next(response);
         },
         (error) => {
-          this.showAlerts.showAlertNormal(
-            'Error',
-            'Error in Connection to Server'
-          );
           if (postObject.showLoading) {
             this.loadingLoader.closeLoading();
           }
+          if(postObject.showError && postObject.showError == true){
+            this.showAlerts.showAlertNormal(
+              'Error',
+              'Error in Connection to Server'
+            );
+          }
           console.log(error);
-          observer.error(error);
+          observer.error(error); 
         }
       );
       return {

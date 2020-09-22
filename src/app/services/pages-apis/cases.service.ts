@@ -60,4 +60,7 @@ export class CasesService {
   startCase(frmData) {
     return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.START_CASE,showLoading : true});
   }
+  caseNotes(app) {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.CASE_NOTES(app),showLoading : true});
+  }
 }

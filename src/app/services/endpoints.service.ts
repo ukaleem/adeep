@@ -43,6 +43,9 @@ export class EndpointsService {
   CASE_ROUTED(APP_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases/'+APP_ID+'/route-case';
   }
+  CASE_NOTES(APP_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases/'+APP_ID+'/notes';
+  }
 
   constructor(private config: ConfigService) { }
 }

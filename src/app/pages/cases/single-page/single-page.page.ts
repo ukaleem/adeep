@@ -53,16 +53,27 @@ export class SinglePagePage implements OnInit {
       }
       this.caseId = paramMap.get('caseId');
       this.loadCaseData();
+        this.getCaseNotes();
     });
   }
 
-  singleStep(step){
+  singleStep(step) {
     console.log(step);
-    if(step.step_type_obj == 'DYNAFORM'){
+    if (step.step_type_obj == 'DYNAFORM') {
       this.loadExternal(step.step_uid_obj)
     }
-    
+  }
 
+  allNotes = [];
+  notePermission = true;
+  getCaseNotes(){
+    this.casesService.caseNotes(this.caseId).subscribe(data => {
+      console.log(data);
+    }, error=> {
+      if(error.code == 400)[
+        
+      ]
+    })
   }
   loadCaseData() {
     ///First Request To load Case Detail
@@ -80,10 +91,10 @@ export class SinglePagePage implements OnInit {
       this.casesService.getSteps(this.projectId, this.currentTaskId).subscribe(data5 => {
         console.log('All stesps 2', data5);
         this.caseData = data5;
-        try{
+        try {
           this.caseUid = data5[0].step_uid_obj;
-         // this.loadExternal();
-        }catch(ex){
+          // this.loadExternal();
+        } catch (ex) {
           console.log(ex);
           this.nodata = true;
           // this.navCtrl.back();
@@ -92,7 +103,7 @@ export class SinglePagePage implements OnInit {
         console.log('0 Steps to load', this.caseUid);
 
 
-        
+
         return;
         /////Third Call to Load DynaForm fields
         this.casesService.getDynaForm(this.projectId, this.caseUid).subscribe(data1 => {
@@ -228,7 +239,7 @@ export class SinglePagePage implements OnInit {
 
                     items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
-                  } 
+                  }
                   else if (element3.type == 'grid') {
                     this.gridOptions = [];
                     console.log('From Form Grid Type');
@@ -248,7 +259,7 @@ export class SinglePagePage implements OnInit {
                     });
                     // items.itemValue = data3.hasOwnProperty(items.itemName) ? data3[items.itemName] : '';
                     this.allVariables.push(items);
-                  } 
+                  }
                   else if (element3.type == 'textarea') {
                     let items = {
                       itemName: element3.variable,
@@ -294,7 +305,7 @@ export class SinglePagePage implements OnInit {
           });
         });
       });
-    },err => {
+    }, err => {
       console.log(err);
     });
 
@@ -396,14 +407,14 @@ export class SinglePagePage implements OnInit {
       // closebuttoncolor: 'red',
       closebuttoncaption: 'Done',
       // toolbar: 'no',
-      toolbarcolor : '#202453',
+      toolbarcolor: '#202453',
       hideurlbar: 'yes', // hide the url toolbar
       hidenavigationbuttons: 'yes'
-      
+
     }
     var allToken = localStorage.getItem('token_access');
-   // let url = 'http://192.236.147.77:8082/pm/loadpage.php';
-  //  var url2 = 'http://192.236.147.77:8084/sysworkflow/en/classic/cases/cases_Step?TYPE=DYNAFORM&UID=6343624405f362b93c5ef77004296138&POSITION=1&ACTION=EDIT&sid=' + '5254092845f4494fd103856033432596';
+    // let url = 'http://192.236.147.77:8082/pm/loadpage.php';
+    //  var url2 = 'http://192.236.147.77:8084/sysworkflow/en/classic/cases/cases_Step?TYPE=DYNAFORM&UID=6343624405f362b93c5ef77004296138&POSITION=1&ACTION=EDIT&sid=' + '5254092845f4494fd103856033432596';
     var url3 = 'http://192.236.147.77:8082/pm/PMDForms'
     url3 += '?case=' + this.caseId;
     url3 += '&dynaID=' + task_id;
@@ -411,30 +422,30 @@ export class SinglePagePage implements OnInit {
     url3 += '&project=' + this.projectId;
     url3 += '&token=' + allToken;
     const browser = this.iab.create(url3, '_self', xyz);
-    browser.on('exit').subscribe(test=> {
+    browser.on('exit').subscribe(test => {
       console.log('Broswe Close now backe');
       this.rout.navigateByUrl('cases/all-cases');
     });
 
-    browser.on('message').subscribe(msg=> {
-      
+    browser.on('message').subscribe(msg => {
+
       console.log(msg);
       browser.close();
       this.rout.navigateByUrl('cases/all-cases');
     });
 
-    browser.on('loadstart').subscribe(msg=> {
-      
-      if(msg.url == 'http://192.236.147.77:8082/pm/close') {
+    browser.on('loadstart').subscribe(msg => {
+
+      if (msg.url == 'http://192.236.147.77:8082/pm/close') {
         browser.close();
       }
-      
+
       this.rout.navigateByUrl('cases/all-cases');
     })
   }
 
   isExternal = false;
-  showExternal(){
+  showExternal() {
     this.isExternal = true;
     this.presentAlert()
   }
@@ -449,7 +460,7 @@ export class SinglePagePage implements OnInit {
     await alert.present();
   }
   addGridItems(item: any) {
-  
+
     item.itemOptions.forEach(itm => {
       this.addNewGridOption.push(itm);
     });
