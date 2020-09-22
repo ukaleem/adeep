@@ -76,6 +76,10 @@ const routes: Routes = [
     redirectTo: '/admin/tabs/home',
     pathMatch: 'full'
   },
+  {
+    path: 'patients',
+    loadChildren: () => import('./patients/patients.module').then( m => m.PatientsPageModule)
+  },
 ];
 
 @NgModule({
