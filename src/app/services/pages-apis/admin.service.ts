@@ -15,4 +15,10 @@ export class AdminService {
   addPatient(frmData) {
     return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.ADD_PATIENTS(),showLoading : true, showError : true});
   } 
+  singlePatient(frmData) {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.SINGLE_PATIENT(frmData),showLoading : true, showError : true});
+  } 
+  singlePatientTask(p,a) {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.SINGLE_PATIENT_TASK(p,a),showLoading : true, showError : true});
+  } 
 }
