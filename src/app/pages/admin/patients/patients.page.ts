@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController, NavController } from '@ionic/angular';
 import { AdminService } from 'src/app/services/pages-apis/admin.service';
+import { PatientAssignTaskComponent } from './patient-assighn-task/patient-assighn-task.component';
 import { PatientSingleTaskComponent } from './patient-single-task/patient-single-task.component';
 
 @Component({
@@ -12,8 +13,8 @@ import { PatientSingleTaskComponent } from './patient-single-task/patient-single
 export class PatientsPage implements OnInit {
   segmentVelue = 'personDetails';
   patientID = null;
-  patientDataPath:any = []
-  patientDetail:any = []
+  patientDataPath: any = [];
+  patientDetail: any = [];
 
   constructor(private admin: AdminService,    
     private router: ActivatedRoute,
@@ -57,6 +58,18 @@ export class PatientsPage implements OnInit {
       componentProps: {
         'PROJECT_ID': p.PRO_UID,
         'APP_ID': p.APP_UID,
+      }
+    });
+    return await modal.present();
+  }
+
+  async patientAssignTask() {
+    const modal = await this.modalController.create({
+      component: PatientAssignTaskComponent,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        // 'PROJECT_ID': p.PRO_UID,
+        // 'APP_ID': p.APP_UID,
       }
     });
     return await modal.present();

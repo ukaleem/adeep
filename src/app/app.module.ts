@@ -7,11 +7,14 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
+import { FormsModule } from '@angular/forms';
+// import { CustomSearchComponent } from './shared/custom-search/custom-search.component';
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [ ],
-  imports: [ HttpClientModule,BrowserModule,IonicModule.forRoot(), AppRoutingModule],
+  // entryComponents: [CustomSearchComponent],
+  imports: [HttpClientModule,FormsModule, BrowserModule, IonicModule.forRoot(), SharedModule, AppRoutingModule],
   providers: [
     StatusBar,
     SplashScreen,
@@ -19,4 +22,4 @@ import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http'
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

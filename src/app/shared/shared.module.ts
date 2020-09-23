@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { CustomLoaderComponent } from './custom-loader/custom-loader.component';
 import { ImgPickerComponent } from './img-picker/img-picker.component';
+import { FormsModule } from '@angular/forms';
+import { CustomSearchComponent } from './custom-search/custom-search.component';
 
 @NgModule({
-  entryComponents: [CustomLoaderComponent, ImagePickerComponent , ImgPickerComponent],
-  declarations: [ImagePickerComponent , CustomLoaderComponent,ImgPickerComponent ],
-  imports: [CommonModule, IonicModule],
-  exports: [CustomLoaderComponent, ImagePickerComponent],
+  entryComponents: [CustomLoaderComponent, ImagePickerComponent ,CustomSearchComponent, ImgPickerComponent],
+  declarations: [ImagePickerComponent , CustomLoaderComponent, CustomSearchComponent,ImgPickerComponent ],
+  imports: [CommonModule, IonicModule ,FormsModule],
+  exports: [CustomLoaderComponent,CustomSearchComponent, ImagePickerComponent],
 })
 
 export class SharedModule { }

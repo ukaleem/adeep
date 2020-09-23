@@ -1,0 +1,119 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+      <ion-buttons color="light" size="small" slot="start">
+         <ion-button (click)="closeModal()">
+           x
+         </ion-button>
+      </ion-buttons>
+      <ion-item class='bg-none' lines="none">
+          <ion-title color="light" class="ion-text-center">
+           Add new Patient
+          </ion-title>
+      </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="savePatient(f)">
+    <ion-grid class='main-grid'>
+
+      <ion-row>
+        <ion-col (click)="patientAssignTask(null)">
+          <ion-label for="user" class="ion-label">
+            Select Diseases
+          </ion-label>
+          <div>
+            <ion-select
+              class="input"
+              required
+              name="p_disease"
+              [(ngModel)]="selectedDisease"
+              ngModel
+              #categoryValueCtrl="ngModel"
+              placeholder="select Disease">
+              <ion-select-option value="1"> CORONA </ion-select-option>
+              <ion-select-option value="2"> VIRUS </ion-select-option>
+            </ion-select>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label">
+            Select Specialty
+          </ion-label>
+          <div>
+            <ion-select
+              class="input"
+              required
+              name="p_disease"
+              [(ngModel)]="selectedDisease"
+              ngModel
+              #categoryValueCtrl="ngModel"
+              placeholder="select Disease">
+              <ion-select-option value="1"> CORONA </ion-select-option>
+              <ion-select-option value="2"> VIRUS </ion-select-option>
+            </ion-select>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label">
+            Select Process
+          </ion-label>
+          <div>
+            <ion-select
+              class="input"
+              required
+              name="p_disease"
+              [(ngModel)]="selectedDisease"
+              ngModel
+              #categoryValueCtrl="ngModel"
+              placeholder="select Disease">
+              <ion-select-option value="1"> CORONA </ion-select-option>
+              <ion-select-option value="2"> VIRUS </ion-select-option>
+            </ion-select>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label">
+            Select CareTacker
+          </ion-label>
+          <div>
+            <ion-select
+              class="input"
+              required
+              name="p_disease"
+              [(ngModel)]="selectedDisease"
+              ngModel
+              #categoryValueCtrl="ngModel"
+              placeholder="select Disease">
+              <ion-select-option value="1"> CORONA </ion-select-option>
+              <ion-select-option value="2"> VIRUS </ion-select-option>
+            </ion-select>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button
+            type="submit"
+            [disabled]="!f.valid"
+            expand="block"
+            fill="solid"
+            shape="round"
+            color="primary"
+            >Save patient</ion-button
+          >
+        </ion-col>
+    </ion-row>
+    </ion-grid>
+  </form>
+</ion-content> 
