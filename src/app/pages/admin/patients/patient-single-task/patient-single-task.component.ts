@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AdminService } from 'src/app/services/pages-apis/admin.service';
@@ -10,16 +10,12 @@ import { AdminService } from 'src/app/services/pages-apis/admin.service';
 })
 export class PatientSingleTaskComponent implements OnInit {
 
-  @Input() value: any;
-  @Input() value: any;
+  @Input() APP_ID: any;
+  @Input() PROJECT_ID: any;
   segmentVelue = 'current';
   taskData :any = [];
-  APP_ID ;
-  PROJECT_ID
   constructor(private admin: AdminService, 
-    private modalCtrl : ModalController, 
-    private router: ActivatedRoute,
-    private modalController: ModalController,) { }
+    private modalCtrl : ModalController) { }
 
 
   ngOnInit(
@@ -35,15 +31,7 @@ export class PatientSingleTaskComponent implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.router.paramMap.subscribe((paramMap) => {
-      if (!paramMap.has('project_id')) {
-        // this.navCtrl.back();
-        return;
-      }
-      this.PROJECT_ID = paramMap.get('project_id');
-      this.APP_ID = paramMap.get('app_id');
-      this.loadData();
-    });
+    this.loadData();
   }
 
   loadData(){

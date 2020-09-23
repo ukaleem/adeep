@@ -55,8 +55,8 @@ export class PatientsPage implements OnInit {
       component: PatientSingleTaskComponent,
       cssClass: 'my-custom-class',
       componentProps: {
-        'project_id': 'Douglas',
-        'app_id': 'Adams',
+        'PROJECT_ID': p.PRO_UID,
+        'APP_ID': p.APP_UID,
       }
     });
     return await modal.present();
