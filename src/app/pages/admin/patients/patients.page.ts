@@ -12,8 +12,8 @@ import { PatientSingleTaskComponent } from './patient-single-task/patient-single
 export class PatientsPage implements OnInit {
   segmentVelue = 'personDetails';
   patientID = null;
-  patientDataPath:any = []
-  patientDetail:any = []
+  patientDataPath: any = [];
+  patientDetail: any = [];
 
   constructor(private admin: AdminService,    
     private router: ActivatedRoute,

@@ -26,7 +26,7 @@
     </ion-fab-button>
   </ion-fab>
 
-  <ion-grid>
+  <ion-grid *ngIf="allPatients.length">
     <ion-row class='list-bg' *ngFor="let p of allPatients">
       <ion-col>
         <div>
@@ -37,6 +37,21 @@
             <ion-note class='ion-float-right'> {{p.CREATE_DATE}}</ion-note>
           </ion-item>
         </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="!allPatients.length">
+    <ion-row class='white-bg'>
+      <ion-col>
+        <ion-item class='bg-none' lines='none'>
+          <ion-icon slot='start' name="alert-circle" color='danger'></ion-icon>
+          <ion-label> Sorry no Case found! </ion-label>
+          <ion-button slot='end' fill='clear' shape='round'>
+            <ion-icon name='reload'></ion-icon>
+            Retry
+          </ion-button>
+        </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>

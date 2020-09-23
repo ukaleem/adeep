@@ -169,7 +169,7 @@
     </ion-grid>
 
     <!-- Case Details -->
-    <ion-grid *ngIf="segmentVelue==='caseDetails'">
+    <ion-grid *ngIf="segmentVelue==='caseDetails' && patientDataPath !=[] ">
       <ion-row class='list-bg' *ngFor="let p of patientDataPath">
         <ion-col (click)="presentModal(p)">
           <div>
@@ -183,6 +183,19 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+
+    <ion-grid *ngIf="!patientDataPath.length && segmentVelue==='caseDetails'">
+      <ion-row class='white-bg'>
+        <ion-col>
+          <ion-item class='bg-none' lines='none'>
+            <ion-icon slot='start' name="alert-circle" color='danger'></ion-icon>
+            <ion-label> Sorry no Case found! </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
 
     <!-- <ion-grid class="ion-no-padding">
       <ion-row>
