@@ -1,9 +1,30 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>feedbacks</ion-title>
+    <ion-title class="ion-text-center">FeedBack</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <!-- fab placed to the bottom end -->
+    <ion-fab [routerLink]="['/','admin','tabs','add-feedbacks']" routerDirection='forward' vertical="bottom" color='primary' horizontal="end" slot="fixed">
+      <ion-fab-button>
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <ion-card>
+      <ion-card-header class="ion-no-padding">
+        <ion-segment class="custom-segment" (ionChange)="segmentChanged($event)">
+          <ion-segment-button checked value="detail">
+            <ion-label class="custom-label">New</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="my">
+            <ion-label class="custom-label">My</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="replied">
+            <ion-label class="custom-label">Replied</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-card-header>
+    </ion-card>
+    
 </ion-content>
