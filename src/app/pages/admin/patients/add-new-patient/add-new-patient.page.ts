@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/app/services/pages-apis/admin.service';
 
 @Component({
   selector: 'app-add-new-patient',
@@ -19,12 +20,15 @@ export class AddNewPatientPage implements OnInit {
 
 
 
-  constructor() { }
+  constructor(private admin: AdminService) { }
 
   ngOnInit() {
   }
   savePatient(f){
-
+    console.log(f.form.value);
+    this.admin.addPatient(f.form.value).subscribe(data=> {
+      console.log(data);
+    })
   }
 
 }

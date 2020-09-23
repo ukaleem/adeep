@@ -21,7 +21,7 @@
             required
             minlength="5"
             maxlength="200"
-            name="gigTitle"
+            name="p_f_name"
             [(ngModel)]="firstName"
             ngModel
             #jobTitleCtrl="ngModel"
@@ -41,7 +41,7 @@
               class="input"
               required
               type="text"
-              name="lastName"
+              name="p_l_name"
               ngModel
               #searchTagCtrl="ngModel"
               [(ngModel)]="lastName"
@@ -57,7 +57,7 @@
             required
             minlength="5"
             maxlength="40"
-            name="patientAge"
+            name="p_age"
             [(ngModel)]="patientAge"
             ngModel
             #pkgNameCtrl="ngModel"
@@ -78,7 +78,7 @@
             required
             minlength="5"
             maxlength="40"
-            name="patientEmail"
+            name="p_email"
             [(ngModel)]="patientEmail"
             ngModel
             #pkgDescriptionCtrl="ngModel"
@@ -100,7 +100,7 @@
             <ion-select
               class="input"
               required
-              name="categoryValue"
+              name="p_disease"
               [(ngModel)]="selectedDisease"
               ngModel
               #categoryValueCtrl="ngModel"
@@ -124,7 +124,7 @@
             required
             minlength="5"
             maxlength="40"
-            name="regDate"
+            name="p_date"
             [(ngModel)]="regDate"
             ngModel
             #deliveryTimeCtrl="ngModel"
@@ -145,7 +145,7 @@
             required
             minlength="5"
             maxlength="40"
-            name="phoneNo"
+            name="p_phone_no"
             [(ngModel)]="phoneNo"
             ngModel
             #pkgPriceCtrl="ngModel"
@@ -165,7 +165,7 @@
             required
             minlength="5"
             maxlength="40"
-            name="postalCode"
+            name="p_zip_code"
             [(ngModel)]="postalCode"
             ngModel
             #pkgPriceCtrl="ngModel"
@@ -186,7 +186,7 @@
             required
             minlength="20"
             maxlength="100"
-            name="address"
+            name="p_address"
             [(ngModel)]="address"
             ngModel
             #serviceDesciptionCtrl="ngModel"

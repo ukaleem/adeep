@@ -55,5 +55,8 @@ export class EndpointsService {
   GET_PATIENTS(){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_patients';
   }
+  ADD_PATIENTS(){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/add_patients';
+  }
   constructor(private config: ConfigService) { }
 }
