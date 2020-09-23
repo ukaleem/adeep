@@ -58,5 +58,11 @@ export class EndpointsService {
   ADD_PATIENTS(){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/add_patients';
   }
+  SINGLE_PATIENT(PATIENT_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/patient_detail/'+PATIENT_ID;
+  }
+  SINGLE_PATIENT_TASK(P_ID,A_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/patient_application_single/'+P_ID+'/'+A_ID;
+  }
   constructor(private config: ConfigService) { }
 }

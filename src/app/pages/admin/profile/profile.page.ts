@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
+  segmentVelue = 'personalInfo';
   constructor() { }
 
   ngOnInit() {
+  }
+
+  changeSegment(ev) {
+    this.segmentVelue = ev.detail.value;
+    console.log(this.segmentVelue);
   }
 
 }
