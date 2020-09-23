@@ -44,6 +44,34 @@ ion-menu {
   --width: 90%;
 }
 
+.my-segment {
+  border-radius: 60px;
+  background-color: white;
+}
+
+.label-div {
+  width: 50%;
+  background: var(--ion-color-primary);
+  border-radius: 50px;
+  padding: 5px;
+  background: linear-gradient(to-right #00BAD4 , #137DAF, transparent);
+  background-image: linear-gradient(to right, #00BAD4 , #137DAF);
+  color: white;
+  text-align: center;
+  margin-left: 12px;
+  position: relative;
+}
+
+.data-div{
+  background: var(--ion-color-secondary);
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0px 3px 9px -3px #808080b5;
+  margin-top: -15px;
+  padding-bottom: 15px;
+  padding-left: 65px;
+}
+
 .timeline-row{
   background-color: #9e9e9e0d;
   margin-left: -5px;
@@ -167,6 +195,10 @@ ion-toolbar {
     text-align: center;
   }
 }
+.gradient-bg {
+  border-radius: 50px;
+  background-image: linear-gradient(to right, #00BAD4 , #137DAF);
+}
 .bg-none {
   --background:none !important;
   background: none !important;
@@ -177,7 +209,7 @@ ion-segment-button {
   --background-checked: var(--ion-color-primary);
 }
 ion-segment-button ion-label{
-  color: var(--ion-color-light) !important;
+  // color: var(--ion-color-light) !important;
 }
 .left-col{
   // background-color: #EFF2EE !important;
