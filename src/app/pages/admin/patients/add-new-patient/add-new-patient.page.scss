@@ -8,11 +8,11 @@ ion-content {
 
 .input{
     border:none;
-	padding:15px 20px;
-	border-radius:5px;
+    padding:15px 20px;
+    border-radius:5px;
     color: black;
     height: 48px;
-	background:rgba(247, 247, 247);
+	  background:var(--ion-color-secondary);
   }
   .input-textarea {
     border:none;
@@ -20,7 +20,8 @@ ion-content {
 	border-radius:5px;
     color: black;
     // height: 60px;
-	background:rgba(247, 247, 247);
+  background:rgba(247, 247, 247);
+  background:var(--ion-color-secondary);
   }
   .input1{
     border:none;
@@ -30,12 +31,16 @@ ion-content {
       height: auto;
     // background:rgba(247, 247, 247);
     --background: #f7f7f7;
+    background:var(--ion-color-secondary);
   }
   .main-containe ion-row ion-col {
         text-align: -webkit-center;
     }
   ion-row ion-col ion-label{
-    color: var(--ion-color-dark);
+    color: var(--ion-color-light);
+    border-radius: 5px;
+    background-color: var(--ion-color-primary);
+    padding: 5px;
   }
   ion-row {
       padding-bottom: 10px;
