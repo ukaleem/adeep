@@ -12,19 +12,66 @@
       </ion-fab-button>
     </ion-fab>
     <ion-card>
-      <ion-card-header class="ion-no-padding">
-        <ion-segment class="custom-segment" (ionChange)="segmentChanged($event)">
-          <ion-segment-button checked value="detail">
-            <ion-label class="custom-label">New</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="my">
-            <ion-label class="custom-label">My</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="replied">
-            <ion-label class="custom-label">Replied</ion-label>
-          </ion-segment-button>
-        </ion-segment>
-      </ion-card-header>
+      <ion-row>
+        <ion-col>
+          <ion-segment class="my-segment" (ionChange)="segmentChanged($event)">
+            <ion-segment-button checked value="detail">
+              <ion-label class="custom-label">New</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="my">
+              <ion-label class="custom-label">My</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="replied">
+              <ion-label class="custom-label">Replied</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </ion-col>
+      </ion-row>
+      <ion-row class='list-bg' style="margin-top: 5px;">
+        <ion-col>
+          <ion-item class="bg-none" lines='none'>
+            <ion-label class='cno-wrap'>
+              Zia Ur Reman and 16 others liked your
+              Log "Designing Issues"
+            </ion-label>
+            <div> 
+              <ion-icon name="ellipse" size='small' color='danger' slot='end' class='new'></ion-icon><span id="span-open" class="ion-float-right">Open</span>
+            </div>     
+          </ion-item>
+          <ion-item class="bg-none details2" lines='none'>            
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class='list-bg' style="margin-top: 5px;">
+        <ion-col>
+          <ion-item class="bg-none" lines='none'>
+            <ion-label class='cno-wrap'>
+              Zia Ur Reman and 16 others liked your
+              Log "Designing Issues"
+            </ion-label>
+            <div> 
+              <ion-icon name="ellipse" size='small' color='danger' slot='end' class='new'></ion-icon><span id="span-open" class="ion-float-right">Open</span>
+            </div>     
+          </ion-item>
+          <ion-item class="bg-none details2" lines='none'>            
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class='list-bg' style="margin-top: 5px;">
+        <ion-col>
+          <ion-item class="bg-none" lines='none'>
+            <ion-label class='cno-wrap'>
+              Zia Ur Reman and 16 others liked your
+              Log "Designing Issues"
+            </ion-label>
+            <div> 
+              <ion-icon name="ellipse" size='small' color='danger' slot='end' class='new'></ion-icon><span id="span-open" class="ion-float-right">Open</span>
+            </div>     
+          </ion-item>
+          <ion-item class="bg-none details2" lines='none'>            
+          </ion-item>
+        </ion-col>
+      </ion-row>
     </ion-card>
     
 </ion-content>
