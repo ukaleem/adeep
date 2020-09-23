@@ -8,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class FeedbacksPage implements OnInit {
 
   constructor() { }
+  activeSegment = 'detail';
 
   ngOnInit() {
+  }
+
+  segmentChanged(ev: any) {
+    this.activeSegment = ev.detail.value;
   }
 
 }

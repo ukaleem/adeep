@@ -64,5 +64,6 @@ export class EndpointsService {
   SINGLE_PATIENT_TASK(P_ID,A_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/patient_application_single/'+P_ID+'/'+A_ID;
   }
+  ALL_DISEASE = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases';
   constructor(private config: ConfigService) { }
 }
