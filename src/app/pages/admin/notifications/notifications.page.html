@@ -1,9 +1,70 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>notifications</ion-title>
+      <ion-buttons color="light" size="small" slot="start">
+          <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
+      </ion-buttons>
+      <ion-item class='bg-none' lines="none">
+          <!-- <ion-icon slot='start' color="primary" name="menu"  routerDirection='backward'></ion-icon> -->
+          <ion-title color="light" class="ion-text-center">
+           Notifications
+              <!-- <div class='ion-text-center'>
+                  <img class='Logo-img' src="../../../../assets/images/Logo/skill-experts-white-01.svg" alt="" />
+              </div> -->
+          </ion-title>
+          <ion-icon color="light" name="none"
+              slot="end">
+          </ion-icon>
+      </ion-item>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+<ion-content>
+  <ion-grid>
+    <ion-row class='timeline-row'>
+      <ion-col clas='ion-no-padding ion-no-margin'>
+        <div>
+          <span class='time-stamp'> 30 days ago</span>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class='list-bg'>
+      <ion-col>
+        <ion-item class="bg-none" lines='none'>
+          <ion-label class='cno-wrap'>
+            Zia Ur Reman and 16 others liked your
+            Log "Designing Issues"
+          </ion-label>
+          <ion-icon color="primary" name="ellipsis-horizontal" slot='end'></ion-icon>
+        </ion-item>
+        <ion-item class="bg-none details2" lines='none'>
+          <ion-label>
+            <ion-icon name='thumbs-up' side='small' color='primary'></ion-icon>
+            <span class="time-step"> 50 minutes ago </span>
+          </ion-label>
+          <ion-icon name="ellipse" size='small' color='success' slot='end' class='new'></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class='list-bg'>
+      <ion-col>
+        <ion-item class="bg-none" lines='none'>
+          <ion-label class='cno-wrap'>
+            Saad Arshad and 25 others liked your
+            comment on Log "Designing Issues"
+          </ion-label>
+          <ion-icon color="primary" name="ellipsis-horizontal" slot='end'></ion-icon>
+        </ion-item>
+        <ion-item class="bg-none details2" lines='none'>
+          <ion-label>
+            <ion-icon name='thumbs-up' side='small' color='primary'></ion-icon>
+            <span class="time-step"> 30 days ago </span>
+          </ion-label>
+          <ion-icon name="ellipse" size='small' color='success' slot='end' class='new'></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

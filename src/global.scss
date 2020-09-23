@@ -30,10 +30,41 @@
 **  Custom Tool Bar Setting
 ***/
 
+ion-header {
+  --background: none;
+// background-image: linear-gradient(to bottom right, #f4b400 , #db4437);
+background: url("./assets/images/header-bg.png");
+background-position: center top;
+background-repeat: no-repeat;
+background-repeat: no-repeat;
+background-size: 100% 100%;
+}
+
+ion-menu {
+  --width: 90%;
+}
+
+.timeline-row{
+  background-color: #9e9e9e0d;
+  margin-left: -5px;
+  margin-right: -5px;
+  font-size: xx-small;
+  border-radius: 4px;
+  color: #0000004a;
+  margin-bottom: 2px;
+}
+
+
+.cno-wrap {
+  white-space: pre-wrap !important;
+}
 ion-toolbar {
-    --background: none !important;
-    background-color: var(--ion-color-primary) !important;
+    // margin-top: 16px;
+    height: 100px;
+    // --background: none !important;
+    // background-color: var(--ion-color-primary) !important;
     color: var(--ion-color-primary) !important;
+
     ion-title{
       color:var(--ion-color-light) !important;
     }

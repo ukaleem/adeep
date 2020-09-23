@@ -11,7 +11,7 @@
                   <img class='Logo-img' src="../../../../assets/images/Logo/skill-experts-white-01.svg" alt="" />
               </div> -->
           </ion-title>
-          <ion-icon color="light" [routerLink]="['/','admin','patientsForm','add-new-patient']" routerDirection='forward' name="add-circle-outline"
+          <ion-icon color="light" name="search"
               slot="end">
           </ion-icon>
       </ion-item>
@@ -19,6 +19,13 @@
 </ion-header>
 
 <ion-content>
+  <!-- fab placed to the bottom end -->
+  <ion-fab [routerLink]="['/','admin','patientsForm','add-new-patient']" routerDirection='forward' vertical="bottom" color='primary' horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-grid>
     <ion-row class='list-bg' *ngFor="let p of allPatients">
       <ion-col>
