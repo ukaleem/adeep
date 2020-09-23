@@ -168,3 +168,6 @@ ion-segment-button ion-label{
     border-radius: 10px;
   }
 }
+.ion-touched.ion-invalid {
+  border: 1px solid red !important;
+}
