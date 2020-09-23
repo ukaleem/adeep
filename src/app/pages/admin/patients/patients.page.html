@@ -40,7 +40,7 @@
       <ion-col size="7">
         <div class="right-col-detail">
           <p class='right-col-paragraph'>
-            ADICANMARK0118
+            {{patientDetail.PAITEINT_NAME}}
           </p>
         </div>
       </ion-col>
@@ -57,7 +57,7 @@
       <ion-col size="7">
         <div class="right-col-detail">
           <p class='right-col-paragraph'>
-            ADICAN MARK
+            {{patientDetail.PATIENT_NAME}}
           </p>
         </div>
       </ion-col>
@@ -74,7 +74,7 @@
       <ion-col size="7">
         <div class="right-col-detail">
           <p class='right-col-paragraph'>
-              96HD76
+            {{patientDetail.PATIENT_PASSWORD}}
           </p>
         </div>
       </ion-col>
@@ -92,7 +92,7 @@
       <ion-col size="7">
         <div class="right-col-detail">
           <p class='right-col-paragraph'>
-              2
+            {{patientDetail.PAITENT_AGE}}
           </p>
         </div>
       </ion-col>
@@ -109,7 +109,7 @@
       <ion-col size="7">
         <div class="right-col-detail">
           <p class='right-col-paragraph'>
-              0005-01-01 00:00:00
+            {{patientDetail.CREATE_DATE}}
           </p>
         </div>
       </ion-col>
@@ -148,7 +148,22 @@
         </ion-refresher-content>
     </ion-refresher>
 
-    <ion-grid class="ion-no-padding">
+    <ion-grid>
+      <ion-row class='list-bg' *ngFor="let p of patientDataPath">
+        <ion-col (click)="presentModal(p)">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <ion-label> {{p.PRO_TITLE}} 
+                <p>Dieses: {{p.PAT_DISEASE_NAME}}</p>
+              </ion-label>
+              <ion-note class='ion-float-right'> {{p.APP_STATUS}}</ion-note>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- <ion-grid class="ion-no-padding">
       <ion-row>
         <ion-col size="5" class="left-col">
         <div class='heading-div'>
@@ -252,5 +267,5 @@
           </div>
         </ion-col>
       </ion-row>
-      </ion-grid>
+      </ion-grid> -->
 </ion-content>

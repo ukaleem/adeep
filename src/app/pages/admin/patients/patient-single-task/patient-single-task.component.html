@@ -1,0 +1,95 @@
+<!-- <app-custom-loader *ngIf="loading"> </app-custom-loader> -->
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+      <ion-item class='bg-none' lines='none'>
+          <ion-icon name="chevron-back" color="light" slot="start" (click)="closeModal()"></ion-icon>
+          <ion-label class="ion-text-center" color='light'> Patient Details
+          </ion-label>
+          <ion-icon name="none" slot="end" color="light" size="small"></ion-icon>
+      </ion-item>
+      <ion-segment (ionChange)="changeSegment($event)" value="personDetails">
+          <ion-segment-button value="current">
+              <ion-label>Current</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="come">
+              <ion-label>Coming</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="pass">
+            <ion-label>Passed</ion-label>
+        </ion-segment-button>
+          
+      </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content *ngIf="segmentVelue==='current'" translucent='true'>
+  <ion-refresher mode="ios" slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
+          refreshingSpinner="circles" refreshingText="Refreshing...">
+      </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid>
+    <ion-row class='list-bg' *ngFor="let p of patientDataPath">
+      <ion-col>
+        <div>
+          <ion-item class='bg-none' lines='none'>
+            <ion-label> {{p.PRO_TITLE}} 
+              <p>Dieses: {{p.PAT_DISEASE_NAME}}</p>
+            </ion-label>
+            <ion-note class='ion-float-right'> {{p.APP_STATUS}}</ion-note>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+<ion-content *ngIf="segmentVelue==='come'" translucent='true'>
+  <ion-refresher mode="ios" slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
+          refreshingSpinner="circles" refreshingText="Refreshing...">
+      </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid>
+    <ion-row class='list-bg' *ngFor="let p of patientDataPath">
+      <ion-col>
+        <div>
+          <ion-item class='bg-none' lines='none'>
+            <ion-label> {{p.PRO_TITLE}} 
+              <p>Dieses: {{p.PAT_DISEASE_NAME}}</p>
+            </ion-label>
+            <ion-note class='ion-float-right'> {{p.APP_STATUS}}</ion-note>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+<ion-content *ngIf="segmentVelue==='pass'" translucent='true'>
+  <ion-refresher mode="ios" slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
+          refreshingSpinner="circles" refreshingText="Refreshing...">
+      </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid>
+    <ion-row class='list-bg' *ngFor="let p of patientDataPath">
+      <ion-col>
+        <div>
+          <ion-item class='bg-none' lines='none'>
+            <ion-label> {{p.PRO_TITLE}} 
+              <p>Dieses: {{p.PAT_DISEASE_NAME}}</p>
+            </ion-label>
+            <ion-note class='ion-float-right'> {{p.APP_STATUS}}</ion-note>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
