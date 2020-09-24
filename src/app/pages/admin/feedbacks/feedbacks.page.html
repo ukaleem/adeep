@@ -15,76 +15,140 @@
 </ion-header>
 
 <ion-content>
-    <!-- fab placed to the bottom end -->
-    <ion-fab [routerLink]="['/','admin','tabs','add-feedbacks']" routerDirection='forward' vertical="bottom" color='primary' horizontal="end" slot="fixed">
-      <ion-fab-button>
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-    <ion-card>
-      <ion-card-header class="ion-no-padding">
-        <ion-row>
-          <ion-col class="ion-no-padding">
-            <ion-segment value="detail" class="my-segment" (ionChange)="segmentChanged($event)">
-              <ion-segment-button checked value="detail">
-                <ion-label class="custom-label">New</ion-label>
-              </ion-segment-button>
-              <ion-segment-button value="my">
-                <ion-label class="custom-label">My</ion-label>
-              </ion-segment-button>
-              <ion-segment-button value="replied">
-                <ion-label class="custom-label">Replied</ion-label>
-              </ion-segment-button>
-            </ion-segment>
-          </ion-col>
-        </ion-row>
-      </ion-card-header>
+  <!-- fab placed to the bottom end -->
+  <ion-fab [routerLink]="['/','admin','tabs','add-feedbacks']" routerDirection='forward' vertical="bottom"
+    color='primary' horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-card>
+    <ion-card-header class="ion-no-padding">
+      <ion-row>
+        <ion-col class="ion-no-padding">
+          <ion-segment value="detail" class="my-segment" (ionChange)="segmentChanged($event)">
+            <ion-segment-button checked value="detail">
+              <ion-label class="custom-label">New</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="my">
+              <ion-label class="custom-label">My</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="replied">
+              <ion-label class="custom-label">Replied</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
     
-      <ion-row class='list-bg' style="margin-top: 5px;">
-        <ion-col>
+    <ng-container *ngIf="activeSegment == 'detail'">
+      <ion-row class='list-bg' style="margin-top: 5px;" *ngFor="let item of allFeedBack.new">
+        <ion-col (click)="viewFeedBack(item.FEED_ID)">
+
           <ion-item class="bg-none" lines='none'>
             <ion-label class='cno-wrap'>
-              Zia Ur Reman and 16 others liked your
-              Log "Designing Issues"
+              {{item.FEED_CONTENT}}
             </ion-label>
-            <div> 
-              <ion-icon name="ellipse" size='small' color='danger' slot='end' class='new'></ion-icon><span id="span-open" class="ion-float-right">Open</span>
-            </div>     
+            <div *ngIf="item.FEED_STATUS == '1'">
+              <ion-icon name="ellipse" size='small' color='danger' slot='end' class='new'></ion-icon>
+              <span class="ion-float-right">Open</span>
+            </div>
+            <div *ngIf="item.FEED_STATUS == '2'">
+              <span color="danger" class="ion-float-right">Reject</span>
+            </div>
+            <div *ngIf="item.FEED_STATUS == '3'">
+              <span color="success" class="ion-float-right">Accept</span>
+            </div>
           </ion-item>
-          <ion-item class="bg-none details2" lines='none'>            
+          <ion-item class="bg-none details2" lines='none'>
           </ion-item>
         </ion-col>
       </ion-row>
-      <ion-row class='list-bg' style="margin-top: 5px;">
-        <ion-col>
+    </ng-container>
+
+    <ng-container *ngIf="activeSegment == 'my'">
+      <ion-row class='list-bg' style="margin-top: 5px;" *ngFor="let item of allFeedBack.my">
+        <ion-col (click)="viewFeedBack(item.FEED_ID)">
           <ion-item class="bg-none" lines='none'>
             <ion-label class='cno-wrap'>
-              Zia Ur Reman and 16 others liked your
-              Log "Designing Issues"
+              {{item.FEED_CONTENT}}
             </ion-label>
-            <div> 
-              <ion-icon name="ellipse" size='small' color='danger' slot='end' class='new'></ion-icon><span id="span-open" class="ion-float-right">Open</span>
-            </div>     
+            <div *ngIf="item.FEED_STATUS == '1'">
+              <ion-icon name="ellipse" size='small' color='danger' slot='end' class='new'></ion-icon>
+              <span class="ion-float-right">Open</span>
+            </div>
+            <div *ngIf="item.FEED_STATUS == '2'">
+              <span color="danger" class="ion-float-right">Reject</span>
+            </div>
+            <div *ngIf="item.FEED_STATUS == '3'">
+              <span color="success" class="ion-float-right">Accept</span>
+            </div>
           </ion-item>
-          <ion-item class="bg-none details2" lines='none'>            
+          <ion-item class="bg-none details2" lines='none'>
           </ion-item>
         </ion-col>
       </ion-row>
-      <ion-row class='list-bg' style="margin-top: 5px;">
-        <ion-col>
+    </ng-container>
+
+    <ng-container *ngIf="activeSegment == 'replied'">
+      <ion-row class='list-bg' style="margin-top: 5px;" *ngFor="let item of allFeedBack.all">
+        <ion-col (click)="viewFeedBack(item.FEED_ID)">
           <ion-item class="bg-none" lines='none'>
             <ion-label class='cno-wrap'>
-              Zia Ur Reman and 16 others liked your
-              Log "Designing Issues"
+              {{item.FEED_CONTENT}}
             </ion-label>
-            <div> 
-              <ion-icon name="ellipse" size='small' color='danger' slot='end' class='new'></ion-icon><span id="span-open" class="ion-float-right">Open</span>
-            </div>     
+            <div *ngIf="item.FEED_STATUS == '1'">
+              <ion-icon name="ellipse" size='small' color='danger' slot='end' class='new'></ion-icon>
+              <span class="ion-float-right">Open</span>
+            </div>
+            <div *ngIf="item.FEED_STATUS == '2'">
+              <span color="danger" class="ion-float-right">Reject</span>
+            </div>
+            <div *ngIf="item.FEED_STATUS == '3'">
+              <span color="success" class="ion-float-right">Accept</span>
+            </div>
           </ion-item>
-          <ion-item class="bg-none details2" lines='none'>            
+          <ion-item class="bg-none details2" lines='none'>
           </ion-item>
         </ion-col>
       </ion-row>
-    </ion-card>
-    
+    </ng-container>
+
+    <!-- <ion-row class='list-bg' style="margin-top: 5px;">
+      <ion-col>
+        <ion-item class="bg-none" lines='none'>
+          <ion-label class='cno-wrap'>
+            Zia Ur Reman and 16 others liked your
+            Log "Designing Issues"
+          </ion-label>
+          <div>
+            <ion-icon name="ellipse" size='small' color='danger' slot='end' class='new'></ion-icon><span id="span-open"
+              class="ion-float-right">Open</span>
+          </div>
+        </ion-item>
+        <ion-item class="bg-none details2" lines='none'>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class='list-bg' style="margin-top: 5px;">
+      <ion-col>
+        <ion-item class="bg-none" lines='none'>
+          <ion-label class='cno-wrap'>
+            Zia Ur Reman and 16 others liked your
+            Log "Designing Issues"
+          </ion-label>
+          <div>
+            <ion-icon name="ellipse" size='small' color='danger' slot='end' class='new'></ion-icon><span id="span-open"
+              class="ion-float-right">Open</span>
+          </div>
+        </ion-item>
+        <ion-item class="bg-none details2" lines='none'>
+        </ion-item>
+      </ion-col>
+    </ion-row> -->
+  </ion-card>
+
 </ion-content>

@@ -1,0 +1,128 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons color="light" size="small" slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon color='light' name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-item class='bg-none' lines="none">
+      <ion-title color="light" class="ion-text-center">
+        Feed Back detail
+      </ion-title>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+
+    <!-- this one -->
+    <ion-row>
+      <ion-col>
+        <div class="label-div">
+          <ion-label>From</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{allData.USR_FIRSTNAME}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div class="label-div">
+          <ion-label>Process</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{allData.PRJ_NAME}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div class="label-div">
+          <ion-label>Task</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label> {{allData.TAS_TITLE}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div class="label-div">
+          <ion-label>Content</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label> {{allData.FEED_CONTENT}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div class="label-div">
+          <ion-label>Status</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label *ngIf="allData.FEED_STATUS == '1'"> Open</ion-label>
+          <ion-label *ngIf="allData.FEED_STATUS == '2'"> Close(Accept)</ion-label>
+          <ion-label *ngIf="allData.FEED_STATUS == '3'"> Close(Reject)</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="allData.FEED_STATUS != '1'">
+      <ion-col>
+        <div class="label-div">
+          <ion-label>Reply</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label> {{allData.FEED_REPLY}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="allData.FEED_STATUS == '1'">
+      <ion-col>
+        <div class="label-div">
+          <ion-label>Reply</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-textarea [(ngModel)]="feedReply" placeholder="Enter Reply Here"></ion-textarea>
+        </div>
+        <div>
+          <ion-row>
+            <ion-col size="6">
+              <ion-button expand="block" (click)="updateFeed(3)">
+                Accept
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button expand="block" (click)="updateFeed(2)">
+                Reject
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+
+
+
+    <!-- <ion-row>
+      <ion-col size="12">
+        <ion-button class='gradient-bg' (click)="patientAssignTask()" shape='round' expand="block">Assign</ion-button>
+      </ion-col>
+    </ion-row> -->
+
+
+
+
+  </ion-grid>
+</ion-content>
