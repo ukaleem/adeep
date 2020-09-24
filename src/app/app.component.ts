@@ -19,14 +19,28 @@ export class AppComponent {
     this.initializeApp();
   }
 
+  userName = '';
+  userRole = 'Administrator';
+  casesShow = false;
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.loadUser();
     });
   }
   logOut(){
     localStorage.clear();
     this.navCtrl.navigateRoot('/');
+  }
+  loadUser(){
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(user){
+      this.userName = user.firstname;
+    //  this.userRole = user.position;
+      if(user.position == 'Administrator'){
+        this.casesShow = true;
+      }
+    }
   }
 }

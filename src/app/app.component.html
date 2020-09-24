@@ -10,7 +10,7 @@
                 <ion-avatar style='height:60px !important; width:60px !important;' class='my-custom-avatar'>
                   <img src="../assets/images/user_dumme.png">
                 </ion-avatar>
-                <ion-label class="ion-text-left txt-large userName">Max</ion-label>
+                <ion-label class="ion-text-left txt-large userName">{{userName}}</ion-label>
               </ion-item>
             </ion-menu-toggle>
           </ion-col>
@@ -30,7 +30,7 @@
               <!-- <ion-button class="right-button" color="light" fill="outline">6</ion-button> -->
             </ion-item>
           </ion-menu-toggle>
-
+          
           <ion-menu-toggle>
             <ion-item lines='none' button [routerLink]="['/','cases']">
               <div slot='start'>
@@ -41,7 +41,7 @@
               <ion-button class="right-button" color="light" fill="outline">6</ion-button>
             </ion-item>
           </ion-menu-toggle>
-          <ion-menu-toggle>
+          <ion-menu-toggle *ngIf="casesShow">
             <ion-item lines='none' button  [routerLink]="['/','cases','unassigned-cases']">
               <div slot='start'>
                 <img class="segment-img" src="../assets/icon/unassigned (2).svg">
@@ -51,7 +51,7 @@
               <ion-button class="right-button" color="light"fill="outline">6</ion-button>
             </ion-item>
           </ion-menu-toggle>
-          <ion-menu-toggle>
+          <ion-menu-toggle *ngIf="casesShow">
             <ion-item lines='none' button [routerLink]="['/','participants']">
               <div slot='start'>
                 <img class="segment-img" src="../assets/icon/participated.svg">
@@ -61,7 +61,7 @@
               <ion-button class="right-button" color="light" fill="outline">6</ion-button>
             </ion-item>
           </ion-menu-toggle>
-          <ion-menu-toggle>
+          <ion-menu-toggle *ngIf="casesShow">
             <ion-item lines='none' button  [routerLink]="['/','cases','draft-cases']">
               <div slot='start'>
                 <img class="segment-img" src="../assets/icon/draft.svg">
