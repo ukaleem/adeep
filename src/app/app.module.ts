@@ -9,16 +9,23 @@ import { AppComponent } from './app.component';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { FeedBackSortingFilterPopoverPage } from './shared/popovers/feed-backsorting-popovers';
 // import { CustomSearchComponent } from './shared/custom-search/custom-search.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    FeedBackSortingFilterPopoverPage,
+  ],
   // entryComponents: [CustomSearchComponent],
   imports: [HttpClientModule,FormsModule, BrowserModule, IonicModule.forRoot(), SharedModule, AppRoutingModule],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
+  entryComponents: [
+    FeedBackSortingFilterPopoverPage,
   ],
   bootstrap: [AppComponent]
 })

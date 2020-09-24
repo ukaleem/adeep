@@ -1,6 +1,16 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title class="ion-text-center">FeedBack</ion-title>
+      <ion-buttons color="light" size="small" slot="start">
+          <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
+      </ion-buttons>
+      <ion-item class='bg-none' lines="none">
+          <ion-title color="light" class="ion-text-center">
+           Feed Back
+          </ion-title>
+          <ion-icon (click)="presentPopover($event)" color="light" name="ellipsis-vertical-outline"
+              slot="end">
+          </ion-icon>
+      </ion-item>
   </ion-toolbar>
 </ion-header>
 
@@ -13,22 +23,23 @@
     </ion-fab-button>
   </ion-fab>
   <ion-card>
-    <ion-row>
-      <ion-col>
-        <ion-segment class="my-segment" (ionChange)="segmentChanged($event)">
-          <ion-segment-button checked value="detail">
-            <ion-label class="custom-label">New</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="my">
-            <ion-label class="custom-label">My</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="replied">
-            <ion-label class="custom-label">Replied</ion-label>
-          </ion-segment-button>
-        </ion-segment>
-      </ion-col>
-    </ion-row>
-
+    <ion-card-header class="ion-no-padding">
+      <ion-row>
+        <ion-col class="ion-no-padding">
+          <ion-segment value="detail" class="my-segment" (ionChange)="segmentChanged($event)">
+            <ion-segment-button checked value="detail">
+              <ion-label class="custom-label">New</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="my">
+              <ion-label class="custom-label">My</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="replied">
+              <ion-label class="custom-label">Replied</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
@@ -36,6 +47,7 @@
     <ng-container *ngIf="activeSegment == 'detail'">
       <ion-row class='list-bg' style="margin-top: 5px;" *ngFor="let item of allFeedBack.new">
         <ion-col (click)="viewFeedBack(item.FEED_ID)">
+
           <ion-item class="bg-none" lines='none'>
             <ion-label class='cno-wrap'>
               {{item.FEED_CONTENT}}

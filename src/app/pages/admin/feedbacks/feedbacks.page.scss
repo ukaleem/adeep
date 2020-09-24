@@ -42,3 +42,10 @@
  #span-open{
     padding-left: 7px !important;
  }
+ion-card-header {
+    --background: white;
+    border-radius: 23px;
+}
+ion-card {
+    border-radius: 23px 23px 0px 0px !important;
+}

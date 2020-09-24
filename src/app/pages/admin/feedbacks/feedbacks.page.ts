@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FeedsService } from 'src/app/services/pages-apis/feeds.service';
 import { ViewFeedComponent } from './view-feed/view-feed.component';
+import { PopoverController } from '@ionic/angular';
+import { FeedBackSortingFilterPopoverPage } from 'src/app/shared/popovers/feed-backsorting-popovers';
 
 @Component({
   selector: 'app-feedbacks',
@@ -11,10 +13,11 @@ import { ViewFeedComponent } from './view-feed/view-feed.component';
 export class FeedbacksPage implements OnInit {
 
   constructor(private feed: FeedsService , 
+    private popoverCtrl: PopoverController,
     private mdlCtrl: ModalController) { }
   activeSegment = 'detail';
   allFeedBack:any = [];
-
+  sortBy = 'none';
 
   ngOnInit() {
   }
@@ -22,6 +25,23 @@ export class FeedbacksPage implements OnInit {
   segmentChanged(ev: any) {
     this.activeSegment = ev.detail.value;
   }
+    // For Sorting
+    async presentPopover(event: Event) {
+      const popover = await this.popoverCtrl.create({
+        component: FeedBackSortingFilterPopoverPage,
+        componentProps : {
+          sortBy:this.sortBy,
+          thisFrom : 'ag',  
+        },
+        event
+      }).then(popOver => {
+        popOver.present();
+        return popOver.onDidDismiss();
+      }).then(resultData => {
+        console.log(resultData);
+     
+      });
+    }
 
   ionViewWillEnter(){
     this.loadData();
