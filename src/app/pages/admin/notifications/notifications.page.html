@@ -21,34 +21,33 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <ion-row class='timeline-row'>
+    <!-- <ion-row class='timeline-row'>
       <ion-col clas='ion-no-padding ion-no-margin'>
         <div>
           <span class='time-stamp'> 30 days ago</span>
         </div>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
 
-    <ion-row class='list-bg'>
+    <ion-row class='list-bg' *ngFor="let n of allNotifications">
       <ion-col>
         <ion-item class="bg-none" lines='none'>
           <ion-label class='cno-wrap'>
-            Zia Ur Reman and 16 others liked your
-            Log "Designing Issues"
+            <b>{{n.USR_USERNAME}}</b> {{n.note_content}}
           </ion-label>
-          <ion-icon color="primary" name="ellipsis-horizontal" slot='end'></ion-icon>
+          <ion-icon (click)="presentActionSheet(n)" color="primary" name="ellipsis-horizontal" slot='end'></ion-icon>
         </ion-item>
         <ion-item class="bg-none details2" lines='none'>
           <ion-label>
             <ion-icon name='thumbs-up' side='small' color='primary'></ion-icon>
-            <span class="time-step"> 50 minutes ago </span>
+            <span class="time-step">{{n.created_at}} </span>
           </ion-label>
-          <ion-icon name="ellipse" size='small' color='success' slot='end' class='new'></ion-icon>
+          <ion-icon *ngIf="n.current_status == '0'" name="ellipse" size='small' color='success' slot='end' class='new'></ion-icon>
         </ion-item>
       </ion-col>
     </ion-row>
 
-    <ion-row class='list-bg'>
+    <!-- <ion-row class='list-bg'>
       <ion-col>
         <ion-item class="bg-none" lines='none'>
           <ion-label class='cno-wrap'>
@@ -65,6 +64,6 @@
           <ion-icon name="ellipse" size='small' color='success' slot='end' class='new'></ion-icon>
         </ion-item>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
   </ion-grid>
 </ion-content>
