@@ -13,7 +13,7 @@ export class NotificationsService {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_NOTIFICATIONS(u),showLoading : true, showError : true});
   } 
 
-  // set_user_token(formData) {
-  //   return this.api.commonPost(formData,{isToken :false,endPointUrl : this.endPoints.SET_USER_TOKEN,showLoading : true, showError : true});
-  // }
+  changeNotifications(id,formData) {
+    return this.api.commonPost(formData,{isToken :false,endPointUrl : this.endPoints.READ_NOTIFICATIONS(id),showLoading : true, showError : true});
+  }
 }

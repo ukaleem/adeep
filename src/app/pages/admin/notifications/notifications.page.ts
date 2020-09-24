@@ -28,31 +28,31 @@ export class NotificationsPage implements OnInit {
 
   async presentActionSheet(data) {
     const id = data.note_id;
+    let readButton = {
+      text: 'Read',
+        role: 'destructive',
+        icon: 'trash',
+        handler: () => {
+          this.changeStatus(id,2);
+        }
+    };
+
     let delButton = {
       text: 'Delete',
         role: 'destructive',
         icon: 'trash',
         handler: () => {
-          console.log('Delete clicked');
-        }
-    };
-
-    let readButton = {
-      text: 'Delete',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => {
-          console.log('Delete clicked');
+          this.changeStatus(id,3);
         }
     }
 
     let canSelButton = {
-      text: 'Delete',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => {
-          console.log('Delete clicked');
-        }
+      text: 'Cancel',
+      icon: 'close',
+      role: 'cancel',
+      handler: () => {
+        console.log('Cancel clicked');
+      }
     }
 
     let projectButton = {
@@ -72,48 +72,28 @@ export class NotificationsPage implements OnInit {
           console.log('Delete clicked');
         }
     }
+
+    var allButtons = [];
+    if(data.current_status == '0'){
+      allButtons.push(readButton);
+    }
+    allButtons.push(readButton);
+    allButtons.push(delButton);
+    allButtons.push(canSelButton);
+
+
     const actionSheet = await this.actionSheetController.create({
       header: 'Albums',
       cssClass: 'my-custom-class',
-      buttons: [{
-        text: 'Delete',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => {
-          console.log('Delete clicked');
-        }
-      }, {
-        text: 'Share',
-        icon: 'share',
-        handler: () => {
-          console.log('Share clicked');
-        }
-      }, {
-        text: 'Play (open modal)',
-        icon: 'caret-forward-circle',
-        handler: () => {
-          console.log('Play clicked');
-        }
-      }, {
-        text: 'Favorite',
-        icon: 'heart',
-        handler: () => {
-          console.log('Favorite clicked');
-        }
-      }, {
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
+      buttons: allButtons,
     });
     await actionSheet.present();
   }
 
   changeStatus(id,type){
-
+    this.not.changeNotifications(id , {type1 : type}).subscribe(data=> {
+      console.log(data);
+    })
   }
 
 }

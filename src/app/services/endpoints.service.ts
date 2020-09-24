@@ -88,6 +88,9 @@ export class EndpointsService {
   GET_NOTIFICATIONS(U_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_all_notifications/'+U_ID;
   }
+  READ_NOTIFICATIONS(N_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/change_notification/'+N_ID;
+  }
   
   constructor(private config: ConfigService) { }
 }
