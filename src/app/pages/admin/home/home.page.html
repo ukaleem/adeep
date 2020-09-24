@@ -25,7 +25,18 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
+  <ion-row class='list-bg'>
+    <ion-col>
+      <div>
+        <ion-item class='bg-none' lines='none' [routerLink]="['/','admin','patients',p.PUBLIC_ID]" routerLinkActive="router-link-active">
+          <ion-label> Sehar
+            <p>Dieses</p>
+          </ion-label>
+          <ion-note class='ion-float-right'>2020-09-18</ion-note>
+        </ion-item>
+      </div>
+    </ion-col>
+  </ion-row>
   <ion-grid *ngIf="allPatients.length">
     <ion-row class='list-bg' *ngFor="let p of allPatients">
       <ion-col>
@@ -46,10 +57,10 @@
       <ion-col>
         <ion-item class='bg-none' lines='none'>
           <ion-icon slot='start' name="alert-circle" color='danger'></ion-icon>
-          <ion-label> Sorry no data found! </ion-label>
+          <ion-label> Sorry no Case found! </ion-label>
           <ion-button slot='end' fill='clear' shape='round'>
             <ion-icon name='reload'></ion-icon>
-            Re-load
+            Retry
           </ion-button>
         </ion-item>
       </ion-col>
