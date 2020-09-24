@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { AdminService } from 'src/app/services/pages-apis/admin.service';
+import { ToastService } from 'src/app/services/toast.service';
 import { CustomSearchComponent } from 'src/app/shared/custom-search/custom-search.component';
 
 @Component({
@@ -9,12 +11,24 @@ import { CustomSearchComponent } from 'src/app/shared/custom-search/custom-searc
 })
 export class PatientAssignTaskComponent implements OnInit {
 
-  allDisease : any = [];
-  allSpecialty : any = [];
+  @Input() patientID: any;
+  // allDisease : any = [];
+  // allSpecialty : any = [];
   allProcess : any = [];
   allUsers : any = [];
-  patientID  = '';
-  constructor(private mdlCtrl : ModalController) { }
+  selectPathway ;
+  selectPatient ;
+  selectDisease = {
+    id : null,
+    name: '',
+  }
+  selectSpecialty = {
+    id : null,
+    name: '',
+  }
+  constructor(private mdlCtrl : ModalController,
+    private toastService : ToastService,
+    private admin: AdminService) { }
 
   ngOnInit() {}
 
@@ -27,11 +41,59 @@ export class PatientAssignTaskComponent implements OnInit {
       component: CustomSearchComponent,
       cssClass: 'my-custom-class',
       componentProps: {
-        // 'PROJECT_ID': p.PRO_UID,
-        // 'APP_ID': p.APP_UID,
+        'search_for': f,
+        'search_id': this.selectDisease.id,
+        'search_name': this.selectDisease.name,
       }
+    });
+    modal.onDidDismiss()
+      .then((data) => {
+        if(data.role == 'ok'){
+          const returnData = JSON.parse(data.data);
+          if(f == 'd'){
+            this.selectDisease.id = returnData[0];
+            this.selectDisease.name = returnData[1];
+          }else if(f == 's'){
+            this.selectSpecialty.id = returnData[0];
+            this.selectSpecialty.name = returnData[1];
+          }
+          this.loadProjects();
+        }
     });
     return await modal.present();
   }
 
+  loadProjects(){
+    if(this.selectSpecialty.id && this.selectDisease.id){
+      this.admin.getCustomProcess(this.selectDisease.id,this.selectSpecialty.id).subscribe(data=> {
+        console.log(data);
+        this.allProcess = data.all_data;
+      })
+    }
+  }
+  changeProcess(e){
+    this.admin.getProcessUsers(e.detail.value).subscribe(data=> {
+      console.log(data);
+      this.allUsers = data.all_data;
+    })
+  }
+
+  savePatient(f){
+    let formData ={
+      pid : this.patientID,
+      guid: this.selectPathway,
+      uid: this.selectPatient,
+    }
+    this.admin.startPathway(formData).subscribe(data=> {
+      console.log(data);
+      if(data.status){
+        this.mdlCtrl.dismiss(null,'ok');
+        this.toastService.SuccessToast('Successfully',2000);
+      }else{
+        this.toastService.ErrorToast('Some Error',2000);
+      }
+    }, error => {
+      this.toastService.ErrorToast('Some Error',2000);
+    })
+  }
 }

@@ -1,15 +1,15 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-      <ion-buttons color="light" size="small" slot="start">
-         <ion-button (click)="closeModal()">
-           x
-         </ion-button>
-      </ion-buttons>
-      <ion-item class='bg-none' lines="none">
-          <ion-title color="light" class="ion-text-center">
-           Add new Patient
-          </ion-title>
-      </ion-item>
+    <ion-buttons color="light" size="small" slot="start">
+      <ion-button (click)="closeModal()">
+        x
+      </ion-button>
+    </ion-buttons>
+    <ion-item class='bg-none' lines="none">
+      <ion-title color="light" class="ion-text-center">
+        Add new Patient
+      </ion-title>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
@@ -18,63 +18,34 @@
     <ion-grid class='main-grid'>
 
       <ion-row>
-        <ion-col (click)="patientAssignTask(null)">
-          <ion-label for="user" class="ion-label">
-            Select Diseases
-          </ion-label>
-          <div>
-            <ion-select
-              class="input"
-              required
-              name="p_disease"
-              [(ngModel)]="selectedDisease"
-              ngModel
-              #categoryValueCtrl="ngModel"
-              placeholder="select Disease">
-              <ion-select-option value="1"> CORONA </ion-select-option>
-              <ion-select-option value="2"> VIRUS </ion-select-option>
-            </ion-select>
-          </div>
+        <ion-col (click)="patientAssignTask('d')">
+          <ion-label for="user" class="ion-label"> Select Disease* </ion-label>
+          <ion-input required minlength="3" maxlength="40" readonly name="p_email" [(ngModel)]="selectDisease.name"
+            ngModel #pkgDescriptionCtrl="ngModel" class="input" id="patientEmail" type="text" placeholder="Disease">
+          </ion-input>
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col>
+        <ion-col (click)="patientAssignTask('s')">
           <ion-label for="user" class="ion-label">
             Select Specialty
           </ion-label>
-          <div>
-            <ion-select
-              class="input"
-              required
-              name="p_disease"
-              [(ngModel)]="selectedDisease"
-              ngModel
-              #categoryValueCtrl="ngModel"
-              placeholder="select Disease">
-              <ion-select-option value="1"> CORONA </ion-select-option>
-              <ion-select-option value="2"> VIRUS </ion-select-option>
-            </ion-select>
-          </div>
+          <ion-input required minlength="3" maxlength="40" readonly name="p_email2" [(ngModel)]="selectSpecialty.name"
+            ngModel #pkgDescriptionCtrl="ngModel" class="input" id="patientEmail2" type="text" placeholder="Specialty">
+          </ion-input>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col>
           <ion-label for="user" class="ion-label">
-            Select Process
+            Select Pathway
           </ion-label>
           <div>
-            <ion-select
-              class="input"
-              required
-              name="p_disease"
-              [(ngModel)]="selectedDisease"
-              ngModel
-              #categoryValueCtrl="ngModel"
-              placeholder="select Disease">
-              <ion-select-option value="1"> CORONA </ion-select-option>
-              <ion-select-option value="2"> VIRUS </ion-select-option>
+            <ion-select (ionChange)="changeProcess($event)" class="input" required name="p_disease2" [(ngModel)]="selectPathway" ngModel
+              #categoryValueCtrl="ngModel" placeholder="select Pathway">
+              <ion-select-option [value]="p.PRO_UID" *ngFor="let p of allProcess">{{p.PRO_TITLE}}</ion-select-option>
             </ion-select>
           </div>
         </ion-col>
@@ -86,16 +57,9 @@
             Select CareTacker
           </ion-label>
           <div>
-            <ion-select
-              class="input"
-              required
-              name="p_disease"
-              [(ngModel)]="selectedDisease"
-              ngModel
-              #categoryValueCtrl="ngModel"
-              placeholder="select Disease">
-              <ion-select-option value="1"> CORONA </ion-select-option>
-              <ion-select-option value="2"> VIRUS </ion-select-option>
+            <ion-select class="input" required name="p_disease" [(ngModel)]="selectPatient" ngModel
+              #categoryValueCtrl="ngModel" placeholder="select Disease">
+              <ion-select-option [value]="p.id" *ngFor="let p of allUsers">{{p.name}}</ion-select-option>
             </ion-select>
           </div>
         </ion-col>
@@ -103,17 +67,10 @@
 
       <ion-row>
         <ion-col>
-          <ion-button
-            type="submit"
-            [disabled]="!f.valid"
-            expand="block"
-            fill="solid"
-            shape="round"
-            color="primary"
-            >Save patient</ion-button
-          >
+          <ion-button type="submit" [disabled]="!f.valid" expand="block" fill="solid" shape="round" color="primary">Save
+            patient</ion-button>
         </ion-col>
-    </ion-row>
+      </ion-row>
     </ion-grid>
   </form>
-</ion-content> 
+</ion-content>
