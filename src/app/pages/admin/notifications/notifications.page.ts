@@ -31,7 +31,7 @@ export class NotificationsPage implements OnInit {
     let readButton = {
       text: 'Read',
         role: 'destructive',
-        icon: 'trash',
+        icon: 'glasses',
         handler: () => {
           this.changeStatus(id,2);
         }
@@ -77,7 +77,7 @@ export class NotificationsPage implements OnInit {
     if(data.current_status == '0'){
       allButtons.push(readButton);
     }
-    allButtons.push(readButton);
+    // allButtons.push(readButton);
     allButtons.push(delButton);
     allButtons.push(canSelButton);
 
@@ -93,6 +93,7 @@ export class NotificationsPage implements OnInit {
   changeStatus(id,type){
     this.not.changeNotifications(id , {type1 : type}).subscribe(data=> {
       console.log(data);
+      this.loadData();
     })
   }
 
