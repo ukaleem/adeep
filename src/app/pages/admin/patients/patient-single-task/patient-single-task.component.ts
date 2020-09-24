@@ -22,6 +22,10 @@ export class PatientSingleTaskComponent implements OnInit {
     
   ) {}
 
+  doRefresh(e){
+    
+  }
+
   closeModal(){
     this.modalCtrl.dismiss();
   }

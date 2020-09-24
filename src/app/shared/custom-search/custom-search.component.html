@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <form #f="ngForm" (ngSubmit)="savePatient(f)">
+  <form #f="ngForm" (ngSubmit)="save(f)">
     <ion-grid class='main-grid'>
 
       <ion-row>
@@ -13,7 +13,7 @@
           <ion-label for="user" class="ion-label">
             Select Diseases
           </ion-label>
-          <div>
+          <div> 
             <ion-select
               class="input"
               required

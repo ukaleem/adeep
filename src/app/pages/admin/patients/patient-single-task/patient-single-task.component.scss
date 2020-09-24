@@ -1,0 +1,31 @@
+ion-content {
+    --background: #f0f7fa !important;
+  }
+
+
+ ion-grid, ion-row, ion-item , ion-col{
+    // padding: 0px;
+    // margin: 0px;
+}
+
+.segment-button-checked {
+    color: whitesmoke;
+}
+
+ion-row {
+      margin-top: 5px;
+}
+
+.heading-div {
+    background-color: #3d7db0 !important;
+    border-radius: 5px !important;
+    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+    /* height: 30px; */
+    padding: 5px;
+}
+
+ .right-col-detail{
+    padding: 8px; 
+  }

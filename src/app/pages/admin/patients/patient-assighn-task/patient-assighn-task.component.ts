@@ -14,12 +14,18 @@ export class PatientAssignTaskComponent implements OnInit {
   allProcess : any = [];
   allUsers : any = [];
   patientID  = '';
+
+  selectedDisease 
   constructor(private mdlCtrl : ModalController) { }
 
   ngOnInit() {}
 
   closeModal(){
     this.mdlCtrl.dismiss();
+  }
+
+  savePatient(){
+    
   }
 
   async patientAssignTask(f) {

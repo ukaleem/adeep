@@ -7,7 +7,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./custom-search.component.scss'],
 })
 export class CustomSearchComponent implements OnInit {
-
+  selectedDisease: any;
   @Input() search_for: any;
   @Input() search_id: any;
   @Input() search_name: any;
@@ -26,5 +26,11 @@ export class CustomSearchComponent implements OnInit {
   }
   ionViewWillEnter(){
     
+  }
+  patientAssignTask(){
+
+  }
+  save(e){
+
   }
 }
