@@ -1,9 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>cases</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab='home'>
+        <ion-label>Home</ion-label>
+        <ion-icon name='home'></ion-icon>
+      </ion-tab-button>
 
+      <ion-tab-button tab='inbox'>
+        <ion-label>Inbox</ion-label>
+        <ion-icon src='../../../assets/icon-black/inbox.svg'></ion-icon>
+      </ion-tab-button>
+
+      <ion-tab-button tab='draft'>
+        <ion-label>Draft</ion-label>
+        <ion-icon src='../../../assets/icon-black/draft.svg'></ion-icon>
+      </ion-tab-button>
+
+      <ion-tab-button tab='unassigned'>
+        <ion-label>Un assigned</ion-label>
+        <ion-icon src='../../../assets/icon-black/unassigned.svg'></ion-icon>
+      </ion-tab-button>
+
+      <ion-tab-button tab='participated'>
+        <ion-label>Participated</ion-label>
+        <ion-icon src='../../../assets/icon-black/participated.svg' ></ion-icon>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

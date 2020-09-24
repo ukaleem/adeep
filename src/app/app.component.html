@@ -22,19 +22,17 @@
       <div class="seperate-div">
         <ion-list class="side-menu-ion-list">
 
-          <ion-menu-toggle *ngIf="userRole == 'Administrator'">
-            <ion-item lines='none' button [routerLink]="['/','admin' ,'home']">
-              <div slot='start'>
-                <img class="segment-img" src="../assets/icon/inbox.svg">
-              </div>
-              <ion-label> Admin Home
+          <ion-menu-toggle>
+            <ion-item lines='none' button [routerLink]="['/','admin','tabs','home']">
+              <ion-icon class='list-icon-stl' name='home-outline' color='light' slot='start'></ion-icon>
+              <ion-label> Home
               </ion-label>
-              <ion-button class="right-button" color="light" fill="outline">6</ion-button>
+              <!-- <ion-button class="right-button" color="light" fill="outline">6</ion-button> -->
             </ion-item>
           </ion-menu-toggle>
-
-          <ion-menu-toggle *ngIf="casesShow">
-            <ion-item lines='none' button [routerLink]="['/','cases','all-cases']">
+          
+          <ion-menu-toggle>
+            <ion-item lines='none' button [routerLink]="['/','cases']">
               <div slot='start'>
                 <img class="segment-img" src="../assets/icon/inbox.svg">
               </div>
@@ -46,7 +44,7 @@
           <ion-menu-toggle *ngIf="casesShow">
             <ion-item lines='none' button  [routerLink]="['/','cases','unassigned-cases']">
               <div slot='start'>
-                <img class="segment-img" src="../assets/icon/unassigned.svg">
+                <img class="segment-img" src="../assets/icon/unassigned (2).svg">
               </div>
               <ion-label> Unassigned
               </ion-label>
@@ -107,9 +105,7 @@
 
           <ion-menu-toggle>
             <ion-item lines='none' button (click)="logOut()">
-              <div slot='start'>
-                <img class="segment-img" src="../assets/icon/about.svg">
-              </div>
+              <ion-icon class='list-icon-stl' slot='start' name="log-out-outline" color='light'></ion-icon>
               <ion-label> Logout
               </ion-label>
             </ion-item>

@@ -1,14 +1,25 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>Draft Cases</ion-title>
+      <ion-buttons color="light" size="small" slot="start">
+          <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
+      </ion-buttons>
+      <ion-item class='bg-none' lines="none">
+          <ion-title color="light" class="ion-text-center">
+            Draft Cases
+          </ion-title>
+          <ion-icon color="light" name="search"
+              slot="end">
+          </ion-icon>
+      </ion-item>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+
+<ion-content [fullscreen]='true'>
   <ion-list>
     <div *ngFor="let case of allDraftCases" [routerLink]="['/','cases','single-page',case.app_uid]">
       <p class="ion-text-end date-class">{{ case.app_create_date }}</p>
-      <ion-item  class="list-item" detail>
-        <ion-badge mode="ios" color="success" slot="end">{{ case.app_thread_status }}</ion-badge>
+      <ion-item  class="list-item list-bg" lines='none' detail>
+        <ion-badge mode="ios" color="primary" slot="end">{{ case.app_thread_status }}</ion-badge>
         <ion-label>
           <h2>#{{ case.app_pro_title }} : {{ case.app_tas_title }}</h2>
           <p> {{case.app_current_user }} </p>
