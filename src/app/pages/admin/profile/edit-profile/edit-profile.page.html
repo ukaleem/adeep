@@ -12,7 +12,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
   <form #f="ngForm" (ngSubmit)="saveProfile(f)">
     <ion-grid class='main-grid'>
       <ion-row>

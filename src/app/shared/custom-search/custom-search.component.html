@@ -5,7 +5,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="search_for == 'd'">
+<ion-content [fullscreen]="true" *ngIf="search_for == 'd'">
   <ion-list>
     <ion-radio-group  [(ngModel)]="selectValue">
       <ion-list-header>

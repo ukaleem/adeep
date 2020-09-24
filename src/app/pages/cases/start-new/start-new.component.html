@@ -1,20 +1,18 @@
-<ion-header no-border [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-item class='bg-none' lines='none'>
-      <ion-buttons slot="start">
-        <ion-button (click)="closeModal()">
-          <ion-icon class="back-icon" src="../../../../assets/icon/chervon-back.svg"></ion-icon>
-        </ion-button>
+      <ion-buttons color="light" size="small" slot="start">
+         <ion-button (click)="closeModal()">
+           <ion-icon color='light' name="arrow-back"></ion-icon>
+         </ion-button>
       </ion-buttons>
-      <ion-title class="ion-text-center">New Case</ion-title>
-      <ion-buttons slot="end">
-        <ion-button>
-          <ion-icon slot="end" name-="none"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-item>
+      <ion-item class='bg-none' lines="none">
+          <ion-title color="light" class="ion-text-center">
+           New Cases
+          </ion-title>
+      </ion-item>
   </ion-toolbar>
-</ion-header>
+</ion-header> 
+
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -23,10 +21,10 @@
   </ion-header>
   <ion-list>
     <ion-card *ngFor="let single of allCasesNew">
-      <ion-item>
+      <ion-item lines='none' class='bg-none'>
         <ion-icon name="document" slot="start"></ion-icon>
         <ion-label>{{single.pro_title}}</ion-label>
-        <ion-button fill="outline" slot="end" (click)="startCase(single)">Start</ion-button>
+        <ion-button fill="outline" shape='round' slot="end" (click)="startCase(single)">Start</ion-button>
       </ion-item>
       <ion-card-content>
         {{single.pro_title}}

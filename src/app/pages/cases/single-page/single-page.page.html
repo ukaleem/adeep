@@ -1,219 +1,231 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <!-- <ion-buttons slot="primary">
-      <ion-button  (click)="loadExternal()" color="light">WEB</ion-button>
-    </ion-buttons> -->
-    <ion-title>Case Page</ion-title>
-    <ion-buttons slot="end" *ngIf="nodata">
-      <!-- <ion-button type="submit" (click)="doNextStep(null)" color="light">Submit</ion-button> -->
-    </ion-buttons>
+      <ion-buttons color="light" size="small" slot="start">
+          <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
+      </ion-buttons>
+      <ion-item class='bg-none' lines="none">
+          <ion-title color="light" class="ion-text-center">
+            Case Page
+          </ion-title>
+          <ion-icon color="light" name="search" slot="end"> </ion-icon>
+      </ion-item>
   </ion-toolbar>
-
-  <ion-segment [(ngModel)]="activeSegment" (ionChange)="segmentChanged($event)">
-    <ion-segment-button value="steps">
-      <ion-label>Steps</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="notes">
-      <ion-label>Notes</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="guides">
-      <ion-label>Guide</ion-label>
-    </ion-segment-button>
-  </ion-segment>
-
 </ion-header>
 
-<!-- <ion-content *ngIf="nodata">
-  
-  Sorry This Process has no Data...
-  Submit to proceed Next Case/Step
-</ion-content> -->
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-segment class='my-segment' [(ngModel)]="activeSegment" (ionChange)="segmentChanged($event)">
+          <ion-segment-button value="steps">
+            <ion-label>Steps</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="notes">
+            <ion-label>Notes</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="guides">
+            <ion-label>Guide</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
 
-
-<ion-content *ngIf="activeSegment == 'steps'">
-  <ng-container *ngFor="let step of caseData">
-    <ion-item>
-      <ion-label *ngIf="step.step_type_obj == 'DYNAFORM'">
-        <h2>{{step.obj_title}}</h2>
-        <p>Form</p>
-      </ion-label>
-      <ion-button (click)="singleStep(step)">
-        Start
-      </ion-button>
-    </ion-item>
-  </ng-container>
-  <ion-button (click)="doNextStep(null)" expand="block">
-    Submit Case
-  </ion-button>
-</ion-content>
-
-<ion-content *ngIf="activeSegment == 'notes'">
-  <ng-container *ngIf="!notePermission">
-    <ion-item>
-      <ion-label>
-        Sorry! You have Not permission to case notes
-      </ion-label>
-    </ion-item>
-  </ng-container>
-  <ng-container *ngIf="notePermission">
-    <ion-button (click)="doNextStep(null)" expand="block">
-      Add Notes
-    </ion-button>
-  </ng-container>
-</ion-content>
-
-<ion-content *ngIf="activeSegment == 'steps_old'">
-  <form #form="ngForm" (ngSubmit)="doNextStep(form)">
-    <h2 class="ion-text-center">{{formName}}</h2>
-    <ng-container *ngFor="let item of allVariables">
-      <ng-container *ngIf="item.itemType == 'dropdown'">
-        <ion-item>
-          <ion-label position="floating">
-            {{item.itemLabel}}
-          </ion-label>
-          <ion-select [name]="item.itemName" [required]="item.isRequired" [(ngModel)]="item.itemValue"
-            [ngModelOptions]="{standalone: true}">
-            <ion-select-option *ngFor="let opt of item.allOptions" [value]="opt.value">
-              {{ opt.label }}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ng-container>
-      <!-- //INPUT TEXTFIELD -->
-      <ng-container *ngIf="item.itemType == 'text'">
-        <ion-item>
-          <ion-label position="floating">
-            {{item.itemLabel}}
-          </ion-label>
-          <ion-input [name]="item.itemName" type="text" [ngModelOptions]="{standalone: true}"
-            [(ngModel)]="item.itemValue" [readonly]="" [required]="item.isRequired">
-
-          </ion-input>
-        </ion-item>
-      </ng-container>
-      <ng-container *ngIf="item.itemType == 'radio'">
-        <ion-radio-group allow-empty-selection value="anchovies" [(ngModel)]="item.itemValue"
-          [ngModelOptions]="{standalone: true}">
-          <ion-list-header>
-            <ion-label>{{item.itemLabel}}</ion-label>
-          </ion-list-header>
-          <ion-item *ngFor="let option of item.allOptions">
-            <ion-label>{{ option.label }}</ion-label>
-            <ion-radio mode="ios" slot="end" color="primary" [value]="option.value"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ng-container>
-      <ng-container *ngIf="item.itemType == 'checkgroup'">
-        <ion-list>
-          <ion-list-header>{{ item.itemLabel }}</ion-list-header>
-          <ion-item *ngFor="let option of item.allOptions">
-            <ion-label>{{ option.label }}</ion-label>
-            <ion-checkbox [ngModelOptions]="{standalone: true}" (ionChange)="pushArrayValue(option.value,$event,item)"
-              [(ngModel)]="option.isSelected" color="primary" mode="ios" slot="start" [value]="option.value">
-            </ion-checkbox>
-          </ion-item>
-        </ion-list>
-      </ng-container>
-      <ng-container *ngIf="item.itemType == 'disease'">
-        <ion-item>
-          <ion-label position="floating">
-            {{item.itemLabel}}
-          </ion-label>
-          <ion-select [name]="item.itemName" [required]="item.isRequired" [(ngModel)]="item.itemValue"
-            [ngModelOptions]="{standalone: true}">
-            <ion-select-option *ngFor="let opt of item.allOptions" [value]="opt.value">
-              {{ opt.text }}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ng-container>
-
-      <ng-container *ngIf="item.itemType == 'textarea'">
-        <ion-item>
-          <ion-label position="floating">{{ item.itemLabel }}</ion-label>
-          <ion-textarea [(ngModel)]="item.itemValue" [ngModelOptions]="{standalone: true}"></ion-textarea>
-        </ion-item>
-      </ng-container>
-
-      <ng-container *ngIf="item.itemType == 'grid'">
-        <ion-label position="floating" class="ion-text-left">
-          {{item.itemLabel}}
-        </ion-label>
-        <ion-button style='float:right;margin-right: 10px;' (click)="addGridItems(item)" color="primary">
-          <ion-icon name="add"></ion-icon>
-        </ion-button>
-        <ng-container *ngFor="let option of item.itemOptions">
-          <ion-item *ngIf="option.type == 'text'">
-            <ion-label position="floating">
-              {{option.title}}
+    <!-- steps -->
+    <ion-row *ngIf="activeSegment == 'steps'">
+      <ion-col>
+        <ng-container *ngFor="let step of caseData">
+          <ion-item class='list-bg' lines='none'>
+            <ion-label *ngIf="step.step_type_obj == 'DYNAFORM'">
+              <h2>{{step.obj_title}}</h2>
+              <p>Form</p>
             </ion-label>
-            <ion-input man="option.maxLength" [name]="option.name" type="text" [readonly]=""
-              [required]="option.required">
-            </ion-input>
-          </ion-item>
-          <ion-item *ngIf="option.type == 'dropdown'">
-            <ion-label position="floating">
-              {{option.title}}
-            </ion-label>
-            <ion-select mode="ios" [name]="option.name" [required]="option.required">
-              <ion-select-option *ngFor="let optn of option.options" [value]="optn.value">
-                {{ optn.label }}
-              </ion-select-option>
-            </ion-select>
-          </ion-item>
-          <ion-item *ngIf="option.type == 'textarea'">
-            <ion-label position="floating"> {{option.title}}</ion-label>
-            <ion-textarea></ion-textarea>
-          </ion-item>
-          <div *ngIf="option.type == 'checkbox'">
-            <ion-item *ngFor="let optn of option.options">
-              <ion-label>{{ optn.label }}</ion-label>
-              <ion-checkbox color="primary" mode="ios" slot="end" [value]="optn.value"></ion-checkbox>
-            </ion-item>
-          </div>
-          <ion-item *ngIf="option.type == 'datetime'">
-            <ion-label position="floating"> {{option.title}}</ion-label>
-            <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T07:43Z"></ion-datetime>
+            <ion-button shape='round' (click)="singleStep(step)">
+              Start
+            </ion-button>
           </ion-item>
         </ng-container>
-        <div *ngIf="addNewGridOption.length > 0">
-          <ng-container *ngFor="let option of addNewGridOption">
-            <ion-item *ngIf="option.type == 'text'">
-              <ion-label position="floating">
-                {{option.title}}
-              </ion-label>
-              <ion-input man="option.maxLength" [name]="option.name" type="text" [readonly]=""
-                [required]="option.required">
-              </ion-input>
-            </ion-item>
-            <ion-item *ngIf="option.type == 'dropdown'">
-              <ion-label position="floating">
-                {{option.title}}
-              </ion-label>
-              <ion-select mode="ios" [name]="option.name" [required]="option.required">
-                <ion-select-option *ngFor="let optn of option.options" [value]="optn.value">
-                  {{ optn.label }}
-                </ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item *ngIf="option.type == 'textarea'">
-              <ion-label position="floating"> {{option.title}}</ion-label>
-              <ion-textarea></ion-textarea>
-            </ion-item>
-            <div *ngIf="option.type == 'checkbox'">
-              <ion-item *ngFor="let optn of option.options">
-                <ion-label>{{ optn.label }}</ion-label>
-                <ion-checkbox color="primary" mode="ios" slot="end" [value]="optn.value"></ion-checkbox>
-              </ion-item>
-            </div>
-            <ion-item *ngIf="option.type == 'datetime'">
-              <ion-label position="floating"> {{option.title}}</ion-label>
-              <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T07:43Z"></ion-datetime>
-            </ion-item>
-          </ng-container>
-        </div>
-      </ng-container>
+        <ion-button shape='round' shape='round' (click)="doNextStep(null)" expand="block">
+          Submit Case
+        </ion-button>
+      </ion-col>
+    </ion-row>
 
-    </ng-container>
-  </form>
+    <!-- notes -->
+    <ion-row *ngIf="activeSegment == 'notes'">
+      <ion-col>
+        <ng-container *ngIf="!notePermission">
+          <ion-item class='list-bg' lines='none'>
+            <ion-label>
+              Sorry! You have Not permission to case notes
+            </ion-label>
+          </ion-item>
+        </ng-container>
+        <ng-container *ngIf="notePermission">
+          <ion-button shape='round' (click)="doNextStep(null)" expand="block">
+            Add Notes
+          </ion-button>
+        </ng-container>
+      </ion-col>
+    </ion-row>
+
+
+    <!-- steps_old -->
+    <ion-row *ngIf="activeSegment == 'steps_old'">
+      <ion-col>
+        <form #form="ngForm" (ngSubmit)="doNextStep(form)">
+          <h2 class="ion-text-center">{{formName}}</h2>
+          <ng-container *ngFor="let item of allVariables">
+            <ng-container *ngIf="item.itemType == 'dropdown'">
+              <ion-item class='list-bg' lines='none'>
+                <ion-label position="floating">
+                  {{item.itemLabel}}
+                </ion-label>
+                <ion-select [name]="item.itemName" [required]="item.isRequired" [(ngModel)]="item.itemValue"
+                  [ngModelOptions]="{standalone: true}">
+                  <ion-select-option *ngFor="let opt of item.allOptions" [value]="opt.value">
+                    {{ opt.label }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ng-container>
+            <!-- //INPUT TEXTFIELD -->
+            <ng-container *ngIf="item.itemType == 'text'">
+              <ion-item class='list-bg' lines='none'>
+                <ion-label position="floating">
+                  {{item.itemLabel}}
+                </ion-label>
+                <ion-input [name]="item.itemName" type="text" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="item.itemValue" [readonly]="" [required]="item.isRequired">
+      
+                </ion-input>
+              </ion-item>
+            </ng-container>
+            <ng-container *ngIf="item.itemType == 'radio'">
+              <ion-radio-group allow-empty-selection value="anchovies" [(ngModel)]="item.itemValue"
+                [ngModelOptions]="{standalone: true}">
+                <ion-list-header>
+                  <ion-label>{{item.itemLabel}}</ion-label>
+                </ion-list-header>
+                <ion-item *ngFor="let option of item.allOptions">
+                  <ion-label>{{ option.label }}</ion-label>
+                  <ion-radio mode="ios" slot="end" color="primary" [value]="option.value"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ng-container>
+            <ng-container *ngIf="item.itemType == 'checkgroup'">
+              <ion-list>
+                <ion-list-header>{{ item.itemLabel }}</ion-list-header>
+                <ion-item *ngFor="let option of item.allOptions">
+                  <ion-label>{{ option.label }}</ion-label>
+                  <ion-checkbox [ngModelOptions]="{standalone: true}" (ionChange)="pushArrayValue(option.value,$event,item)"
+                    [(ngModel)]="option.isSelected" color="primary" mode="ios" slot="start" [value]="option.value">
+                  </ion-checkbox>
+                </ion-item>
+              </ion-list>
+            </ng-container>
+            <ng-container *ngIf="item.itemType == 'disease'">
+              <ion-item class='list-bg' lines='none'>
+                <ion-label position="floating">
+                  {{item.itemLabel}}
+                </ion-label>
+                <ion-select [name]="item.itemName" [required]="item.isRequired" [(ngModel)]="item.itemValue"
+                  [ngModelOptions]="{standalone: true}">
+                  <ion-select-option *ngFor="let opt of item.allOptions" [value]="opt.value">
+                    {{ opt.text }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ng-container>
+      
+            <ng-container *ngIf="item.itemType == 'textarea'">
+              <ion-item class='list-bg' lines='none'>
+                <ion-label position="floating">{{ item.itemLabel }}</ion-label>
+                <ion-textarea [(ngModel)]="item.itemValue" [ngModelOptions]="{standalone: true}"></ion-textarea>
+              </ion-item>
+            </ng-container>
+      
+            <ng-container *ngIf="item.itemType == 'grid'">
+              <ion-label position="floating" class="ion-text-left">
+                {{item.itemLabel}}
+              </ion-label>
+              <ion-button shape='round' style='float:right;margin-right: 10px;' (click)="addGridItems(item)" color="primary">
+                <ion-icon name="add"></ion-icon>
+              </ion-button>
+              <ng-container *ngFor="let option of item.itemOptions">
+                <ion-item *ngIf="option.type == 'text'">
+                  <ion-label position="floating">
+                    {{option.title}}
+                  </ion-label>
+                  <ion-input man="option.maxLength" [name]="option.name" type="text" [readonly]=""
+                    [required]="option.required">
+                  </ion-input>
+                </ion-item>
+                <ion-item *ngIf="option.type == 'dropdown'">
+                  <ion-label position="floating">
+                    {{option.title}}
+                  </ion-label>
+                  <ion-select mode="ios" [name]="option.name" [required]="option.required">
+                    <ion-select-option *ngFor="let optn of option.options" [value]="optn.value">
+                      {{ optn.label }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <ion-item *ngIf="option.type == 'textarea'">
+                  <ion-label position="floating"> {{option.title}}</ion-label>
+                  <ion-textarea></ion-textarea>
+                </ion-item>
+                <div *ngIf="option.type == 'checkbox'">
+                  <ion-item *ngFor="let optn of option.options">
+                    <ion-label>{{ optn.label }}</ion-label>
+                    <ion-checkbox color="primary" mode="ios" slot="end" [value]="optn.value"></ion-checkbox>
+                  </ion-item>
+                </div>
+                <ion-item *ngIf="option.type == 'datetime'">
+                  <ion-label position="floating"> {{option.title}}</ion-label>
+                  <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T07:43Z"></ion-datetime>
+                </ion-item>
+              </ng-container>
+              <div *ngIf="addNewGridOption.length > 0">
+                <ng-container *ngFor="let option of addNewGridOption">
+                  <ion-item *ngIf="option.type == 'text'">
+                    <ion-label position="floating">
+                      {{option.title}}
+                    </ion-label>
+                    <ion-input man="option.maxLength" [name]="option.name" type="text" [readonly]=""
+                      [required]="option.required">
+                    </ion-input>
+                  </ion-item>
+                  <ion-item *ngIf="option.type == 'dropdown'">
+                    <ion-label position="floating">
+                      {{option.title}}
+                    </ion-label>
+                    <ion-select mode="ios" [name]="option.name" [required]="option.required">
+                      <ion-select-option *ngFor="let optn of option.options" [value]="optn.value">
+                        {{ optn.label }}
+                      </ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-item *ngIf="option.type == 'textarea'">
+                    <ion-label position="floating"> {{option.title}}</ion-label>
+                    <ion-textarea></ion-textarea>
+                  </ion-item>
+                  <div *ngIf="option.type == 'checkbox'">
+                    <ion-item *ngFor="let optn of option.options">
+                      <ion-label>{{ optn.label }}</ion-label>
+                      <ion-checkbox color="primary" mode="ios" slot="end" [value]="optn.value"></ion-checkbox>
+                    </ion-item>
+                  </div>
+                  <ion-item *ngIf="option.type == 'datetime'">
+                    <ion-label position="floating"> {{option.title}}</ion-label>
+                    <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T07:43Z"></ion-datetime>
+                  </ion-item>
+                </ng-container>
+              </div>
+            </ng-container>
+      
+          </ng-container>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
