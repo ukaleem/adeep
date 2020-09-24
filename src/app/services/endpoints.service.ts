@@ -7,8 +7,8 @@ import { ConfigService } from './config.service';
 export class EndpointsService {
 
   GET_TOKEN = this.config.SERVER_API+'oauth2/token';
-  GET_LOGIN_USER_ID = this.config.SERVER_API+'extraRest/login-user';
-  SET_USER_TOKEN= this.config.SERVER_API + 'extraRest/set-user-token';
+  GET_LOGIN_USER_ID = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extraRest/login-user';
+  SET_USER_TOKEN= ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE + 'extraRest/set-user-token';
   GET_ALL_CASES = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases';
   GET_ALL_DRAFT_CASES = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases/draft';
   GET_ALL_UNASSIGNED_CASES = ConfigService.SERVER_ADDRESS+'/api/1.0/' + ConfigService.WORKSPACE+'cases/unassigned'
@@ -75,5 +75,16 @@ export class EndpointsService {
   }
   START_PATHWAY = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/start_case';
 
+  /////Feed Backs
+  GET_ALL_FEED(U_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_all_feed_back/'+U_ID;
+  }
+  GET_SINGLE_FEED(F_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_single_feed/'+F_ID;
+  }
+  UPDATE_FEED(F_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/update_feed/'+F_ID;
+  }
+  
   constructor(private config: ConfigService) { }
 }

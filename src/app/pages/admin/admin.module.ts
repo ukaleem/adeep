@@ -10,6 +10,7 @@ import { AdminPageRoutingModule } from './admin-routing.module';
 
 import { AdminPage } from './admin.page';
 import { from } from 'rxjs';
+import { ViewFeedComponent } from './feedbacks/view-feed/view-feed.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { from } from 'rxjs';
     IonicModule,
     AdminPageRoutingModule
   ],
-  declarations: [AdminPage ,PatientSingleTaskComponent ,PatientAssignTaskComponent],
-  entryComponents: [PatientSingleTaskComponent ,PatientAssignTaskComponent]
+  declarations: [AdminPage ,PatientSingleTaskComponent ,PatientAssignTaskComponent,ViewFeedComponent],
+  entryComponents: [PatientSingleTaskComponent ,PatientAssignTaskComponent,ViewFeedComponent]
 })
 export class AdminPageModule {}
