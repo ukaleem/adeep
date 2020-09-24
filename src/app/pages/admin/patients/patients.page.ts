@@ -68,7 +68,7 @@ export class PatientsPage implements OnInit {
       component: PatientAssignTaskComponent,
       cssClass: 'my-custom-class',
       componentProps: {
-        // 'PROJECT_ID': p.PRO_UID,
+        'patientID': this.patientID,
         // 'APP_ID': p.APP_UID,
       }
     });
