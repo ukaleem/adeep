@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="375" height="118" viewBox="0 0 375 118">
+  <defs>
+    <linearGradient id="linear-gradient" x1="1.026" y1="0.423" x2="0" y2="0.388" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#00bad4"/>
+      <stop offset="1" stop-color="#137daf"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.948" y1="0.683" x2="0.556" y2="0.1" xlink:href="#linear-gradient"/>
+    <clipPath id="clip-iPhone_X_XS_11_Pro_25">
+      <rect width="375" height="118"/>
+    </clipPath>
+  </defs>
+  <g id="iPhone_X_XS_11_Pro_25" data-name="iPhone X/XS/11 Pro – 25" clip-path="url(#clip-iPhone_X_XS_11_Pro_25)">
+    <path id="Intersection_2" data-name="Intersection 2" d="M0,96.867V0H375V96.67c-65.9,12.773-163.935,16.669-190.165,16.817-1.415.008-2.8.012-4.223.012C119.1,113.5,55.007,105.971,0,96.867Z" transform="translate(0 -0.5)" fill="url(#linear-gradient)"/>
+    <path id="Path_733" data-name="Path 733" d="M-1948.451,52.557c3.092,1.714,17,16.8,104.336,22.966s112.063,15.082,129.839,21.252,40.962,26.737,47.917,38.048,23.185,21.938,29.368,21.252a46.66,46.66,0,0,1,10.821,0V61.061l-34.815-1.423a278.427,278.427,0,0,0-44.323-3.568c-64.919.343-240.051-13.453-243.143-11.054S-1951.542,50.844-1948.451,52.557Z" transform="translate(2003.769 -61.13)" opacity="0.24" fill="url(#linear-gradient-2)"/>
+  </g>
+</svg>

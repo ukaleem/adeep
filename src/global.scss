@@ -31,9 +31,10 @@
 ***/
 
 ion-header {
+  // position: inherit;
   --background: none;
 // background-image: linear-gradient(to bottom right, #f4b400 , #db4437);
-background: url("./assets/images/header-bg.png");
+background: url("./assets/images/header-01.png");
 background-position: center top;
 background-repeat: no-repeat;
 background-repeat: no-repeat;
@@ -206,7 +207,7 @@ ion-toolbar {
   border-radius: 5px;
   border-bottom: 2px solid #3d7db0;
   margin-bottom: 5px;
-  box-shadow: 0px 1px 8px 0px #8080803d;
+  box-shadow: 0px 1px 3px 0px #8080803d;
 }
 .gradient-bg {
   border-radius: 50px;

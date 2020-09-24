@@ -64,6 +64,16 @@ export class EndpointsService {
   SINGLE_PATIENT_TASK(P_ID,A_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/patient_application_single/'+P_ID+'/'+A_ID;
   }
-  ALL_DISEASE = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases';
+  ALL_DISEASE = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_disease';
+  ALL_SPECIALTY = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_specialty';
+  SEARCH_DISEASE = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/search_disease';
+  GET_PROCESS_CUSTOM(D_ID,S_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_process_custom/'+D_ID+'/'+S_ID;
+  }
+  GET_PROCESS_USERS(P_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_process_user/'+P_ID;
+  }
+  START_PATHWAY = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/start_case';
+
   constructor(private config: ConfigService) { }
 }

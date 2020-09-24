@@ -21,4 +21,22 @@ export class AdminService {
   singlePatientTask(p,a) {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.SINGLE_PATIENT_TASK(p,a),showLoading : true, showError : true});
   } 
+  allDisease() {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.ALL_DISEASE,showLoading : true, showError : true});
+  } 
+  allSpecialties() {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.ALL_SPECIALTY,showLoading : true, showError : true});
+  } 
+  searchDisease(frmData) {
+    return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.SEARCH_DISEASE,showLoading : true, showError : true});
+  } 
+  getCustomProcess(d,s) {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_PROCESS_CUSTOM(d,s),showLoading : true, showError : true});
+  }
+  getProcessUsers(p) {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_PROCESS_USERS(p),showLoading : true, showError : true});
+  }
+  startPathway(frmData) {
+    return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.START_PATHWAY,showLoading : true, showError : true});
+  }
 }

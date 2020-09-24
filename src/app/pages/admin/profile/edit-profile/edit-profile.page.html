@@ -1,0 +1,71 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+      <ion-buttons color="light" size="small" slot="start">
+          <ion-back-button color="light" defaultHref='/admin/tabs/profile' size="small" menu="m1"></ion-back-button>
+      </ion-buttons>
+      <ion-item class='bg-none' lines="none">
+          <ion-title color="light" class="ion-text-center">
+            Edit Profile
+          </ion-title>
+          <ion-icon color="light" name="none" slot="end"> </ion-icon>
+      </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="saveProfile(f)">
+    <ion-grid class='main-grid'>
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> First Name* </ion-label>
+          <ion-input
+            required
+            minlength="5"
+            maxlength="200"
+            name="p_f_name"
+            [(ngModel)]="firstName"
+            ngModel
+            #jobTitleCtrl="ngModel"
+            class="input"
+            id="firstName"
+            type="text"
+            placeholder="First Name?"
+          >
+          </ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label">Last Name*</ion-label>
+            <ion-input
+              class="input"
+              required
+              type="text"
+              name="p_l_name"
+              ngModel
+              #searchTagCtrl="ngModel"
+              [(ngModel)]="lastName"
+              placeholder="Last Name?"
+            >
+            </ion-input>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-button
+            type="submit"
+            [disabled]="!f.valid"
+            expand="block"
+            fill="solid"
+            shape="round"
+            color="primary"
+            >Save Profile</ion-button
+          >
+        </ion-col>
+    </ion-row>
+    </ion-grid>
+  </form>
+</ion-content> 
