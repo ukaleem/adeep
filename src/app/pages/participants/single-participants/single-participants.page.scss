@@ -1,6 +1,12 @@
+ion-content{
+    --background: var(--ion-color-secondary);
+}
+ion-list{
+    background: none;
+}
 ion-grid, ion-row , ion-col{
-    padding: 0px;
-    margin: 0px;
+    // padding: 0px;
+    // margin: 0px;
   }
 ion-row{
     margin-top: 5px;

@@ -68,7 +68,7 @@ export class LoginPage implements OnInit {
       if(data.position == 'Administrator'){
         this.app.casesShow = true;
       }
-      this.navCtrl.navigateRoot('cases/all-cases');
+      this.navCtrl.navigateRoot('/cases');
     })
   }
   passwordType = 'password';

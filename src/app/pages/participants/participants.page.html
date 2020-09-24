@@ -1,14 +1,24 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>Participants</ion-title>
+      <ion-buttons color="light" size="small" slot="start">
+          <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
+      </ion-buttons>
+      <ion-item class='bg-none' lines="none">
+          <ion-title color="light" class="ion-text-center">
+            Participants
+          </ion-title>
+          <ion-icon color="light" name="search"
+              slot="end">
+          </ion-icon>
+      </ion-item>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content [fullscreen]='true'>
   <ion-list>
     <div *ngFor="let participate of allParticipants" [routerLink]="['/','participants','single-participants',participate.app_uid]">
       <p class="ion-text-end date-class">{{ participate.app_create_date }}</p>
-      <ion-item  class="list-item" detail>
-        <ion-badge mode="ios" color="success" slot="end">{{ participate.app_status }}</ion-badge>
+      <ion-item  class="list-item list-bg" lines='none' detail>
+        <ion-badge mode="ios" color="primary" slot="end">{{ participate.app_status }}</ion-badge>
         <ion-label>
           <h2>#{{ participate.app_number }} : {{ participate.usr_firstname }}</h2>
           <p> {{participate.app_tas_title }} </p>
