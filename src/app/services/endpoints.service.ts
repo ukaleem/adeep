@@ -74,7 +74,8 @@ export class EndpointsService {
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_process_user/'+P_ID;
   }
   START_PATHWAY = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/start_case';
-
+  CREATE_USER = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'user';
+  
   /////Feed Backs
   GET_ALL_FEED(U_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_all_feed_back/'+U_ID;

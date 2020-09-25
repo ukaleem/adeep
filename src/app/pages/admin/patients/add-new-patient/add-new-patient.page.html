@@ -19,10 +19,10 @@
           <ion-label for="user" class="ion-label"> First Name* </ion-label>
           <ion-input
             required
-            minlength="5"
+            minlength="3"
             maxlength="200"
             name="p_f_name"
-            [(ngModel)]="firstName"
+            [(ngModel)]="frmData.usr_firstname"
             ngModel
             #jobTitleCtrl="ngModel"
             class="input"
@@ -44,7 +44,7 @@
               name="p_l_name"
               ngModel
               #searchTagCtrl="ngModel"
-              [(ngModel)]="lastName"
+              [(ngModel)]="frmData.usr_lastname"
               placeholder="Last Name?"
             >
             </ion-input>
@@ -56,15 +56,17 @@
           <ion-label for="user" class="ion-label"> Patient Age* </ion-label>
           <ion-input
             required
-            minlength="5"
-            maxlength="40"
+            minlength="1"
+            maxlength="3"
+            min= 1
+            max = 105
             name="p_age"
             [(ngModel)]="patientAge"
             ngModel
             #pkgNameCtrl="ngModel"
             class="input"
             id="patientAge"
-            type="text"
+            type="number"
             placeholder="Patient Age?"
           >
           </ion-input>
@@ -80,12 +82,12 @@
             minlength="5"
             maxlength="40"
             name="p_email"
-            [(ngModel)]="patientEmail"
+            [(ngModel)]="frmData.usr_email"
             ngModel
             #pkgDescriptionCtrl="ngModel"
             class="input"
             id="patientEmail"
-            type="text"
+            type="email"
             placeholder="Patient Email?"
           >
           </ion-input>
@@ -93,28 +95,11 @@
       </ion-row>
 
       <ion-row>
-        <ion-col>
-          <ion-label for="user" class="ion-label">
-            Select Diseases
-          </ion-label>
-          <div>
-            <ion-select
-              class="input"
-              required
-              name="p_disease"
-              [(ngModel)]="selectedDisease"
-              ngModel
-              #categoryValueCtrl="ngModel"
-              placeholder="select Disease">
-
-              <!-- <ion-select-option *ngFor="let Disease of allDisease" value="{{Disease.id}}">
-                {{Disease.name}}
-              </ion-select-option> -->
-
-              <ion-select-option value="1"> CORONA </ion-select-option>
-              <ion-select-option value="2"> VIRUS </ion-select-option>
-            </ion-select>
-          </div>
+        <ion-col (click)="patientAssignTask()">
+          <ion-label for="user" class="ion-label"> Select Disease* </ion-label>
+          <ion-input required minlength="3" maxlength="40" readonly name="p_email" [(ngModel)]="selectDisease.name"
+            ngModel #pkgDescriptionCtrl="ngModel" class="input" id="patientEmail" type="text" placeholder="Disease">
+          </ion-input>
         </ion-col>
       </ion-row>
 
@@ -147,7 +132,7 @@
             minlength="5"
             maxlength="40"
             name="p_phone_no"
-            [(ngModel)]="phoneNo"
+            [(ngModel)]="frmData.usr_email"
             ngModel
             #pkgPriceCtrl="ngModel"
             class="input"
@@ -163,11 +148,10 @@
         <ion-col>
           <ion-label for="user" class="ion-label"> Postal Code* </ion-label>
           <ion-input
-            required
-            minlength="5"
-            maxlength="40"
+            minlength="4"
+            maxlength="8"
             name="p_zip_code"
-            [(ngModel)]="postalCode"
+            [(ngModel)]="frmData.usr_zip_code"
             ngModel
             #pkgPriceCtrl="ngModel"
             class="input"
@@ -188,7 +172,7 @@
             minlength="20"
             maxlength="100"
             name="p_address"
-            [(ngModel)]="address"
+            [(ngModel)]="frmData.usr_address"
             ngModel
             #serviceDesciptionCtrl="ngModel"
             class="input1"

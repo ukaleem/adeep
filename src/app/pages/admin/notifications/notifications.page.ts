@@ -83,7 +83,7 @@ export class NotificationsPage implements OnInit {
 
 
     const actionSheet = await this.actionSheetController.create({
-      header: 'Albums',
+      header: 'Actions',
       cssClass: 'my-custom-class',
       buttons: allButtons,
     });
