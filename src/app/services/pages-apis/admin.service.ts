@@ -39,4 +39,7 @@ export class AdminService {
   startPathway(frmData) {
     return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.START_PATHWAY,showLoading : true, showError : true});
   }
+  createUser(frmData) {
+    return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.CREATE_USER,showLoading : true, showError : true});
+  }
 }

@@ -41,8 +41,14 @@ export class PatientsPage implements OnInit {
   }
 
   doRefresh(event){
-
+    console.log('Begin async operation');
+    this.loadData();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
   }
+
   loadData(){
     this.admin.singlePatient(this.patientID).subscribe(data=> {
       console.log(data);

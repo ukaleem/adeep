@@ -23,7 +23,6 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  
   <ion-grid>
     <ion-row class='list-bg' *ngFor="let single of allCases" [routerLink]="['/','cases','single-page',single.app_uid]" routerLinkActive="router-link-active">
       <ion-col size="6">
@@ -67,7 +66,7 @@
     </ion-row>
   </ion-grid>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="presentModal()">
+   <ion-fab-button (click)="presentModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

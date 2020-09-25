@@ -83,7 +83,7 @@ export class NotificationsPage implements OnInit {
 
 
     const actionSheet = await this.actionSheetController.create({
-      header: 'Albums',
+      header: 'Actions',
       cssClass: 'my-custom-class',
       buttons: allButtons,
     });
@@ -95,6 +95,14 @@ export class NotificationsPage implements OnInit {
       console.log(data);
       this.loadData();
     })
+  }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.loadData();
+    setTimeout(() => {
+      event.target.complete();
+    }, 2000);
   }
 
 }
