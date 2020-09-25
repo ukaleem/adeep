@@ -20,6 +20,11 @@
 
 
 <ion-content [fullscreen]="true">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
   <ion-grid>
     <!-- <ion-row class='timeline-row'>
       <ion-col clas='ion-no-padding ion-no-margin'>

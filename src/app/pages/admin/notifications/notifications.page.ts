@@ -97,4 +97,12 @@ export class NotificationsPage implements OnInit {
     })
   }
 
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.loadData();
+    setTimeout(() => {
+      event.target.complete();
+    }, 2000);
+  }
+
 }
