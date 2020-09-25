@@ -1,0 +1,107 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons color="light" size="small" slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon color='light' name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-item class='bg-none' lines="none">
+      <ion-title color="light" class="ion-text-center">
+        Add Feed Back
+      </ion-title>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="saveFeed(f)">
+    <div>
+      <ion-row>
+        <ion-col class="ion-no-padding" size='12'>
+          <ion-radio-group [(ngModel)]="allData" name='travelToCountry' value='allData' required>
+            <ion-row>
+              <ion-col size="6">
+                <ion-item lines="none">
+                  <ion-checkbox slot="end" [(ngModel)]="to_patient" name="to_patient"></ion-checkbox>
+                  <ion-label class="radio-label"><b>Patient</b></ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item lines="none">
+                  <ion-checkbox slot="end" [(ngModel)]="to_admin" name="to_patient"></ion-checkbox>
+                  <ion-label class="radio-label"><b>Admin</b></ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item lines="none">
+                  <ion-checkbox slot="end" [(ngModel)]="to_care" name="to_patient"></ion-checkbox>
+                  <ion-label class="radio-label"><b>CareTaker</b></ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item lines="none">
+                  <ion-checkbox slot="end" [(ngModel)]="to_doctor" name="to_patient"></ion-checkbox>
+                  <ion-label class="radio-label"><b>Doctor</b></ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item lines="none"> 
+                  <ion-checkbox slot="end" [(ngModel)]="to_physian" name="to_patient"></ion-checkbox>
+                  <ion-label class="radio-label"><b>Physician</b></ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-radio-group>
+        </ion-col>
+      </ion-row>
+      <ion-card-header>
+        <ion-row>
+          <ion-col size='12'>
+            <div>
+              <h6 style='margin:0px'><b>FeedBack</b></h6>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row class="guide_line_row">
+          <ion-col size="12">
+            <ion-textarea [(ngModel)]="feedBack" name="to_patient" placeholder="Please Enter the Feed Back"></ion-textarea>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+      <ion-row>
+        <ion-col class="ion-no-padding" size='12'>
+          <ion-radio-group [(ngModel)]="feed_type" name='travelToCountry' value='allData' required>
+            <ion-row>
+              <ion-col size="4">
+                <ion-item lines="none">
+                  <ion-radio value="1"></ion-radio>
+                  <ion-label class="radio-label"><b>Improvement</b></ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col size="4">
+                <ion-item lines="none">
+                  <ion-radio value="2"></ion-radio>
+                  <ion-label class="radio-label"><b>Execution</b></ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col size="4">
+                <ion-item lines="none">
+                  <ion-radio value="3"></ion-radio>
+                  <ion-label class="radio-label"><b>Other</b></ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-radio-group>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-button type="submit" [disabled]="!f.valid" expand="block" fill="solid" shape="round" color="primary">Save</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </form>
+
+</ion-content>

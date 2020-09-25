@@ -81,4 +81,6 @@ export class PatientsPage implements OnInit {
     return await modal.present();
   }
 
+
+
 }

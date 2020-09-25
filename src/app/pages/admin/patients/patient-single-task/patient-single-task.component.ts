@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AdminService } from 'src/app/services/pages-apis/admin.service';
+import { AddFeedComponent } from '../../feedbacks/add-feed/add-feed.component';
 
 @Component({
   selector: 'app-patient-single-task',
@@ -43,5 +44,21 @@ export class PatientSingleTaskComponent implements OnInit {
       console.log(data);
       this.taskData = data;
     })
+  }
+
+
+  async feedBack(p) {
+    const modal = await this.modalCtrl.create({
+      component: AddFeedComponent,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        taskID: p,
+         ProjectID: p,
+         AppID: p,
+         fromType: p,
+          i: 1
+      }
+    });
+    return await modal.present();
   }
 }

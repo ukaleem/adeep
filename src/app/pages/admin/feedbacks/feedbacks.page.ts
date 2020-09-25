@@ -77,5 +77,4 @@ export class FeedbacksPage implements OnInit {
       event.target.complete();
     }, 2000);
   }
-
 }

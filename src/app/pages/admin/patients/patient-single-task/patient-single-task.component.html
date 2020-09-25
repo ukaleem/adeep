@@ -60,7 +60,11 @@
             <ion-label> {{p.APP_TAS_TITLE}} 
               <p>Care Tacker: {{p.APP_CURRENT_USER}}</p>
             </ion-label>
-            <ion-note class='ion-float-right'> {{p.DEL_THREAD_STATUS}}</ion-note>
+            <div>
+              <ion-note class='ion-float-right'> {{p.DEL_THREAD_STATUS}}</ion-note>
+              <ion-button (click)="feedBack(p)">FeedBack</ion-button>
+            </div>
+            
           </ion-item>
         </div>
       </ion-col>
