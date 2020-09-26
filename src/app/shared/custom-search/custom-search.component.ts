@@ -25,9 +25,9 @@ export class CustomSearchComponent implements OnInit {
 
   changeSearch(e){
     if(this.search_for == 'd'){
-      this.searchDisease(e.detail.value)
+      this.searchDisease(e.detail.value);
     }else if(this.search_for == 's'){
-      this.searchSpecialties(e.detail.value)
+      this.searchSpecialties(e.detail.value);
     }     
     console.log(e.detail.value);
   }

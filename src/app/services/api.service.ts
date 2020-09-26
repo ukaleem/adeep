@@ -139,6 +139,58 @@ export class ApiService {
     return apiResponse;
   }
 
+  commonPutE(dataObject: any, postObject: PostConfigObject): Observable<any> {
+    this.setToken();
+    console.log(postObject);
+    if (postObject.showLoading) {
+      this.loadingLoader.prsentLoading();
+    }
+    const apiResponse = new Observable((observer) => {
+      this.http
+        .put(
+          this.makeUrl(postObject, false),
+          dataObject,
+          this.httpOptions
+        )
+        .subscribe(
+          (response) => {
+            if (postObject.showLoading) {
+              this.loadingLoader.closeLoading();
+            }
+            if (response && response['error']) {
+              this.showAlerts.showAlertNormal(
+                response['error'],
+                response['message']
+              );
+              this.toast.ErrorToast('Try Again', 1500);
+            }
+            console.log(response);
+            observer.next(response);
+          },
+          (error) => {
+            if(postObject.showError){
+              this.showAlerts.showAlertNormal(
+                'Connection Error!',
+                'Error in Connection to Server!'
+              );
+            }
+            if (postObject.showLoading) {
+              this.loadingLoader.closeLoading();
+            }
+            console.log(error);
+            observer.error(error);
+          }
+        );
+      return {
+        unsubscribe() {
+          this.http.post.unsubscribe();
+        },
+      };
+    });
+    return apiResponse;
+  }
+
+
 
   commonGet(postObject: PostConfigObject): Observable<any> {
     this.setToken();

@@ -1,7 +1,7 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons color="light" size="small" slot="start">
-      <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-item class='bg-none' lines="none">
       <ion-title color="light" class="ion-text-center">
@@ -39,7 +39,16 @@
               <h2>{{step.obj_title}}</h2>
               <p>Form</p>
             </ion-label>
-            <ion-button shape='round' (click)="singleStep(step)">
+
+            <ion-label *ngIf="step.step_type_obj == 'OUTPUT_DOCUMENT'">
+              <h2>{{step.obj_title}}</h2>
+              <p>OutPut Document</p>
+            </ion-label>
+
+            <ion-text color="red" *ngIf="step.step_type_obj == 'OUTPUT_DOCUMENT'">
+              Not Support on mobile Yet
+            </ion-text>
+            <ion-button *ngIf="step.step_type_obj == 'DYNAFORM'" shape='round' (click)="singleStep(step)">
               Start
             </ion-button>
           </ion-item>

@@ -414,6 +414,21 @@ export class SinglePagePage implements OnInit {
     item.itemValue = this.checkBoxOptions;
   }
   doNextStep(form) {
+    this.casesService.caseRoute(null, this.caseId).subscribe(data2 => {
+      this.toaster.SuccessToast('Success Fully Submit Case', 2000);
+      this.navCtrl.back();
+    }, error=> {
+      console.log('AS' , error.error.error.code)
+      if(error.error.error.code == 400){
+        this.toaster.ErrorToast('This Case is Already Submit, please go back', 3000);
+      }else if(error.error.error.code == 401){
+        this.toaster.ErrorToast('This is Un Authorizes', 3000);
+      }else {
+        //this.navCtrl.back();
+      }
+      this.navCtrl.back();
+    });
+    return;
     console.log('From DE Next Step');
     console.log(form);
     console.log(this.allVariables);
