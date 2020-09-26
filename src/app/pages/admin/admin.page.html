@@ -1,7 +1,12 @@
 <ion-content>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button tab='home'>
+      <ion-tab-button tab='home' *ngIf="ROLE_PATIENT">
+        <ion-label>Home</ion-label>
+        <ion-icon name='home'></ion-icon>
+      </ion-tab-button>
+
+      <ion-tab-button [routerLink]="['/patient/tabs/home']" routerLinkActive="router-link-active"  *ngIf="PATIENT_HOME">
         <ion-label>Home</ion-label>
         <ion-icon name='home'></ion-icon>
       </ion-tab-button>
@@ -21,7 +26,7 @@
         <ion-icon name='notifications'></ion-icon>
       </ion-tab-button>
 
-      <ion-tab-button [routerLink]="['/','cases','tabs','inbox']">
+      <ion-tab-button *ngIf="SHOW_CASE" [routerLink]="['/','cases','tabs','inbox']">
         <ion-label>Cases</ion-label>
         <ion-icon name="document-text"></ion-icon>
       </ion-tab-button>

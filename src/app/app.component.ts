@@ -11,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent {
   USER_ROLE_NAME: any;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -36,6 +37,25 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.USER_ROLE_NAME = localStorage.getItem('role');
+      if(this.USER_ROLE_NAME=="ADMIN_OFFICE"){
+        this.ADMIN_OFFICE = true;
+        this.USER_ROLE_NAME = 'office admin';
+      } else if(this.USER_ROLE_NAME=="PROCESSMAKER_ADMIN"){
+        this.PROCESSMAKER_ADMIN = true;
+        this.USER_ROLE_NAME = 'processmaker admin';
+      } else if(this.USER_ROLE_NAME=="DOCTOR"){
+        this.DOCTOR = true;
+        this.USER_ROLE_NAME = 'doctor';
+      } else if(this.USER_ROLE_NAME=="PATIENT_ROLES"){
+        this.PATIENT = true;
+        this.USER_ROLE_NAME = 'patient';
+      } else if(this.USER_ROLE_NAME=="CARETAKER"){
+        this.CARETAKER = true;
+        this.USER_ROLE_NAME = 'caretaker';
+      } else if(this.USER_ROLE_NAME=="PHYSICIAN"){
+        this.PHYSICIAN = true;
+        this.USER_ROLE_NAME = 'physician';
+      }
       this.loadUser();
     });
   }

@@ -25,11 +25,45 @@
         <ion-list class="side-menu-ion-list">
 
           <ion-menu-toggle>
-            <ion-item lines='none' button [routerLink]="['/','admin','tabs','home']">
+            <ion-item lines='none' *ngIf="ADMIN_OFFICE || PROCESSMAKER_ADMIN " button [routerLink]="['/','admin','tabs','home']">
               <ion-icon class='list-icon-stl' name='home-outline' color='light' slot='start'></ion-icon>
               <ion-label> Home
               </ion-label>
               <!-- <ion-button class="right-button" color="light" fill="outline">6</ion-button> -->
+            </ion-item>
+
+            <ion-item lines='none' *ngIf="PHYSICIAN ||CARETAKER ||DOCTOR" button [routerLink]="['/','admin','tabs','dashboard']">
+              <ion-icon class='list-icon-stl' name='home-outline' color='light' slot='start'></ion-icon>
+              <ion-label> Home
+              </ion-label>
+              <!-- <ion-button class="right-button" color="light" fill="outline">6</ion-button> -->
+            </ion-item>
+
+            <ion-item lines='none' *ngIf="PATIENT" button [routerLink]="['/','patient','tabs','dashboard']">
+              <ion-icon class='list-icon-stl' name='home-outline' color='light' slot='start'></ion-icon>
+              <ion-label> Home
+              </ion-label>
+              <!-- <ion-button class="right-button" color="light" fill="outline">6</ion-button> -->
+            </ion-item>
+          </ion-menu-toggle>
+
+
+          <!-- Patient Side menu -->
+          <ion-menu-toggle *ngIf="PATIENT">
+            <ion-item lines='none' button [routerLink]="['/admin/tabs/notifications']">
+              <ion-icon class='list-icon-stl' name='notifications-outline' color='light' slot='start'></ion-icon>
+              <ion-label> Notifications
+              </ion-label>
+              <ion-button class="right-button" color="light" fill="outline">6</ion-button>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle *ngIf="PATIENT">
+            <ion-item lines='none' button [routerLink]="['/admin/tabs/feedbacks']">
+              <ion-icon class='list-icon-stl' name='star-half-outline' color='light' slot='start'></ion-icon>
+              <ion-label> Feedbacks
+              </ion-label>
+              <ion-button class="right-button" color="light" fill="outline">6</ion-button>
             </ion-item>
           </ion-menu-toggle>
           
@@ -44,6 +78,8 @@
             </ion-item>
           </ion-menu-toggle>
 
+
+          <!-- Other Roles -->
           <ion-menu-toggle *ngIf="ADMIN_OFFICE || PROCESSMAKER_ADMIN || PHYSICIAN || CARETAKER || DOCTOR">
             <ion-item lines='none' button  [routerLink]="['/','cases','unassigned-cases']">
               <div slot='start'>

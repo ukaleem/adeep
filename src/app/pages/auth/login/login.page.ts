@@ -85,9 +85,9 @@ export class LoginPage implements OnInit {
           this.app.DOCTOR = true;
           this.navCtrl.navigateRoot("/cases");
           this.toastService.SuccessToast('' + data.user_role + ' Login Successfully!', 2000);
-        } else if (data.user_role == "All Patients" || data.user_role == "ALL_PATIENTS") {
+        } else if (data.user_role == "PATIENT_ROLES" || data.user_role == "patient_roles") {
           this.app.PATIENT = true;
-          this.navCtrl.navigateRoot("/cases");
+          this.navCtrl.navigateRoot("/patient");
           this.toastService.SuccessToast('' + data.user_role + ' Login Successfully!', 2000);
         } else if (data.user_role == "Caretaker" ||data.user_role == "CARETAKER") {
           this.app.CARETAKER = true;
