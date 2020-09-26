@@ -18,4 +18,7 @@ export class FeedsService {
   updateFeed(frmData , f) {
     return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.UPDATE_FEED(f),showLoading : true, showError : true});
   }
+  addFeedBack(frmData) {
+    return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.ADD_FEED_BACK,showLoading : true, showError : true});
+  }
 }

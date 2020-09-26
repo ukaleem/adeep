@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  USER_ROLE_NAME: any;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -22,10 +23,19 @@ export class AppComponent {
   userName = '';
   userRole = 'Administrator';
   casesShow = false;
+
+  ADMIN_OFFICE = false;
+  PROCESSMAKER_ADMIN = false;
+  PHYSICIAN = false;
+  CARETAKER = false;
+  DOCTOR = false;
+  PATIENT = false;
+
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.USER_ROLE_NAME = localStorage.getItem('role');
       this.loadUser();
     });
   }

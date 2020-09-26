@@ -49,6 +49,9 @@ export class EndpointsService {
   GET_FEEDS(APP_ID, TASK_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/feed_backs/'+APP_ID+'/'+TASK_ID;
   }
+  GET_GUIDE(APP_ID, TASK_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_guide_line/'+APP_ID+'/'+TASK_ID;
+  }
 
 
   //////////ADmin APIS
@@ -86,6 +89,9 @@ export class EndpointsService {
   UPDATE_FEED(F_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/update_feed/'+F_ID;
   }
+  ADD_FEED_BACK = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/add_feeds';
+
+  ////// Notifications
   GET_NOTIFICATIONS(U_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_all_notifications/'+U_ID;
   }

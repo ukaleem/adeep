@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavController, AlertController } from '@ionic/angular';
+import { NavController, AlertController, ModalController } from '@ionic/angular';
 import { CasesService } from 'src/app/services/pages-apis/cases.service';
 import { InAppBrowserOptions, InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { ToastService } from 'src/app/services/toast.service';
+import { AddFeedComponent } from '../../admin/feedbacks/add-feed/add-feed.component';
 
 @Component({
   selector: 'app-single-page',
@@ -25,7 +26,9 @@ export class SinglePagePage implements OnInit {
   dropDownValues = [];
   currentTaskId = '';
   addNewGridOption = [];
+  application_id = [];
 
+  guide = `Loading data...`;
   nodata = false;
   constructor(
     private router: ActivatedRoute,
@@ -35,6 +38,7 @@ export class SinglePagePage implements OnInit {
     private casesService: CasesService,
     private toaster: ToastService,
     private alertController: AlertController,
+    private modalCtrl: ModalController
   ) { }
 
   ngOnInit() {
@@ -63,6 +67,14 @@ export class SinglePagePage implements OnInit {
     }
   }
 
+  loadGuide(){
+    this.casesService.caseGuide(this.projectId,this.currentTaskId).subscribe(data=> {
+      this.guide = `Sorry No guide Available`;
+      console.log(data);
+    }, err=> {
+      this.guide = `Sorry, we Are Working on this....to Load guide`;
+    })
+  }
   allNotes = [];
   notePermission = true;
   getCaseNotes(){
@@ -96,9 +108,13 @@ export class SinglePagePage implements OnInit {
 
       try {
         this.projectId = data.pro_uid;
+        this.application_id = data.app_uid
         this.caseFeeds();
         this.currentTaskId = data.current_task[0].tas_uid;
+        this.loadGuide();
+        this.showFeedBack = true;
       } catch (ex) {
+        this.guide = `Unable to Load`;
         console.log(ex);
       }
 
@@ -483,5 +499,22 @@ export class SinglePagePage implements OnInit {
     console.log(item);
     console.log(this.addNewGridOption);
   }
+
+  showFeedBack = false;
+  async feedBack() {
+    const modal = await this.modalCtrl.create({
+      component: AddFeedComponent,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        taskID: this.currentTaskId,
+         ProjectID: this.projectId,
+         AppID: this.application_id,
+         fromType: '1',
+          i: 2
+      }
+    });
+    return await modal.present();
+  }
+
 }
 
