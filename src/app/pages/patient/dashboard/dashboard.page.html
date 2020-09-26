@@ -1,28 +1,17 @@
-<!-- <app-custom-loader></app-custom-loader> -->
 <ion-header class="ion-no-border">
-  <ion-toolbar *ngIf="!isSearch">
+  <ion-toolbar>
       <ion-buttons color="light" size="small" slot="start">
           <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
       </ion-buttons>
       <ion-item class='bg-none' lines="none">
-          <!-- <ion-icon slot='start' color="primary" name="menu"  routerDirection='backward'></ion-icon> -->
           <ion-title color="light" class="ion-text-center">
-            Patients Home
-              <!-- <div class='ion-text-center'>
-                  <img class='Logo-img' src="../../../../assets/images/Logo/skill-experts-white-01.svg" alt="" />
-              </div> -->
+            Patients Dashboard
           </ion-title>
           <ion-icon color="light" name="search"
-              slot="end" (click)="showSearch()">
+              slot="end">
           </ion-icon>
       </ion-item>
   </ion-toolbar>
-
-  <ion-toolbar *ngIf="isSearch">
-    <ion-searchbar (ionChange)="searchDetails($event)" (ionCancel)="closeSearch()" showCancelButton="always">
-    </ion-searchbar>
-  </ion-toolbar>
-
 </ion-header>
 
 <ion-content [fullscreen]='true' *ngIf="data.length">

@@ -1,7 +1,7 @@
 <ion-app>
   <!-- <app-custom-loader *ngIf="showSplash"></app-custom-loader> -->
   <ion-menu side="start" menuId="m1">
-    <ion-header class="side-menu-header">
+    <ion-header class="side-menu-header ion-no-border">
       <ion-grid>
         <ion-row>
           <ion-col class="ion-no-padding ion-text-center">
@@ -10,7 +10,9 @@
                 <ion-avatar style='height:60px !important; width:60px !important;' class='my-custom-avatar'>
                   <img src="../assets/images/user_dumme.png">
                 </ion-avatar>
-                <ion-label class="ion-text-left txt-large userName">{{userName}}</ion-label>
+                <ion-label class="ion-text-left txt-large userName">{{userName}}
+                  <p><span>({{USER_ROLE_NAME}})</span></p>
+                </ion-label>
               </ion-item>
             </ion-menu-toggle>
           </ion-col>
@@ -23,15 +25,49 @@
         <ion-list class="side-menu-ion-list">
 
           <ion-menu-toggle>
-            <ion-item lines='none' button [routerLink]="['/','admin','tabs','home']">
+            <ion-item lines='none' *ngIf="ADMIN_OFFICE || PROCESSMAKER_ADMIN " button [routerLink]="['/','admin','tabs','home']">
+              <ion-icon class='list-icon-stl' name='home-outline' color='light' slot='start'></ion-icon>
+              <ion-label> Home
+              </ion-label>
+              <!-- <ion-button class="right-button" color="light" fill="outline">6</ion-button> -->
+            </ion-item>
+
+            <ion-item lines='none' *ngIf="PHYSICIAN ||CARETAKER ||DOCTOR" button [routerLink]="['/','admin','tabs','dashboard']">
+              <ion-icon class='list-icon-stl' name='home-outline' color='light' slot='start'></ion-icon>
+              <ion-label> Home
+              </ion-label>
+              <!-- <ion-button class="right-button" color="light" fill="outline">6</ion-button> -->
+            </ion-item>
+
+            <ion-item lines='none' *ngIf="PATIENT" button [routerLink]="['/','patient','tabs','dashboard']">
               <ion-icon class='list-icon-stl' name='home-outline' color='light' slot='start'></ion-icon>
               <ion-label> Home
               </ion-label>
               <!-- <ion-button class="right-button" color="light" fill="outline">6</ion-button> -->
             </ion-item>
           </ion-menu-toggle>
+
+
+          <!-- Patient Side menu -->
+          <ion-menu-toggle *ngIf="PATIENT">
+            <ion-item lines='none' button [routerLink]="['/admin/tabs/notifications']">
+              <ion-icon class='list-icon-stl' name='notifications-outline' color='light' slot='start'></ion-icon>
+              <ion-label> Notifications
+              </ion-label>
+              <ion-button class="right-button" color="light" fill="outline">6</ion-button>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle *ngIf="PATIENT">
+            <ion-item lines='none' button [routerLink]="['/admin/tabs/feedbacks']">
+              <ion-icon class='list-icon-stl' name='star-half-outline' color='light' slot='start'></ion-icon>
+              <ion-label> Feedbacks
+              </ion-label>
+              <ion-button class="right-button" color="light" fill="outline">6</ion-button>
+            </ion-item>
+          </ion-menu-toggle>
           
-          <ion-menu-toggle>
+          <ion-menu-toggle *ngIf="ADMIN_OFFICE || PROCESSMAKER_ADMIN || PHYSICIAN || CARETAKER || DOCTOR">
             <ion-item lines='none' button [routerLink]="['/','cases']">
               <div slot='start'>
                 <img class="segment-img" src="../assets/icon/inbox.svg">
@@ -41,7 +77,10 @@
               <ion-button class="right-button" color="light" fill="outline">6</ion-button>
             </ion-item>
           </ion-menu-toggle>
-          <ion-menu-toggle *ngIf="casesShow">
+
+
+          <!-- Other Roles -->
+          <ion-menu-toggle *ngIf="ADMIN_OFFICE || PROCESSMAKER_ADMIN || PHYSICIAN || CARETAKER || DOCTOR">
             <ion-item lines='none' button  [routerLink]="['/','cases','unassigned-cases']">
               <div slot='start'>
                 <img class="segment-img" src="../assets/icon/unassigned (2).svg">
@@ -51,7 +90,8 @@
               <ion-button class="right-button" color="light"fill="outline">6</ion-button>
             </ion-item>
           </ion-menu-toggle>
-          <ion-menu-toggle *ngIf="casesShow">
+
+          <ion-menu-toggle *ngIf="ADMIN_OFFICE || PROCESSMAKER_ADMIN || PHYSICIAN || CARETAKER || DOCTOR">
             <ion-item lines='none' button [routerLink]="['/','participants']">
               <div slot='start'>
                 <img class="segment-img" src="../assets/icon/participated.svg">
@@ -61,7 +101,8 @@
               <ion-button class="right-button" color="light" fill="outline">6</ion-button>
             </ion-item>
           </ion-menu-toggle>
-          <ion-menu-toggle *ngIf="casesShow">
+
+          <ion-menu-toggle *ngIf="ADMIN_OFFICE || PROCESSMAKER_ADMIN || PHYSICIAN || CARETAKER || DOCTOR">
             <ion-item lines='none' button  [routerLink]="['/','cases','draft-cases']">
               <div slot='start'>
                 <img class="segment-img" src="../assets/icon/draft.svg">
@@ -75,11 +116,9 @@
       </div>
       <div>
         <ion-list class="side-menu-ion-list">
-          <ion-menu-toggle>
+          <ion-menu-toggle *ngIf="ADMIN_OFFICE || PROCESSMAKER_ADMIN || PHYSICIAN || CARETAKER || DOCTOR">
             <ion-item lines='none' button [routerLink]="['/','admin','profile']">
-              <div slot='start'>
-                <img class="segment-img" src="../assets/icon/settings .svg">
-              </div>
+              <ion-icon class='list-icon-stl' slot='start' name="Person-outline" color='light'></ion-icon>
               <ion-label> Profile
               </ion-label>
             </ion-item>

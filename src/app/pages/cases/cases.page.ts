@@ -8,9 +8,11 @@ import { CasesService } from 'src/app/services/pages-apis/cases.service';
   styleUrls: ['./cases.page.scss'],
 })
 export class CasesPage implements OnInit {
-
+  ROLE_PATIENT = false;
   constructor(private casesService : CasesService) { 
-   
+    if (localStorage.getItem('role') == "ADMIN_OFFICE" || localStorage.getItem('role') == "PROCESSMAKER_ADMIN" ){
+      this.ROLE_PATIENT = true;
+    }
    }
 
   ngOnInit() {

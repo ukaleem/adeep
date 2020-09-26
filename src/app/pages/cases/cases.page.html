@@ -1,7 +1,7 @@
 <ion-content>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button [routerLink]="['/','admin','tabs','home']">
+      <ion-tab-button *ngIf="ROLE_PATIENT" [routerLink]="['/','admin','tabs','home']">
         <ion-label>Home</ion-label>
         <ion-icon name='home'></ion-icon>
       </ion-tab-button>

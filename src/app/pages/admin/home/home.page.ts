@@ -9,6 +9,7 @@ import { AdminService } from 'src/app/services/pages-apis/admin.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  loading = true;
 
   constructor(private admin: AdminService, private adminService: AdminService, private router: Router, private navCtrl: NavController) { }
 
@@ -23,7 +24,8 @@ export class HomePage implements OnInit {
       this.allPatients = data.all_data as any;
       this.allPatientsBackUp = this.allPatients;
       console.log(this.allPatients);
-    })
+      this.loading = false;
+    });
   }
 
   showSearch() {
