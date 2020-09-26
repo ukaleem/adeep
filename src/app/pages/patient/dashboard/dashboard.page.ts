@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-
+  data = [];
   constructor() { }
 
   ngOnInit() {
+  }
+  doRefresh(e){
+    this.ionViewWillEnter();
+  }
+
+  ionViewWillEnter(){
+
   }
 
 }

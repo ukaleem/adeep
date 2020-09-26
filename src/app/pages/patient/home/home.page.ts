@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
   isSearch: false;
+  data = [];
   constructor() { }
 
   ngOnInit() {
@@ -14,6 +15,8 @@ export class HomePage implements OnInit {
   showSearch(){}
   closeSearch(){}
   searchDetails() {
+  }
+  doRefresh(ev){
 
   }
 

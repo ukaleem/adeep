@@ -1,3 +1,4 @@
+<!-- <app-custom-loader></app-custom-loader> -->
 <ion-header class="ion-no-border">
   <ion-toolbar *ngIf="!isSearch">
       <ion-buttons color="light" size="small" slot="start">
@@ -24,5 +25,13 @@
 
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]='true' *ngIf="data.length">
+</ion-content>
+
+<ion-content [fullscreen]='true' *ngIf="!data.length">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-img src="../../../../assets/alerts/NoDataFound.svg">
+  </ion-img>
 </ion-content>

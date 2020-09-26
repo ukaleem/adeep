@@ -14,6 +14,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]='true' *ngIf="data.length">
+</ion-content>
 
+<ion-content [fullscreen]='true' *ngIf="!data.length">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-img src="../../../../assets/alerts/NoDataFound.svg">
+  </ion-img>
 </ion-content>
