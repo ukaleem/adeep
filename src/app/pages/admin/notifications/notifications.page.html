@@ -41,19 +41,17 @@
             <b>{{n.USR_USERNAME}}: </b> {{n.note_content}}
           </ion-label>
           <ion-icon (click)="presentActionSheet(n)" color="primary" name="ellipsis-horizontal" slot='end'></ion-icon>
+          <ion-note style="position: absolute; font-size: 9px; color: #9E9E9E;" class="ion-float-right"><span class="time-step">{{n.created_at}} </span></ion-note>
         </ion-item>
         <ion-item class="bg-none details2" lines='none'>
           <ion-label>
-            <ion-icon name='thumbs-up' side='small' color='primary'></ion-icon>
-            <span class="time-step">{{n.created_at}} </span>
+            <ion-text><b>Patient:</b> {{n.PAITEINT_NAME}}</ion-text>
+            <!-- <ion-icon name='thumbs-up' side='small' color='primary'></ion-icon> -->
           </ion-label>
           <ion-icon *ngIf="n.current_status == '0'" name="ellipse" size='small' color='success' slot='end' class='new'></ion-icon>
         </ion-item>
-        <ion-item class="bg-none details2" lines='none'>
-          <ion-text><b>Patient:</b>{{n.PAITEINT_NAME}}</ion-text>
-        </ion-item>
-        <ion-item class="bg-none details2 ion-no-marin ion-no-padding" lines='none'>
-          <ion-text>{{n.PRO_TITLE}} </ion-text>
+        <ion-item class="bg-none details3" lines='none'>
+          <ion-text><b>Pathway:</b> {{n.PRO_TITLE}} </ion-text>
           <ion-text slot="end">{{n.TAS_TITLE}}</ion-text>
         </ion-item>
       </ion-col>
