@@ -44,7 +44,11 @@
             <ion-label> {{p.APP_TAS_TITLE}} 
               <p>Care Tacker: {{p.APP_CURRENT_USER}}</p>
             </ion-label>
-            <ion-note class='ion-float-right'> {{p.DEL_THREAD_STATUS}}</ion-note>
+            <div>
+              <ion-note> {{p.DEL_THREAD_STATUS}}</ion-note> <br/>
+              <ion-button (click)="feedBack(p)">FeedBack</ion-button>
+            </div>
+            <!-- <ion-note class='ion-float-right'> {{p.DEL_THREAD_STATUS}}</ion-note> -->
           </ion-item>
         </div>
       </ion-col>
@@ -61,10 +65,9 @@
               <p>Care Tacker: {{p.APP_CURRENT_USER}}</p>
             </ion-label>
             <div>
-              <ion-note class='ion-float-right'> {{p.DEL_THREAD_STATUS}}</ion-note>
+              <ion-note> {{p.DEL_THREAD_STATUS}}</ion-note> <br/>
               <ion-button (click)="feedBack(p)">FeedBack</ion-button>
             </div>
-            
           </ion-item>
         </div>
       </ion-col>
@@ -80,7 +83,10 @@
             <ion-label> {{p.APP_TAS_TITLE}} 
               <p>Care Tacker: {{p.APP_CURRENT_USER}}</p>
             </ion-label>
-            <ion-note class='ion-float-right'> {{p.DEL_THREAD_STATUS}}</ion-note>
+            <div>
+              <ion-note> {{p.DEL_THREAD_STATUS}}</ion-note> <br/>
+              <ion-button (click)="feedBack(p)">FeedBack</ion-button>
+            </div>
           </ion-item>
         </div>
       </ion-col>

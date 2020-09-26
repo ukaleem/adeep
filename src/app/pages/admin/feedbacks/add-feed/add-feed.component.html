@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-buttons color="light" size="small" slot="start">
       <ion-button (click)="closeModal()">
-        <ion-icon color='light' name="arrow-back"></ion-icon>
+        <ion-icon (click)="closeModal()" color='light' name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-item class='bg-none' lines="none">
@@ -22,31 +22,31 @@
             <ion-row>
               <ion-col size="6">
                 <ion-item lines="none">
-                  <ion-checkbox slot="end" [(ngModel)]="to_patient" name="to_patient"></ion-checkbox>
+                  <ion-checkbox slot="end" [(ngModel)]="to_patient" name="to_patient1"></ion-checkbox>
                   <ion-label class="radio-label"><b>Patient</b></ion-label>
                 </ion-item>
               </ion-col>
               <ion-col size="6">
                 <ion-item lines="none">
-                  <ion-checkbox slot="end" [(ngModel)]="to_admin" name="to_patient"></ion-checkbox>
+                  <ion-checkbox [disabled]="i_am == 'admin'" slot="end" [(ngModel)]="to_admin" name="to_admin"></ion-checkbox>
                   <ion-label class="radio-label"><b>Admin</b></ion-label>
                 </ion-item>
               </ion-col>
               <ion-col size="6">
                 <ion-item lines="none">
-                  <ion-checkbox slot="end" [(ngModel)]="to_care" name="to_patient"></ion-checkbox>
+                  <ion-checkbox  [disabled]="i_am == 'care'" slot="end" [(ngModel)]="to_care" name="to_care"></ion-checkbox>
                   <ion-label class="radio-label"><b>CareTaker</b></ion-label>
                 </ion-item>
               </ion-col>
               <ion-col size="6">
                 <ion-item lines="none">
-                  <ion-checkbox slot="end" [(ngModel)]="to_doctor" name="to_patient"></ion-checkbox>
+                  <ion-checkbox slot="end" [(ngModel)]="to_doctor" name="to_doctor"></ion-checkbox>
                   <ion-label class="radio-label"><b>Doctor</b></ion-label>
                 </ion-item>
               </ion-col>
               <ion-col size="6">
                 <ion-item lines="none"> 
-                  <ion-checkbox slot="end" [(ngModel)]="to_physian" name="to_patient"></ion-checkbox>
+                  <ion-checkbox slot="end" [(ngModel)]="to_physian" name="to_physian"></ion-checkbox>
                   <ion-label class="radio-label"><b>Physician</b></ion-label>
                 </ion-item>
               </ion-col>
@@ -66,7 +66,7 @@
       <ion-card-content>
         <ion-row class="guide_line_row">
           <ion-col size="12">
-            <ion-textarea [(ngModel)]="feedBack" name="to_patient" placeholder="Please Enter the Feed Back"></ion-textarea>
+            <ion-textarea [(ngModel)]="feedBack" name="feedBack" placeholder="Please Enter the Feed Back"></ion-textarea>
           </ion-col>
         </ion-row>
       </ion-card-content>

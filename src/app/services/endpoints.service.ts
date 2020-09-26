@@ -49,6 +49,9 @@ export class EndpointsService {
   GET_FEEDS(APP_ID, TASK_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/feed_backs/'+APP_ID+'/'+TASK_ID;
   }
+  GET_GUIDE(APP_ID, TASK_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_guide_line/'+APP_ID+'/'+TASK_ID;
+  }
 
 
   //////////ADmin APIS

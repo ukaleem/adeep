@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { FeedsService } from 'src/app/services/pages-apis/feeds.service';
 
 @Component({
@@ -13,8 +14,8 @@ export class AddFeedComponent implements OnInit {
   @Input() AppID: any;
   @Input() fromType: any;
   @Input() i: any;
-  constructor(private feed: FeedsService ) { }
-
+  constructor(private feed: FeedsService,
+     private modalCtrl : ModalController ) { }
   to_admin = true;
   to_patient = true;
   to_care = true;
@@ -26,10 +27,17 @@ export class AddFeedComponent implements OnInit {
   i_am = '';
   ngOnInit() {}
 
+  ionViewWillEnter(){
+    if(this.i== 1){
+      this.i_am = 'admin'
+    }else if(this.i== 2){
+      this.i_am = 'care'
+    }
+  }
   saveFeed(f){
     let frmData = {
-      APP_UID_ : '',
-      PRO_UID : '',
+      APP_UID_ : this.AppID,
+      PRO_UID : this.ProjectID,
       USER_LOGGED : localStorage.getItem('id'),
       to_admin : this.to_admin ? '1' : '0',
       to_patient : this.to_patient ? '1' : '0',
@@ -38,16 +46,17 @@ export class AddFeedComponent implements OnInit {
       to_physian : this.to_physian ? '1' : '0',
       optradio : this.feed_type,
       feed_back : this.feedBack,
-      task_id : '',
-      form_id_ : '',
+      task_id : this.taskID,
+      USER_FROM : this.fromType,
     }
-    this.feed.addFeedBack(null).subscribe(data=> {
+    this.feed.addFeedBack(frmData).subscribe(data=> {
       console.log(data);
+      this.closeModal();
     })
   }
 
   closeModal(){
-
+    this.modalCtrl.dismiss();
   }
 
 }

@@ -1,14 +1,14 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-      <ion-buttons color="light" size="small" slot="start">
-          <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
-      </ion-buttons>
-      <ion-item class='bg-none' lines="none">
-          <ion-title color="light" class="ion-text-center">
-            Case Page
-          </ion-title>
-          <ion-icon color="light" name="search" slot="end"> </ion-icon>
-      </ion-item>
+    <ion-buttons color="light" size="small" slot="start">
+      <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
+    </ion-buttons>
+    <ion-item class='bg-none' lines="none">
+      <ion-title color="light" class="ion-text-center">
+        Case Page
+      </ion-title>
+      <ion-icon color="light" name="search" slot="end"> </ion-icon>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
@@ -47,10 +47,18 @@
         <ion-button shape='round' shape='round' (click)="doNextStep(null)" expand="block">
           Submit Case
         </ion-button>
+        <ion-button *ngIf="showFeedBack" shape='round' fill="outline" shape='round' (click)="feedBack()" expand="block">
+          Add FeedBack
+        </ion-button>
       </ion-col>
     </ion-row>
 
-    <!-- notes -->
+    <!-- gides -->
+    <ion-row *ngIf="activeSegment == 'guides'">
+      <iframe width="100%" height="50%" [srcdoc]="guide"></iframe>
+    </ion-row>
+
+    <!-- Guides -->
     <ion-row *ngIf="activeSegment == 'notes'">
       <ion-col>
         <ng-container *ngIf="!notePermission">
@@ -61,7 +69,7 @@
           </ion-item>
         </ng-container>
         <ng-container *ngIf="notePermission">
-          <ion-button shape='round' (click)="doNextStep(null)" expand="block">
+          <ion-button shape='round' expand="block">
             Add Notes
           </ion-button>
         </ng-container>
@@ -96,7 +104,7 @@
                 </ion-label>
                 <ion-input [name]="item.itemName" type="text" [ngModelOptions]="{standalone: true}"
                   [(ngModel)]="item.itemValue" [readonly]="" [required]="item.isRequired">
-      
+
                 </ion-input>
               </ion-item>
             </ng-container>
@@ -117,8 +125,9 @@
                 <ion-list-header>{{ item.itemLabel }}</ion-list-header>
                 <ion-item *ngFor="let option of item.allOptions">
                   <ion-label>{{ option.label }}</ion-label>
-                  <ion-checkbox [ngModelOptions]="{standalone: true}" (ionChange)="pushArrayValue(option.value,$event,item)"
-                    [(ngModel)]="option.isSelected" color="primary" mode="ios" slot="start" [value]="option.value">
+                  <ion-checkbox [ngModelOptions]="{standalone: true}"
+                    (ionChange)="pushArrayValue(option.value,$event,item)" [(ngModel)]="option.isSelected"
+                    color="primary" mode="ios" slot="start" [value]="option.value">
                   </ion-checkbox>
                 </ion-item>
               </ion-list>
@@ -136,19 +145,20 @@
                 </ion-select>
               </ion-item>
             </ng-container>
-      
+
             <ng-container *ngIf="item.itemType == 'textarea'">
               <ion-item class='list-bg' lines='none'>
                 <ion-label position="floating">{{ item.itemLabel }}</ion-label>
                 <ion-textarea [(ngModel)]="item.itemValue" [ngModelOptions]="{standalone: true}"></ion-textarea>
               </ion-item>
             </ng-container>
-      
+
             <ng-container *ngIf="item.itemType == 'grid'">
               <ion-label position="floating" class="ion-text-left">
                 {{item.itemLabel}}
               </ion-label>
-              <ion-button shape='round' style='float:right;margin-right: 10px;' (click)="addGridItems(item)" color="primary">
+              <ion-button shape='round' style='float:right;margin-right: 10px;' (click)="addGridItems(item)"
+                color="primary">
                 <ion-icon name="add"></ion-icon>
               </ion-button>
               <ng-container *ngFor="let option of item.itemOptions">
@@ -217,15 +227,17 @@
                   </div>
                   <ion-item *ngIf="option.type == 'datetime'">
                     <ion-label position="floating"> {{option.title}}</ion-label>
-                    <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T07:43Z"></ion-datetime>
+                    <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T07:43Z">
+                    </ion-datetime>
                   </ion-item>
                 </ng-container>
               </div>
             </ng-container>
-      
+
           </ng-container>
         </form>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+

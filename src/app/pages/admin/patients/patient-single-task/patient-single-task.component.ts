@@ -48,14 +48,15 @@ export class PatientSingleTaskComponent implements OnInit {
 
 
   async feedBack(p) {
+    console.log(p);
     const modal = await this.modalCtrl.create({
       component: AddFeedComponent,
       cssClass: 'my-custom-class',
       componentProps: {
-        taskID: p,
-         ProjectID: p,
-         AppID: p,
-         fromType: p,
+        taskID: p.TAS_UID,
+         ProjectID: p.PRO_UID,
+         AppID: p.APP_UID,
+         fromType: '3',
           i: 1
       }
     });
