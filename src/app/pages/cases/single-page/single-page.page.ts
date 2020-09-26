@@ -70,6 +70,9 @@ export class SinglePagePage implements OnInit {
   loadGuide(){
     this.casesService.caseGuide(this.projectId,this.currentTaskId).subscribe(data=> {
       this.guide = `Sorry No guide Available`;
+      if(data.all_data.guide_line){
+        this.guide = data.all_data.guide_line;
+      }
       console.log(data);
     }, err=> {
       this.guide = `Sorry, we Are Working on this....to Load guide`;

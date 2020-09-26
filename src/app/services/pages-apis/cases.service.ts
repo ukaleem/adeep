@@ -67,6 +67,6 @@ export class CasesService {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_FEEDS(app ,task),showLoading : true,showError : false});
   }
   caseGuide(app,task) {
-    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_FEEDS(app ,task),showLoading : true,showError : false});
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_GUIDE(app ,task),showLoading : true,showError : false});
   }
 }
