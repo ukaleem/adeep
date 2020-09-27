@@ -429,7 +429,7 @@ export class SinglePagePage implements OnInit {
       }else {
         //this.navCtrl.back();
       }
-      this.navCtrl.back();
+      this.rout.navigateByUrl('cases/all-cases');
     });
     return;
     console.log('From DE Next Step');
@@ -473,14 +473,14 @@ export class SinglePagePage implements OnInit {
     const browser = this.iab.create(url3, '_self', xyz);
     browser.on('exit').subscribe(test => {
       console.log('Broswe Close now backe');
-      this.rout.navigateByUrl('cases/all-cases');
+      // this.rout.navigateByUrl('cases/all-cases');
     });
 
     browser.on('message').subscribe(msg => {
 
       console.log(msg);
       browser.close();
-      this.rout.navigateByUrl('cases/all-cases');
+      // this.rout.navigateByUrl('cases/all-cases');
     });
 
     browser.on('loadstart').subscribe(msg => {
@@ -489,7 +489,7 @@ export class SinglePagePage implements OnInit {
         browser.close();
       }
 
-      this.rout.navigateByUrl('cases/all-cases');
+      // this.rout.navigateByUrl('cases/all-cases');
     })
   }
 
