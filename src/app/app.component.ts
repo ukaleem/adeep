@@ -61,6 +61,15 @@ export class AppComponent {
   }
   logOut(){
     localStorage.clear();
+    this.ADMIN_OFFICE = false;
+    this.PROCESSMAKER_ADMIN = false;
+    this.PHYSICIAN = false;
+    this.CARETAKER = false;
+    this.DOCTOR = false;
+    this.PATIENT = false;
+    this.userName = 'Not Login';
+    this.userRole = '';
+    this.casesShow = false;
     this.navCtrl.navigateRoot('/');
   }
   loadUser(){
