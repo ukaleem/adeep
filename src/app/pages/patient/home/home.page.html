@@ -1,4 +1,5 @@
 <!-- <app-custom-loader></app-custom-loader> -->
+<app-custom-loader *ngIf="loading"></app-custom-loader>
 <ion-header class="ion-no-border">
   <ion-toolbar *ngIf="!isSearch">
       <ion-buttons color="light" size="small" slot="start">
@@ -25,13 +26,124 @@
 
 </ion-header>
 
-<ion-content [fullscreen]='true' *ngIf="data.length">
-</ion-content>
-
-<ion-content [fullscreen]='true' *ngIf="!data.length">
+<ion-content [fullscreen]="true">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-img src="../../../../assets/alerts/NoDataFound.svg">
-  </ion-img>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-segment class='my-segment' (ionChange)="changeSegment($event)" value="onGoingCarePlan">
+            <ion-segment-button value="onGoingCarePlan">
+                <ion-label>On Going CarePlans</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="previousCarePlans">
+                <ion-label>Previous CarePlans</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+        </ion-col>
+      </ion-row>
+
+
+      <!-- <ion-row *ngIf="!data.length">
+        <ion-col class='ion-no-padding'>
+          <ion-img src="../../../../assets/alerts/NoDataFound.svg">
+          </ion-img>
+        </ion-col>
+      </ion-row> -->
+
+      <!-- Personal Info -->
+    <ng-container *ngIf="segmentVelue==='onGoingCarePlan'">
+      <ion-row class='list-bg' [routerLink]="['/','patient','home','single-page-home',1]" routerLinkActive="router-link-active">
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <ion-icon class="detail-icon" src="../../../assets/list-icons/title.svg"></ion-icon>
+              <ion-label class="af-icon-label">
+                Care Pathway Name
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none' >
+              <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
+              <ion-label class="af-icon-label">
+                Specialty
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+              <ion-label class="af-icon-label">
+                Related Disease
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <ion-icon class="detail-icon" src="../../../assets/list-icons/charging-circle (1).svg"></ion-icon>
+              <ion-label class="af-icon-label"> 
+                Status
+              </ion-label> 
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+
+
+    <!-- Preferences -->
+    <ng-container *ngIf="segmentVelue==='previousCarePlans'">
+      <ion-row class='list-bg' [routerLink]="['/','patient','home','previous-careplans',5]" routerLinkActive="router-link-active">
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon>
+              <ion-label class="af-icon-label">
+                Care Pathway Name
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none' >
+              <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
+              <ion-label class="af-icon-label">
+                Specialty
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+              <ion-label class="af-icon-label">
+                Related Disease
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon>
+              <ion-label class="af-icon-label"> 
+                Status
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+    </ion-grid>
 </ion-content>

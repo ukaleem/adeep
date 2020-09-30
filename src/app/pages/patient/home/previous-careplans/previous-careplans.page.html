@@ -1,0 +1,63 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+      <ion-buttons color="light" size="small" slot="start">
+          <ion-back-button defaultHref='/patient/tabs/home' color="light" size="small" menu="m1"></ion-back-button>
+      </ion-buttons>
+      <ion-item class='bg-none' lines="none">
+          <ion-title color="light" class="ion-text-center">
+            Previous care plans
+          </ion-title>
+          <ion-icon color="light" name="search"
+              slot="end">
+          </ion-icon> 
+      </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]='true'>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="label-div">
+          <ion-label>Care Pathway Name</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>Doctor Kaleem</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div class="label-div">
+          <ion-label>Specialty</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>MMBS</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div class="label-div">
+          <ion-label>Related Disease</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>Fever</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div class="label-div">
+          <ion-label>Status</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>Active</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

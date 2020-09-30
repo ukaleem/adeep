@@ -6,9 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  segmentVelue = 'onGoingCarePlan';
+  loading =  true;
   isSearch: false;
   data = [];
-  constructor() { }
+  constructor() { 
+
+    this.loading = false;
+  }
 
   ngOnInit() {
   }
@@ -18,6 +23,11 @@ export class HomePage implements OnInit {
   }
   doRefresh(ev){
 
+  }
+
+  changeSegment(ev) {
+    this.segmentVelue = ev.detail.value;
+    console.log(this.segmentVelue);
   }
 
 }
