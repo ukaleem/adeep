@@ -6,10 +6,15 @@ import { ConfigService } from './config.service';
 })
 export class EndpointsService {
 
+  // AUTHS
   GET_TOKEN = this.config.SERVER_API+'oauth2/token';
   GET_LOGIN_USER_ID = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extraRest/login-user';
   SET_USER_TOKEN= ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE + 'extraRest/set-user-token';
+  UPDATE_PROFILE= ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/user/update';
+ 
+  ///Cases
   GET_ALL_CASES = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases';
+  GET_ALL_USERS = ConfigService.SERVER_ADDRESS + '/api/1.0/'+ConfigService.WORKSPACE+'users';
   GET_ALL_DRAFT_CASES = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases/draft';
   GET_ALL_UNASSIGNED_CASES = ConfigService.SERVER_ADDRESS+'/api/1.0/' + ConfigService.WORKSPACE+'cases/unassigned'
   GET_ALL_CASES_START = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases/start-cases';
@@ -46,14 +51,22 @@ export class EndpointsService {
   CASE_NOTES(APP_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases/'+APP_ID+'/notes';
   }
+  CASE_NOTES_ADD(APP_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases/'+APP_ID+'/note';
+  }
   GET_FEEDS(APP_ID, TASK_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/feed_backs/'+APP_ID+'/'+TASK_ID;
   }
   GET_GUIDE(APP_ID, TASK_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_guide_line/'+APP_ID+'/'+TASK_ID;
   }
-
-
+  GET_ASSIGNEE(APP_ID, TASK_ID){
+    // return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'project/'+APP_ID+'/activity/'+TASK_ID+'/assignee';
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_task_user/'+APP_ID+'/'+TASK_ID;
+  }
+  RE_ASSIGN_CASE(APP_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/case/'+APP_ID+'/reassign-case';
+  }
   //////////ADmin APIS
   GET_PATIENTS(){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_patients';
@@ -78,7 +91,9 @@ export class EndpointsService {
   }
   START_PATHWAY = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/start_case';
   CREATE_USER = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'user';
-  
+  GET_USER_INFORMATION(U_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'user/'+U_ID;
+  }
   /////Feed Backs
   GET_ALL_FEED(U_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_all_feed_back/'+U_ID;
@@ -99,5 +114,11 @@ export class EndpointsService {
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/change_notification/'+N_ID;
   }
   
+
+  // patirnts
+
+  PATIENT_PATHWAY(P_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_path_pathways/'+P_ID;
+  }
   constructor(private config: ConfigService) { }
 }

@@ -26,7 +26,114 @@
 
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]='true' *ngIf="allWorking.length">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-segment class='my-segment' (ionChange)="changeSegment($event)" value="current">
+          <ion-segment-button active value="current">
+              <ion-label>Current</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="pass">
+            <ion-label>Passed</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid *ngIf="segmentValue == 'current'">
+    <ion-row class='list-bg' *ngFor="let p of allWorking" (click)="presentModal(p)">
+      <ion-col size="6">
+        <div>
+          <ion-item class='bg-none' lines='none'>
+            <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon>
+            <ion-label class="af-icon-label">
+              {{p.PRO_TITLE}}
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div>
+          <ion-item class='bg-none' lines='none' >
+            <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
+            <ion-label class="af-icon-label"> {{p.SPECIALTY_NAME}}
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div>
+          <ion-item class='bg-none' lines='none'>
+            <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+            <ion-label class="af-icon-label">
+              {{p.descriptions}}
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div>
+          <ion-item class='bg-none' lines='none'>
+            <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon>
+            <ion-label class="af-icon-label"> {{p.APP_STATUS}}
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="segmentValue == 'pass'">
+    <ion-row class='list-bg' *ngFor="let p of allPassed" (click)="presentModal(p)">
+      <ion-col size="6">
+        <div>
+          <ion-item class='bg-none' lines='none'>
+            <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon>
+            <ion-label class="af-icon-label">
+              {{p.PRO_TITLE}}
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div>
+          <ion-item class='bg-none' lines='none' >
+            <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
+            <ion-label class="af-icon-label"> {{p.SPECIALTY_NAME}}
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div>
+          <ion-item class='bg-none' lines='none'>
+            <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+            <ion-label class="af-icon-label">
+              {{p.descriptions}}
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div>
+          <ion-item class='bg-none' lines='none'>
+            <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon>
+            <ion-label class="af-icon-label"> {{p.APP_STATUS}}
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>
+
+<ion-content [fullscreen]='true' *ngIf="!allWorking.length">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>

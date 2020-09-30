@@ -11,12 +11,15 @@ import { SharedModule } from './shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { FeedBackSortingFilterPopoverPage } from './shared/popovers/feed-backsorting-popovers';
 import { AddFeedComponent } from './pages/admin/feedbacks/add-feed/add-feed.component';
+import { AddUserComponent } from './pages/admin/users-list/add-user/add-user.component';
 // import { CustomSearchComponent } from './shared/custom-search/custom-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FeedBackSortingFilterPopoverPage,AddFeedComponent
+    FeedBackSortingFilterPopoverPage,
+    AddFeedComponent,
+    AddUserComponent
   ],
   imports: [HttpClientModule,FormsModule, BrowserModule, IonicModule.forRoot(), SharedModule, AppRoutingModule],
   providers: [
@@ -25,7 +28,9 @@ import { AddFeedComponent } from './pages/admin/feedbacks/add-feed/add-feed.comp
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   entryComponents: [
-    FeedBackSortingFilterPopoverPage,AddFeedComponent
+    FeedBackSortingFilterPopoverPage,
+    AddFeedComponent,
+    AddUserComponent
   ],
   bootstrap: [AppComponent]
 })

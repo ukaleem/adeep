@@ -59,6 +59,9 @@
         <ion-button *ngIf="showFeedBack" shape='round' fill="outline" shape='round' (click)="feedBack()" expand="block">
           Add FeedBack
         </ion-button>
+        <ion-button *ngIf="showFeedBack" shape='round' fill="outline" shape='round' (click)="reAssignCase()" expand="block">
+          Re-Assign
+        </ion-button>
       </ion-col>
     </ion-row>
 
@@ -76,9 +79,17 @@
               Sorry! You have Not permission to case notes
             </ion-label>
           </ion-item>
+          <!-- <ion-button (click)="addNote()" shape='round' expand="block">
+            Add Notes
+          </ion-button> -->
         </ng-container>
         <ng-container *ngIf="notePermission">
-          <ion-button shape='round' expand="block">
+          <ion-item *ngFor="let nt of allNotes">
+            <ion-label>
+              {{nt.note_content}}
+            </ion-label>
+          </ion-item>
+          <ion-button (click)="addNote()" shape='round' expand="block">
             Add Notes
           </ion-button>
         </ng-container>

@@ -52,6 +52,35 @@ const routes: Routes = [
       },
 
       {
+        path: 'disease',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./diseases/diseases.module').then( m=> m.DiseasesPageModule),
+          }
+        ]
+      },
+      {
+        path: 'users',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./users-list/users-list.module').then( m=> m.UsersListPageModule),
+          }
+        ]
+      },
+
+      {
+        path: 'specialities',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./specialties/specialties.module').then(m => m.SpecialtiesPageModule),
+          }
+        ]
+      },
+
+      {
         path: 'profile',
         children: [
           {
@@ -97,6 +126,20 @@ const routes: Routes = [
     path: 'add-feedback',
     loadChildren: () => import('./add-feedback/add-feedback.module').then( m => m.AddFeedbackPageModule)
   },
+  {
+    path: 'diseases',
+    loadChildren: () => import('./diseases/diseases.module').then( m => m.DiseasesPageModule)
+  },
+  {
+    path: 'specialties',
+    loadChildren: () => import('./specialties/specialties.module').then( m => m.SpecialtiesPageModule)
+  },
+  {
+    path: 'users-list',
+    loadChildren: () => import('./users-list/users-list.module').then( m => m.UsersListPageModule)
+  },
+
+
 
 ];
 

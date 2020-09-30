@@ -43,7 +43,7 @@
                   <ion-label>First Name</ion-label>
                 </div>
                 <div class="data-div">
-                  <ion-label>Doctor Kaleem</ion-label>
+                  <ion-label>{{allData.usr_firstname}}</ion-label>
                 </div>
               </ion-col>
             </ion-row>
@@ -54,10 +54,66 @@
                   <ion-label>Last Name</ion-label>
                 </div>
                 <div class="data-div">
-                  <ion-label>MMBS</ion-label>
+                  <ion-label>{{allData.usr_lastname}}</ion-label>
                 </div>
               </ion-col>
             </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <div class="label-div">
+                  <ion-label>Email</ion-label>
+                </div>
+                <div class="data-div">
+                  <ion-label>{{allData.usr_email}}</ion-label>
+                </div>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <div class="label-div">
+                  <ion-label>Login Name</ion-label>
+                </div>
+                <div class="data-div">
+                  <ion-label>{{allData.usr_username}}</ion-label>
+                </div>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <div class="label-div">
+                  <ion-label>Position/Role</ion-label>
+                </div>
+                <div class="data-div">
+                  <ion-label>{{allData.usr_role}}</ion-label>
+                </div>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <div class="label-div">
+                  <ion-label>BirthDay</ion-label>
+                </div>
+                <div class="data-div">
+                  <ion-label>{{allData.usr_birthday}}</ion-label>
+                </div>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <div class="label-div">
+                  <ion-label>Address</ion-label>
+                </div>
+                <div class="data-div">
+                  <ion-label>{{allData.usr_address}}</ion-label>
+                </div>
+              </ion-col>
+            </ion-row>
+
           </ion-grid>
         </div>
       </ion-col>

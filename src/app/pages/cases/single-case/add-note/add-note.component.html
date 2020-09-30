@@ -1,0 +1,43 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons color="light" size="small" slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon color='light' name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-item class='bg-none' lines="none">
+      <ion-title color="light" class="ion-text-center">
+        Add Case Note
+      </ion-title>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="saveFeed(f)">
+    <div>
+      <ion-card-header>
+        <ion-row>
+          <ion-col size='12'>
+            <div>
+              <h6 style='margin:0px'><b>Note</b></h6>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row class="guide_line_row">
+          <ion-col size="12">
+            <ion-textarea required minlength="5" maxlength="500" [(ngModel)]="caseNote" name="feedBack" placeholder="Please Enter Case Note"></ion-textarea>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+      <ion-row>
+        <ion-col size="12">
+          <ion-button type="submit" [disabled]="!f.valid" expand="block" fill="solid" shape="round" color="primary">Save</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </form>
+
+</ion-content>

@@ -12,6 +12,9 @@ export class CasesService {
   getAllProcess() {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ALL_CASES,showLoading : true,showError : true});
   } 
+  getAllUsers () {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ALL_USERS, showLoading : true,showError : true});
+  }
   getDraftCases() {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ALL_DRAFT_CASES,showLoading : true,showError : true});
   }
@@ -68,5 +71,14 @@ export class CasesService {
   }
   caseGuide(app,task) {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_GUIDE(app ,task),showLoading : true,showError : false});
+  }
+  caseNotesAdd(app , frmData) {
+    return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.CASE_NOTES_ADD(app),showLoading : true,showError : false});
+  }
+  caseAssignee(app,task) {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ASSIGNEE(app ,task),showLoading : true,showError : false});
+  }
+  reAssignCase(app, frmData) {
+    return this.api.commonPut(frmData,{isToken :false,endPointUrl : this.endPoints.RE_ASSIGN_CASE(app),showLoading : true,showError : false});
   }
 }
