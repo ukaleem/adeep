@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+      <ion-buttons color="light" size="small" slot="start">
+          <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
+      </ion-buttons>
+      <ion-item class='bg-none' lines="none">
+          <ion-title color="light" class="ion-text-center">
+            Patients Dashboard
+          </ion-title>
+          <ion-icon color="light" name="search"
+              slot="end">
+          </ion-icon>
+      </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]='true' *ngIf="data.length">
+</ion-content>
+
+<ion-content [fullscreen]='true' *ngIf="!data.length">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-img src="../../../../assets/alerts/NoDataFound.svg">
+  </ion-img>
+</ion-content>

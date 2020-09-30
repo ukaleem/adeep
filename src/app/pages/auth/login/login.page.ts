@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
           localStorage.setItem("token_time", new Date().toDateString());
           this.getUserRoles();
         }
-        //
+        //  
       },
       (error) => {
         console.log(error);
@@ -68,7 +68,8 @@ export class LoginPage implements OnInit {
         localStorage.setItem("id", data.uid);
         localStorage.setItem("name", data.firstname);
         localStorage.setItem("role", data.user_role);
-        this.app.userName = data.firstname;
+        localStorage.setItem("username", data.username);
+        this.app.userName = data.firstname;  
         this.app.userRole = data.user_role;
 
         if (data.user_role == "ADMIN_OFFICE" || data.user_role == "admin_office") {
@@ -85,9 +86,9 @@ export class LoginPage implements OnInit {
           this.app.DOCTOR = true;
           this.navCtrl.navigateRoot("/cases");
           this.toastService.SuccessToast('' + data.user_role + ' Login Successfully!', 2000);
-        } else if (data.user_role == "All Patients" || data.user_role == "ALL_PATIENTS") {
+        } else if (data.user_role == "PATIENT_ROLES" || data.user_role == "patient_roles") {
           this.app.PATIENT = true;
-          this.navCtrl.navigateRoot("/cases");
+          this.navCtrl.navigateRoot("/patient");
           this.toastService.SuccessToast('' + data.user_role + ' Login Successfully!', 2000);
         } else if (data.user_role == "Caretaker" ||data.user_role == "CARETAKER") {
           this.app.CARETAKER = true;

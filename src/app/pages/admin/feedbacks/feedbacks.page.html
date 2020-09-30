@@ -14,7 +14,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]='true'>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -47,7 +47,7 @@
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
     
-    <ng-container *ngIf="activeSegment == 'detail'">
+    <ng-container *ngIf="activeSegment == 'detail' && allFeedBack.new">
       <ion-row class='list-bg' style="margin-top: 5px;" *ngFor="let item of allFeedBack.new">
         <ion-col (click)="viewFeedBack(item.FEED_ID)">
 
@@ -72,7 +72,7 @@
       </ion-row>
     </ng-container>
 
-    <ng-container *ngIf="activeSegment == 'my'">
+    <ng-container *ngIf="activeSegment == 'my' && allFeedBack.my">
       <ion-row class='list-bg' style="margin-top: 5px;" *ngFor="let item of allFeedBack.my">
         <ion-col (click)="viewFeedBack(item.FEED_ID)">
           <ion-item class="bg-none" lines='none'>
@@ -96,7 +96,7 @@
       </ion-row>
     </ng-container>
 
-    <ng-container *ngIf="activeSegment == 'replied'">
+    <ng-container *ngIf="activeSegment == 'replied' && allFeedBack.all">
       <ion-row class='list-bg' style="margin-top: 5px;" *ngFor="let item of allFeedBack.all">
         <ion-col (click)="viewFeedBack(item.FEED_ID)">
           <ion-item class="bg-none" lines='none'>

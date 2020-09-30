@@ -5,6 +5,8 @@ import { CasesService } from 'src/app/services/pages-apis/cases.service';
 import { InAppBrowserOptions, InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { ToastService } from 'src/app/services/toast.service';
 import { AddFeedComponent } from '../../admin/feedbacks/add-feed/add-feed.component';
+import { AddNoteComponent } from '../single-case/add-note/add-note.component';
+import { ReAssignComponent } from './re-assighn/re-assighn.component';
 
 @Component({
   selector: 'app-single-page',
@@ -70,6 +72,9 @@ export class SinglePagePage implements OnInit {
   loadGuide(){
     this.casesService.caseGuide(this.projectId,this.currentTaskId).subscribe(data=> {
       this.guide = `Sorry No guide Available`;
+      if(data.all_data.guide_line){
+        this.guide = data.all_data.guide_line;
+      }
       console.log(data);
     }, err=> {
       this.guide = `Sorry, we Are Working on this....to Load guide`;
@@ -80,6 +85,7 @@ export class SinglePagePage implements OnInit {
   getCaseNotes(){
     this.casesService.caseNotes(this.caseId).subscribe(data => {
       console.log(data);
+      this.allNotes = data;
     }, error=> {
       this.notePermission = false;
       console.log(error.error);
@@ -414,6 +420,21 @@ export class SinglePagePage implements OnInit {
     item.itemValue = this.checkBoxOptions;
   }
   doNextStep(form) {
+    this.casesService.caseRoute(null, this.caseId).subscribe(data2 => {
+      this.toaster.SuccessToast('Success Fully Submit Case', 2000);
+      this.navCtrl.back();
+    }, error=> {
+      console.log('AS' , error.error.error.code)
+      if(error.error.error.code == 400){
+        this.toaster.ErrorToast('This Case is Already Submit, please go back', 3000);
+      }else if(error.error.error.code == 401){
+        this.toaster.ErrorToast('This is Un Authorizes', 3000);
+      }else {
+        //this.navCtrl.back();
+      }
+      this.rout.navigateByUrl('cases/all-cases');
+    });
+    return;
     console.log('From DE Next Step');
     console.log(form);
     console.log(this.allVariables);
@@ -455,14 +476,14 @@ export class SinglePagePage implements OnInit {
     const browser = this.iab.create(url3, '_self', xyz);
     browser.on('exit').subscribe(test => {
       console.log('Broswe Close now backe');
-      this.rout.navigateByUrl('cases/all-cases');
+      // this.rout.navigateByUrl('cases/all-cases');
     });
 
     browser.on('message').subscribe(msg => {
 
       console.log(msg);
       browser.close();
-      this.rout.navigateByUrl('cases/all-cases');
+      // this.rout.navigateByUrl('cases/all-cases');
     });
 
     browser.on('loadstart').subscribe(msg => {
@@ -471,7 +492,7 @@ export class SinglePagePage implements OnInit {
         browser.close();
       }
 
-      this.rout.navigateByUrl('cases/all-cases');
+      // this.rout.navigateByUrl('cases/all-cases');
     })
   }
 
@@ -516,5 +537,46 @@ export class SinglePagePage implements OnInit {
     return await modal.present();
   }
 
+  async addNote() {
+    const modal = await this.modalCtrl.create({
+      component: AddNoteComponent,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        taskID: this.currentTaskId,
+         ProjectID: this.projectId,
+         AppID: this.application_id,
+         fromType: '1',
+          i: 2
+      }
+    });
+    modal.onDidDismiss().then(data=> {
+      if(data.role == 'ok'){
+        this.getCaseNotes();
+      }
+    })
+    return await modal.present();
+  }
+
+  async reAssignCase() {
+    const modal = await this.modalCtrl.create({
+      component: ReAssignComponent,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        taskID: this.currentTaskId,
+         ProjectID: this.projectId,
+         AppID: this.application_id,
+         fromType: '1',
+          i: 2
+      }
+    });
+    modal.onDidDismiss().then(data=> {
+      if(data.role == 'ok'){
+        this.rout.navigateByUrl('cases/all-cases');
+      }
+    })
+    return await modal.present();
+  }
+
+  
 }
 

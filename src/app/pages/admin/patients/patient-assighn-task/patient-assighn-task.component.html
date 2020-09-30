@@ -7,7 +7,7 @@
       </ion-buttons>
       <ion-item class='bg-none' lines="none">
           <ion-title color="light" class="ion-text-center">
-           Add new Patient
+           Assign Pathway
           </ion-title>
       </ion-item>
   </ion-toolbar>
@@ -20,7 +20,7 @@
       <ion-row>
         <ion-col (click)="patientAssignTask('d')">
           <ion-label for="user" class="ion-label"> Select Disease* </ion-label>
-          <ion-input required minlength="3" maxlength="40" readonly name="p_email" [(ngModel)]="selectDisease.name"
+          <ion-input required minlength="3" maxlength="200" readonly name="p_email" [(ngModel)]="selectDisease.name"
             ngModel #pkgDescriptionCtrl="ngModel" class="input" id="patientEmail" type="text" placeholder="Disease">
           </ion-input>
         </ion-col>
@@ -31,7 +31,7 @@
           <ion-label for="user" class="ion-label">
             Select Specialty
           </ion-label>
-          <ion-input required minlength="3" maxlength="40" readonly name="p_email2" [(ngModel)]="selectSpecialty.name"
+          <ion-input required minlength="3" maxlength="200" readonly name="p_email2" [(ngModel)]="selectSpecialty.name"
             ngModel #pkgDescriptionCtrl="ngModel" class="input" id="patientEmail2" type="text" placeholder="Specialty">
           </ion-input>
         </ion-col>
@@ -67,8 +67,7 @@
 
       <ion-row>
         <ion-col>
-          <ion-button type="submit" [disabled]="!f.valid" expand="block" fill="solid" shape="round" color="primary">Save
-            patient</ion-button>
+          <ion-button type="submit" [disabled]="!f.valid" expand="block" fill="solid" shape="round" color="primary">Save</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

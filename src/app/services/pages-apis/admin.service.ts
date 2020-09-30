@@ -22,7 +22,7 @@ export class AdminService {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.SINGLE_PATIENT_TASK(p,a),showLoading : true, showError : true});
   } 
   allDisease() {
-    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.ALL_DISEASE,showLoading : true, showError : true});
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.ALL_DISEASE,showLoading : false, showError : true});
   } 
   allSpecialties() {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.ALL_SPECIALTY,showLoading : true, showError : true});

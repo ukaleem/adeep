@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { IonSearchbar, ModalController } from '@ionic/angular';
 import { AdminService } from 'src/app/services/pages-apis/admin.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { AdminService } from 'src/app/services/pages-apis/admin.service';
   styleUrls: ['./custom-search.component.scss'],
 })
 export class CustomSearchComponent implements OnInit {
+  @ViewChild('searchInput', {static: false}) searchInput: IonSearchbar;
   selectedDisease: any;
   @Input() search_for: any;
   @Input() search_id: any;
@@ -25,9 +26,9 @@ export class CustomSearchComponent implements OnInit {
 
   changeSearch(e){
     if(this.search_for == 'd'){
-      this.searchDisease(e.detail.value)
+      this.searchDisease(e.detail.value);
     }else if(this.search_for == 's'){
-      this.searchSpecialties(e.detail.value)
+      this.searchSpecialties(e.detail.value);
     }     
     console.log(e.detail.value);
   }
@@ -46,6 +47,7 @@ export class CustomSearchComponent implements OnInit {
   loadDieses(){
     this.admin.allDisease().subscribe(data=> {
       this.allLoadData = data.all_data;
+      this.searchInput.setFocus();
     })
   }
 

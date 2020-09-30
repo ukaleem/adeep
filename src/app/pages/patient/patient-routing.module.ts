@@ -5,8 +5,46 @@ import { PatientPage } from './patient.page';
 
 const routes: Routes = [
   {
-    path: '',
-    component: PatientPage
+    path: 'tabs',
+    component: PatientPage,
+    children: [
+      {
+        path: 'home',
+        loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+      },
+      {
+        path: 'feedbacks',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./feedbacks/feedbacks.module').then(m => m.FeedbacksPageModule),
+          }
+        ]
+      },
+      {
+        path: 'notifications',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./notifications/notifications.module').then(m => m.NotificationsPageModule),
+          }
+        ]
+      },
+      {
+        path: 'dashboard',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule),
+          }
+        ]
+      },
+      {
+        path: '',
+        redirectTo: '/patient/tabs/home',
+        pathMatch: 'full'
+      }
+    ]
   },
   {
     path: 'home',
@@ -19,6 +57,11 @@ const routes: Routes = [
   {
     path: 'feedbacks',
     loadChildren: () => import('./feedbacks/feedbacks.module').then( m => m.FeedbacksPageModule)
+  },
+  {
+    path: '',
+    redirectTo: '/patient/tabs/home',
+    pathMatch: 'full'
   }
 ];
 
