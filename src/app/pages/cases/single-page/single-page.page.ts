@@ -5,6 +5,8 @@ import { CasesService } from 'src/app/services/pages-apis/cases.service';
 import { InAppBrowserOptions, InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { ToastService } from 'src/app/services/toast.service';
 import { AddFeedComponent } from '../../admin/feedbacks/add-feed/add-feed.component';
+import { AddNoteComponent } from '../single-case/add-note/add-note.component';
+import { ReAssignComponent } from './re-assighn/re-assighn.component';
 
 @Component({
   selector: 'app-single-page',
@@ -83,6 +85,7 @@ export class SinglePagePage implements OnInit {
   getCaseNotes(){
     this.casesService.caseNotes(this.caseId).subscribe(data => {
       console.log(data);
+      this.allNotes = data;
     }, error=> {
       this.notePermission = false;
       console.log(error.error);
@@ -534,5 +537,46 @@ export class SinglePagePage implements OnInit {
     return await modal.present();
   }
 
+  async addNote() {
+    const modal = await this.modalCtrl.create({
+      component: AddNoteComponent,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        taskID: this.currentTaskId,
+         ProjectID: this.projectId,
+         AppID: this.application_id,
+         fromType: '1',
+          i: 2
+      }
+    });
+    modal.onDidDismiss().then(data=> {
+      if(data.role == 'ok'){
+        this.getCaseNotes();
+      }
+    })
+    return await modal.present();
+  }
+
+  async reAssignCase() {
+    const modal = await this.modalCtrl.create({
+      component: ReAssignComponent,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        taskID: this.currentTaskId,
+         ProjectID: this.projectId,
+         AppID: this.application_id,
+         fromType: '1',
+          i: 2
+      }
+    });
+    modal.onDidDismiss().then(data=> {
+      if(data.role == 'ok'){
+        this.rout.navigateByUrl('cases/all-cases');
+      }
+    })
+    return await modal.present();
+  }
+
+  
 }
 
