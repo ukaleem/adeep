@@ -46,7 +46,7 @@ export class PatientSingleTaskComponent implements OnInit {
     this.admin.singlePatientTask(this.PROJECT_ID,this.APP_ID).subscribe(data=> {
       console.log(data);
       this.taskData = data;
-    })
+    });
   }
 
 

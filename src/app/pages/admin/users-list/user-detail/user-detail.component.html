@@ -1,0 +1,90 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-item class='bg-none' lines='none'>
+      <ion-icon name="chevron-back" color="light" slot="start" [routerLink]="['/admin/tabs/home']"></ion-icon>
+      <ion-label class="ion-text-center" color='light'> User Details
+      </ion-label>
+     <ion-button (click)="editUser()">
+      <ion-icon name="create" slot="end" color="light" size="small"></ion-icon>
+     </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" translucent='true'>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid >
+    <ion-row>
+      <ion-col>
+        <div class="label-div">
+          <ion-label>First Name</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{userDetails.usr_firstname}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="label-div">
+          <ion-label>Last Name</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{userDetails.usr_lastname}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="label-div">
+          <ion-label>User Name</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{userDetails.usr_username}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="label-div">
+          <ion-label>User Email</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{userDetails.usr_email}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="label-div">
+          <ion-label>User Address</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{userDetails.usr_address}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="label-div">
+          <ion-label>User Role </ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{userDetails.usr_role}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="label-div">
+          <ion-label>User Status </ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{userDetails.usr_status}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

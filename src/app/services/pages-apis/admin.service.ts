@@ -12,6 +12,12 @@ export class AdminService {
   getPatients() {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_PATIENTS(),showLoading : true, showError : true});
   }
+  singleUser(user_id: any) {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.SINGLE_USER(user_id),showLoading : true, showError : true});
+  }
+  addUser(frmData) {
+    return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.ADD_USERS(),showLoading : true, showError : true});
+  }
   addPatient(frmData) {
     return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.ADD_PATIENTS(),showLoading : true, showError : true});
   } 

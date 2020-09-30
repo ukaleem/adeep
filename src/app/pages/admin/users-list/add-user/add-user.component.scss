@@ -6,13 +6,21 @@ ion-content {
     background-color: white;
 }
 
-.input{
+.input {
     border:none;
     padding:15px 20px;
     border-radius:5px;
     color: black;
     height: 48px;
-	  background:var(--ion-color-secondary);
+	background:var(--ion-color-secondary);
+  }
+  ion-select {
+    border:none;
+    padding:15px 20px;
+    border-radius:5px;
+    color: black;
+    height: 48px;
+	background:var(--ion-color-secondary);
   }
   .input-textarea {
     border:none;
@@ -45,7 +53,7 @@ ion-content {
   ion-row {
       padding-bottom: 10px;
   }
-  ion-row ion-col ion-input{
+  ion-row ion-col ion-input ion-textarea{
       margin-top: 0px;
   }
   .main-container{
