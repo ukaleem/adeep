@@ -1,0 +1,178 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+      <ion-buttons color="light" size="small" slot="start">
+          <ion-back-button color="light" size="small" defaultHref='/admin/tabs/home'></ion-back-button>
+      </ion-buttons>
+      <ion-item class='bg-none' lines="none">
+          <ion-title color="light" class="ion-text-center">
+           Add new User
+          </ion-title>
+      </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form #f="ngForm" (ngSubmit)="saveUser(f)">
+    <ion-grid class='main-grid'>
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> First Name* </ion-label>
+          <ion-input
+            required
+            minlength="3"
+            maxlength="200"
+            name="u_f_name"
+            [(ngModel)]="frmData.usr_firstname"
+            ngModel
+            #jobTitleCtrl="ngModel"
+            class="input"
+            id="firstName"
+            type="text"
+            placeholder="First Name?"
+          >
+          </ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label">Last Name*</ion-label>
+            <ion-input
+              class="input"
+              required
+              type="text"
+              name="user_last_nmae"
+              ngModel
+              #searchTagCtrl="ngModel"
+              [(ngModel)]="frmData.usr_lastname"
+              placeholder="Last Name?"
+            >
+            </ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> Username* </ion-label>
+          <ion-input
+            required
+            minlength="1"
+            maxlength="3"
+            min= 1
+            max = 105
+            name="user_name"
+            [(ngModel)]="user_name"
+            ngModel
+            #pkgNameCtrl="ngModel"
+            class="input"
+            id="user_name"
+            type="number"
+            placeholder="User Name"
+          >
+          </ion-input>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> User Email* </ion-label>
+          <ion-input
+            required
+            minlength="5"
+            maxlength="40"
+            name="p_email"
+            [(ngModel)]="frmData.usr_email"
+            ngModel
+            #pkgDescriptionCtrl="ngModel"
+            class="input"
+            id="userEmail"
+            type="email"
+            placeholder="User Email?"
+          >
+          </ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> User Address* </ion-label>
+          <ion-textarea #pkgDescriptionCtrl="ngModel" [(ngModel)]="frmData.user_address" required placeholder="Please Enter the Feed Back" name="user_address" placeholder="User Address"></ion-textarea>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label">Zip Code* </ion-label>
+          <ion-input
+            required
+            minlength="5"
+            maxlength="40"
+            name="p_date"
+            [(ngModel)]="regDate"
+            ngModel
+            #deliveryTimeCtrl="ngModel"
+            class="input"
+            id="regDate"
+            type="date"
+            placeholder="eg. Registration Date? "
+          >
+          </ion-input>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> New Password* </ion-label>
+          <ion-input
+            required
+            minlength="5"
+            maxlength="40"
+            name="p_phone_no"
+            [(ngModel)]="frmData.usr_email"
+            ngModel
+            #pkgPriceCtrl="ngModel"
+            class="input"
+            id="phoneNo"
+            type="number"
+            placeholder="eg. Phone No?$"
+          >
+          </ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> Confirm Password* </ion-label>
+          <ion-input
+            minlength="4"
+            maxlength="8"
+            name="p_zip_code"
+            [(ngModel)]="frmData.usr_zip_code"
+            ngModel
+            #pkgPriceCtrl="ngModel"
+            class="input"
+            id="postalCode"
+            type="number"
+            placeholder="eg. Postal Code?$"
+          >
+          </ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button
+            type="submit"
+            [disabled]="!f.valid"
+            expand="block"
+            fill="solid"
+            shape="round"
+            color="primary"
+            >Save User</ion-button
+          >
+        </ion-col>
+    </ion-row>
+    </ion-grid>
+  </form>
+</ion-content> 

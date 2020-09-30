@@ -10,6 +10,7 @@ export class EndpointsService {
   GET_LOGIN_USER_ID = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extraRest/login-user';
   SET_USER_TOKEN= ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE + 'extraRest/set-user-token';
   GET_ALL_CASES = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases';
+  GET_ALL_USERS = ConfigService.SERVER_ADDRESS + '/api/1.0/'+ConfigService.WORKSPACE+'users';
   GET_ALL_DRAFT_CASES = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases/draft';
   GET_ALL_UNASSIGNED_CASES = ConfigService.SERVER_ADDRESS+'/api/1.0/' + ConfigService.WORKSPACE+'cases/unassigned'
   GET_ALL_CASES_START = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases/start-cases';

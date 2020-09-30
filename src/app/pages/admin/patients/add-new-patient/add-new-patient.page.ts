@@ -43,7 +43,8 @@ export class AddNewPatientPage implements OnInit {
     usr_phone: ''
   }
 
-  constructor(private admin: AdminService,
+  constructor(
+    private admin: AdminService,
     private location: Location,
     private mdlCtrl: ModalController) { }
 

@@ -65,6 +65,37 @@
               <ion-button class="right-button" color="light" fill="outline">6</ion-button>
             </ion-item>
           </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item lines='none' button [routerLink]="['/','admin','tabs','disease']">
+              <div slot='start'>
+                <img class="segment-img" src="../assets/icon/participated.svg">
+              </div>
+              <ion-label> Disease
+              </ion-label>
+              <ion-button class="right-button" color="light" fill="outline">6</ion-button>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item lines='none' button [routerLink]="['/','admin','tabs','specialities']">
+              <div slot='start'>
+                <img class="segment-img" src="../assets/icon/participated.svg">
+              </div>
+              <ion-label> Specialties
+              </ion-label>
+              <ion-button class="right-button" color="light" fill="outline">6</ion-button>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item lines='none' button [routerLink]="['/','admin','tabs','users']">
+              <div slot='start'>
+                <img class="segment-img" src="../assets/icon/participated.svg">
+              </div>
+              <ion-label> 
+                Users
+              </ion-label>
+              <ion-button class="right-button" color="light" fill="outline">6</ion-button>
+            </ion-item>
+          </ion-menu-toggle>
 
           <ion-menu-toggle *ngIf="ADMIN_OFFICE || PROCESSMAKER_ADMIN || PHYSICIAN || CARETAKER || DOCTOR">
             <ion-item lines='none' button  [routerLink]="['/','cases','draft-cases']">
