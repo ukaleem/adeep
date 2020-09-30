@@ -113,5 +113,11 @@ export class EndpointsService {
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/change_notification/'+N_ID;
   }
   
+
+  // patirnts
+
+  PATIENT_PATHWAY(P_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_path_pathways/'+P_ID;
+  }
   constructor(private config: ConfigService) { }
 }

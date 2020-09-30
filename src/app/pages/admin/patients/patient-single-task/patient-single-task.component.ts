@@ -13,6 +13,9 @@ export class PatientSingleTaskComponent implements OnInit {
 
   @Input() APP_ID: any;
   @Input() PROJECT_ID: any;
+  @Input() type: any;
+  @Input() status: any;
+
   segmentVelue = 'current';
   taskData :any = [];
   constructor(private admin: AdminService, 

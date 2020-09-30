@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
           localStorage.setItem("token_time", new Date().toDateString());
           this.getUserRoles();
         }
-        //
+        //  
       },
       (error) => {
         console.log(error);
@@ -68,7 +68,8 @@ export class LoginPage implements OnInit {
         localStorage.setItem("id", data.uid);
         localStorage.setItem("name", data.firstname);
         localStorage.setItem("role", data.user_role);
-        this.app.userName = data.firstname;
+        localStorage.setItem("username", data.username);
+        this.app.userName = data.firstname;  
         this.app.userRole = data.user_role;
 
         if (data.user_role == "ADMIN_OFFICE" || data.user_role == "admin_office") {
