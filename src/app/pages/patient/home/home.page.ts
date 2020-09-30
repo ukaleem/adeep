@@ -9,18 +9,19 @@ import { PatientSingleTaskComponent } from '../../admin/patients/patient-single-
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  segmentVelue = 'onGoingCarePlan';
+  loading =  true;
   isSearch: false;
   data = [];
   constructor(private patient: PatientService,
-    private mdlCtrl:ModalController) { }
+              private mdlCtrl: ModalController) { 
+      this.loading = false;
+    }
 
   segmentValue = 'current';
   allWorking:any = [];
   allPassed:any = [];
   ngOnInit() {
-  }
-  changeSegment(ev) {
-    this.segmentValue = ev.detail.value;
   }
   showSearch(){}
   closeSearch(){}
@@ -29,7 +30,10 @@ export class HomePage implements OnInit {
   doRefresh(ev){
 
   }
-
+  changeSegment(ev) {
+    this.segmentVelue = ev.detail.value;
+    console.log(this.segmentVelue);
+  }
   ionViewWillEnter(){
     this.loadData();
   }

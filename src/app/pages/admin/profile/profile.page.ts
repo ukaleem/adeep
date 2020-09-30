@@ -28,7 +28,7 @@ export class ProfilePage implements OnInit {
   changeSegment(ev) {
     this.segmentVelue = ev.detail.value;
     console.log(this.segmentVelue);
-  }
+  } 
 
 }
 //
