@@ -7,6 +7,7 @@ import { PhysicianService } from 'src/app/services/pages-apis/physician.service'
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  loading = true;
 
   constructor(private phy: PhysicianService) { }
 
@@ -15,6 +16,7 @@ export class HomePage implements OnInit {
 
   ionViewWillEnter(){
     this.loadData();
+    this.loading = false;
   }
   allData: any = [];
   loadData() {

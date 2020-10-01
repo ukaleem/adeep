@@ -4,19 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { PathwayPageRoutingModule } from './pathway-routing.module';
 
-import { HomePage } from './home.page';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { PathwayPage } from './pathway.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule,
-    SharedModule
+    PathwayPageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [PathwayPage]
 })
-export class HomePageModule {}
+export class PathwayPageModule {}

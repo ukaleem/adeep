@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -24,6 +25,10 @@ const routes: Routes = [
             loadChildren: () => import('../admin/dashboards/dashboards.module').then(m => m.DashboardsPageModule)
           }
         ]
+      },
+      {
+        path: 'pathway',
+        loadChildren: () => import('./pathway/pathway.module').then( m => m.PathwayPageModule)
       },
 
       {

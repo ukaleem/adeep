@@ -1,21 +1,29 @@
+<!-- <app-custom-loader></app-custom-loader> -->
+<app-custom-loader *ngIf="loading"></app-custom-loader>
 <ion-header class="ion-no-border">
-  <ion-toolbar>
-      <ion-buttons color="light" size="small" slot="start">
-          <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
-      </ion-buttons>
-      <ion-item class='bg-none' lines="none">
-          <!-- <ion-icon slot='start' color="primary" name="menu"  routerDirection='backward'></ion-icon> -->
-          <ion-title color="light" class="ion-text-center">
-            Pathways
-              <!-- <div class='ion-text-center'>
+  <ion-toolbar *ngIf="!isSearch">
+    <ion-buttons color="light" size="small" slot="start">
+      <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
+    </ion-buttons>
+    <ion-item class='bg-none' lines="none">
+      <!-- <ion-icon slot='start' color="primary" name="menu"  routerDirection='backward'></ion-icon> -->
+      <ion-title color="light" class="ion-text-center">
+        Pathways
+
+        <!-- <div class='ion-text-center'>
                   <img class='Logo-img' src="../../../../assets/images/Logo/skill-experts-white-01.svg" alt="" />
               </div> -->
-          </ion-title>
-          <ion-icon color="light" name="search"
-              slot="end">
-          </ion-icon>
-      </ion-item>
+      </ion-title>
+      <ion-icon color="light" name="search" slot="end" (click)="showSearch()">
+      </ion-icon>
+    </ion-item>
   </ion-toolbar>
+
+  <ion-toolbar *ngIf="isSearch">
+    <ion-searchbar (ionChange)="searchDetails($event)" (ionCancel)="closeSearch()" showCancelButton="always">
+    </ion-searchbar>
+  </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -24,7 +32,8 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-grid>
-    <ion-row class='list-bg' *ngFor="let single of allData" [routerLink]="['/','cases','single-page',single.PRO_UID]" routerLinkActive="router-link-active">
+    <ion-row class='list-bg' *ngFor="let single of allData" [routerLink]="['/','cases','single-page',single.PRO_UID]"
+      routerLinkActive="router-link-active">
       <ion-col size="6">
         <div>
           <ion-item class='bg-none' lines='none'>
@@ -37,26 +46,27 @@
       </ion-col>
       <ion-col size="6">
         <div>
-          <ion-item class='bg-none' lines='none' >
+          <ion-item class='bg-none' lines='none'>
             <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
-            <ion-label class="af-icon-label">  {{single.SPECIALTY_NAME}}
+            <ion-label class="af-icon-label"> {{single.SPECIALTY_NAME}}
             </ion-label>
           </ion-item>
         </div>
       </ion-col>
       <ion-col size="6">
         <div>
-          <ion-item class='bg-none' lines='none' >
-            <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+          <ion-item class='bg-none' lines='none'>
+            <ion-icon class="detail-icon"
+              src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
             <ion-label class="af-icon-label">
-             {{single.descriptions}}
+              {{single.descriptions}}
             </ion-label>
           </ion-item>
         </div>
       </ion-col>
       <ion-col size="6">
         <div>
-          <ion-item class='bg-none' lines='none' >
+          <ion-item class='bg-none' lines='none'>
             <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon>
             <ion-label class="af-icon-label"> {{single.PRO_UPDATE_DATE}}
             </ion-label>
