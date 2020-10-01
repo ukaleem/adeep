@@ -17,6 +17,8 @@ export class PatientSingleTaskComponent implements OnInit {
   @Input() type: any;
   @Input() status: any;
 
+  isPatient = false;
+  isComplete = false;
   segmentVelue = 'current';
   taskData: any = [];
   constructor(private admin: AdminService,
@@ -42,6 +44,13 @@ export class PatientSingleTaskComponent implements OnInit {
   }
 
   ionViewWillEnter() {
+    if(this.type == 'p'){
+      this.isPatient = true;
+    }
+    if(this.status == 'COMPLETED'){
+      this.isComplete = true;
+      this.segmentVelue = 'pass';
+    }
     this.loadData();
   }
 
@@ -119,6 +128,9 @@ export class PatientSingleTaskComponent implements OnInit {
 
   async feedBack(p) {
     console.log(p);
+    let frm = this.isPatient ? '2' : '3';
+    let i_am =  this.isPatient ? 3 : 1;
+   
     const modal = await this.modalCtrl.create({
       component: AddFeedComponent,
       cssClass: 'my-custom-class',
@@ -126,8 +138,8 @@ export class PatientSingleTaskComponent implements OnInit {
         taskID: p.TAS_UID,
         ProjectID: p.PRO_UID,
         AppID: p.APP_UID,
-        fromType: '3',
-        i: 1
+        fromType: frm,
+        i: i_am
       }
     });
     return await modal.present();

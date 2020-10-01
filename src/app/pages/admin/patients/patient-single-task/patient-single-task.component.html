@@ -22,10 +22,10 @@
     <ion-row>
       <ion-col>
         <ion-segment class='my-segment' (ionChange)="changeSegment($event)" value="current">
-          <ion-segment-button value="current">
+          <ion-segment-button value="current" *ngIf="!isComplete">
             <ion-label>Current</ion-label>
           </ion-segment-button>
-          <ion-segment-button value="come">
+          <ion-segment-button value="come" *ngIf="!isComplete">
             <ion-label>Coming</ion-label>
           </ion-segment-button>
           <ion-segment-button value="pass">

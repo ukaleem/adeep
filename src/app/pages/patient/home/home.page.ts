@@ -9,7 +9,6 @@ import { PatientSingleTaskComponent } from '../../admin/patients/patient-single-
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  segmentVelue = 'onGoingCarePlan';
   loading =  true;
   isSearch: false;
   data = [];
@@ -31,8 +30,8 @@ export class HomePage implements OnInit {
 
   }
   changeSegment(ev) {
-    this.segmentVelue = ev.detail.value;
-    console.log(this.segmentVelue);
+    this.segmentValue = ev.detail.value;
+    console.log(this.segmentValue);
   }
   ionViewWillEnter(){
     this.loadData();

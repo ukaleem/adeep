@@ -8,10 +8,14 @@ import { CasesService } from 'src/app/services/pages-apis/cases.service';
   styleUrls: ['./cases.page.scss'],
 })
 export class CasesPage implements OnInit {
-  ROLE_PATIENT = false;
+  ROLE_ADMIN = false;
+  ROLE_PHYSICIAN = false;
   constructor(private casesService : CasesService) { 
-    if (localStorage.getItem('role') == "ADMIN_OFFICE" || localStorage.getItem('role') == "PROCESSMAKER_ADMIN" ){
-      this.ROLE_PATIENT = true;
+    const ROLE = localStorage.getItem('role');
+    if (ROLE == "ADMIN_OFFICE" || ROLE == "PROCESSMAKER_ADMIN" ){
+      this.ROLE_ADMIN = true;
+    }else if (ROLE == "PHYSICIAN"){
+      this.ROLE_PHYSICIAN = true;
     }
    }
 

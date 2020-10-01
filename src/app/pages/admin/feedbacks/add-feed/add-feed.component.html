@@ -22,7 +22,7 @@
             <ion-row>
               <ion-col size="6">
                 <ion-item lines="none">
-                  <ion-checkbox slot="end" [(ngModel)]="to_patient" name="to_patient1"></ion-checkbox>
+                  <ion-checkbox [disabled]="i_am == 'Patient'" slot="end" [(ngModel)]="to_patient" name="to_patient1"></ion-checkbox>
                   <ion-label class="radio-label"><b>Patient</b></ion-label>
                 </ion-item>
               </ion-col>
