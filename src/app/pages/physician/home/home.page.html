@@ -32,7 +32,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-grid>
-    <ion-row class='list-bg' *ngFor="let single of allData" [routerLink]="['/','cases','single-page',single.PRO_UID]"
+    <ion-row class='list-bg' *ngFor="let single of allData" [routerLink]="['/','physician','pathway',single.PRO_UID]"
       routerLinkActive="router-link-active">
       <ion-col size="6">
         <div>
