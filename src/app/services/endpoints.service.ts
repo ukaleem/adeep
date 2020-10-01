@@ -76,6 +76,9 @@ export class EndpointsService {
   GET_PHYSICIAN_HOME(USER_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_physician_home/'+USER_ID;
   }
+  GET_PHYSICIAN_PATH(PROJECT_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_pathway_detail/'+PROJECT_ID;
+  }
   //////////ADmin APIS
   GET_PATIENTS(){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_patients';

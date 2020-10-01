@@ -19,6 +19,7 @@ export class PatientSingleTaskComponent implements OnInit {
 
   isPatient = false;
   isComplete = false;
+  isPhysician = false;
   segmentVelue = 'current';
   taskData: any = [];
   constructor(private admin: AdminService,
@@ -46,6 +47,8 @@ export class PatientSingleTaskComponent implements OnInit {
   ionViewWillEnter() {
     if(this.type == 'p'){
       this.isPatient = true;
+    }else if(this.type == 'ph'){
+      this.isPhysician = true;
     }
     if(this.status == 'COMPLETED'){
       this.isComplete = true;
@@ -53,7 +56,7 @@ export class PatientSingleTaskComponent implements OnInit {
     }
     this.loadData();
   }
-
+  
   getTaskName(task) {
     let xyz = task.split("/", 3);
     return xyz[0];
@@ -130,7 +133,10 @@ export class PatientSingleTaskComponent implements OnInit {
     console.log(p);
     let frm = this.isPatient ? '2' : '3';
     let i_am =  this.isPatient ? 3 : 1;
-   
+    if(this.isPhysician){
+      frm = '5';
+      i_am = 5;
+    }
     const modal = await this.modalCtrl.create({
       component: AddFeedComponent,
       cssClass: 'my-custom-class',

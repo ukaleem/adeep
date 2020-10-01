@@ -41,7 +41,11 @@ const routes: Routes = [
         ]
       }
     ]
-  }
+  },
+  {
+    path: 'pathway/:id',
+    loadChildren: () => import('./pathway/pathway.module').then( m => m.PathwayPageModule)
+  },
 ];
 //../../feedbacks/feedbacks.module
 @NgModule({

@@ -1,9 +1,174 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>pathway</ion-title>
+    <ion-item class='bg-none' lines='none'>
+      <ion-icon name="chevron-back" color="light" slot="start" [routerLink]="['/physician/home']"></ion-icon>
+      <ion-label class="ion-text-center" color='light'> Pathway Detail
+      </ion-label>
+      <ion-icon name="none" slot="end" color="light" size="small"></ion-icon>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true" translucent='true'>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div>
+          <ion-segment class='my-segment' (ionChange)="segmentChanged($event)" value="current">
+            <ion-segment-button active value="current">
+              <ion-label>Current</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="passed">
+              <ion-label>Passed</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="tasks">
+              <ion-label>Tasks</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Current Details -->
+  <ion-grid *ngIf="activeSegment==='current'">
+    <h2>Current</h2>
+    <ng-container *ngIf="allCurrent.length">
+      <ion-row class='list-bg' *ngFor="let  single of allCurrent" (click)="presentModal(single.APP_UID,'DRAFT')">
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon>
+              <ion-label class="af-icon-label">
+                {{single.PATIENT_NAME}}
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
+              <ion-label class="af-icon-label"> {{single.PAITEINT_NAME}}
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <ion-icon class="detail-icon"
+                src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+              <ion-label class="af-icon-label">
+                {{single.PAITENT_AGE}}
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon>
+              <ion-label class="af-icon-label"> {{single.CREATE_DATE}}
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+    <ng-container *ngIf="!allCurrent.length">
+      <ion-row class='white-bg'>
+        <ion-col>
+          <ion-item class='bg-none' lines='none'>
+            <ion-icon slot='start' name="alert-circle" color='danger'></ion-icon>
+            <ion-label> Sorry no Case found! </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+  </ion-grid>
+
+  <!-- Passed Details -->
+  <ion-grid *ngIf="activeSegment==='passed'">
+    <h2>Passed</h2>
+    <ng-container *ngIf="allPassed.length">
+      <ion-row class='list-bg' *ngFor="let single of allPassed" (click)="presentModal(single.APP_UID,'COMPLETED')">
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon>
+              <ion-label class="af-icon-label">
+                {{single.PATIENT_NAME}}
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
+              <ion-label class="af-icon-label"> {{single.PAITEINT_NAME}}
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <ion-icon class="detail-icon"
+                src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+              <ion-label class="af-icon-label">
+                {{single.PAITENT_AGE}}
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon>
+              <ion-label class="af-icon-label"> {{single.CREATE_DATE}}
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+    <ng-container *ngIf="!allPassed.length">
+      <ion-row class='white-bg'>
+        <ion-col>
+          <ion-item class='bg-none' lines='none'>
+            <ion-icon slot='start' name="alert-circle" color='danger'></ion-icon>
+            <ion-label> Sorry no Case found! </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+  </ion-grid>
+
+  <ion-grid *ngIf="activeSegment==='tasks'">
+    <ng-container *ngIf="allTaSKS.length">
+      <ion-item class='list-bg' *ngFor="let single of allTaSKS">
+        <ion-label>
+          <h2>{{single.TAS_TITLE}}</h2>
+          <p>{{single.TAS_DESCRIPTION}}</p>
+        </ion-label>
+      </ion-item>
+    </ng-container>
+    <ng-container *ngIf="!allTaSKS.length">
+      <ion-row class='white-bg'>
+        <ion-col>
+          <ion-item class='bg-none' lines='none'>
+            <ion-icon slot='start' name="alert-circle" color='danger'></ion-icon>
+            <ion-label> Sorry no Case found! </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+  </ion-grid>
 
 </ion-content>

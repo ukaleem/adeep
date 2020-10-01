@@ -21,8 +21,16 @@ export class HomePage implements OnInit {
   allData: any = [];
   loadData() {
     this.phy.get_all_my_pathways(localStorage.getItem('id')).subscribe(data => {
-      this.allData = data;
+      this.allData = data.all_data;
     })
+  }
+
+  doRefresh(event) {
+    this.ionViewWillEnter();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
   }
 
 }
