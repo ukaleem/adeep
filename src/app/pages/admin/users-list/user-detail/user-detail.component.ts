@@ -14,6 +14,7 @@ export class UserDetailComponent implements OnInit {
   constructor(
     private admin: AdminService,
     private modalController: ModalController,
+    private mdlCtrl: ModalController,
   ) { }
   userDetails :any = [];
   
@@ -39,5 +40,8 @@ export class UserDetailComponent implements OnInit {
       }
     });
     return await modal.present();
+  }
+  closeModal() {
+    this.mdlCtrl.dismiss(null,'ok');
   }
 }

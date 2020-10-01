@@ -97,6 +97,9 @@ export class EndpointsService {
   }
   START_PATHWAY = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/start_case';
   CREATE_USER = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'user';
+  EDIT_USER(U_ID) {
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'user/'+U_ID;
+  }
   GET_USER_INFORMATION(U_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'user/'+U_ID;
   }

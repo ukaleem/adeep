@@ -1,9 +1,78 @@
-<ion-header>
+<!-- <app-custom-loader *ngIf="loading"> </app-custom-loader> -->
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>diseases</ion-title>
+      <ion-item class='bg-none' lines='none'>
+        <ion-icon name="chevron-back" color="light" slot="start" [routerLink]="['/admin/tabs/home']"></ion-icon>
+          <ion-label class="ion-text-center" color='light'> Disease / Specialties
+          </ion-label>
+          <ion-icon name="none" slot="end" color="light" size="small"></ion-icon>
+      </ion-item>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+<ion-content [fullscreen]="true"  translucent='true'>
+  <ion-refresher mode="ios" slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
+          refreshingSpinner="circles" refreshingText="Refreshing...">
+      </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-segment class='my-segment' (ionChange)="changeSegment($event)" value="disease">
+          <ion-segment-button value="disease">
+              <ion-label>Diseases</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="specialties">
+              <ion-label>Specialties</ion-label>
+          </ion-segment-button>
+      </ion-segment>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+<ion-content [fullscreen]="true" translucent='true'>
+  
+  <ion-grid *ngIf="segmentVelue === 'disease'">
+    
+
+    <ion-row class='list-bg' *ngFor="let p of diseaseList">
+      <ion-col>
+        <div>
+          <ion-item-sliding>
+            <ion-item class='bg-none' lines='none'>
+              <ion-label> {{p.PAT_DISEASE_NAME}}
+              </ion-label>
+            </ion-item>
+            
+            <ion-item-options>
+              <ion-button   (click)="deleteDisease(p)">
+                <ion-icon color="light" name="archive"></ion-icon>
+              </ion-button>
+              <ion-button   (click)="editDiease(p)">
+                <ion-icon color="light" name="create"></ion-icon>
+              </ion-button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Case Details -->
+  <ion-grid *ngIf="segmentVelue === 'specialties'">
+    <ion-row class='list-bg' *ngFor="let p of specilatiesList">
+      <ion-col>
+        <div>
+          <ion-item class='bg-none' lines='none'>
+            <ion-label> {{p.SPECIALTY_NAME}}
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -18,7 +18,8 @@ export class PatientSingleTaskComponent implements OnInit {
 
   segmentVelue = 'current';
   taskData :any = [];
-  constructor(private admin: AdminService, 
+  constructor(
+    private admin: AdminService, 
     private modalCtrl : ModalController) { }
 
 

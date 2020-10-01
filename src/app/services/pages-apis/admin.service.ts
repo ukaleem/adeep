@@ -48,4 +48,7 @@ export class AdminService {
   createUser(frmData) {
     return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.CREATE_USER,showLoading : true, showError : true});
   }
+  editUser(frmData,user_id) {
+    return this.api.commonPut(frmData,{isToken :false,endPointUrl : this.endPoints.EDIT_USER(user_id),showLoading : true, showError : true});
+  }
 }
