@@ -20,7 +20,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-grid>
-    <ion-row class='list-bg' *ngFor="let user of usersList">
+    <ion-row class='list-bg' *ngFor="let user of usersList" (click)="userDetails(user.usr_uid)">
       <ion-col size="6">
         <div>
           <ion-item class='bg-none' lines='none'>

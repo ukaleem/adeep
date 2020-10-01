@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { FeedBackSortingFilterPopoverPage } from './shared/popovers/feed-backsorting-popovers';
 import { AddFeedComponent } from './pages/admin/feedbacks/add-feed/add-feed.component';
 import { AddUserComponent } from './pages/admin/users-list/add-user/add-user.component';
+import { UserDetailComponent } from './pages/admin/users-list/user-detail/user-detail.component';
 // import { CustomSearchComponent } from './shared/custom-search/custom-search.component';
 
 @NgModule({
@@ -19,7 +20,8 @@ import { AddUserComponent } from './pages/admin/users-list/add-user/add-user.com
     AppComponent,
     FeedBackSortingFilterPopoverPage,
     AddFeedComponent,
-    AddUserComponent
+    AddUserComponent,
+    UserDetailComponent,
   ],
   imports: [HttpClientModule,FormsModule, BrowserModule, IonicModule.forRoot(), SharedModule, AppRoutingModule],
   providers: [
@@ -30,7 +32,8 @@ import { AddUserComponent } from './pages/admin/users-list/add-user/add-user.com
   entryComponents: [
     FeedBackSortingFilterPopoverPage,
     AddFeedComponent,
-    AddUserComponent
+    AddUserComponent,
+    UserDetailComponent,
   ],
   bootstrap: [AppComponent]
 })

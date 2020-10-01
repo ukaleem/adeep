@@ -76,7 +76,6 @@ export class PatientSingleTaskComponent implements OnInit {
       console.log(data);
       this.taskData = data;
     });
-
     let isFirst = true;
     var singleOne: any = [];
     let pr = '';

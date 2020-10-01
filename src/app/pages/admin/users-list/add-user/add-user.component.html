@@ -12,7 +12,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form #f="ngForm" (ngSubmit)="saveUser(f)">
+  <form #f="ngForm" (ngSubmit)="saveUser(f)" *ngIf="userDetails != null">
     <ion-grid class='main-grid'>
       <ion-row>
         <ion-col>
@@ -21,7 +21,7 @@
             required
             minlength="3"
             maxlength="200"
-            name="u_f_name"
+            name="firstName"
             [(ngModel)]="frmData.usr_firstname"
             ngModel
             #jobTitleCtrl="ngModel"
@@ -30,7 +30,19 @@
             type="text"
             placeholder="First Name?"
           >
-          </ion-input>
+          <!-- </ion-input>
+          <ion-input style="background: white"
+          value="2020-10-09"
+          name="userDueDate"
+          [(ngModel)]="frmData.usr_due_date"
+          ngModel
+          #jobTitleCtrl="ngModel"
+          class="input"
+          id="userDueDate"
+          type="hidden"
+        > -->
+         </ion-input>
+
         </ion-col>
       </ion-row>
 
@@ -41,7 +53,9 @@
               class="input"
               required
               type="text"
-              name="user_last_nmae"
+              minlength="1"
+              maxlength="40"
+              name="lastName"
               ngModel
               #searchTagCtrl="ngModel"
               [(ngModel)]="frmData.usr_lastname"
@@ -53,20 +67,20 @@
 
       <ion-row>
         <ion-col>
-          <ion-label for="user" class="ion-label"> Username* </ion-label>
+          <ion-label for="user" class="ion-label"> User Name* </ion-label>
           <ion-input
             required
             minlength="1"
-            maxlength="3"
+            maxlength="40"
             min= 1
             max = 105
-            name="user_name"
-            [(ngModel)]="user_name"
+            name="userName"
+            [(ngModel)]="frmData.usr_username"
             ngModel
             #pkgNameCtrl="ngModel"
             class="input"
-            id="user_name"
-            type="number"
+            id="userName"
+            type="text"
             placeholder="User Name"
           >
           </ion-input>
@@ -81,12 +95,12 @@
             required
             minlength="5"
             maxlength="40"
-            name="p_email"
+            name="UserEmail"
             [(ngModel)]="frmData.usr_email"
             ngModel
             #pkgDescriptionCtrl="ngModel"
             class="input"
-            id="userEmail"
+            id="UserEmail"
             type="email"
             placeholder="User Email?"
           >
@@ -97,7 +111,7 @@
       <ion-row>
         <ion-col>
           <ion-label for="user" class="ion-label"> User Address* </ion-label>
-          <ion-textarea #pkgDescriptionCtrl="ngModel" [(ngModel)]="frmData.user_address" required placeholder="Please Enter the Feed Back" name="user_address" placeholder="User Address"></ion-textarea>
+          <ion-textarea class="input-textarea" #pkgDescriptionCtrl="ngModel" [(ngModel)]="frmData.usr_address" required placeholder="Please Enter the Feed Back" name="userAddress" placeholder="User Address"></ion-textarea>
         </ion-col>
       </ion-row>
 
@@ -108,35 +122,58 @@
             required
             minlength="5"
             maxlength="40"
-            name="p_date"
-            [(ngModel)]="regDate"
+            name="userZipCode"
+            [(ngModel)]="frmData.usr_zip_code"
             ngModel
             #deliveryTimeCtrl="ngModel"
             class="input"
             id="regDate"
-            type="date"
-            placeholder="eg. Registration Date? "
+            type="text"
+            placeholder="eg. User Zip Code "
           >
           </ion-input>
         </ion-col>
       </ion-row>
 
+      <ion-row>
+        <ion-col>
+          <ion-label for="user_status_label" class="ion-label">Status</ion-label>
+            <ion-select name="usr_status" [(ngModel)]="frmData.usr_status" class="ion-select" value="dog">
+              <ion-select-option mode="ios" value="ACTIVE">ACTIVE</ion-select-option>
+              <ion-select-option mode="ios" value="UNACTIVE">UNACTIVE</ion-select-option>
+              <ion-select-option mode="ios" value="VACATION">VACATION</ion-select-option>
+            </ion-select>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user_role" class="ion-label">Role</ion-label>
+            <ion-select name="usr_role" [(ngModel)]="frmData.usr_role" class="ion-select" value="Doctor">
+              <ion-select-option mode="ios" value="ADMIN_OFFICE">Admin Office</ion-select-option>
+              <ion-select-option mode="ios" value="DOCTOR">Doctor</ion-select-option>
+              <ion-select-option mode="ios" value="PHYSICIAN">Physician</ion-select-option>
+              <ion-select-option mode="ios" value="CARETAKER">Caretaker</ion-select-option>
+              <ion-select-option mode="ios" value="PATIENT_ROLES">Patient</ion-select-option>
+            </ion-select>
+        </ion-col>
+      </ion-row>
 
       <ion-row>
         <ion-col>
           <ion-label for="user" class="ion-label"> New Password* </ion-label>
           <ion-input
             required
-            minlength="5"
-            maxlength="40"
-            name="p_phone_no"
-            [(ngModel)]="frmData.usr_email"
+            minlength="4"
+            maxlength="10"
+            name="userPassword"
+            [(ngModel)]="frmData.usr_new_pass"
             ngModel
             #pkgPriceCtrl="ngModel"
             class="input"
-            id="phoneNo"
-            type="number"
-            placeholder="eg. Phone No?$"
+            id="userPassword"
+            type="password"
+            placeholder="eg. New Password"
           >
           </ion-input>
         </ion-col>
@@ -146,16 +183,17 @@
         <ion-col>
           <ion-label for="user" class="ion-label"> Confirm Password* </ion-label>
           <ion-input
+            
             minlength="4"
-            maxlength="8"
-            name="p_zip_code"
-            [(ngModel)]="frmData.usr_zip_code"
+            maxlength="10"
+            name="userNewPassword"
+            [(ngModel)]="frmData.usr_cnf_pass"
             ngModel
             #pkgPriceCtrl="ngModel"
             class="input"
-            id="postalCode"
-            type="number"
-            placeholder="eg. Postal Code?$"
+            id="userNewPassword"
+            type="password"
+            placeholder="eg. Confirm Password"
           >
           </ion-input>
         </ion-col>
@@ -170,6 +208,181 @@
             shape="round"
             color="primary"
             >Save User</ion-button
+          >
+        </ion-col>
+    </ion-row>
+    </ion-grid>
+  </form>
+  <form #form="ngForm" (ngSubmit)="editUser(f)" *ngIf="userDetails">
+    <ion-grid class='main-grid'>
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> First Name* </ion-label>
+          <ion-input
+            required
+            minlength="3"
+            maxlength="200"
+            name="firstName"
+            [(ngModel)]="frmData.usr_firstname"
+            ngModel
+            #jobTitleCtrl="ngModel"
+            class="input"
+            id="firstName"
+            type="text"
+            placeholder="First Name?"
+            value="userDetails.usr_firstname"
+          >
+          <!-- </ion-input>
+          <ion-input style="background: white"
+          value="2020-10-09"
+          name="userDueDate"
+          [(ngModel)]="frmData.usr_due_date"
+          ngModel
+          #jobTitleCtrl="ngModel"
+          class="input"
+          id="userDueDate"
+          type="hidden"
+        > -->
+         </ion-input>
+
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label">Last Name*</ion-label>
+            <ion-input
+              class="input"
+              required
+              type="text"
+              minlength="1"
+              maxlength="40"
+              name="lastName"
+              ngModel
+              #searchTagCtrl="ngModel"
+              [(ngModel)]="frmData.usr_lastname"
+              placeholder="Last Name?"
+              value="userDetails.usr_lastname"
+            >
+            </ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> User Name* </ion-label>
+          <ion-input
+            required
+            minlength="1"
+            maxlength="40"
+            min= 1
+            max = 105
+            name="userName"
+            [(ngModel)]="frmData.usr_username"
+            ngModel
+            #pkgNameCtrl="ngModel"
+            class="input"
+            id="userName"
+            type="text"
+            placeholder="User Name"
+            value="userDetails.usr_username"
+          >
+          </ion-input>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> User Email* </ion-label>
+          <ion-input
+            required
+            minlength="5"
+            maxlength="40"
+            name="UserEmail"
+            [(ngModel)]="frmData.usr_email"
+            ngModel
+            #pkgDescriptionCtrl="ngModel"
+            class="input"
+            id="UserEmail"
+            type="email"
+            value="userDetails.usr_email"
+            placeholder="User Email?"
+          >
+          </ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label"> User Address* </ion-label>
+          <ion-textarea 
+          class="input-textarea"
+           #pkgDescriptionCtrl="ngModel" 
+           [(ngModel)]="frmData.usr_address"
+            required
+             placeholder="Please Enter the Feed Back"
+              name="userAddress"
+               placeholder="User Address"
+               value="userDetails.usr_address"
+               ></ion-textarea>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user" class="ion-label">Zip Code* </ion-label>
+          <ion-input
+            required
+            minlength="5"
+            maxlength="40"
+            name="userZipCode"
+            [(ngModel)]="frmData.usr_zip_code"
+            ngModel
+            #deliveryTimeCtrl="ngModel"
+            class="input"
+            id="regDate"
+            type="text"
+            placeholder="eg. User Zip Code "
+            value="userDetails.usr_zip_code"
+          >
+          </ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user_status_label" class="ion-label">Status</ion-label>
+            <ion-select value="userDetails.usr_status" name="usr_status" [(ngModel)]="frmData.usr_status" class="ion-select" value="dog">
+              <ion-select-option mode="ios" value="ACTIVE">ACTIVE</ion-select-option>
+              <ion-select-option mode="ios" value="UNACTIVE">UNACTIVE</ion-select-option>
+              <ion-select-option mode="ios" value="VACATION">VACATION</ion-select-option>
+            </ion-select>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label for="user_role" class="ion-label">Role</ion-label>
+            <ion-select value="userDetails.usr_role" name="usr_role" [(ngModel)]="frmData.usr_role" class="ion-select" value="Doctor">
+              <ion-select-option mode="ios" value="ADMIN_OFFICE">Admin Office</ion-select-option>
+              <ion-select-option mode="ios" value="DOCTOR">Doctor</ion-select-option>
+              <ion-select-option mode="ios" value="PHYSICIAN">Physician</ion-select-option>
+              <ion-select-option mode="ios" value="CARETAKER">Caretaker</ion-select-option>
+              <ion-select-option mode="ios" value="PATIENT_ROLES">Patient</ion-select-option>
+            </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button
+            type="submit"
+            [disabled]="!form.valid"
+            expand="block"
+            fill="solid"
+            shape="round"
+            color="primary"
+            >Save</ion-button
           >
         </ion-col>
     </ion-row>

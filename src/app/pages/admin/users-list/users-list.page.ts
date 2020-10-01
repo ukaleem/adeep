@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CasesService } from 'src/app/services/pages-apis/cases.service';
 import { AddUserComponent } from './add-user/add-user.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 @Component({
   selector: 'app-users-list',
@@ -31,6 +32,16 @@ export class UsersListPage implements OnInit {
       cssClass: 'my-custom-class',
       componentProps: {
         
+      }
+    });
+    return await modal.present();
+  }
+  async userDetails(user_id: any) {
+    const modal = await this.modalController.create({
+      component: UserDetailComponent,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        user_id: user_id,
       }
     });
     return await modal.present();

@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: UsersListPage
-  }
+  },
+  // {
+  //   path: 'user-detail',
+  //   loadChildren: () => import('./user-detail/user-detail.module').then( m => m.UserDetailPageModule)
+  // }
 ];
 
 @NgModule({

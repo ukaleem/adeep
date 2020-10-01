@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AdminService } from 'src/app/services/pages-apis/admin.service';
 import { Location } from '@angular/common';
@@ -15,39 +15,50 @@ export class AddUserComponent implements OnInit {
     private admin: AdminService,
     private location: Location,
   ) { }
+  @Input() userId: any = [];
+  userDetails = [];
   firstName: any;
   lastName: any;
-  patientAge: any;
-  selectedDisease: any;
-  patientEmail: any;
-  regDate: any;
+  userName: any;
+  UserEmail: any;
+  userAddress: any;
   phoneNo: any;
-  postalCode: any;
-  address: any;
-  password = '';
-  userName = '';
+  userZipCode: any;
+  userPassword: any;
+  userNewPassword:any;
+  userDueDate = "2020-09-10";
+  usr_status : any;
+  usr_role: any;
+
   selectDices = {
     id: null,
     name: '',
   }
 
   frmData = {
-    usr_username: '',
     usr_firstname: '',
     usr_lastname: '',
+    usr_username: '',
     usr_email: '',
-    usr_due_date: '2050-12-31',
-    usr_status: 'ACTIVE',
-    usr_role: 'PATIENT_ROLES',
-    usr_new_pass: '',
-    usr_cnf_pass: '',
     usr_address: '',
     usr_zip_code: '',
-    usr_country: 'SA',
-    usr_phone: ''
+    usr_new_pass: '',
+    usr_cnf_pass: '',
+    usr_status: '',
+    usr_role: '',
+    usr_due_date: '2020-09-10',
+
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('FRom Wdut Of User');
+    if(this.userId != null || this.userId != 'null' || this.userId != 'undefined') {
+      this.admin.singleUser(this.userId).subscribe(data=> {
+        console.log(data);
+        this.userDetails = data;
+      });
+    }
+  }
   dismiss() {
     this.mdlCtrl.dismiss(null,'ok');
   }
@@ -57,24 +68,24 @@ export class AddUserComponent implements OnInit {
   saveUser(f) {
     this.admin.createUser(this.frmData).subscribe(data => {
       console.log(data);
-      if (data && data.USR_UID) {
-        let frmData = {
-          p_name: this.userName,
-          p_age: this.patientAge,
-          p_date: this.regDate,
-          p_disease: this.selectDices.id,
-          p_password: this.password,
-          p_full: this.frmData.usr_firstname.trim() + ' ' + this.frmData.usr_lastname.trim(),
-          p_address: this.frmData.usr_address,
-          p_zip_code: this.frmData.usr_zip_code,
-          p_phone_no: this.frmData.usr_phone,
-          USR_UID: data.USR_UID,
-        }
-        this.admin.addPatient(frmData).subscribe(data => {
-          console.log(data);
-          this.location.back();
-        })
+      let frmData = {
+        usr_firstname: this.firstName,
+        usr_lastname: this.lastName,
+        usr_username: this.userName,
+        usr_email: this.UserEmail,
+        usr_address: this.userAddress,
+        usr_zip_code: this.userZipCode,
+        usr_new_pass: this.userPassword,
+        usr_cnf_pass: this.userNewPassword,
+        // usr_due_date: this.userDueDate,
+        usr_status: this.usr_status,
+        usr_role: this.usr_role,
       }
+      this.admin.addUser(frmData).subscribe(data => {
+        console.log(data);
+        this.dismiss();
+        this.location.back();
+      })
     });
   }
 
