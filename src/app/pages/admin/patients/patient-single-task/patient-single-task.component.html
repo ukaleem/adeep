@@ -1,21 +1,21 @@
 <!-- <app-custom-loader *ngIf="loading"> </app-custom-loader> -->
 <ion-header class="ion-no-border">
   <ion-toolbar>
-      <ion-item class='bg-none' lines='none'>
-          <ion-icon name="chevron-back" color="light" slot="start" (click)="closeModal()"></ion-icon>
-          <ion-label class="ion-text-center" color='light'> Patient Details
-          </ion-label>
-          <ion-icon name="none" slot="end" color="light" size="small"></ion-icon>
-      </ion-item>
+    <ion-item class='bg-none' lines='none'>
+      <ion-icon name="chevron-back" color="light" slot="start" (click)="closeModal()"></ion-icon>
+      <ion-label class="ion-text-center" color='light'> Patient Details
+      </ion-label>
+      <ion-icon name="none" slot="end" color="light" size="small"></ion-icon>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content [fullscreen]="true"  translucent='true'>
+<ion-content [fullscreen]="true" translucent='true'>
   <ion-refresher mode="ios" slot="fixed" (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
-          refreshingSpinner="circles" refreshingText="Refreshing...">
-      </ion-refresher-content>
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
+      refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
   </ion-refresher>
 
   <ion-grid>
@@ -23,15 +23,18 @@
       <ion-col>
         <ion-segment class='my-segment' (ionChange)="changeSegment($event)" value="current">
           <ion-segment-button value="current">
-              <ion-label>Current</ion-label>
+            <ion-label>Current</ion-label>
           </ion-segment-button>
           <ion-segment-button value="come">
-              <ion-label>Coming</ion-label>
+            <ion-label>Coming</ion-label>
           </ion-segment-button>
           <ion-segment-button value="pass">
             <ion-label>Passed</ion-label>
-        </ion-segment-button>
-      </ion-segment>
+          </ion-segment-button>
+          <ion-segment-button value="data">
+            <ion-label>Data</ion-label>
+          </ion-segment-button>
+        </ion-segment>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -41,11 +44,11 @@
       <ion-col>
         <div>
           <ion-item class='bg-none' lines='none'>
-            <ion-label> {{p.APP_TAS_TITLE}} 
+            <ion-label> {{p.APP_TAS_TITLE}}
               <p>Care Tacker: {{p.APP_CURRENT_USER}}</p>
             </ion-label>
             <div>
-              <ion-note> {{p.DEL_THREAD_STATUS}}</ion-note> <br/>
+              <ion-note> {{p.DEL_THREAD_STATUS}}</ion-note> <br />
               <ion-button (click)="feedBack(p)">FeedBack</ion-button>
             </div>
             <!-- <ion-note class='ion-float-right'> {{p.DEL_THREAD_STATUS}}</ion-note> -->
@@ -61,11 +64,11 @@
       <ion-col>
         <div>
           <ion-item class='bg-none' lines='none'>
-            <ion-label> {{p.APP_TAS_TITLE}} 
+            <ion-label> {{p.APP_TAS_TITLE}}
               <p>Care Tacker: {{p.APP_CURRENT_USER}}</p>
             </ion-label>
             <div>
-              <ion-note> {{p.DEL_THREAD_STATUS}}</ion-note> <br/>
+              <ion-note> {{p.DEL_THREAD_STATUS}}</ion-note> <br />
               <ion-button (click)="feedBack(p)">FeedBack</ion-button>
             </div>
           </ion-item>
@@ -80,11 +83,11 @@
       <ion-col>
         <div>
           <ion-item class='bg-none' lines='none'>
-            <ion-label> {{p.APP_TAS_TITLE}} 
+            <ion-label> {{p.APP_TAS_TITLE}}
               <p>Care Tacker: {{p.APP_CURRENT_USER}}</p>
             </ion-label>
             <div>
-              <ion-note> {{p.DEL_THREAD_STATUS}}</ion-note> <br/>
+              <ion-note> {{p.DEL_THREAD_STATUS}}</ion-note> <br />
               <ion-button (click)="feedBack(p)">FeedBack</ion-button>
             </div>
           </ion-item>
@@ -92,4 +95,26 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-grid *ngIf="segmentVelue==='data'">
+    <ion-row class='list-bg' *ngFor="let p of allData">
+      <ion-col>
+
+        <div>
+          <div>
+            {{getTaskName(p.task)}}  <small><span class="ion-text-right">{{getTaskDate(p.task)}}</span></small>
+            <p class="ion-no-padding">{{getUserName(p.task)}}</p>
+          </div>
+          <ion-item class='bg-none' lines='none' *ngFor="let xm of p.variables">
+            <ion-label>
+              <h2><b>Label</b>:{{xm.field}}</h2>
+              <p>Current:{{xm.currentValue}}</p>
+              <p>Previous:{{xm.previousValue}}</p>
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

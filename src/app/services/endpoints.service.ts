@@ -67,6 +67,11 @@ export class EndpointsService {
   RE_ASSIGN_CASE(APP_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/case/'+APP_ID+'/reassign-case';
   }
+  GET_PATH_DETAIL(APP_ID,PROJECT_ID, TASK_ID,START,LIMIT){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_path_detail/'+APP_ID+'/'+PROJECT_ID+'/'+TASK_ID;
+  }
+
+
   //////////ADmin APIS
   GET_PATIENTS(){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_patients';
@@ -115,7 +120,7 @@ export class EndpointsService {
   }
   
 
-  // patirnts
+  // patients
 
   PATIENT_PATHWAY(P_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_path_pathways/'+P_ID;
