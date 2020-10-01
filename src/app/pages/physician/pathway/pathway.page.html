@@ -34,10 +34,11 @@
     </ion-row>
   </ion-grid>
 
-  <!-- Person Details -->
+  <!-- Current Details -->
   <ion-grid *ngIf="activeSegment==='current'">
+    <h2>Current</h2>
     <ng-container *ngIf="allCurrent.length">
-      <ion-row class='list-bg' *ngFor="let  of allCurrent" (click)="presentModal(single.APP_UID,'DRAFT')">
+      <ion-row class='list-bg' *ngFor="let  single of allCurrent" (click)="presentModal(single.APP_UID,'DRAFT')">
         <ion-col size="6">
           <div>
             <ion-item class='bg-none' lines='none'>
@@ -91,8 +92,9 @@
     </ng-container>
   </ion-grid>
 
-  <!-- Case Details -->
+  <!-- Passed Details -->
   <ion-grid *ngIf="activeSegment==='passed'">
+    <h2>Passed</h2>
     <ng-container *ngIf="allPassed.length">
       <ion-row class='list-bg' *ngFor="let single of allPassed" (click)="presentModal(single.APP_UID,'COMPLETED')">
         <ion-col size="6">
