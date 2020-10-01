@@ -28,7 +28,7 @@ export class HomePage implements OnInit {
     });
   }
 
-  showSearch() {
+  showSearch() { 
     this.isSearch = true;
   }
   closeSearch() {

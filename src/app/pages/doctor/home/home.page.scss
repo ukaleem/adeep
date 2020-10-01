@@ -1,0 +1,35 @@
+.outer-card-div{
+    background-color: rgba(255, 255, 255, 0.705);
+    border-radius: 8px;
+}
+
+ion-content {
+    --background: var(--ion-color-secondary);
+}
+
+.label-div {
+    width: 50%;
+    background: var(--ion-color-primary);
+    border-radius: 50px;
+    padding: 5px;
+    background: linear-gradient(to-right #00BAD4 , #137DAF, transparent);
+    background-image: linear-gradient(to right, #00BAD4 , #137DAF);
+    color: white;
+    text-align: center;
+    margin-left: 12px;
+    position: relative;
+}
+
+.data-div{
+    background: var(--ion-color-secondary);
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0px 3px 9px -3px #808080b5;
+    margin-top: -15px;
+    padding-bottom: 15px;
+    padding-left: 65px;
+}
+
+.my-segment ion-segment-button ion-label{
+    font-size: 10px;
+}
