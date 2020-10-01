@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PhysicianService } from 'src/app/services/pages-apis/physician.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(private phy: PhysicianService) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter(){
+    this.loadData();
+  }
+  allData: any = [];
+  loadData() {
+    this.phy.get_all_my_pathways(localStorage.getItem('id')).subscribe(data => {
+      this.allData = data;
+    })
   }
 
 }

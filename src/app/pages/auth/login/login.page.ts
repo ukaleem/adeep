@@ -70,7 +70,7 @@ export class LoginPage implements OnInit {
         localStorage.setItem("role", data.user_role);
         localStorage.setItem("username", data.username);
         this.app.userName = data.firstname;  
-        this.app.userRole = data.user_role;
+        this.app.USER_ROLE_NAME = data.user_role;
 
         if (data.user_role == "ADMIN_OFFICE" || data.user_role == "admin_office") {
           this.app.casesShow = true;

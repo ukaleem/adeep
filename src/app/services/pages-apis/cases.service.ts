@@ -81,4 +81,7 @@ export class CasesService {
   reAssignCase(app, frmData) {
     return this.api.commonPut(frmData,{isToken :false,endPointUrl : this.endPoints.RE_ASSIGN_CASE(app),showLoading : true,showError : false});
   }
+  getPathDetail(app,pro,task,s,l) {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_PATH_DETAIL(app,pro ,task,s,l),showLoading : true,showError : false});
+  }
 }

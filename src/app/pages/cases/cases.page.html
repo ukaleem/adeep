@@ -1,10 +1,16 @@
 <ion-content>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button *ngIf="ROLE_PATIENT" [routerLink]="['/','admin','tabs','home']">
+      <ion-tab-button *ngIf="ROLE_ADMIN" [routerLink]="['/','admin','tabs','home']">
         <ion-label>Home</ion-label>
         <ion-icon name='home'></ion-icon>
       </ion-tab-button>
+
+      <ion-tab-button *ngIf="ROLE_PHYSICIAN" [routerLink]="['/','physician','home']">
+        <ion-label>Home</ion-label>
+        <ion-icon name='home'></ion-icon>
+      </ion-tab-button>
+
 
       <ion-tab-button tab='inbox'>
         <ion-label>Inbox</ion-label>

@@ -32,8 +32,10 @@ export class AddFeedComponent implements OnInit {
       this.i_am = 'admin'
     }else if(this.i== 2){
       this.i_am = 'care'
+    }else if(this.i== 3){
+      this.i_am = 'Patient'
     }
-  }
+  } 
   saveFeed(f){
     let frmData = {
       APP_UID_ : this.AppID,
