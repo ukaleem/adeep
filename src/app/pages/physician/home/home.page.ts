@@ -13,6 +13,9 @@ export class HomePage implements OnInit {
   ngOnInit() {
   }
 
+  ionViewWillEnter(){
+    this.loadData();
+  }
   allData: any = [];
   loadData() {
     this.phy.get_all_my_pathways(localStorage.getItem('id')).subscribe(data => {
