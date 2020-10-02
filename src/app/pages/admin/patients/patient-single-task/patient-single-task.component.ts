@@ -95,6 +95,9 @@ export class PatientSingleTaskComponent implements OnInit {
     this.cases.getPathDetail(this.APP_ID, this.PROJECT_ID, '456789074', 0, 15).subscribe(data => {
       // console.log(data);
       const result = data;
+      if(!result.data){
+        return;
+      }
       try {
         result.data.forEach(element => {
           // console.log(element.record);
