@@ -20,6 +20,9 @@ export class UsersListPage implements OnInit {
   ngOnInit() {
   }
   ionViewWillEnter(){
+  this.loadData();
+  }
+  loadData() {
     this.casesService.getAllUsers().subscribe(data=>{
       this.usersList  = data;
       console.log('From Users List View');
@@ -46,4 +49,14 @@ export class UsersListPage implements OnInit {
     });
     return await modal.present();
   }
+  
+  doRefresh(event){
+    console.log('Begin async operation');
+    this.loadData();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+
 }
