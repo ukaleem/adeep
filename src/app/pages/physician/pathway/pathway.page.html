@@ -1,7 +1,7 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-item class='bg-none' lines='none'>
-      <ion-icon name="chevron-back" color="light" slot="start" [routerLink]="['/physician/home']"></ion-icon>
+      <ion-icon name="chevron-back" (click)="goBack()" color="light" slot="start"></ion-icon>
       <ion-label class="ion-text-center" color='light'> Pathway Detail
       </ion-label>
       <ion-icon name="none" slot="end" color="light" size="small"></ion-icon>

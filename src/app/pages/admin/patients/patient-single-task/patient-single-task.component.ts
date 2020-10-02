@@ -20,6 +20,7 @@ export class PatientSingleTaskComponent implements OnInit {
   isPatient = false;
   isComplete = false;
   isPhysician = false;
+  isCareTacker = false;
   segmentVelue = 'current';
   taskData: any = [];
   constructor(private admin: AdminService,
@@ -49,6 +50,8 @@ export class PatientSingleTaskComponent implements OnInit {
       this.isPatient = true;
     } else if (this.type == 'ph') {
       this.isPhysician = true;
+    }else if (this.type == 'cr') {
+      this.isCareTacker = true;
     }
     if (this.status == 'COMPLETED') {
       this.isComplete = true;
@@ -140,6 +143,9 @@ export class PatientSingleTaskComponent implements OnInit {
     if (this.isPhysician) {
       frm = '5';
       i_am = 5;
+    }else if(this.isCareTacker){
+      frm = '1';
+      i_am = 2;
     }
     const modal = await this.modalCtrl.create({
       component: AddFeedComponent,
