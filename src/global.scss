@@ -53,6 +53,16 @@ ion-menu {
   --width: 90%;
 }
 
+ion-searchbar{
+  --background: #ffffff61 !important;
+  --border-radius: 50px !important;
+  color: white !important;
+
+  ion-icon{
+    color: white !important;
+  }
+}
+
 .count-p{
   margin: 0px;
     font-size: xx-small;
