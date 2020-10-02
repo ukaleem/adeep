@@ -274,6 +274,9 @@ ion-segment-button ion-label{
     border-radius: 10px;
   }
 }
+.modal-wrapper .ion-overlay-wrapper .sc-ion-modal-md{
+  background-color: #ffffff42;
+}
 .ion-touched.ion-invalid {
   border: 1px solid red !important;
 }
@@ -284,4 +287,8 @@ ion-segment-button ion-label{
   height: 18px !important;
   width: 20px !important;
   color: black !important; 
+}
+
+.my_loader_custom{
+  --background: #ffffff33 !important;
 }

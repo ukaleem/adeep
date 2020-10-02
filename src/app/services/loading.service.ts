@@ -18,16 +18,16 @@ export class LoadingService {
    }
 
   async prsentLoading() {
-    // this.loader = await this.modelCtrl.create({
-    //   component: CustomLoaderComponent,
-    //   cssClass: 'my-custom-class'
-    // });
-    // return await this.loader.present();
-    (await LoadingService.loading).present();
+    this.loader = await this.modelCtrl.create({
+      component: CustomLoaderComponent,
+      cssClass: 'my_loader_custom'
+    });
+    return await this.loader.present();
+    // (await LoadingService.loading).present();
   }
 
   async closeLoading() {
-    // this.modelCtrl.dismiss();
-    (await LoadingService.loading).dismiss();
+    this.modelCtrl.dismiss();
+    // (await LoadingService.loading).dismiss();
   }
 }

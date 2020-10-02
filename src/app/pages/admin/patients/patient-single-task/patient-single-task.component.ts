@@ -45,18 +45,18 @@ export class PatientSingleTaskComponent implements OnInit {
   }
 
   ionViewWillEnter() {
-    if(this.type == 'p'){
+    if (this.type == 'p') {
       this.isPatient = true;
-    }else if(this.type == 'ph'){
+    } else if (this.type == 'ph') {
       this.isPhysician = true;
     }
-    if(this.status == 'COMPLETED'){
+    if (this.status == 'COMPLETED') {
       this.isComplete = true;
       this.segmentVelue = 'pass';
     }
     this.loadData();
   }
-  
+
   getTaskName(task) {
     let xyz = task.split("/", 3);
     return xyz[0];
@@ -78,7 +78,7 @@ export class PatientSingleTaskComponent implements OnInit {
   filterData(data) {
     if (data.field.indexOf("_label") > -1) {
       return true;
-    }else if(data.field == "USER_LOGGED"){
+    } else if (data.field == "USER_LOGGED") {
       return true;
     }
     return false;
@@ -93,36 +93,40 @@ export class PatientSingleTaskComponent implements OnInit {
     let pr = '';
     var i = 0;
     this.cases.getPathDetail(this.APP_ID, this.PROJECT_ID, '456789074', 0, 15).subscribe(data => {
-      // console.log(data);
+      console.log("From Path Details");
+      console.log(data);
       const result = data;
-      try {
-        result.data.forEach(element => {
-          // console.log(element.record);
-          // console.log(element);
-          if (!this.filterData(element)) {
-            if (isFirst) {
-              pr = element.record;
-              this.allData.push({ task: element.record, variables: [element] });
-              isFirst = false;
-            } else {
-              if (this.getTaskName(pr) == this.getTaskName(element.record)) {
-                this.allData[i].variables.push(element);
-              } else {
+      if (result.data) {
+        try {
+          result.data.forEach(element => {
+            // console.log(element.record);
+            // console.log(element);
+            if (!this.filterData(element)) {
+              if (isFirst) {
                 pr = element.record;
                 this.allData.push({ task: element.record, variables: [element] });
-                i++;
+                isFirst = false;
+              } else {
+                if (this.getTaskName(pr) == this.getTaskName(element.record)) {
+                  this.allData[i].variables.push(element);
+                } else {
+                  pr = element.record;
+                  this.allData.push({ task: element.record, variables: [element] });
+                  i++;
+                }
+                //this.allData.push({task: element.record,variables: [element]});
               }
-              //this.allData.push({task: element.record,variables: [element]});
             }
-          }
 
-        });
-        console.log('all', this.allData);
-      } catch (ex) {
-        console.log(ex);
+          });
+          console.log('all', this.allData);
+        } catch (ex) {
+          console.log(ex);
+        }
       }
 
-      return;
+
+      // return;
     }, err => {
       console.log(err);
     });
@@ -132,8 +136,8 @@ export class PatientSingleTaskComponent implements OnInit {
   async feedBack(p) {
     console.log(p);
     let frm = this.isPatient ? '2' : '3';
-    let i_am =  this.isPatient ? 3 : 1;
-    if(this.isPhysician){
+    let i_am = this.isPatient ? 3 : 1;
+    if (this.isPhysician) {
       frm = '5';
       i_am = 5;
     }

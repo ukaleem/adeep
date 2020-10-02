@@ -194,7 +194,7 @@ export class ApiService {
 
   commonGet(postObject: PostConfigObject): Observable<any> {
     this.setToken();
-    console.log(postObject);
+    // console.log(postObject);
     if (postObject.showLoading) {
       this.loadingLoader.prsentLoading();
     }

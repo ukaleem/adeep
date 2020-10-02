@@ -63,5 +63,8 @@ export class AdminService {
   editSpecialty(frmData) {
     return this.api.commonPost(frmData, {isToken :false,endPointUrl: this.endPoints.EDIT_SPECIALTY,showLoading : true,showError :true});
   }
+  getDashboard() {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_DASHBOARD(),showLoading : false, showError : true});
+  } 
 }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/app/services/pages-apis/admin.service';
 
 @Component({
   selector: 'app-dashboards',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardsPage implements OnInit {
 
-  constructor() { }
+  constructor(private admin : AdminService) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter(){
+    this.loadData();
+  }
+  allData: any = [];
+  loadData(){
+    this.admin.getDashboard().subscribe(data=> {
+      this.allData = data;
+    })
+    //getDashboard
   }
 
 }
