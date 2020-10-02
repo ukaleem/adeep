@@ -10,8 +10,15 @@ import { AdminService } from 'src/app/services/pages-apis/admin.service';
 export class DiseasesPage implements OnInit {
 
   segmentVelue = 'disease';
+  searchTerm = '';
+  isSearch = false;
+  isLoading = true;
+  result = false;
   diseaseList : any = [];
+  filterDisease: any = [];
   specilatiesList : any = [];
+  allRestaurants:any = [];
+  filteredRestaurants: any = [];
   
   constructor(
     private admin: AdminService, 
@@ -34,17 +41,44 @@ export class DiseasesPage implements OnInit {
   loadData(){
     this.admin.allDisease().subscribe(data=> {
       console.log('Disease List');
-      // console.log(data);
       this.diseaseList = data.all_data;
+      this.isLoading = false;
+      
       console.log(this.diseaseList);
+    }, (error) => {
+      console.log(error);
     });
     this.admin.allSpecialties().subscribe(data=> {
       console.log('Specialties List');
-   
       this.specilatiesList = data.all_data;
       console.log(this.specilatiesList);
+    }, (error) => {
+      console.log(error);
     });
   }
+  showSearch() { 
+    this.isSearch = true;
+  }
+  closeSearch() {
+    this.isSearch = false;
+  }
+  doSearch(ev){
+    console.log(ev.detail.value);
+    let searchTerm = ev.detail.value.toLowerCase();
+    if (searchTerm === '') {
+      this.result = true;
+      this.filterDisease = this.diseaseList;
+    } else {
+      this.result = true;
+      this.filterDisease = this.diseaseList.filter(item => {
+        if( item.PAT_DISEASE_NAME !== null && item.PAT_DISEASE_NAME.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1){
+          return true;
+        }
+        return false;
+      });
+    }
+  }
+
   deleteDisease(PAT_DISEASE_ID: any) {
     let disease =  {
       disease_id: PAT_DISEASE_ID,
