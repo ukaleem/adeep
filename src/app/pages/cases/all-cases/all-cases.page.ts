@@ -58,38 +58,38 @@ export class AllCasesPage implements OnInit {
           // Get User Id Api
 
 
-          // this.loginService.get_user_id().subscribe(user_recorde => {
-          //   if(user_recorde) {
-          //     this.user_id = user_recorde.uid;
-          //       let user = {
-          //         user_id: this.user_id,
-          //         user_access_token: token.value,
-          //         // user_access_token: 'sdkfdkbfkdshfkjdshfkjdshfkjsdhf89823874987239ddjsjfsbhsdsdhfvfsdbhscbwgfuwjsdhf988',
-          //       }
-          //     this.loginService.set_user_token(user).subscribe(response => {
-          //       console.log(response);
-          //     });
-          //   }
-          // });
+          this.loginService.get_user_id().subscribe(user_recorde => {
+            if(user_recorde) {
+              this.user_id = user_recorde.uid;
+                let user = {
+                  user_id: this.user_id,
+                  user_access_token: token.value,
+                  // user_access_token: 'sdkfdkbfkdshfkjdshfkjdshfkjsdhf89823874987239ddjsjfsbhsdsdhfvfsdbhscbwgfuwjsdhf988',
+                }
+              this.loginService.set_user_token(user).subscribe(response => {
+                console.log(response);
+              });
+            }
+          });
 
       }
     );
 
     PushNotifications.addListener('registrationError',
       (error: any) => {
-        // alert('Error on registration: ' + JSON.stringify(error));
+        alert('Error on registration: ' + JSON.stringify(error));
       }
     );
 
     PushNotifications.addListener('pushNotificationReceived',
       (notification: PushNotification) => {
-        // alert('Push received: ' + JSON.stringify(notification));
+        alert('Push received: ' + JSON.stringify(notification));
       }
     );
 
     PushNotifications.addListener('pushNotificationActionPerformed',
       (notification: PushNotificationActionPerformed) => {
-        // alert('Push action performed: ' + JSON.stringify(notification));
+        alert('Push action performed: ' + JSON.stringify(notification));
       }
     );
   }

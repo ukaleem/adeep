@@ -10,6 +10,11 @@ export class HomePage implements OnInit {
   loading = true;
   isSearch = false;
   segmentVelue = 'onGoingPatients';
+
+  onGoingPatientsData: any;
+  onCuredPatientData: any;
+  onRelatedCarePlanData: any;
+
   allPatients: any;
   allPatientsBackUp: any;
 
@@ -49,7 +54,13 @@ export class HomePage implements OnInit {
     this.doctorService.getAllPatients().subscribe(data => {
       this.allPatients = data.all_data as any;
       this.allPatientsBackUp = this.allPatients;
+
+      this.onGoingPatientsData = JSON.parse(this.allPatients.onGoing);
+      this.onCuredPatientData = this.allPatients.Completed;
+      this.onRelatedCarePlanData = this.allPatients.CarePlans;
+
       console.log(this.allPatients);
+      console.log('on going data', this.onGoingPatientsData);
       this.loading = false;
     });
   }

@@ -83,7 +83,12 @@ export class EndpointsService {
   GET_PATIENTS(){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_patients';
   }
+  GET_DASHBOARD(){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/admin-dashboard';
+  }
 
+
+  
   public  GET_ALL_PATIENTSs(): any{
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_all_doctor_patients';
   }
