@@ -1,13 +1,13 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
+    <ion-item class='bg-none' lines='none'>
       <ion-buttons color="light" size="small" slot="start">
         <ion-icon name="chevron-back" color="light" slot="start" (click)="closeModal()"></ion-icon>
       </ion-buttons>
-      <ion-item class='bg-none' lines="none">
-          <ion-title color="light" class="ion-text-center">
-           User
-          </ion-title>
-      </ion-item>
+      <ion-label class="ion-text-center" color='light'> User Details
+      </ion-label>
+      <ion-icon (click)="editUser()" name="create" slot="end" color="light" size="small"></ion-icon>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
@@ -173,7 +173,8 @@
         </ion-col>
       </ion-row>
 
-      <ion-row *ngIf="userId != null || userId != undefined">
+      <ion-row  *ngIf="!userId">
+        <!-- <ion-row *ngIf="userId != null || userId != undefined"> -->
         <ion-col>
           <ion-label for="user" class="ion-label"> New Password* </ion-label>
           <ion-input
@@ -193,7 +194,8 @@
         </ion-col>
       </ion-row>
 
-      <ion-row *ngIf="userId != null || userId != undefined">
+      <ion-row *ngIf="!userId">
+        <!-- <ion-row *ngIf="userId != null || userId != undefined"> -->
         <ion-col>
           <ion-label for="user" class="ion-label"> Confirm Password* </ion-label>
           <ion-input

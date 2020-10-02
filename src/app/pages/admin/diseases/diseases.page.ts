@@ -45,19 +45,34 @@ export class DiseasesPage implements OnInit {
       console.log(this.specilatiesList);
     });
   }
-  deleteDisease(diease) {
-
+  deleteDisease(PAT_DISEASE_ID: any) {
+    let disease =  {
+      disease_id: PAT_DISEASE_ID,
+    }
+    this.admin.deleteDisease(disease).subscribe(data=> {
+      console.log(data);
+    });
   }
-  async editDiease() {
+  deleteSpecilaity(SPECIALTY_ID) {
+    let spec = {
+      specility_id:SPECIALTY_ID, 
+    }
+    this.admin.deleteSpecialty(spec).subscribe(data=> {
+      console.log(data);
+    });
+  }
+
+  async editSpeciality(specialityId: any) {
     const alert = await this.alertController.create({
-      header: 'Set Disease Name',
-      message: 'Diease Name',
+      header: 'Set Speciality Name',
+      message: 'Specilaity Name',
       inputs: [
         {
-          name: 'disease_name',
+          name: 'specilaity_name',
           type: 'text',
-          placeholder: 'Disease Name'
+          placeholder: 'Specilaity Name'
         },
+        
       ],
       buttons: [
         {
@@ -69,7 +84,54 @@ export class DiseasesPage implements OnInit {
           }
         }, {
           text: 'Ok',
+      
+          handler: specialityData => {
+            let specilaity = {
+              specility_id: specialityId,
+              specilaity_name: specialityData.specilaity_name,
+              // specilaity_name: 'KKKKKKKKKKK',
+            }
+            this.admin.editSpecialty(specilaity).subscribe(data=> {
+              console.log(data);
+            });
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  async editDiease(PAT_DISEASE_ID: any) {
+    const alert = await this.alertController.create({
+      header: 'Set Disease Name',
+      message: 'Disease Name',
+      inputs: [
+        {
+          name: 'disease_name',
+          type: 'text',
+          placeholder: 'Disease Name'
+        },
+        
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
           handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Save',
+          // type: submit,
+          handler: dataForm => {
+            let disease = {
+              disease_id: PAT_DISEASE_ID,
+              disease_name:dataForm.disease_name
+            }
+            this.admin.editDisease(disease).subscribe(data=> {
+              console.log(data);
+            });
             console.log('Confirm Ok');
           }
         }

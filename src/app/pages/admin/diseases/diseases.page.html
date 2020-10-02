@@ -49,10 +49,10 @@
             </ion-item>
             
             <ion-item-options>
-              <ion-button   (click)="deleteDisease(p)">
+              <ion-button   (click)="deleteDisease(p.PAT_DISEASE_ID)">
                 <ion-icon color="light" name="archive"></ion-icon>
               </ion-button>
-              <ion-button   (click)="editDiease(p)">
+              <ion-button   (click)="editDiease(p.PAT_DISEASE_ID)">
                 <ion-icon color="light" name="create"></ion-icon>
               </ion-button>
             </ion-item-options>
@@ -67,10 +67,21 @@
     <ion-row class='list-bg' *ngFor="let p of specilatiesList">
       <ion-col>
         <div>
-          <ion-item class='bg-none' lines='none'>
-            <ion-label> {{p.SPECIALTY_NAME}}
-            </ion-label>
-          </ion-item>
+          <ion-item-sliding>
+            <ion-item class='bg-none' lines='none'>
+              <ion-label>  {{p.SPECIALTY_NAME}}
+              </ion-label>
+            </ion-item>
+            
+            <ion-item-options>
+              <ion-button   (click)="deleteSpecilaity(p.SPECIALTY_ID)">
+                <ion-icon color="light" name="archive"></ion-icon>
+              </ion-button>
+              <ion-button   (click)="editSpeciality(p.SPECIALTY_ID)">
+                <ion-icon color="light" name="create"></ion-icon>
+              </ion-button>
+            </ion-item-options>
+          </ion-item-sliding>
         </div>
       </ion-col>
     </ion-row>

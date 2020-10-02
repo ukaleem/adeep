@@ -51,4 +51,17 @@ export class AdminService {
   editUser(frmData,user_id) {
     return this.api.commonPut(frmData,{isToken :false,endPointUrl : this.endPoints.EDIT_USER(user_id),showLoading : true, showError : true});
   }
+  deleteDisease(frmData) {
+    return this.api.commonPost(frmData, {isToken :false,endPointUrl : this.endPoints.DELETE_DISEASE,showLoading : true, showError : true});
+  }
+  editDisease(frmData) {
+    return this.api.commonPost(frmData, {isToken :false,endPointUrl: this.endPoints.EDIT_DISEASE,showLoading : true, showError : true});
+  }
+  deleteSpecialty(frmData) {
+    return this.api.commonPost(frmData, {isToken :false,endPointUrl: this.endPoints.DELETE_SPECIALTY,showLoading : true, showError : true});
+  }
+  editSpecialty(frmData) {
+    return this.api.commonPost(frmData, {isToken :false,endPointUrl: this.endPoints.EDIT_SPECIALTY,showLoading : true,showError :true});
+  }
 }
+

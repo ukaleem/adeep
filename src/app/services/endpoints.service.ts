@@ -96,7 +96,13 @@ export class EndpointsService {
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/patient_application_single/'+P_ID+'/'+A_ID;
   }
   ALL_DISEASE = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_disease';
+  DELETE_DISEASE  = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/delete_disease';
+  EDIT_DISEASE = ConfigService.SERVER_ADDRESS+'/api/1.0/' + ConfigService.WORKSPACE+'extrarest/put_disease';
+
   ALL_SPECIALTY = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_specialty';
+  DELETE_SPECIALTY = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/delete_specialty';
+  EDIT_SPECIALTY = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ ConfigService.WORKSPACE+'extrarest/put_specialty'; 
+
   SEARCH_DISEASE = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/search_disease';
   GET_PROCESS_CUSTOM(D_ID,S_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_process_custom/'+D_ID+'/'+S_ID;
@@ -109,6 +115,7 @@ export class EndpointsService {
   EDIT_USER(U_ID) {
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'user/'+U_ID;
   }
+ 
   GET_USER_INFORMATION(U_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'user/'+U_ID;
   }
