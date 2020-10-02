@@ -20,7 +20,7 @@ export class LoadingService {
   async prsentLoading() {
     this.loader = await this.modelCtrl.create({
       component: CustomLoaderComponent,
-      cssClass: 'my-custom-class'
+      cssClass: 'my_loader_custom'
     });
     return await this.loader.present();
     // (await LoadingService.loading).present();
