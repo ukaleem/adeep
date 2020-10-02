@@ -46,7 +46,7 @@
               </ion-col>
               <ion-col size="6">
                 <ion-item lines="none"> 
-                  <ion-checkbox slot="end" [(ngModel)]="to_physian" name="to_physian"></ion-checkbox>
+                  <ion-checkbox [disabled]="i_am == 'phy'" slot="end" [(ngModel)]="to_physian" name="to_physian"></ion-checkbox>
                   <ion-label class="radio-label"><b>Physician</b></ion-label>
                 </ion-item>
               </ion-col>

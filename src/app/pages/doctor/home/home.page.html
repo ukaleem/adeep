@@ -1,9 +1,117 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>home</ion-title>
+<!-- <app-custom-loader></app-custom-loader> -->
+<app-custom-loader *ngIf="loading"></app-custom-loader>
+<ion-header class="ion-no-border">
+  <ion-toolbar *ngIf="!isSearch">
+      <ion-buttons color="light" size="small" slot="start">
+          <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
+      </ion-buttons>
+      <ion-item class='bg-none' lines="none">
+          <!-- <ion-icon slot='start' color="primary" name="menu"  routerDirection='backward'></ion-icon> -->
+          <ion-title color="light" class="ion-text-center">
+            Home
+              <!-- <div class='ion-text-center'>
+                  <img class='Logo-img' src="../../../../assets/images/Logo/skill-experts-white-01.svg" alt="" />
+              </div> -->
+          </ion-title>
+          <ion-icon color="light" name="search"
+              slot="end" (click)="showSearch()">
+          </ion-icon>
+      </ion-item>
   </ion-toolbar>
+
+  <ion-toolbar *ngIf="isSearch">
+    <ion-searchbar (ionChange)="searchDetails($event)" (ionCancel)="closeSearch()" showCancelButton="always">
+    </ion-searchbar>
+  </ion-toolbar>
+
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col class='ion-no-padding ion-no-margin'>
+        <ion-segment class='my-segment' (ionChange)="changeSegment($event)" value="onGoingPatients">
+          <ion-segment-button value="onGoingPatients">
+              <ion-label>On Going Patients</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="curedPatients">
+              <ion-label>Cured Patients</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="relatedCarePlan">
+            <ion-label>Related Care Plan's</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      </ion-col>
+    </ion-row>
 
+    <!-- On Going Patients -->
+    <ion-row *ngIf="segmentVelue==='onGoingPatients'">
+      <ion-col>
+        <div class="outer-card-div">
+          onGoingPatients
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+    <!-- Cured Patients -->
+    <ion-row *ngIf="segmentVelue==='curedPatients'">
+      <!-- <ion-col>
+        <div class="outer-card-div">
+          <ion-row class='list-bg' *ngFor="let p of allPatients" [routerLink]="['/','admin','patients',p.PUBLIC_ID]" routerLinkActive="router-link-active">
+            <ion-col size="6">
+              <div>
+                <ion-item class='bg-none' lines='none'>
+                  <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon>
+                  <ion-label class="af-icon-label">
+                    {{p.PAITEINT_NAME}}
+                  </ion-label>
+                </ion-item>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div>
+                <ion-item class='bg-none' lines='none' >
+                  <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
+                  <ion-label class="af-icon-label"> {{p.PAITENT_AGE}}
+                  </ion-label>
+                </ion-item>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div>
+                <ion-item class='bg-none' lines='none'>
+                  <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+                  <ion-label class="af-icon-label">
+                    {{p.PAT_DISEASE_NAME}}
+                  </ion-label>
+                </ion-item>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div>
+                <ion-item class='bg-none' lines='none'>
+                  <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon>
+                  <ion-label class="af-icon-label"> {{p.CREATE_DATE}}
+                  </ion-label>
+                </ion-item>
+              </div>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-col> -->
+    </ion-row>
+
+    <!-- Related CarePlan -->
+    <ion-row *ngIf="segmentVelue==='relatedCarePlan'">
+      <ion-col>
+        <div class="outer-card-div">
+          relatedCarePlan
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+
+  </ion-grid>
 </ion-content>

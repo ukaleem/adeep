@@ -6,19 +6,35 @@ import { DoctorPage } from './doctor.page';
 const routes: Routes = [
   {
     path: '',
-    component: DoctorPage
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: 'notifications',
-    loadChildren: () => import('./notifications/notifications.module').then( m => m.NotificationsPageModule)
-  },
-  {
-    path: 'feedbacks',
-    loadChildren: () => import('./feedbacks/feedbacks.module').then( m => m.FeedbacksPageModule)
+    component: DoctorPage,
+    children: [
+      {
+        path: 'home',
+        loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+      },
+      {
+        path: 'notifications',
+        loadChildren: () => import('../admin/notifications/notifications.module').then(m => m.NotificationsPageModule)
+      },
+      {
+        path: 'dashboard',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../admin/dashboards/dashboards.module').then(m => m.DashboardsPageModule)
+          }
+        ]
+      },
+      {
+        path: 'feedbacks',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../admin/feedbacks/feedbacks.module').then(m => m.FeedbacksPageModule),
+          }
+        ]
+      }
+    ]
   }
 ];
 

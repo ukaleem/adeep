@@ -76,9 +76,16 @@ export class EndpointsService {
   GET_PHYSICIAN_HOME(USER_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_physician_home/'+USER_ID;
   }
+  GET_PHYSICIAN_PATH(PROJECT_ID){
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_pathway_detail/'+PROJECT_ID;
+  }
   //////////ADmin APIS
   GET_PATIENTS(){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_patients';
+  }
+
+  public  GET_ALL_PATIENTSs(): any{
+    return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_all_doctor_patients';
   }
   ADD_PATIENTS(){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/add_patients';
@@ -104,6 +111,7 @@ export class EndpointsService {
   EDIT_SPECIALTY = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ ConfigService.WORKSPACE+'extrarest/put_specialty'; 
 
   SEARCH_DISEASE = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/search_disease';
+  GET_ALL_PATIENTS = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_all_doctor_patients';
   GET_PROCESS_CUSTOM(D_ID,S_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_process_custom/'+D_ID+'/'+S_ID;
   }
