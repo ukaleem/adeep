@@ -44,4 +44,13 @@ export class UserDetailComponent implements OnInit {
   closeModal() {
     this.mdlCtrl.dismiss(null,'ok');
   }
+
+  doRefresh(event){
+    console.log('Begin async operation');
+    this.loadData();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
 }

@@ -11,7 +11,12 @@
         <ion-icon name='home'></ion-icon>
       </ion-tab-button>
 
+      <ion-tab-button *ngIf="ROLE_CARETAKER" [routerLink]="['/','doctor','home']">
+        <ion-label>Home</ion-label>
+        <ion-icon name='home'></ion-icon>
+      </ion-tab-button>
 
+      
       <ion-tab-button tab='inbox'>
         <ion-label>Inbox</ion-label>
         <ion-icon src='../../../assets/icon-black/inbox.svg'></ion-icon>

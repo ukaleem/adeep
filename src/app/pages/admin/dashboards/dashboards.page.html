@@ -18,7 +18,7 @@
   <ion-grid>
 
     <!-- PATHWAYS -->
-    <ion-row>
+    <ion-row *ngIf="showPathway">
       <ion-col>
         <div class="outer-div">
           <div class="label-div">
@@ -69,7 +69,7 @@
 
 
     <!-- Patients -->
-    <ion-row >
+    <ion-row *ngIf="showPathway">
       <ion-col>
         <div class="outer-div">
           <div class="label-div">
@@ -98,7 +98,7 @@
     </ion-row>
 
     <!-- ALL USRS -->
-    <ion-row >
+    <ion-row *ngIf="showAllUsers">
       <ion-col>
         <div class="outer-div">
           <div class="label-div">
@@ -234,7 +234,7 @@
     </ion-row>
 
     <!-- Diseases -->
-    <ion-row >
+    <ion-row *ngIf="showDisease">
       <ion-col>
         <div class="outer-div">
           <div class="label-div">
@@ -273,7 +273,7 @@
 
 
     <!-- Specialties -->
-    <ion-row >
+    <ion-row *ngIf="showSpecial">
       <ion-col>
         <div class="outer-div">
           <div class="label-div">
@@ -299,7 +299,7 @@
 
 
     <!-- Cases -->
-    <ion-row >
+    <ion-row *ngIf="showCases">
       <ion-col>
         <div class="outer-div">
           <div class="label-div">
