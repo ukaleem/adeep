@@ -10,3 +10,20 @@
  ion-button {
     --border-radius: 17px !important;
  }
+ .input{
+   border:none;
+   padding:15px 20px;
+   border-radius:5px;
+   color: black;
+   height: 48px;
+    background:var(--ion-color-secondary);
+ }
+ .input-textarea {
+   border:none;
+  padding:41px;
+  border-radius:5px;
+   color: black;
+   // height: 60px;
+ background:rgba(247, 247, 247);
+ background:var(--ion-color-secondary);
+ }

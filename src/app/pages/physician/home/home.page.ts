@@ -15,18 +15,39 @@ export class HomePage implements OnInit {
   ngOnInit() {
   }
 
-  showSearch(){}
   ionViewWillEnter(){
     this.loadData();
     this.loading = false;
   }
   allData: any = [];
+  dataFilter: any = [];
   loadData() {
     this.phy.get_all_my_pathways(localStorage.getItem('id')).subscribe(data => {
       this.allData = data.all_data;
+      this. dataFilter = this.allData;
     })
   }
 
+  showSearch() { 
+    this.isSearch = true;
+  }
+  closeSearch() {
+    this.isSearch = false;
+  }
+  doSearch(ev){
+    console.log(ev.detail.value);
+    let searchTerm = ev.detail.value.toLowerCase();
+    if (searchTerm === '') {
+      this.allData = this.dataFilter;
+    } else {
+      this.allData = this.dataFilter.filter(item => {
+        if( item.PRO_TITLE !== null && item.PRO_TITLE.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1){
+          return true;
+        }
+        return false;
+      });
+    }   
+  }
   doRefresh(event) {
     this.ionViewWillEnter();
     setTimeout(() => {
