@@ -8,12 +8,14 @@ import { PhysicianService } from 'src/app/services/pages-apis/physician.service'
 })
 export class HomePage implements OnInit {
   loading = true;
+  isSearch = false;
 
   constructor(private phy: PhysicianService) { }
 
   ngOnInit() {
   }
 
+  showSearch(){}
   ionViewWillEnter(){
     this.loadData();
     this.loading = false;
