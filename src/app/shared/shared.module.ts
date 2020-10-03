@@ -6,12 +6,13 @@ import { CustomLoaderComponent } from './custom-loader/custom-loader.component';
 import { ImgPickerComponent } from './img-picker/img-picker.component';
 import { FormsModule } from '@angular/forms';
 import { CustomSearchComponent } from './custom-search/custom-search.component';
+import { InternetComponent } from './internet/internet.component';
 
 @NgModule({
-  entryComponents: [CustomLoaderComponent, ImagePickerComponent ,CustomSearchComponent, ImgPickerComponent],
-  declarations: [ImagePickerComponent , CustomLoaderComponent, CustomSearchComponent,ImgPickerComponent ],
+  entryComponents: [CustomLoaderComponent, ImagePickerComponent ,InternetComponent,CustomSearchComponent, ImgPickerComponent],
+  declarations: [ImagePickerComponent , CustomLoaderComponent,InternetComponent, CustomSearchComponent,ImgPickerComponent ],
   imports: [CommonModule, IonicModule ,FormsModule],
-  exports: [CustomLoaderComponent,CustomSearchComponent, ImagePickerComponent],
+  exports: [CustomLoaderComponent,CustomSearchComponent,InternetComponent, ImagePickerComponent],
 })
 
 export class SharedModule { }
