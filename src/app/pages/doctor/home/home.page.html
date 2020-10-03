@@ -1,5 +1,5 @@
 <!-- <app-custom-loader></app-custom-loader> -->
-<app-custom-loader *ngIf="loading"></app-custom-loader>
+<!-- <app-custom-loader *ngIf="loading"></app-custom-loader> -->
 <ion-header class="ion-no-border">
   <ion-toolbar *ngIf="!isSearch">
       <ion-buttons color="light" size="small" slot="start">
@@ -48,7 +48,7 @@
     <ion-row *ngIf="segmentVelue==='onGoingPatients'">
       <ion-col>
         <div class="outer-card-div">
-          <ion-row class='list-bg' *ngFor="let p of onGoingPatientsData" [routerLink]="['/','admin','patients',p.PUBLIC_ID]" routerLinkActive="router-link-active">
+          <ion-row class='list-bg' *ngFor="let p of onGoingPatientsData" (click)="presentModal(p.PRO_UID , p.APP_UID ,'')">
             <ion-col size="6">
               <div>
                 <ion-item class='bg-none' lines='none'>
@@ -97,7 +97,7 @@
     <ion-row *ngIf="segmentVelue==='curedPatients'">
       <ion-col>
         <div class="outer-card-div">
-          <ion-row class='list-bg' *ngFor="let p of onCuredPatientData" [routerLink]="['/','admin','patients',p.PUBLIC_ID]" routerLinkActive="router-link-active">
+          <ion-row class='list-bg' *ngFor="let p of onCuredPatientData" (click)="presentModal(p.PRO_UID , p.APP_UID ,'COMPLETED')">
             <ion-col size="6">
               <div>
                 <ion-item class='bg-none' lines='none'>
@@ -145,7 +145,46 @@
     <ion-row *ngIf="segmentVelue==='relatedCarePlan'">
       <ion-col>
         <div class="outer-card-div">
-          relatedCarePlan
+          <ion-row class='list-bg' *ngFor="let p of onRelatedCarePlanData" [routerLink]="['/','physician','pathway',p.PRO_UID , '1']" routerLinkActive="router-link-active">
+            <ion-col size="6">
+              <div>
+                <ion-item class='bg-none' lines='none'>
+                  <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon>
+                  <ion-label class="af-icon-label">
+                    {{p.PRO_TITLE}}
+                  </ion-label>
+                </ion-item>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div>
+                <ion-item class='bg-none' lines='none' >
+                  <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
+                  <ion-label class="af-icon-label"> {{p.DISEASE}}
+                  </ion-label>
+                </ion-item>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div>
+                <ion-item class='bg-none' lines='none'>
+                  <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+                  <ion-label class="af-icon-label">
+                    {{p.descriptions}}
+                  </ion-label>
+                </ion-item>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div>
+                <ion-item class='bg-none' lines='none'>
+                  <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon>
+                  <ion-label class="af-icon-label"> {{p.PRO_UPDATE_DATE}}
+                  </ion-label>
+                </ion-item>
+              </div>
+            </ion-col>
+          </ion-row>
         </div>
       </ion-col>
     </ion-row>

@@ -10,7 +10,7 @@ export class DoctorService {
   constructor(private api: ApiService , private endPoints: EndpointsService) { }
 
   getAllPatients() {
-    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ALL_PATIENTS,showLoading : true, showError : true});
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_ALL_PATIENTS,showLoading : false, showError : true});
   }
   singleUser(user_id: any) {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.SINGLE_USER(user_id),showLoading : true, showError : true});

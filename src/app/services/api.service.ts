@@ -194,7 +194,7 @@ export class ApiService {
 
   commonGet(postObject: PostConfigObject): Observable<any> {
     this.setToken();
-    console.log(postObject);
+    // console.log(postObject);
     if (postObject.showLoading) {
       this.loadingLoader.prsentLoading();
     }
@@ -223,7 +223,7 @@ export class ApiService {
               'Error in Connection to Server'
             );
           }
-          console.log(error);
+          console.error(error);
           observer.error(error); 
         }
       );

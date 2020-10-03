@@ -53,6 +53,20 @@ ion-menu {
   --width: 90%;
 }
 
+ion-searchbar{
+  --background: #ffffff61 !important;
+  --border-radius: 50px !important;
+  color: white !important;
+
+  ion-icon{
+    color: white !important;
+  }
+}
+
+app-custom-loader {
+  padding-top: 100px;
+}
+
 .count-p{
   margin: 0px;
     font-size: xx-small;
@@ -277,4 +291,8 @@ ion-segment-button ion-label{
   height: 18px !important;
   width: 20px !important;
   color: black !important; 
+}
+
+.my_loader_custom{
+  --background: #ffffff33 !important;
 }

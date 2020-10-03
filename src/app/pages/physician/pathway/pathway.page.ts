@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController, NavController } from '@ionic/angular';
 import { PhysicianService } from 'src/app/services/pages-apis/physician.service';
 import { PatientSingleTaskComponent } from '../../admin/patients/patient-single-task/patient-single-task.component';
@@ -13,7 +13,7 @@ export class PathwayPage implements OnInit {
 
   constructor(
     private router: ActivatedRoute,
-    // private rout: Router,
+    private rout: Router,
     private navCtrl: NavController,
     private phy: PhysicianService,
     // private iab: InAppBrowser,
@@ -30,6 +30,7 @@ export class PathwayPage implements OnInit {
   allCurrent:any = [];
   allPassed:any = [];
   allTaSKS : any = [];
+  isFromPhysician = false;
   ionViewWillEnter() {
     this.router.paramMap.subscribe((paramMap) => {
       if (!paramMap.has('id')) {
@@ -37,6 +38,11 @@ export class PathwayPage implements OnInit {
         return;
       }
       this.projectID = paramMap.get('id');
+      let type1 = paramMap.get('type');
+      if(type1 && type1 == '1'){
+        this.isFromPhysician = true;
+      }
+
       this.loadCaseData();
     });
   }
@@ -50,6 +56,15 @@ export class PathwayPage implements OnInit {
     })
   }
 
+  goBack(){
+    if(this.isFromPhysician){
+      this.rout.navigateByUrl('/doctor/home');
+    }
+    else { 
+      this.rout.navigateByUrl('/physician/home');
+    }
+    
+  }
   activeSegment = 'current';
   segmentChanged(ev: any) {
     this.activeSegment = ev.detail.value;
