@@ -19,7 +19,7 @@ export class DiseasesPage implements OnInit {
   specilatiesList : any = [];
   allRestaurants:any = [];
   filteredRestaurants: any = [];
-  
+  specilatiesListFilter : any = [];
   constructor(
     private admin: AdminService, 
     private alertController : AlertController,
@@ -51,6 +51,7 @@ export class DiseasesPage implements OnInit {
     this.admin.allSpecialties().subscribe(data=> {
       console.log('Specialties List');
       this.specilatiesList = data.all_data;
+      this. specilatiesListFilter = this.specilatiesList;
       console.log(this.specilatiesList);
     }, (error) => {
       console.log(error);
@@ -65,18 +66,34 @@ export class DiseasesPage implements OnInit {
   doSearch(ev){
     console.log(ev.detail.value);
     let searchTerm = ev.detail.value.toLowerCase();
-    if (searchTerm === '') {
-      this.result = true;
-      this.filterDisease = this.diseaseList;
+    if(this.segmentVelue == 'disease') {
+      if (searchTerm === '') {
+        this.result = true;
+        this.filterDisease = this.diseaseList;
+      } else {
+        this.result = true;
+        this.filterDisease = this.diseaseList.filter(item => {
+          if( item.PAT_DISEASE_NAME !== null && item.PAT_DISEASE_NAME.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1){
+            return true;
+          }
+          return false;
+        });
+      }
     } else {
-      this.result = true;
-      this.filterDisease = this.diseaseList.filter(item => {
-        if( item.PAT_DISEASE_NAME !== null && item.PAT_DISEASE_NAME.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1){
-          return true;
-        }
-        return false;
-      });
+      if (searchTerm === '') {
+        this.result = true;
+        this.specilatiesList = this.specilatiesListFilter;
+      } else {
+        this.result = true;
+        this.specilatiesList = this.specilatiesListFilter.filter(item => {
+          if( item.SPECIALTY_NAME !== null && item.SPECIALTY_NAME.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1){
+            return true;
+          }
+          return false;
+        });
+      }
     }
+   
   }
 
   deleteDisease(PAT_DISEASE_ID: any) {
