@@ -51,6 +51,7 @@ export class AppComponent {
         this.USER_ROLE_NAME = 'office admin';
       } else if(this.USER_ROLE_NAME=="PROCESSMAKER_ADMIN"){
         this.PROCESSMAKER_ADMIN = true;
+        this.ADMIN_OFFICE = true;
         this.USER_ROLE_NAME = 'processmaker admin';
       } else if(this.USER_ROLE_NAME=="DOCTOR"){
         this.DOCTOR = true;

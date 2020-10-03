@@ -11,6 +11,7 @@ export class CasesPage implements OnInit {
   ROLE_ADMIN = false;
   ROLE_PHYSICIAN = false;
   ROLE_CARETAKER = false;
+  ROLE_DOCTOR = false;
   constructor(private casesService : CasesService) { 
     const ROLE = localStorage.getItem('role');
     if (ROLE == "ADMIN_OFFICE" || ROLE == "PROCESSMAKER_ADMIN" ){
@@ -19,6 +20,8 @@ export class CasesPage implements OnInit {
       this.ROLE_PHYSICIAN = true;
     }else if (ROLE == "CARETAKER"){
       this.ROLE_CARETAKER = true;
+    }else if(ROLE == 'DOCTOR'){
+      this.ROLE_DOCTOR = true;
     }
    }
 

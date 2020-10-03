@@ -24,7 +24,7 @@ export class HomePage implements OnInit {
   }
   showSearch(){}
   closeSearch(){}
-  searchDetails() {
+  searchDetails(e) {
   }
   doRefresh(ev){
 

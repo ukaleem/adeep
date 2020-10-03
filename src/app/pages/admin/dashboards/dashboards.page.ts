@@ -69,6 +69,12 @@ export class DashboardsPage implements OnInit {
       this.showPatients = true;
       this.showDisease = true;
       this.showSpecial = true;
+    }else if(ROLE == 'DOCTOR'){
+      this.showCases = true;
+      this.showPathway = true;
+      this.showPatients = true;
+      this.showDisease = true;
+      this.showSpecial = true;
     }
   }
   allData: any = [];

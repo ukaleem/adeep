@@ -6,7 +6,7 @@
         <ion-icon name='home'></ion-icon>
       </ion-tab-button>
 
-      <ion-tab-button *ngIf="ROLE_PHYSICIAN" [routerLink]="['/','physician','home']">
+      <ion-tab-button *ngIf="ROLE_PHYSICIAN || ROLE_DOCTOR" [routerLink]="['/','physician','home']">
         <ion-label>Home</ion-label>
         <ion-icon name='home'></ion-icon>
       </ion-tab-button>
