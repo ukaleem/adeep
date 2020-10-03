@@ -11,13 +11,13 @@
                   <img class='Logo-img' src="../../../../assets/images/Logo/skill-experts-white-01.svg" alt="" />
               </div> -->
           </ion-title>
-          <ion-icon color="light" name="create" slot="end" [routerLink]="['/','admin','profile','edit-profile']" routerLinkActive="router-link-active" >
+          <ion-icon *ngIf="isPermission" color="light" name="create" slot="end" [routerLink]="['/','admin','profile','edit-profile']" routerLinkActive="router-link-active" >
           </ion-icon>
       </ion-item>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" *ngIf="isPermission">
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -132,4 +132,12 @@
 
 
   </ion-grid>
+</ion-content>
+
+<ion-content *ngIf="!isPermission">
+<ion-item>
+  <ion-label>
+    Sorry! You Don't Have Enough Permission
+  </ion-label>
+</ion-item>
 </ion-content>
