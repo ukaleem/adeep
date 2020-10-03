@@ -108,9 +108,9 @@ export class DashboardsPage implements OnInit {
       this.allSpecilitiesWithProcess = this.allData.all_data.allSpecial[1].withProcess;
 
 
-      this.inboxCount = this.allData.all_data.allCases[1].inbox;
-      this.draftCount = this.allData.all_data.allCases[1].draft;
-      this.participatedCount = this.allData.all_data.allCases[1].particpate;
+      this.inboxCount = this.allData.all_data.casesCount.to_do;
+      this.draftCount = this.allData.all_data.casesCount.draft;
+      this.participatedCount = this.allData.all_data.casesCount.sent;
 
       console.log(this.allPathwaysCount); 
 

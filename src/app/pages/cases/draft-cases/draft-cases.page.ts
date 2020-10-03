@@ -24,6 +24,10 @@ export class DraftCasesPage implements OnInit {
       this.allDraftCassFilter = this.allDraftCases;
     });
   }
+
+  reLoad(){
+    this.ionViewWillEnter();
+  }
   ngOnInit() {
   }
   showSearch() { 

@@ -52,4 +52,8 @@ export class UnassignedCasesPage implements OnInit {
       event.target.complete();
     }, 2000);
   }
+
+  reLoad(){
+    this.ionViewWillEnter();
+  }
 }

@@ -432,7 +432,7 @@ export class SinglePagePage implements OnInit {
       }else {
         //this.navCtrl.back();
       }
-      this.rout.navigateByUrl('cases/all-cases');
+      this.rout.navigateByUrl('/cases/tabs/inbox');
     });
     return;
     console.log('From DE Next Step');
@@ -571,7 +571,7 @@ export class SinglePagePage implements OnInit {
     });
     modal.onDidDismiss().then(data=> {
       if(data.role == 'ok'){
-        this.rout.navigateByUrl('cases/all-cases');
+        this.rout.navigateByUrl('/cases/tabs/inbox');
       }
     })
     return await modal.present();

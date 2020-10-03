@@ -11,6 +11,7 @@ import {
   PushNotificationToken,
   PushNotificationActionPerformed } from '@capacitor/core';
 import { AuthService } from 'src/app/services/pages-apis/auth.service';
+import { AppComponent } from 'src/app/app.component';
 
 const { PushNotifications } = Plugins;
 @Component({
@@ -25,6 +26,7 @@ export class AllCasesPage implements OnInit {
   isSearch = false;
   allCassFilter: any = [];
   ionViewWillEnter(){
+    this.app.loadData();
     this.casesService.getAllProcess().subscribe(data=>{
       console.log(data);
       this.allCases = data;
@@ -35,6 +37,7 @@ export class AllCasesPage implements OnInit {
     private casesService : CasesService ,
     private modalController:ModalController,
     private loginService: AuthService,
+    private app: AppComponent
     // private firebase: Firebase
     ) { }
 
@@ -110,6 +113,10 @@ export class AllCasesPage implements OnInit {
       console.log('Async operation has ended');
       event.target.complete();
     }, 2000);
+  }
+
+  reLoad(){
+    this.ionViewWillEnter();
   }
   showSearch() { 
     this.isSearch = true;

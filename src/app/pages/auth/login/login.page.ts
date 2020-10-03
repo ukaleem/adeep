@@ -102,6 +102,7 @@ export class LoginPage implements OnInit {
           this.navCtrl.navigateRoot("/");
           this.toastService.ErrorToast('Login failed', 1000);
         }
+        this.app.loadData();
       } catch (error) {
         this.navCtrl.navigateRoot("/");
         this.toastService.ErrorToast('Login failed', 1000);

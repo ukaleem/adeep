@@ -24,7 +24,7 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-grid>
+  <ion-grid *ngIf="allDraftCases.length">
     <ion-row class='list-bg' *ngFor="let case of allDraftCases" [routerLink]="['/','cases','single-page',case.app_uid]" routerLinkActive="router-link-active">
       
       <ion-col size="12">
@@ -67,6 +67,26 @@
             </ion-label>
           </ion-item>
         </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="!allDraftCases.length">
+    <ion-row>
+      <ion-col>
+        <ion-img src="../../../../assets/alerts/NoDataFound.svg"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row class='white-bg'>
+      <ion-col>
+        <ion-item class='bg-none' lines='none'>
+          <ion-icon slot='start' name="alert-circle" color='danger'></ion-icon>
+          <ion-label> You have no data! </ion-label>
+          <ion-button (click)='reLoad()' slot='end' fill='clear' shape='round'>
+            <ion-icon name='reload'></ion-icon>
+            Refresh
+          </ion-button>
+        </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>

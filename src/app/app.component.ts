@@ -45,7 +45,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.loadData();
+      // this.loadData();
       return;
       this.USER_ROLE_NAME = localStorage.getItem('role');
       if(this.USER_ROLE_NAME=="ADMIN_OFFICE"){
@@ -100,9 +100,9 @@ export class AppComponent {
   loadData(){
     this.admin.getDashboard().subscribe(data => {
       this.allData = data;
-      this.inboxCount = this.allData.all_data.allCases[1].inbox;
-      this.draftCount = this.allData.all_data.allCases[1].draft;
-      this.participatedCount = this.allData.all_data.allCases[1].particpate;
+      this.inboxCount = this.allData.all_data.casesCount.to_do;
+      this.draftCount = this.allData.all_data.casesCount.draft;
+      this.participatedCount = this.allData.all_data.casesCount.sent;
 
       this.allDiseasesCount = this.allData.all_data.allDisease[1].allDiseas;
       this.allUsersCount = this.allData.all_data.allUser[1].allUser;
