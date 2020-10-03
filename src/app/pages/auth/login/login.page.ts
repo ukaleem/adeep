@@ -75,12 +75,12 @@ export class LoginPage implements OnInit {
         if (data.user_role == "ADMIN_OFFICE" || data.user_role == "admin_office") {
           this.app.casesShow = true;
           this.app.ADMIN_OFFICE = true;
-          this.navCtrl.navigateRoot("/cases");
+          this.navCtrl.navigateRoot("/admin/tabs/dashboard");
           this.toastService.SuccessToast('' + data.user_role + ' Login Successfully!', 2000);
         } else if ( data.user_role == "PROCESSMAKER_ADMIN" || data.user_role == "processmaker_admin") {
           this.app.casesShow = true;
           this.app.PROCESSMAKER_ADMIN = true;
-          this.navCtrl.navigateRoot("/cases");
+          this.navCtrl.navigateRoot("/admin/tabs/dashboard");
           this.toastService.SuccessToast('' + data.user_role + ' Login Successfully!', 2000);
         } else if (data.user_role == "DOCTOR" || data.user_role == "doctor") {
           this.app.DOCTOR = true;

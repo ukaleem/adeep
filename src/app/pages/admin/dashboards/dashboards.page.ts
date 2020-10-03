@@ -112,7 +112,7 @@ export class DashboardsPage implements OnInit {
       this.draftCount = this.allData.all_data.allCases[1].draft;
       this.participatedCount = this.allData.all_data.allCases[1].particpate;
 
-      console.log(this.allPathwaysCount);
+      console.log(this.allPathwaysCount); 
 
     });
     //getDashboard
