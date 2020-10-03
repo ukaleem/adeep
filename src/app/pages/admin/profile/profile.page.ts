@@ -10,6 +10,7 @@ export class ProfilePage implements OnInit {
   segmentVelue = 'personalInfo';
   constructor(private auth : AuthService) { }
 
+  isPermission = true;
   ngOnInit() {
   }
 
@@ -22,6 +23,9 @@ export class ProfilePage implements OnInit {
     const user = localStorage.getItem('id');
     this.auth.get_user_information(user).subscribe(data=> {
       this.allData = data;
+      this.isPermission = true;
+    }, eeyore=> {
+      this.isPermission = false;
     })
   }
 

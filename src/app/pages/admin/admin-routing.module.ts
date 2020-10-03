@@ -32,15 +32,15 @@ const routes: Routes = [
           }
         ]
       },
-      {
-        path: 'add-feedbacks',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('./add-feedback/add-feedback.module').then(m => m.AddFeedbackPageModule),
-          }
-        ]
-      },
+      // {
+      //   path: 'add-feedbacks',
+      //   children: [
+      //     {
+      //       path: '',
+      //       loadChildren: () => import('./add-feedback/add-feedback.module').then(m => m.AddFeedbackPageModule),
+      //     }
+      //   ]
+      // },
       {
         path: 'notifications',
         children: [

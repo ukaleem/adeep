@@ -14,7 +14,7 @@ export class SingleParticipantsPage implements OnInit {
   activeSegment = 'basic';
   participatedCase:any = [];
   caseData = [];
-  basicDetails  = [];
+  basicDetails :any = [];
   constructor(
     private casesService : CasesService ,
     private modalController:ModalController,
