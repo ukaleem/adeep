@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AdminService } from './services/pages-apis/admin.service';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private navCtrl: NavController,
+    private admin : AdminService
   ) {
     this.initializeApp();
   }
@@ -31,6 +33,13 @@ export class AppComponent {
   CARETAKER = false;
   DOCTOR = false;
   PATIENT = false;
+
+  inboxCount: any;
+  draftCount: any;
+  participatedCount : any;
+
+  allDiseasesCount: any;
+  allUsersCount: any;
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -56,6 +65,7 @@ export class AppComponent {
         this.PHYSICIAN = true;
         this.USER_ROLE_NAME = 'physician';
       }
+      this.loadData();
       this.loadUser();
     });
   }
@@ -81,5 +91,19 @@ export class AppComponent {
         this.casesShow = true;
       }
     }
+  }
+
+  allData: any = [];
+  loadData(){
+    this.admin.getDashboard().subscribe(data => {
+      this.allData = data;
+      this.inboxCount = this.allData.all_data.allCases[1].inbox;
+      this.draftCount = this.allData.all_data.allCases[1].draft;
+      this.participatedCount = this.allData.all_data.allCases[1].particpate;
+
+      this.allDiseasesCount = this.allData.all_data.allDisease[1].allDiseas;
+      this.allUsersCount = this.allData.all_data.allUser[1].allUser;
+    });
+    //getDashboard
   }
 }
