@@ -161,7 +161,7 @@
       </ion-row> -->
 
       <!-- Personal Info -->
-    <ng-container *ngIf="segmentVelue==='onGoingCarePlan'">
+    <ng-container *ngIf="segmentValue==='onGoingCarePlan'">
       <ion-row class='list-bg' [routerLink]="['/','patient','home','single-page-home',1]" routerLinkActive="router-link-active">
         <ion-col size="6">
           <div>
@@ -208,7 +208,7 @@
 
 
     <!-- Preferences -->
-    <ng-container *ngIf="segmentVelue==='previousCarePlans'">
+    <ng-container *ngIf="segmentValue==='previousCarePlans'">
       <ion-row class='list-bg' [routerLink]="['/','patient','home','previous-careplans',5]" routerLinkActive="router-link-active">
         <ion-col size="6">
           <div>
