@@ -20,7 +20,7 @@
   </ion-toolbar>
 
   <ion-toolbar *ngIf="isSearch">
-    <ion-searchbar (ionChange)="searchDetails($event)" (ionCancel)="closeSearch()" showCancelButton="always">
+    <ion-searchbar (ionChange)="doSearch($event)" (ionCancel)="closeSearch()" showCancelButton="always">
     </ion-searchbar>
   </ion-toolbar>
 

@@ -8,6 +8,12 @@ import { AdminService } from 'src/app/services/pages-apis/admin.service';
 })
 export class DashboardsPage implements OnInit {
 
+  showPathway = false;
+  showPatients = false;
+  showAllUsers = false;
+  showDisease = false;
+  showSpecial = false;
+  showCases = false;
   allPathwaysCount: any;
   activePathwaysCount: any;
   unactivePathwaysCount: any;
@@ -43,6 +49,33 @@ export class DashboardsPage implements OnInit {
 
   ionViewWillEnter(){
     this.loadData();
+    this.loadRoles();
+  }
+
+  loadRoles(){
+    const ROLE= localStorage.getItem('role');
+    if(ROLE == 'ADMIN_OFFICE'){
+      this.showPathway = true;
+      this.showPatients = true;
+      this.showAllUsers = true;
+      this.showDisease = true;
+      this.showSpecial = true;
+      this.showCases = true;
+    }else if(ROLE == 'CARETAKER'){
+      this.showCases = true;
+    }else if(ROLE == 'PHYSICIAN'){
+      this.showCases = true;
+      this.showPathway = true;
+      this.showPatients = true;
+      this.showDisease = true;
+      this.showSpecial = true;
+    }else if(ROLE == 'DOCTOR'){
+      this.showCases = true;
+      this.showPathway = true;
+      this.showPatients = true;
+      this.showDisease = true;
+      this.showSpecial = true;
+    }
   }
   allData: any = [];
   loadData(){

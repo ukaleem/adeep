@@ -47,4 +47,12 @@ export class DraftCasesPage implements OnInit {
     }
   }
 
+  doRefresh(event) {
+    this.ionViewWillEnter();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+
 }

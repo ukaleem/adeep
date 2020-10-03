@@ -17,7 +17,8 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('./feedbacks/feedbacks.module').then(m => m.FeedbacksPageModule),
+            // loadChildren: () => import('./feedbacks/feedbacks.module').then(m => m.FeedbacksPageModule),
+            loadChildren: () => import('../admin/feedbacks/feedbacks.module').then(m => m.FeedbacksPageModule),
           }
         ]
       },
@@ -26,7 +27,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('./notifications/notifications.module').then(m => m.NotificationsPageModule),
+            loadChildren: () => import('../admin/notifications/notifications.module').then(m => m.NotificationsPageModule),
           }
         ]
       },
@@ -52,11 +53,11 @@ const routes: Routes = [
   },
   {
     path: 'notifications',
-    loadChildren: () => import('./notifications/notifications.module').then( m => m.NotificationsPageModule)
+    loadChildren: () => import('../admin/notifications/notifications.module').then( m => m.NotificationsPageModule)
   },
   {
     path: 'feedbacks',
-    loadChildren: () => import('./feedbacks/feedbacks.module').then( m => m.FeedbacksPageModule)
+    loadChildren: () => import('../admin/feedbacks/feedbacks.module').then( m => m.FeedbacksPageModule)
   },
   {
     path: '',

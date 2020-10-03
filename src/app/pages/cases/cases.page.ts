@@ -10,16 +10,23 @@ import { CasesService } from 'src/app/services/pages-apis/cases.service';
 export class CasesPage implements OnInit {
   ROLE_ADMIN = false;
   ROLE_PHYSICIAN = false;
+  ROLE_CARETAKER = false;
+  ROLE_DOCTOR = false;
   constructor(private casesService : CasesService) { 
     const ROLE = localStorage.getItem('role');
     if (ROLE == "ADMIN_OFFICE" || ROLE == "PROCESSMAKER_ADMIN" ){
       this.ROLE_ADMIN = true;
     }else if (ROLE == "PHYSICIAN"){
       this.ROLE_PHYSICIAN = true;
+    }else if (ROLE == "CARETAKER"){
+      this.ROLE_CARETAKER = true;
+    }else if(ROLE == 'DOCTOR'){
+      this.ROLE_DOCTOR = true;
     }
    }
 
   ngOnInit() {
   }
 
+  
 }

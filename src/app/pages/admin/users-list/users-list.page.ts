@@ -29,7 +29,7 @@ export class UsersListPage implements OnInit {
       console.log(data);
     });
   }
-  async presentModal(p) {
+  async presentModal() {
     const modal = await this.modalController.create({
       component: AddUserComponent,
       cssClass: 'my-custom-class',

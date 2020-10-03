@@ -57,7 +57,7 @@
 
           <!-- Patient Side menu -->
           <ion-menu-toggle *ngIf="PATIENT">
-            <ion-item lines='none' button [routerLink]="['/admin/tabs/notifications']">
+            <ion-item lines='none' button [routerLink]="['/patient/tabs/notifications']">
               <ion-icon class='list-icon-stl' name='notifications-outline' color='light' slot='start'></ion-icon>
               <ion-label> Notifications
               </ion-label>
@@ -66,7 +66,7 @@
           </ion-menu-toggle>
 
           <ion-menu-toggle *ngIf="PATIENT">
-            <ion-item lines='none' button [routerLink]="['/admin/tabs/feedbacks']">
+            <ion-item lines='none' button [routerLink]="['/patient/tabs/feedbacks']">
               <ion-icon class='list-icon-stl' name='star-half-outline' color='light' slot='start'></ion-icon>
               <ion-label> Feedbacks
               </ion-label>
