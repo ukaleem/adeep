@@ -119,7 +119,7 @@
               <ion-button class="right-button" color="light" fill="outline">{{participatedCount}}</ion-button>
             </ion-item>
           </ion-menu-toggle>
-          <ion-menu-toggle  *ngIf="PROCESSMAKER_ADMIN">
+          <ion-menu-toggle  *ngIf="PROCESSMAKER_ADMIN || ADMIN_OFFICE">
             <ion-item lines='none' button [routerLink]="['/','admin','tabs','disease']">
               <div slot='start'>
                 <img class="segment-img" src="../assets/list-icons/diseases.svg">
@@ -139,7 +139,7 @@
               <ion-button class="right-button" color="light" fill="outline">6</ion-button>
             </ion-item>
           </ion-menu-toggle> -->
-          <ion-menu-toggle  *ngIf="PROCESSMAKER_ADMIN">
+          <ion-menu-toggle  *ngIf="PROCESSMAKER_ADMIN || ADMIN_OFFICE">
             <ion-item lines='none' button [routerLink]="['/','admin','tabs','users']">
               <!-- <div slot='start'>
                 <img class="segment-img" src="../assets/icon/participated.svg">

@@ -46,7 +46,7 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.loadData();
-      // return;
+      return;
       this.USER_ROLE_NAME = localStorage.getItem('role');
       if(this.USER_ROLE_NAME=="ADMIN_OFFICE"){
         this.ADMIN_OFFICE = true;
