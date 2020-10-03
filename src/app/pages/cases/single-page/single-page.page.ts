@@ -577,6 +577,9 @@ export class SinglePagePage implements OnInit {
     return await modal.present();
   }
 
-  
+  closeModal(){
+    this.modalCtrl.dismiss();
+  }
+
 }
 

@@ -1,16 +1,20 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
+  <ion-toolbar *ngIf="!isSearch">
       <ion-buttons color="light" size="small" slot="start">
           <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
       </ion-buttons>
       <ion-item class='bg-none' lines="none">
-          <ion-title color="light" class="ion-text-center">
-           Feed Back
+           <ion-title color="light" class="ion-text-center">
+            Feed Back
           </ion-title>
-          <ion-icon (click)="presentPopover($event)" color="light" name="ellipsis-vertical-outline"
-              slot="end">
+          <ion-icon color="light" name="search"
+              slot="end" (click)="showSearch()">
           </ion-icon>
       </ion-item>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="isSearch">
+    <ion-searchbar (ionChange)="searchCase($event)" (ionCancel)="closeSearch()" showCancelButton="always">
+    </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -47,8 +51,8 @@
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
     
-    <ng-container *ngIf="activeSegment == 'detail' && allFeedBack.new">
-      <ion-row class='list-bg' style="margin-top: 5px;" *ngFor="let item of allFeedBack.new">
+    <ng-container *ngIf="activeSegment == 'detail' && allFeedBackNew">
+      <ion-row class='list-bg' style="margin-top: 5px;" *ngFor="let item of allFeedBackNew">
         <ion-col (click)="viewFeedBack(item.FEED_ID)">
 
           <ion-item class="bg-none" lines='none'>
@@ -72,8 +76,8 @@
       </ion-row>
     </ng-container>
 
-    <ng-container *ngIf="activeSegment == 'my' && allFeedBack.my">
-      <ion-row class='list-bg' style="margin-top: 5px;" *ngFor="let item of allFeedBack.my">
+    <ng-container *ngIf="activeSegment == 'my' && allFeedBackMy">
+      <ion-row class='list-bg' style="margin-top: 5px;" *ngFor="let item of allFeedBackMy">
         <ion-col (click)="viewFeedBack(item.FEED_ID)">
           <ion-item class="bg-none" lines='none'>
             <ion-label class='cno-wrap'>
@@ -96,8 +100,8 @@
       </ion-row>
     </ng-container>
 
-    <ng-container *ngIf="activeSegment == 'replied' && allFeedBack.all">
-      <ion-row class='list-bg' style="margin-top: 5px;" *ngFor="let item of allFeedBack.all">
+    <ng-container *ngIf="activeSegment == 'replied' && allFeedBackReplied">
+      <ion-row class='list-bg' style="margin-top: 5px;" *ngFor="let item of allFeedBackReplied">
         <ion-col (click)="viewFeedBack(item.FEED_ID)">
           <ion-item class="bg-none" lines='none'>
             <ion-label class='cno-wrap'>
