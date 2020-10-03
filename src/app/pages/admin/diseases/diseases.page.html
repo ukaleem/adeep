@@ -14,14 +14,11 @@
     <ion-searchbar (ionChange)="doSearch($event)" (ionCancel)="closeSearch()" showCancelButton="always">
     </ion-searchbar>
   </ion-toolbar>
-</ion-header>
+</ion-header> 
 
-
-<ion-content [fullscreen]="true"  translucent='true'>
-  <ion-refresher mode="ios" slot="fixed" (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
-          refreshingSpinner="circles" refreshingText="Refreshing...">
-      </ion-refresher-content>
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
   <ion-grid>
@@ -39,9 +36,19 @@
     </ion-row>
   </ion-grid>
 
-
-<ion-content [fullscreen]="true" translucent='true'>
   <ion-grid *ngIf="segmentVelue === 'disease'">
+    <ion-row *ngIf="!filterDisease.length" class='white-bg'>
+      <ion-col>
+        <ion-item class='bg-none' lines='none'>
+          <ion-icon slot='start' name="information-circle-outline" color='primary'></ion-icon>
+          <ion-label style='white-space: pre-wrap;'> Please Search Disease with name in the top search box!👆🏻 </ion-label>
+          <ion-button (click)="showSearch()" slot='end' fill='clear' shape='round'>
+            <ion-icon name='trending-up-outline' ></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
     <ion-row class='list-bg' *ngFor="let p of filterDisease">
       <ion-col>
         <div>
@@ -89,4 +96,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
 </ion-content>

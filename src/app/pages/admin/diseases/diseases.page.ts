@@ -30,8 +30,14 @@ export class DiseasesPage implements OnInit {
     this.segmentVelue = ev.detail.value;
     console.log(this.segmentVelue);
   }
-  doRefresh(e){
-    this.loadData();
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.ionViewWillEnter();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
   }
 
   ionViewWillEnter(){
@@ -43,7 +49,6 @@ export class DiseasesPage implements OnInit {
       console.log('Disease List');
       this.diseaseList = data.all_data;
       this.isLoading = false;
-      
       console.log(this.diseaseList);
     }, (error) => {
       console.log(error);

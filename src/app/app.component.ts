@@ -45,6 +45,8 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.loadData();
+      // return;
       this.USER_ROLE_NAME = localStorage.getItem('role');
       if(this.USER_ROLE_NAME=="ADMIN_OFFICE"){
         this.ADMIN_OFFICE = true;
@@ -65,7 +67,6 @@ export class AppComponent {
         this.PHYSICIAN = true;
         this.USER_ROLE_NAME = 'physician';
       }
-      this.loadData();
       this.loadUser();
     });
   }
@@ -83,6 +84,7 @@ export class AppComponent {
     this.navCtrl.navigateRoot('/');
   }
   loadUser(){
+
     const user = JSON.parse(localStorage.getItem('user'));
     if(user){
       this.userName = user.firstname;
