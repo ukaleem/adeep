@@ -122,10 +122,10 @@ const routes: Routes = [
     path: 'patientsForm',
     loadChildren: () => import('./patients/patients.module').then( m => m.PatientsPageModule)
   },
-  {
-    path: 'add-feedback',
-    loadChildren: () => import('./add-feedback/add-feedback.module').then( m => m.AddFeedbackPageModule)
-  },
+  // {
+  //   path: 'add-feedback',
+  //   loadChildren: () => import('./add-feedback/add-feedback.module').then( m => m.AddFeedbackPageModule)
+  // },
   {
     path: 'diseases',
     loadChildren: () => import('./diseases/diseases.module').then( m => m.DiseasesPageModule)
