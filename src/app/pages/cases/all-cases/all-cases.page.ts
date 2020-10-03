@@ -22,10 +22,13 @@ export class AllCasesPage implements OnInit {
 
   allCases:any = [];
   user_id: any;
+  isSearch = false;
+  allCassFilter: any = [];
   ionViewWillEnter(){
     this.casesService.getAllProcess().subscribe(data=>{
       console.log(data);
       this.allCases = data;
+      this.allCassFilter = this.allCases
     });
   }
   constructor(
@@ -107,5 +110,25 @@ export class AllCasesPage implements OnInit {
       console.log('Async operation has ended');
       event.target.complete();
     }, 2000);
+  }
+  showSearch() { 
+    this.isSearch = true;
+  }
+  closeSearch() {
+    this.isSearch = false;
+  }
+  searchCase(ev){
+    console.log(ev.detail.value);
+    let searchTerm = ev.detail.value.toLowerCase();
+    if (searchTerm === '') {
+      this.allCases = this.allCassFilter;
+    } else {
+      this.allCases = this.allCassFilter.filter(item => {
+        if( item.app_tas_title !== null && item.app_tas_title.toLowerCase().indexOf(searchTerm.toLowerCase() || item.patient !== null && item.patient.toLowerCase().indexOf(searchTerm.toLowerCase())) > -1){
+          return true;
+        }
+        return false;
+      });
+    }
   }
 }

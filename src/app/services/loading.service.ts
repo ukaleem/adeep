@@ -18,16 +18,31 @@ export class LoadingService {
    }
 
   async prsentLoading() {
+
+    // this.loader = await this.modelCtrl.create({
+    //   component: CustomLoaderComponent,
+    //   cssClass: 'my-custom-class'
+    // });
+    // return await this.loader.present();
+
+    let xyz = this.modelCtrl.getTop();
+    console.log('topModel',xyz);
     this.loader = await this.modelCtrl.create({
       component: CustomLoaderComponent,
-      cssClass: 'my_loader_custom'
+      cssClass: 'my_loader_custom',
+      keyboardClose : false,
+      id: 'loadingModal12'
     });
     return await this.loader.present();
     // (await LoadingService.loading).present();
   }
 
   async closeLoading() {
-    this.modelCtrl.dismiss();
+
+    // this.modelCtrl.dismiss();
+
+    this.loader.dismiss();
+    this.modelCtrl.dismiss(null,'','loadingModal12');
     // (await LoadingService.loading).dismiss();
   }
 }

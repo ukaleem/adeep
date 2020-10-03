@@ -8,17 +8,43 @@ import { CasesService } from 'src/app/services/pages-apis/cases.service';
 })
 export class DraftCasesPage implements OnInit {
 
+  allCases:any = [];
+  user_id: any;
+  isSearch = false;
+  allDraftCassFilter: any = [];
+  allDraftCases:any = [];
   constructor(
     private casesService : CasesService ,
   ) { }
-  allDraftCases:any = [];
+ 
   ionViewWillEnter(){
     this.casesService.getDraftCases().subscribe(data=>{
       console.log(data);
       this.allDraftCases = data;
+      this.allDraftCassFilter = this.allDraftCases;
     });
   }
   ngOnInit() {
+  }
+  showSearch() { 
+    this.isSearch = true;
+  }
+  closeSearch() {
+    this.isSearch = false;
+  }
+  searchCase(ev){
+    console.log(ev.detail.value);
+    let searchTerm = ev.detail.value.toLowerCase();
+    if (searchTerm === '') {
+      this.allDraftCases = this.allDraftCassFilter;
+    } else {
+      this.allDraftCases = this.allDraftCassFilter.filter(item => {
+        if( item.app_tas_title !== null && item.app_tas_title.toLowerCase().indexOf(searchTerm.toLowerCase() || item.app_pro_title !== null && item.app_pro_title.toLowerCase().indexOf(searchTerm.toLowerCase())) > -1){
+          return true;
+        }
+        return false;
+      });
+    }
   }
 
 }

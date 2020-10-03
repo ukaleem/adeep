@@ -223,7 +223,7 @@ export class ApiService {
               'Error in Connection to Server'
             );
           }
-          console.log(error);
+          console.error(error);
           observer.error(error); 
         }
       );

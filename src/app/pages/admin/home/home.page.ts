@@ -57,4 +57,11 @@ export class HomePage implements OnInit {
   // showPatientDetails(id) {
   //   this.router.navigateByUrl(['/','admin','patients' ,id]);
   // }
+  checkFeildIsEmpty(name:any) {
+    if(name === '' || name === null || name === undefined || name === 'null') {
+      return 'Not Defined';
+    } else if(name !== '' || name !== null || name !== undefined || name !== 'null'){
+      return name;
+    }
+  }
 }

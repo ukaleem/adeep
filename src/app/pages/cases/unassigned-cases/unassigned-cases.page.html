@@ -1,9 +1,24 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Unassigned Cases</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar *ngIf="!isSearch">
+    <ion-buttons color="light" size="small" slot="start">
+      <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
+  </ion-buttons>
+    <ion-item class='bg-none' lines="none">
+      <ion-title color="light" class="ion-text-center">
+        Unassign Cases
+      </ion-title>
+      <ion-icon (click)="showSearch()" color="light" name="search" slot="end"> </ion-icon>
+    </ion-item>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="isSearch">
+    <ion-searchbar (ionChange)="searchCase($event)" (ionCancel)="closeSearch()" showCancelButton="always">
+    </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-grid>
     <ion-row class='list-bg'*ngFor="let case of allUnassignedCases">
       <ion-col size="12">
