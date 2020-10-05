@@ -1,4 +1,7 @@
+import { ReturnStatement } from '@angular/compiler';
+import { Route } from '@angular/compiler/src/core';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   Plugins,
   PushNotification,
@@ -6,6 +9,7 @@ import {
   PushNotificationActionPerformed, LocalNotification, NotificationChannel
 } from '@capacitor/core';
 import { ToastController } from '@ionic/angular';
+// import { AppComponent } from 'src/app/app.component';
 import { ApiService } from '../api.service';
 import { EndpointsService } from '../endpoints.service';
 
@@ -19,6 +23,8 @@ export class NotificationsService {
 
   constructor(private api: ApiService,
     private toastController: ToastController,
+    private route:Router,
+    // private app: AppComponent,
     private endPoints: EndpointsService) {
 
     PushNotifications.requestPermission().then(result => {
@@ -41,6 +47,9 @@ export class NotificationsService {
 
     PushNotifications.addListener('pushNotificationActionPerformed',
       (notification: PushNotificationActionPerformed) => {
+
+        this.navigateNotification();
+
         // alert('Push action performed: ' + JSON.stringify(notification));
       }
     );
@@ -65,6 +74,24 @@ export class NotificationsService {
     })
   }
 
+  navigateNotification(){
+    const ROLE = localStorage.getItem('role');
+    // const USER = this.app.userName;
+    // if(!USER || !ROLE || USER == ''){
+    //   return;
+    // }
+    if (ROLE == "ADMIN_OFFICE" || ROLE == "PROCESSMAKER_ADMIN" ){
+      this.route.navigateByUrl('/admin/tabs/notifications');
+    }else if (ROLE == "PHYSICIAN"){
+      this.route.navigateByUrl('/physician/notifications');
+    }else if (ROLE == "CARETAKER"){
+      this.route.navigateByUrl('/doctor/notifications');
+    }else if(ROLE == 'DOCTOR'){
+      this.route.navigateByUrl('/doctor/notifications');
+    }else if(ROLE == 'PATIENT_ROLES'){
+      this.route.navigateByUrl('/patient/tabs/notifications');
+    }
+  }
   registerToken() {
     PushNotifications.addListener('registration',
       (token: PushNotificationToken) => {
@@ -120,6 +147,7 @@ export class NotificationsService {
           icon: 'eye',
           handler: () => {
             console.log('Cancel clicked');
+            this.navigateNotification();
           }
         }
       ]
