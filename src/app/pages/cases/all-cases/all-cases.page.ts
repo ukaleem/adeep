@@ -5,15 +5,15 @@ import { StartNewComponent } from '../start-new/start-new.component';
 // import { SingleCaseComponent } from '../single-case/single-case.component';
 // import { Firebase } from '@ionic-native/firebase/ngx';
 
-import {
-  Plugins,
-  PushNotification,
-  PushNotificationToken,
-  PushNotificationActionPerformed } from '@capacitor/core';
+// import {
+//   Plugins,
+//   PushNotification,
+//   PushNotificationToken,
+//   PushNotificationActionPerformed } from '@capacitor/core';
 import { AuthService } from 'src/app/services/pages-apis/auth.service';
 import { AppComponent } from 'src/app/app.component';
 
-const { PushNotifications } = Plugins;
+// const { PushNotifications } = Plugins;
 @Component({
   selector: 'app-all-cases',
   templateUrl: './all-cases.page.html',
@@ -44,60 +44,60 @@ export class AllCasesPage implements OnInit {
   ngOnInit() {
     console.log('Initializing HomePage');
 
-    // Request permission to use push notifications
-    // iOS will prompt user and return if they granted permission or not
-    // Android will just grant without prompting
-    PushNotifications.requestPermission().then( result => {
-      if (result.granted) {
-        // Register with Apple / Google to receive push via APNS/FCM
-        PushNotifications.register();
-      } else {
-        // Show some error
-      }
-    });
+    // // Request permission to use push notifications
+    // // iOS will prompt user and return if they granted permission or not
+    // // Android will just grant without prompting
+    // PushNotifications.requestPermission().then( result => {
+    //   if (result.granted) {
+    //     // Register with Apple / Google to receive push via APNS/FCM
+    //     PushNotifications.register();
+    //   } else {
+    //     // Show some error
+    //   }
+    // });
 
-    PushNotifications.addListener('registration',
-      (token: PushNotificationToken) => {
-        console.log('Token is',token);
-        console.log(token);
-        // alert('Push registration success, token: ' + token.value);
-          // Get User Id Api
+    // PushNotifications.addListener('registration',
+    //   (token: PushNotificationToken) => {
+    //     console.log('Token is',token);
+    //     console.log(token);
+    //     // alert('Push registration success, token: ' + token.value);
+    //       // Get User Id Api
 
 
-          this.loginService.get_user_id().subscribe(user_recorde => {
-            if(user_recorde) {
-              this.user_id = user_recorde.uid;
-                let user = {
-                  user_id: this.user_id,
-                  user_access_token: token.value,
-                  // user_access_token: 'sdkfdkbfkdshfkjdshfkjdshfkjsdhf89823874987239ddjsjfsbhsdsdhfvfsdbhscbwgfuwjsdhf988',
-                }
-              this.loginService.set_user_token(user).subscribe(response => {
-                console.log(response);
-              });
-            }
-          });
+    //       this.loginService.get_user_id().subscribe(user_recorde => {
+    //         if(user_recorde) {
+    //           this.user_id = user_recorde.uid;
+    //             let user = {
+    //               user_id: this.user_id,
+    //               user_access_token: token.value,
+    //               // user_access_token: 'sdkfdkbfkdshfkjdshfkjdshfkjsdhf89823874987239ddjsjfsbhsdsdhfvfsdbhscbwgfuwjsdhf988',
+    //             }
+    //           this.loginService.set_user_token(user).subscribe(response => {
+    //             console.log(response);
+    //           });
+    //         }
+    //       });
 
-      }
-    );
+    //   }
+    // );
 
-    PushNotifications.addListener('registrationError',
-      (error: any) => {
-        alert('Error on registration: ' + JSON.stringify(error));
-      }
-    );
+    // PushNotifications.addListener('registrationError',
+    //   (error: any) => {
+    //     alert('Error on registration: ' + JSON.stringify(error));
+    //   }
+    // );
 
-    PushNotifications.addListener('pushNotificationReceived',
-      (notification: PushNotification) => {
-        alert('Push received: ' + JSON.stringify(notification));
-      }
-    );
+    // PushNotifications.addListener('pushNotificationReceived',
+    //   (notification: PushNotification) => {
+    //     alert('Push received: ' + JSON.stringify(notification));
+    //   }
+    // );
 
-    PushNotifications.addListener('pushNotificationActionPerformed',
-      (notification: PushNotificationActionPerformed) => {
-        alert('Push action performed: ' + JSON.stringify(notification));
-      }
-    );
+    // PushNotifications.addListener('pushNotificationActionPerformed',
+    //   (notification: PushNotificationActionPerformed) => {
+    //     alert('Push action performed: ' + JSON.stringify(notification));
+    //   }
+    // );
   }
 
   async presentModal() {
