@@ -58,6 +58,9 @@ export class UsersListPage implements OnInit {
     return await modal.present();
   }
 
+  getUserFullName(first,last){
+    return first+" "+last;
+  }
   doRefresh(event) {
     console.log('Begin async operation');
     this.loadData();
