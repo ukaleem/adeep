@@ -55,7 +55,9 @@ export class AddFeedComponent implements OnInit {
     }
     this.feed.addFeedBack(frmData).subscribe(data=> {
       console.log(data);
-      this.closeModal();
+      setTimeout(() => {
+        this.modalCtrl.dismiss(null,'ok');
+      }, 1000);
     })
   }
 

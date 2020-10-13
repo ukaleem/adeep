@@ -1,18 +1,18 @@
 <ion-header class='ion-no-border'>
   <ion-toolbar>
-    <ion-item class='bg-none' lines='none'>  
+    <ion-item class='bg-none' lines='none'>
       <ion-buttons slot="start">
-         <ion-button [routerLink]="['/','cases','tabs','participated']">
+        <ion-button [routerLink]="['/','cases','tabs','participated']">
           <ion-icon name="arrow-back" color="light"></ion-icon>
-         </ion-button>
-        </ion-buttons>
-        <ion-title class="ion-text-center">Case Details</ion-title>
-        <ion-buttons slot="end">
-          <ion-button fill="clear" slot="end">
-              <ion-icon color="light" name="trash"></ion-icon>
-          </ion-button>
+        </ion-button>
       </ion-buttons>
-      </ion-item>
+      <ion-title class="ion-text-center">Case Details</ion-title>
+      <ion-buttons slot="end">
+        <!-- <ion-button fill="clear" slot="end">
+          <ion-icon color="light" name="trash"></ion-icon>
+        </ion-button> -->
+      </ion-buttons>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
@@ -84,15 +84,18 @@
       <ion-col>
         <div>
           <ion-list>
-            <div *ngFor="let task of basicDetails.current_task; let i = index">
+            <div *ngFor="let task of currentCaseData; let i = index">
               <p class="ion-text-end date-class">{{ task.delTaskDueDate }}</p>
-              <ion-item  class="list-item list-bg" lines='none' detail>
+              <ion-item class="list-item list-bg" lines='none' detail>
                 <ion-badge mode="ios" color="primary" slot="end">{{ task.del_thread_status }}</ion-badge>
                 <ion-label>
                   <h2>{{ task.usr_name }}</h2>
                   <p> {{task.tas_title }} </p>
                 </ion-label>
               </ion-item>
+            </div>
+            <div *ngIf="!currentCaseData.length">
+              No Current task or Case Closed
             </div>
           </ion-list>
         </div>

@@ -78,6 +78,10 @@ export class PatientsPage implements OnInit {
         // 'APP_ID': p.APP_UID,
       }
     });
+
+    modal.onDidDismiss().then(data =>{
+      this.loadData();
+    })
     return await modal.present();
   }
 

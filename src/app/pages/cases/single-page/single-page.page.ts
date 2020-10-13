@@ -5,8 +5,8 @@ import { CasesService } from 'src/app/services/pages-apis/cases.service';
 import { InAppBrowserOptions, InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { ToastService } from 'src/app/services/toast.service';
 import { AddFeedComponent } from '../../admin/feedbacks/add-feed/add-feed.component';
-import { AddNoteComponent } from '../single-case/add-note/add-note.component';
 import { ReAssignComponent } from './re-assighn/re-assighn.component';
+import { AddNoteComponent } from './add-note/add-note.component';
 
 @Component({
   selector: 'app-single-page',
@@ -29,6 +29,7 @@ export class SinglePagePage implements OnInit {
   currentTaskId = '';
   addNewGridOption = [];
   application_id = [];
+  taskData :any = [];
 
   guide = `Loading data...`;
   nodata = false;
@@ -111,6 +112,7 @@ export class SinglePagePage implements OnInit {
     ///First Request To load Case Detail
     this.casesService.getSingleCase(this.caseId).subscribe(data => {
       console.log('First Single Case', data);
+      this.taskData = data;
 
       try {
         this.projectId = data.pro_uid;
@@ -579,6 +581,9 @@ export class SinglePagePage implements OnInit {
 
   closeModal(){
     this.modalCtrl.dismiss();
+  }
+  goBack(){
+    this.rout.navigateByUrl('/cases/tabs/inbox');
   }
 
 }

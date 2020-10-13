@@ -9,8 +9,8 @@ import { CasesPageRoutingModule } from './cases-routing.module';
 import { CasesPage } from './cases.page';
 import { StartNewComponent } from './start-new/start-new.component';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-import { AddNoteComponent } from './single-case/add-note/add-note.component';
 import { ReAssignComponent } from './single-page/re-assighn/re-assighn.component';
+import { AddNoteComponent } from './single-page/add-note/add-note.component';
 // import { Firebase } from '@ionic-native/firebase/ngx';
 
 @NgModule({

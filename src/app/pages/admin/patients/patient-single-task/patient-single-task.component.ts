@@ -21,6 +21,7 @@ export class PatientSingleTaskComponent implements OnInit {
   isComplete = false;
   isPhysician = false;
   isCareTacker = false;
+  fromNotification = false;
   segmentVelue = 'current';
   taskData: any = [];
   constructor(private admin: AdminService,
@@ -33,7 +34,12 @@ export class PatientSingleTaskComponent implements OnInit {
   ) { }
 
   doRefresh(e) {
-
+    console.log('Begin async operation');
+    this.loadData();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      e.target.complete();
+    }, 2000);
   }
 
   allData: any = [];
@@ -46,6 +52,23 @@ export class PatientSingleTaskComponent implements OnInit {
   }
 
   ionViewWillEnter() {
+
+    if (this.status == 'NOTIFICATIONS') {
+      this.isComplete = true;
+      this.fromNotification = true;
+      this.segmentVelue = 'pass';
+      const ROLE = localStorage.getItem('role');
+      if (ROLE == "PATIENT_ROLES"){
+        this.type ='p';
+      }else if (ROLE == "PHYSICIAN"){
+        this.type = 'ph';
+      }else if (ROLE == "CARETAKER"){
+        this.type = 'cr';
+      }else if(ROLE == 'DOCTOR'){
+        this.type = 'cr';
+      }
+    }
+
     if (this.type == 'p') {
       this.isPatient = true;
     } else if (this.type == 'ph') {
@@ -57,6 +80,7 @@ export class PatientSingleTaskComponent implements OnInit {
       this.isComplete = true;
       this.segmentVelue = 'pass';
     }
+
     this.loadData();
   }
 

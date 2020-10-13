@@ -1,5 +1,5 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
+  <ion-toolbar *ngIf="!isSearch">
       <ion-buttons color="light" size="small" slot="start">
           <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
       </ion-buttons>
@@ -7,11 +7,17 @@
            <ion-title color="light" class="ion-text-center">
             Users List
           </ion-title>
-          <ion-icon color="light" name="search"
+          <ion-icon (click)="showSearch()" color="light" name="search"
               slot="end">
           </ion-icon>
       </ion-item>
   </ion-toolbar>
+
+  <ion-toolbar *ngIf="isSearch">
+    <ion-searchbar (ionChange)="doSearch($event)" autofocus="true" (ionCancel)="closeSearch()" showCancelButton="always">
+    </ion-searchbar>
+  </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">

@@ -4,7 +4,7 @@
       <ion-buttons color="light" size="small" slot="start">
         <ion-icon name="chevron-back" color="light" slot="start" (click)="closeModal()"></ion-icon>
       </ion-buttons>
-      <ion-label class="ion-text-center" color='light'> User
+      <ion-label class="ion-text-center" color='light'>{{topTitle}}
       </ion-label>
       <ion-icon  name="none" slot="end" color="light" size="small"></ion-icon>
     </ion-item>
@@ -188,6 +188,7 @@
             class="input"
             id="userPassword"
             type="password"
+            required
             placeholder="eg. New Password"
           >
           </ion-input>
@@ -199,7 +200,7 @@
         <ion-col>
           <ion-label for="user" class="ion-label"> Confirm Password* </ion-label>
           <ion-input
-            
+            [class.invalid-input-custom] = "!isPasswordSame()"
             minlength="4"
             maxlength="10"
             name="userNewPassword"
@@ -218,7 +219,7 @@
         <ion-col>
           <ion-button
             type="submit"
-            [disabled]="!f.valid"
+            [disabled]="!f.valid || !isPasswordSame()"
             expand="block"
             fill="solid"
             shape="round"

@@ -19,19 +19,6 @@
 
 <ion-content [fullscreen]="true" *ngIf="isPermission">
   <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-segment class='my-segment' (ionChange)="changeSegment($event)" value="personalInfo">
-          <ion-segment-button value="personalInfo">
-              <ion-label>Personal Info</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="preferences">
-              <ion-label>Preferences</ion-label>
-          </ion-segment-button>
-      </ion-segment>
-      </ion-col>
-    </ion-row>
-
     <!-- Personal Info -->
     <ion-row *ngIf="segmentVelue==='personalInfo'">
       <ion-col>

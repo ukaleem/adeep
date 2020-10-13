@@ -34,13 +34,15 @@
     </ion-fab-button>
   </ion-fab>
   <ion-grid *ngIf="allPatients.length">
-    <ion-row class='list-bg' *ngFor="let p of allPatients" [routerLink]="['/','admin','patients',p.PUBLIC_ID]" routerLinkActive="router-link-active">
+    <ion-row class='list-bg2' *ngFor="let p of allPatients" [routerLink]="['/','admin','patients',p.PUBLIC_ID]" routerLinkActive="router-link-active">
       <ion-col size="6">
         <div>
           <ion-item class='bg-none' lines='none'>
-            <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon>
+            <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon> -->
             <ion-label class="af-icon-label">
-              {{checkFeildIsEmpty(p.PAITEINT_NAME)}} 
+              <h4 class="name-header">Patient Name</h4>
+              <p> {{checkFeildIsEmpty(p.PAITEINT_NAME)}} </p>
+             
             </ion-label>
           </ion-item>
         </div>
@@ -48,8 +50,10 @@
       <ion-col size="6">
         <div>
           <ion-item class='bg-none' lines='none' >
-            <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
-            <ion-label class="af-icon-label"> {{checkFeildIsEmpty(p.PAITENT_AGE)}} 
+            <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon> -->
+            <ion-label class="af-icon-label"> 
+              <h4 class="name-header">Patient Age</h4>
+              <p> {{checkFeildIsEmpty(p.PAITENT_AGE)}} </p>  
             </ion-label>
           </ion-item>
         </div>
@@ -57,9 +61,11 @@
       <ion-col size="6">
         <div>
           <ion-item class='bg-none' lines='none'>
-            <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+            <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon> -->
             <ion-label class="af-icon-label">
-              {{checkFeildIsEmpty(p.descriptions)}}
+              <h4 class="name-header">Patient Disease</h4>
+              <p>  {{checkFeildIsEmpty(p.descriptions)}} </p>  
+             
             </ion-label>
           </ion-item>
         </div>
@@ -67,8 +73,10 @@
       <ion-col size="6">
         <div>
           <ion-item class='bg-none' lines='none'>
-            <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon>
-            <ion-label class="af-icon-label">{{checkFeildIsEmpty(p.CREATE_DATE)}} 
+            <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon> -->
+            <ion-label class="af-icon-label">
+              <h4 class="name-header">Creation Date</h4>
+              <p>  {{checkFeildIsEmpty(p.CREATE_DATE)}}  </p>  
             </ion-label>
           </ion-item>
       </div>

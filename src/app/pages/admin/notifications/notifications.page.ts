@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionSheetController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { ActionSheetController, ModalController } from '@ionic/angular';
 import { NotificationsService } from 'src/app/services/pages-apis/notifications.service';
+import { PatientSingleTaskComponent } from '../patients/patient-single-task/patient-single-task.component';
 
 @Component({
   selector: 'app-notifications',
@@ -9,7 +11,10 @@ import { NotificationsService } from 'src/app/services/pages-apis/notifications.
 })
 export class NotificationsPage implements OnInit {
 
-  constructor(private not : NotificationsService , private actionSheetController: ActionSheetController) { }
+  constructor(private not : NotificationsService , 
+    private modalCtrl: ModalController,
+    private actionSheetController: ActionSheetController,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,11 +30,44 @@ export class NotificationsPage implements OnInit {
     })
   }
 
+  async viewNotifications(data){
+    console.log(data);
+    this.changeStatus(data.note_id,2);
+    // this.router.navigate(['/','cases','single-page',data.application_id]);
+    if(data.note_type == '2'){
+      this.router.navigate(['/','cases','single-page',data.application_id]);
+    }else{
+      const modal = await this.modalCtrl.create({
+        component: PatientSingleTaskComponent,
+        cssClass: 'my-custom-class',
+        componentProps: {
+          'PROJECT_ID': data.process_id,
+          'APP_ID': data.application_id,
+          'type' : 'io',
+          'status' : 'NOTIFICATIONS'
+        }
+      });
+      return await modal.present();
+    }
+
+    // this.router.navigateByUrl('/cases/tabs/inbox');
+//['/','cases','single-page',single.app_uid]
+  }
 
   async presentActionSheet(data) {
     const id = data.note_id;
+
+    let ViewButton = {
+      text: 'Detail View',
+        role: 'destructive',
+        icon: 'eye',
+        handler: () => {
+          this.viewNotifications(data);
+        }
+    };
+
     let readButton = {
-      text: 'Read',
+      text: 'Mark as Read',
         role: 'destructive',
         icon: 'glasses',
         handler: () => {
@@ -77,7 +115,7 @@ export class NotificationsPage implements OnInit {
     if(data.current_status == '0'){
       allButtons.push(readButton);
     }
-    // allButtons.push(readButton);
+    allButtons.push(ViewButton);
     allButtons.push(delButton);
     allButtons.push(canSelButton);
 

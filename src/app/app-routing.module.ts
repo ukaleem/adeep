@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'participants',
-    loadChildren: () => import('./pages/participants/participants.module').then( m => m.ParticipantsPageModule)
+    loadChildren: () => import('./pages/cases/participants/participants.module').then( m => m.ParticipantsPageModule)
   },
   {
     path: 'admin',

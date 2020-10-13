@@ -20,7 +20,7 @@
           <ion-input
             required
             minlength="3"
-            maxlength="200"
+            maxlength="100"
             name="p_f_name"
             [(ngModel)]="frmData.usr_firstname"
             ngModel
@@ -41,6 +41,8 @@
               class="input"
               required
               type="text"
+              minlength="3"
+              maxlength="100"
               name="p_l_name"
               ngModel
               #searchTagCtrl="ngModel"
@@ -80,7 +82,7 @@
           <ion-input
             required
             minlength="5"
-            maxlength="40"
+            maxlength="60"
             name="p_email"
             [(ngModel)]="frmData.usr_email"
             ngModel
@@ -97,7 +99,7 @@
       <ion-row>
         <ion-col (click)="patientAssignTask()">
           <ion-label for="user" class="ion-label"> Select Disease* </ion-label>
-          <ion-input required minlength="3" maxlength="40" readonly name="p_email2" [(ngModel)]="selectDices.name"
+          <ion-input required minlength="3" maxlength="140" readonly name="p_email2" [(ngModel)]="selectDices.name"
             ngModel #pkgDescriptionCtrl="ngModel" class="input" id="patientEmail2" type="text" placeholder="Disease">
           </ion-input>
         </ion-col>
@@ -130,14 +132,15 @@
           <ion-input
             required
             minlength="5"
-            maxlength="40"
+            maxlength="15"
             name="p_phone_no"
             [(ngModel)]="frmData.usr_phone"
             ngModel
             #pkgPriceCtrl="ngModel"
             class="input"
             id="phoneNo"
-            type="number"
+            type="tel"
+            inputmode ="tel"
             placeholder="eg. Phone No?$"
           >
           </ion-input>
