@@ -63,14 +63,6 @@ export class NotificationsService {
 
     LocalNotifications.requestPermission().then(data => {
       console.log(data);
-      const xuz: NotificationChannel = {
-        id: '1023',
-        importance: 3,
-        name: 'pathway',
-      };
-      LocalNotifications.createChannel(xuz).then(d => {
-        console.log(d);
-      })
     })
   }
 
@@ -119,11 +111,11 @@ export class NotificationsService {
     const notifs = await LocalNotifications.schedule({
       notifications: [
         {
-          title: "New Pathway",
+          title: "Adeeb Pathway",
           body: body,
           channelId : '1023',
           id: new Date().getTime(),
-          schedule: { at: new Date(new Date().getTime() + 5000) },
+          schedule: { at: new Date(new Date().getTime() + 1000) },
           sound: null,
           attachments: null,
           actionTypeId: "",

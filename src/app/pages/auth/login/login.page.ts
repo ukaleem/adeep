@@ -112,8 +112,8 @@ export class LoginPage implements OnInit {
           this.toastService.ErrorToast('Login failed', 1000);
         }
         this.noti.registerToken();
-        this.noti. showToast('Login Successful');
-        this.noti.localNotifications('Login Successful');
+        // this.noti. showToast('Login Successful');
+        // this.noti.localNotifications('Login Successful');
         this.app.loadData();
       } catch (error) {
         this.navCtrl.navigateRoot("/");
