@@ -459,9 +459,9 @@ export class SinglePagePage implements OnInit {
     var xyz: InAppBrowserOptions = {
       // location: 'no',
       // closebuttoncolor: 'red',
-      closebuttoncaption: 'Done',
+      closebuttoncaption: 'Close',
       // toolbar: 'no',
-      toolbarcolor: '#202453',
+      toolbarcolor: '#05aaca',
       hideurlbar: 'yes', // hide the url toolbar
       hidenavigationbuttons: 'yes'
 

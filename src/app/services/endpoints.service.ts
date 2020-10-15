@@ -110,6 +110,7 @@ export class EndpointsService {
   ALL_DISEASE = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_disease';
   DELETE_DISEASE  = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/delete_disease';
   EDIT_DISEASE = ConfigService.SERVER_ADDRESS+'/api/1.0/' + ConfigService.WORKSPACE+'extrarest/put_disease';
+  ADD_DISEASE_SPECIAL = ConfigService.SERVER_ADDRESS+'/api/1.0/' + ConfigService.WORKSPACE+'extrarest/add_disease_special';
 
   ALL_SPECIALTY = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_specialty';
   DELETE_SPECIALTY = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/delete_specialty';

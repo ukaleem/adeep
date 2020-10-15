@@ -44,15 +44,24 @@ export class DiseasesPage implements OnInit {
     this.loadData();
   }
 
+  searched = '';
   loadData(){
-    this.admin.allDisease().subscribe(data=> {
-      console.log('Disease List');
-      this.diseaseList = data.all_data;
+    // this.admin.allDisease().subscribe(data=> {
+    //   console.log('Disease List');
+    //   this.diseaseList = data.all_data;
+    //   this.isLoading = false;
+    //   console.log(this.diseaseList);
+    // }, (error) => {
+    //   console.log(error);
+    // });
+    this.admin.searchDisease({search:this.searched }).subscribe(data => {
+      this.filterDisease = data.all_data;
       this.isLoading = false;
-      console.log(this.diseaseList);
-    }, (error) => {
+      this.result = true;
+    }, error=> {
       console.log(error);
     });
+
     this.admin.allSpecialties().subscribe(data=> {
       console.log('Specialties List');
       this.specilatiesList = data.all_data;
@@ -72,18 +81,22 @@ export class DiseasesPage implements OnInit {
     console.log(ev.detail.value);
     let searchTerm = ev.detail.value.toLowerCase();
     if(this.segmentVelue == 'disease') {
-      if (searchTerm === '') {
-        this.result = true;
-        this.filterDisease = this.diseaseList;
-      } else {
-        this.result = true;
-        this.filterDisease = this.diseaseList.filter(item => {
-          if( item.PAT_DISEASE_NAME !== null && item.PAT_DISEASE_NAME.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1){
-            return true;
-          }
-          return false;
-        });
-      }
+      this.admin.searchDisease({search:searchTerm }).subscribe(data => {
+        this.filterDisease = data.all_data;
+      })
+      this.searched = searchTerm;
+      // if (searchTerm === '') {
+      //   this.result = true;
+      //   this.filterDisease = this.diseaseList;
+      // } else {
+      //   this.result = true;
+      //   this.filterDisease = this.diseaseList.filter(item => {
+      //     if( item.PAT_DISEASE_NAME !== null && item.PAT_DISEASE_NAME.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1){
+      //       return true;
+      //     }
+      //     return false;
+      //   });
+      // }
     } else {
       if (searchTerm === '') {
         this.result = true;
@@ -101,12 +114,16 @@ export class DiseasesPage implements OnInit {
    
   }
 
+  addDisease(){
+    this.addData();
+  }
   deleteDisease(PAT_DISEASE_ID: any) {
     let disease =  {
       disease_id: PAT_DISEASE_ID,
     }
     this.admin.deleteDisease(disease).subscribe(data=> {
       console.log(data);
+      this.loadData();
     });
   }
   deleteSpecilaity(SPECIALTY_ID) {
@@ -115,18 +132,20 @@ export class DiseasesPage implements OnInit {
     }
     this.admin.deleteSpecialty(spec).subscribe(data=> {
       console.log(data);
+      this.loadData();
     });
   }
 
-  async editSpeciality(specialityId: any) {
+  async editSpeciality(specialityId: any , spName) {
     const alert = await this.alertController.create({
-      header: 'Set Speciality Name',
-      message: 'Specilaity Name',
+      header: 'Set Specialty Name',
+      message: 'Specialty Name',
       inputs: [
         {
-          name: 'specilaity_name',
+          name: 'specialty_name',
           type: 'text',
-          placeholder: 'Specilaity Name'
+          value: spName,
+          placeholder: 'Specialty Name'
         },
         
       ],
@@ -144,11 +163,11 @@ export class DiseasesPage implements OnInit {
           handler: specialityData => {
             let specilaity = {
               specility_id: specialityId,
-              specilaity_name: specialityData.specilaity_name,
-              // specilaity_name: 'KKKKKKKKKKK',
+              specilaity_name: specialityData.specialty_name,
             }
             this.admin.editSpecialty(specilaity).subscribe(data=> {
               console.log(data);
+              this.loadData();
             });
             console.log('Confirm Ok');
           }
@@ -157,7 +176,7 @@ export class DiseasesPage implements OnInit {
     });
     await alert.present();
   }
-  async editDiease(PAT_DISEASE_ID: any) {
+  async editDiease(PAT_DISEASE_ID: any , DISEASE_NAME) {
     const alert = await this.alertController.create({
       header: 'Set Disease Name',
       message: 'Disease Name',
@@ -165,6 +184,7 @@ export class DiseasesPage implements OnInit {
         {
           name: 'disease_name',
           type: 'text',
+          value: DISEASE_NAME,
           placeholder: 'Disease Name'
         },
         
@@ -187,6 +207,55 @@ export class DiseasesPage implements OnInit {
             }
             this.admin.editDisease(disease).subscribe(data=> {
               console.log(data);
+
+              this.loadData();
+            });
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async addData() {
+    let head = this.segmentVelue == 'disease' ? 'Add Disease' : 'Add Specialty'
+    const alert = await this.alertController.create({
+      header: head,
+      inputs: [
+        {
+          name: 'disease_name',
+          type: 'text',
+          placeholder: 'Enter Name',
+          attributes : {
+            minLength : 3
+          }
+        },
+        
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Save',
+          // type: submit,
+          handler: dataForm => {
+            if(!dataForm.disease_name || dataForm.disease_name.length < 3){
+              return;
+            }
+            let disease = {
+              form_type: this.segmentVelue,
+              disease_name:dataForm.disease_name
+            }
+            this.admin.addDisease(disease).subscribe(data=> {
+              // console.log(data);
+
+              this.loadData();
             });
             console.log('Confirm Ok');
           }

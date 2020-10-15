@@ -66,5 +66,8 @@ export class AdminService {
   getDashboard() {
     return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.GET_DASHBOARD(),showLoading : false, showError : true});
   } 
+  addDisease(frmData) {
+    return this.api.commonPost(frmData, {isToken :false,endPointUrl: this.endPoints.ADD_DISEASE_SPECIAL,showLoading : true, showError : true});
+  }
 }
 
