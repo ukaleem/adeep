@@ -20,7 +20,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-grid>
-    <ion-row class='list-bg' *ngFor="let participate of allParticipants" [routerLink]="['/','participants','single-participants',participate.app_uid]">
+    <ion-row class='list-bg2' *ngFor="let participate of allParticipants" [routerLink]="['/','participants','single-participants',participate.app_uid]">
       
       <ion-col size="12">
         <ion-badge class="ion-float-right badge-status" color="primary">{{ participate.app_status }}</ion-badge> 
@@ -28,9 +28,11 @@
       <ion-col size="6">
         <div>
           <ion-item class='bg-none' lines='none'>
-            <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon>
+            <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon> -->
             <ion-label class="af-icon-label">
-              {{ participate.usr_firstname }}
+              <!-- {{ participate.usr_firstname }} -->
+              <h4 class="name-header">User</h4>
+              <p> {{participate.usr_firstname }}</p>  
             </ion-label>
           </ion-item>
         </div>
@@ -38,18 +40,10 @@
       <ion-col size="6">
         <div>
           <ion-item class='bg-none' lines='none' >
-            <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
-            <ion-label class="af-icon-label">{{ participate.app_pro_title }}
-            </ion-label>
-          </ion-item>
-        </div>
-      </ion-col>
-      <ion-col size="6">
-        <div>
-          <ion-item class='bg-none' lines='none' >
-            <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+            <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon> -->
             <ion-label class="af-icon-label">
-             {{participate.app_tas_title }}
+              <h4 class="name-header">Pathway/Case</h4>
+              <p> {{participate.app_current_user }}</p>  
             </ion-label>
           </ion-item>
         </div>
@@ -57,8 +51,27 @@
       <ion-col size="6">
         <div>
           <ion-item class='bg-none' lines='none' >
-            <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon>
-            <ion-label class="af-icon-label">{{ participate.app_create_date }}
+            <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon> -->
+            <ion-label class="af-icon-label">
+             <!-- {{participate.app_tas_title }} -->
+             <h4 class="name-header">Task</h4>
+             <p> {{participate.app_tas_title }}</p>  
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div>
+          <ion-item class='bg-none' lines='none' >
+            <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon> -->
+            <ion-label class="af-icon-label" *ngIf="participate.del_finish_date">
+              <h4 class="name-header">Complete Date</h4>
+              <p> {{ participate.del_finish_date }}</p>  
+            </ion-label>
+
+            <ion-label class="af-icon-label" *ngIf="!participate.del_finish_date">
+              <h4 class="name-header">Create Date</h4>
+              <p> {{ participate.app_create_date }}</p>  
             </ion-label>
           </ion-item>
         </div>

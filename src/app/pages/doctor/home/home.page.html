@@ -32,13 +32,13 @@
       <ion-col class='ion-no-padding ion-no-margin'>
         <ion-segment class='my-segment' (ionChange)="changeSegment($event)" value="onGoingPatients">
           <ion-segment-button value="onGoingPatients">
-              <ion-label>On Going Patients</ion-label>
+              <ion-label>Active Pts.</ion-label>
           </ion-segment-button>
           <ion-segment-button value="curedPatients">
-              <ion-label>Cured Patients</ion-label>
+              <ion-label>Cured Pts.</ion-label>
           </ion-segment-button>
           <ion-segment-button value="relatedCarePlan">
-            <ion-label>Related Care Plan's</ion-label>
+            <ion-label>Care Plan's</ion-label>
         </ion-segment-button>
       </ion-segment>
       </ion-col>
@@ -48,13 +48,14 @@
     <ion-row *ngIf="segmentVelue==='onGoingPatients'">
       <ion-col>
         <div class="outer-card-div">
-          <ion-row class='list-bg' *ngFor="let p of onGoingPatientsData" (click)="presentModal(p.PRO_UID , p.APP_UID ,'')">
+          <ion-row class='list-bg2' *ngFor="let p of onGoingPatientsData" (click)="presentModal(p.PRO_UID , p.APP_UID ,'')">
             <ion-col size="6">
               <div>
                 <ion-item class='bg-none' lines='none'>
-                  <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon>
+                  <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon> -->
                   <ion-label class="af-icon-label">
-                    {{p.PAITEINT_NAME}}
+                    <h4 class="name-header">Patient Name</h4>
+                    <p>   {{p.PAITEINT_NAME}} </p>  
                   </ion-label>
                 </ion-item>
               </div>
@@ -62,18 +63,10 @@
             <ion-col size="6">
               <div>
                 <ion-item class='bg-none' lines='none' >
-                  <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
-                  <ion-label class="af-icon-label"> {{p.PAITENT_AGE}}
-                  </ion-label>
-                </ion-item>
-              </div>
-            </ion-col>
-            <ion-col size="6">
-              <div>
-                <ion-item class='bg-none' lines='none'>
-                  <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+                  <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon> -->
                   <ion-label class="af-icon-label">
-                    {{p.MAJOR_DISEASE}}
+                    <h4 class="name-header">Patient Age</h4>
+                    <p>   {{p.PAITENT_AGE}} </p>  
                   </ion-label>
                 </ion-item>
               </div>
@@ -81,8 +74,21 @@
             <ion-col size="6">
               <div>
                 <ion-item class='bg-none' lines='none'>
-                  <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon>
-                  <ion-label class="af-icon-label"> {{p.CREATE_DATE}}
+                  <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon> -->
+                  <ion-label class="af-icon-label">
+                    <h4 class="name-header">Disease</h4>
+                    <p>   {{p.MAJOR_DISEASE}} </p>  
+                  </ion-label>
+                </ion-item>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div>
+                <ion-item class='bg-none' lines='none'>
+                  <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon> -->
+                  <ion-label class="af-icon-label">
+                    <h4 class="name-header">Creation Date</h4>
+                    <p>   {{p.CREATE_DATE}} </p>  
                   </ion-label>
                 </ion-item>
               </div>
@@ -97,13 +103,14 @@
     <ion-row *ngIf="segmentVelue==='curedPatients'">
       <ion-col>
         <div class="outer-card-div">
-          <ion-row class='list-bg' *ngFor="let p of onCuredPatientData" (click)="presentModal(p.PRO_UID , p.APP_UID ,'COMPLETED')">
+          <ion-row class='list-bg2' *ngFor="let p of onCuredPatientData" (click)="presentModal(p.PRO_UID , p.APP_UID ,'COMPLETED')">
             <ion-col size="6">
               <div>
                 <ion-item class='bg-none' lines='none'>
-                  <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon>
+                  <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon> -->
                   <ion-label class="af-icon-label">
-                    {{p.PAITEINT_NAME}}
+                    <h4 class="name-header">Patient Name</h4>
+                    <p>   {{p.PAITEINT_NAME}} </p>  
                   </ion-label>
                 </ion-item>
               </div>
@@ -111,18 +118,10 @@
             <ion-col size="6">
               <div>
                 <ion-item class='bg-none' lines='none' >
-                  <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
-                  <ion-label class="af-icon-label"> {{p.PAITENT_AGE}}
-                  </ion-label>
-                </ion-item>
-              </div>
-            </ion-col>
-            <ion-col size="6">
-              <div>
-                <ion-item class='bg-none' lines='none'>
-                  <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+                  <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon> -->
                   <ion-label class="af-icon-label">
-                    {{p.PAT_DISEASE_NAME}}
+                    <h4 class="name-header">Patient Age</h4>
+                    <p>   {{p.PAITENT_AGE}} </p>  
                   </ion-label>
                 </ion-item>
               </div>
@@ -130,8 +129,21 @@
             <ion-col size="6">
               <div>
                 <ion-item class='bg-none' lines='none'>
-                  <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon>
-                  <ion-label class="af-icon-label"> {{p.CREATE_DATE}}
+                  <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon> -->
+                  <ion-label class="af-icon-label">
+                    <h4 class="name-header">Disease</h4>
+                    <p>   {{p.PAT_DISEASE_NAME}} </p>  
+                  </ion-label>
+                </ion-item>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div>
+                <ion-item class='bg-none' lines='none'>
+                  <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon> -->
+                  <ion-label class="af-icon-label">
+                    <h4 class="name-header">Creation Date</h4>
+                    <p>   {{p.CREATE_DATE}} </p>  
                   </ion-label>
                 </ion-item>
               </div>
@@ -145,13 +157,14 @@
     <ion-row *ngIf="segmentVelue==='relatedCarePlan'">
       <ion-col>
         <div class="outer-card-div">
-          <ion-row class='list-bg' *ngFor="let p of onRelatedCarePlanData" [routerLink]="['/','physician','pathway',p.PRO_UID , '1']" routerLinkActive="router-link-active">
+          <ion-row class='list-bg2' *ngFor="let p of onRelatedCarePlanData" [routerLink]="['/','physician','pathway',p.PRO_UID , '1']" routerLinkActive="router-link-active">
             <ion-col size="6">
               <div>
                 <ion-item class='bg-none' lines='none'>
-                  <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon>
+                  <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon> -->
                   <ion-label class="af-icon-label">
-                    {{p.PRO_TITLE}}
+                    <h4 class="name-header">Pathway</h4>
+                    <p>   {{p.PRO_TITLE}} </p>  
                   </ion-label>
                 </ion-item>
               </div>
@@ -159,18 +172,10 @@
             <ion-col size="6">
               <div>
                 <ion-item class='bg-none' lines='none' >
-                  <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
-                  <ion-label class="af-icon-label"> {{p.DISEASE}}
-                  </ion-label>
-                </ion-item>
-              </div>
-            </ion-col>
-            <ion-col size="6">
-              <div>
-                <ion-item class='bg-none' lines='none'>
-                  <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+                  <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon> -->
                   <ion-label class="af-icon-label">
-                    {{p.descriptions}}
+                    <h4 class="name-header">Disease</h4>
+                    <p>   {{p.descriptions}} </p>  
                   </ion-label>
                 </ion-item>
               </div>
@@ -178,8 +183,22 @@
             <ion-col size="6">
               <div>
                 <ion-item class='bg-none' lines='none'>
-                  <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon>
-                  <ion-label class="af-icon-label"> {{p.PRO_UPDATE_DATE}}
+                  <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon> -->
+                  <ion-label class="af-icon-label">
+                    <!-- {{p.SPECIALTY_NAME}} -->
+                    <h4 class="name-header">Patient Name</h4>
+                    <p>   {{p.SPECIALTY_NAME}} </p>  
+                  </ion-label>
+                </ion-item>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div>
+                <ion-item class='bg-none' lines='none'>
+                  <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon> -->
+                  <ion-label class="af-icon-label">
+                    <h4 class="name-header">Last Updated</h4>
+                    <p>   {{p.PRO_UPDATE_DATE}} </p>  
                   </ion-label>
                 </ion-item>
               </div>

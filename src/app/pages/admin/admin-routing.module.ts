@@ -71,16 +71,6 @@ const routes: Routes = [
       },
 
       {
-        path: 'specialities',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('./specialties/specialties.module').then(m => m.SpecialtiesPageModule),
-          }
-        ]
-      },
-
-      {
         path: 'profile',
         children: [
           {
@@ -129,10 +119,6 @@ const routes: Routes = [
   {
     path: 'diseases',
     loadChildren: () => import('./diseases/diseases.module').then( m => m.DiseasesPageModule)
-  },
-  {
-    path: 'specialties',
-    loadChildren: () => import('./specialties/specialties.module').then( m => m.SpecialtiesPageModule)
   },
   {
     path: 'users-list',

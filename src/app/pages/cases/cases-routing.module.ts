@@ -46,7 +46,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('../participants/participants.module').then(m => m.ParticipantsPageModule),
+            loadChildren: () => import('./participants/participants.module').then(m => m.ParticipantsPageModule),
           }
         ]
       },

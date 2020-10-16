@@ -12,8 +12,8 @@ export class SingleParticipantsPage implements OnInit {
 
   caseId: any = '';
   activeSegment = 'basic';
-  participatedCase:any = [];
-  caseData = [];
+  currentCaseData:any = [];
+  // caseData = [];
   basicDetails :any = [];
   constructor(
     private casesService : CasesService ,
@@ -36,15 +36,16 @@ export class SingleParticipantsPage implements OnInit {
     this.casesService.getSingleCase(this.caseId).subscribe(data=>{
       console.log(data);
       this.basicDetails = data;
+      this.currentCaseData = data.current_task
     });
-    this.casesService.getCurrentTask(this.caseId).subscribe(data=>{
-      console.log(data);
-      this.caseData = data;
-    });
-    this.casesService.getCaseVariables(this.caseId).subscribe(data=>{
-      console.log(data);
-      this.caseData = data;
-    });
+    // this.casesService.getCurrentTask(this.caseId).subscribe(data=>{
+    //   console.log(data);
+    //   this.caseData = data;
+    // });
+    // this.casesService.getCaseVariables(this.caseId).subscribe(data=>{
+    //   console.log(data);
+    //   this.caseData = data;
+    // });
   }
   ngOnInit() {
   }

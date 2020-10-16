@@ -38,13 +38,15 @@
   <ion-grid *ngIf="activeSegment==='current'">
     <h2>Current</h2>
     <ng-container *ngIf="allCurrent.length">
-      <ion-row class='list-bg' *ngFor="let  single of allCurrent" (click)="presentModal(single.APP_UID,'DRAFT')">
+      <ion-row class='list-bg2' *ngFor="let  single of allCurrent" (click)="presentModal(single.APP_UID,'DRAFT')">
         <ion-col size="6">
           <div>
             <ion-item class='bg-none' lines='none'>
-              <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon>
+              <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon> -->
               <ion-label class="af-icon-label">
-                {{single.PATIENT_NAME}}
+                <!-- {{single.PATIENT_NAME}} -->
+                <h4 class="name-header">Patient Name</h4>
+                <p> {{single.PATIENT_NAME}} </p>
               </ion-label>
             </ion-item>
           </div>
@@ -52,19 +54,10 @@
         <ion-col size="6">
           <div>
             <ion-item class='bg-none' lines='none'>
-              <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
-              <ion-label class="af-icon-label"> {{single.PAITEINT_NAME}}
-              </ion-label>
-            </ion-item>
-          </div>
-        </ion-col>
-        <ion-col size="6">
-          <div>
-            <ion-item class='bg-none' lines='none'>
-              <ion-icon class="detail-icon"
-                src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+              <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon> -->
               <ion-label class="af-icon-label">
-                {{single.PAITENT_AGE}}
+                <h4 class="name-header">Login Name</h4>
+                <p> {{single.PAITEINT_NAME}} </p>
               </ion-label>
             </ion-item>
           </div>
@@ -72,8 +65,22 @@
         <ion-col size="6">
           <div>
             <ion-item class='bg-none' lines='none'>
-              <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon>
-              <ion-label class="af-icon-label"> {{single.CREATE_DATE}}
+              <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon> -->
+              <ion-label class="af-icon-label">
+                <!-- {{single.PAITENT_AGE}} -->
+                <h4 class="name-header">Patient Age</h4>
+                <p> {{single.PAITENT_AGE}} </p>
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon> -->
+              <ion-label class="af-icon-label">
+                <h4 class="name-header">Creation Date</h4>
+                <p> {{single.CREATE_DATE}} </p>
               </ion-label>
             </ion-item>
           </div>
@@ -96,13 +103,15 @@
   <ion-grid *ngIf="activeSegment==='passed'">
     <h2>Passed</h2>
     <ng-container *ngIf="allPassed.length">
-      <ion-row class='list-bg' *ngFor="let single of allPassed" (click)="presentModal(single.APP_UID,'COMPLETED')">
+      <ion-row class='list-bg2' *ngFor="let single of allPassed" (click)="presentModal(single.APP_UID,'COMPLETED')">
         <ion-col size="6">
           <div>
             <ion-item class='bg-none' lines='none'>
-              <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon>
+              <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon> -->
               <ion-label class="af-icon-label">
-                {{single.PATIENT_NAME}}
+                <!-- {{single.PATIENT_NAME}} -->
+                <h4 class="name-header">Patient Name</h4>
+                <p> {{single.PATIENT_NAME}} </p>
               </ion-label>
             </ion-item>
           </div>
@@ -110,19 +119,11 @@
         <ion-col size="6">
           <div>
             <ion-item class='bg-none' lines='none'>
-              <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
-              <ion-label class="af-icon-label"> {{single.PAITEINT_NAME}}
-              </ion-label>
-            </ion-item>
-          </div>
-        </ion-col>
-        <ion-col size="6">
-          <div>
-            <ion-item class='bg-none' lines='none'>
-              <ion-icon class="detail-icon"
-                src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+              <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon> -->
               <ion-label class="af-icon-label">
-                {{single.PAITENT_AGE}}
+                <!-- {{single.PAITEINT_NAME}} -->
+                <h4 class="name-header">Login Name</h4>
+                <p> {{single.PAITEINT_NAME}} </p>
               </ion-label>
             </ion-item>
           </div>
@@ -130,8 +131,22 @@
         <ion-col size="6">
           <div>
             <ion-item class='bg-none' lines='none'>
-              <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon>
-              <ion-label class="af-icon-label"> {{single.CREATE_DATE}}
+              <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon> -->
+              <ion-label class="af-icon-label">
+                <!-- {{single.PAITENT_AGE}} -->
+                <h4 class="name-header">Patient Age</h4>
+                <p> {{single.PAITENT_AGE}} </p>
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon> -->
+              <ion-label class="af-icon-label">
+                <h4 class="name-header">Creation Date</h4>
+                <p> {{single.CREATE_DATE}} </p>
               </ion-label>
             </ion-item>
           </div>
@@ -152,12 +167,21 @@
 
   <ion-grid *ngIf="activeSegment==='tasks'">
     <ng-container *ngIf="allTaSKS.length">
-      <ion-item class='list-bg' *ngFor="let single of allTaSKS">
-        <ion-label>
-          <h2>{{single.TAS_TITLE}}</h2>
-          <p>{{single.TAS_DESCRIPTION}}</p>
-        </ion-label>
-      </ion-item>
+      <ion-row class='list-bg2' *ngFor="let single of allTaSKS">
+
+        <ion-col size="12">
+          <div>
+            <ion-item class='bg-none' lines='none'>
+              <ion-label>
+                <h4 class="name-header">Task Information</h4>
+                <h2>{{single.TAS_TITLE}}</h2>
+                <p>{{single.TAS_DESCRIPTION}}</p>
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+
+      </ion-row>
     </ng-container>
     <ng-container *ngIf="!allTaSKS.length">
       <ion-row class='white-bg'>

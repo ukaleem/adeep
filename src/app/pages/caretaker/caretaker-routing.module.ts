@@ -7,18 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: CaretakerPage
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: 'feedbacks',
-    loadChildren: () => import('./feedbacks/feedbacks.module').then( m => m.FeedbacksPageModule)
-  },
-  {
-    path: 'notifications',
-    loadChildren: () => import('./notifications/notifications.module').then( m => m.NotificationsPageModule)
   }
 ];
 

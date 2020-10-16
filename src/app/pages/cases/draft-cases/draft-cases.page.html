@@ -25,17 +25,19 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-grid *ngIf="allDraftCases.length">
-    <ion-row class='list-bg' *ngFor="let case of allDraftCases" [routerLink]="['/','cases','single-page',case.app_uid]" routerLinkActive="router-link-active">
+    <ion-row class='list-bg2' *ngFor="let case of allDraftCases" [routerLink]="['/','cases','single-page',case.app_uid]" routerLinkActive="router-link-active">
       
-      <ion-col size="12">
+      <!-- <ion-col size="12">
         <ion-badge class="ion-float-right badge-status" color="primary">{{ case.app_thread_status }}</ion-badge> 
-      </ion-col>
+      </ion-col> -->
       <ion-col size="6">
         <div>
           <ion-item class='bg-none' lines='none'>
-            <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon>
+            <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon> -->
             <ion-label class="af-icon-label">
-              {{case.app_current_user }}
+              <h4 class="name-header">Current User</h4>
+              <p> {{case.app_current_user }}</p>  
+              <!-- {{case.app_current_user }} -->
             </ion-label>
           </ion-item>
         </div>
@@ -43,18 +45,11 @@
       <ion-col size="6">
         <div>
           <ion-item class='bg-none' lines='none' >
-            <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon>
-            <ion-label class="af-icon-label"> {{ case.app_tas_title }}
-            </ion-label>
-          </ion-item>
-        </div>
-      </ion-col>
-      <ion-col size="6">
-        <div>
-          <ion-item class='bg-none' lines='none' >
-            <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon>
+            <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon> -->
             <ion-label class="af-icon-label">
-              {{ case.app_pro_title }} 
+              <h4 class="name-header">Task</h4>
+              <p>{{case.app_tas_title}}</p>  
+               <!-- {{ case.app_tas_title }} -->
             </ion-label>
           </ion-item>
         </div>
@@ -62,8 +57,23 @@
       <ion-col size="6">
         <div>
           <ion-item class='bg-none' lines='none' >
-            <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon>
-            <ion-label class="af-icon-label"> {{ case.app_create_date }}
+            <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon> -->
+            <ion-label class="af-icon-label">
+              <!-- {{ case.app_pro_title }}  -->
+              <h4 class="name-header">Pathway</h4>
+              <p>{{ case.app_pro_title }} </p>  
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div>
+          <ion-item class='bg-none' lines='none' >
+            <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon> -->
+            <ion-label class="af-icon-label">
+              <h4 class="name-header">Creation Date</h4>
+              <p>{{case.app_create_date}}</p>  
+               <!-- {{ case.app_create_date }} -->
             </ion-label>
           </ion-item>
         </div>

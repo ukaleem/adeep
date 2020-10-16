@@ -28,17 +28,17 @@ export class ApiService {
     private showAlerts: AlertsService,
     private toast: ToastService
   ) {
-    
+
     this.apiUrl = api.SERVER_API;
-    
+
   }
 
-  setToken(){
-    let token  = localStorage.getItem('token_access');
+  setToken() {
+    let token = localStorage.getItem('token_access');
     console.log(token);
     this.httpOptions.headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer '+token
+      'Authorization': 'Bearer ' + token
     });
   }
   commonPost(dataObject: any, postObject: PostConfigObject): Observable<any> {
@@ -48,13 +48,7 @@ export class ApiService {
       this.loadingLoader.prsentLoading();
     }
     const apiResponse = new Observable((observer) => {
-      this.http
-        .post(
-          this.makeUrl(postObject, false),
-          dataObject,
-          this.httpOptions
-        )
-        .subscribe(
+      this.http.post(this.makeUrl(postObject, false),dataObject,this.httpOptions).subscribe(
           (response) => {
             if (postObject.showLoading) {
               this.loadingLoader.closeLoading();
@@ -70,10 +64,20 @@ export class ApiService {
             observer.next(response);
           },
           (error) => {
-            this.showAlerts.showAlertNormal(
-              'Connection Error!',
-              'Error in Connection to Server!'
-            );
+            if (postObject.showError) {
+              if (error.error.error.code && error.error.error.code == 400) {
+                this.showAlerts.showAlertNormal(
+                  'Error in Request',
+                  error.error.error.message
+                );
+              } else {
+                this.showAlerts.showAlertNormal(
+                  'Connection Error!',
+                  'Error in Connection to Server!'
+                );
+              }
+            }
+
             if (postObject.showLoading) {
               this.loadingLoader.closeLoading();
             }
@@ -119,10 +123,19 @@ export class ApiService {
             observer.next(response);
           },
           (error) => {
-            this.showAlerts.showAlertNormal(
-              'Connection Error!',
-              'Error in Connection to Server!'
-            );
+            if (postObject.showError) {
+              if (error.error.error.code && error.error.error.code == 400) {
+                this.showAlerts.showAlertNormal(
+                  'Error in Request',
+                  error.error.error.message
+                );
+              } else {
+                this.showAlerts.showAlertNormal(
+                  'Connection Error!',
+                  'Error in Connection to Server!'
+                );
+              }
+            }
             if (postObject.showLoading) {
               this.loadingLoader.closeLoading();
             }
@@ -168,7 +181,7 @@ export class ApiService {
             observer.next(response);
           },
           (error) => {
-            if(postObject.showError){
+            if (postObject.showError) {
               this.showAlerts.showAlertNormal(
                 'Connection Error!',
                 'Error in Connection to Server!'
@@ -217,14 +230,21 @@ export class ApiService {
           if (postObject.showLoading) {
             this.loadingLoader.closeLoading();
           }
-          if(postObject.showError && postObject.showError == true){
-            this.showAlerts.showAlertNormal(
-              'Error',
-              'Error in Connection to Server'
-            );
+          if (postObject.showError) {
+            if (error.error.error.code && error.error.error.code == 400) {
+              this.showAlerts.showAlertNormal(
+                'Error in Request',
+                error.error.error.message
+              );
+            } else {
+              this.showAlerts.showAlertNormal(
+                'Connection Error!',
+                'Error in Connection to Server!'
+              );
+            }
           }
           console.error(error);
-          observer.error(error); 
+          observer.error(error);
         }
       );
       return {
@@ -236,17 +256,17 @@ export class ApiService {
     return apiResponse;
   }
 
-  getUserToken(){
+  getUserToken() {
     var allToken = localStorage.getItem('token');
-    if(allToken){
+    if (allToken) {
       var tokenObject = JSON.parse(allToken);
       return tokenObject.access_token;
     }
   }
   makeUrl(postObject: PostConfigObject, isGet: boolean): string {
-    if(postObject.isToken){
+    if (postObject.isToken) {
     }
-      this.apiUrl = postObject.endPointUrl;
+    this.apiUrl = postObject.endPointUrl;
     return this.apiUrl;
   }
 }

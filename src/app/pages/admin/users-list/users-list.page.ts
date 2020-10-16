@@ -12,19 +12,21 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 export class UsersListPage implements OnInit {
 
   constructor(
-    private casesService : CasesService,
+    private casesService: CasesService,
     private modalController: ModalController,
-    
+
   ) { }
-    usersList = [];
+  usersList = [];
+  usersListBackUp: any = [];
   ngOnInit() {
   }
-  ionViewWillEnter(){
-  this.loadData();
+  ionViewWillEnter() {
+    this.loadData();
   }
   loadData() {
-    this.casesService.getAllUsers().subscribe(data=>{
-      this.usersList  = data;
+    this.casesService.getAllUsers().subscribe(data => {
+      this.usersList = data;
+      this.usersListBackUp = this.usersList;
       console.log('From Users List View');
       console.log(data);
     });
@@ -34,7 +36,7 @@ export class UsersListPage implements OnInit {
       component: AddUserComponent,
       cssClass: 'my-custom-class',
       componentProps: {
-        
+
       }
     });
     return await modal.present();
@@ -43,14 +45,23 @@ export class UsersListPage implements OnInit {
     const modal = await this.modalController.create({
       component: UserDetailComponent,
       cssClass: 'my-custom-class',
+      id: 'editUserModal',
       componentProps: {
         user_id: user_id,
       }
     });
+
+    modal.onDidDismiss().then(data =>{
+      this.loadData();
+    });
+
     return await modal.present();
   }
-  
-  doRefresh(event){
+
+  getUserFullName(first,last){
+    return first+" "+last;
+  }
+  doRefresh(event) {
     console.log('Begin async operation');
     this.loadData();
     setTimeout(() => {
@@ -59,4 +70,31 @@ export class UsersListPage implements OnInit {
     }, 2000);
   }
 
+  isSearch = false;
+  showSearch() {
+    this.isSearch = true;
+  }
+  closeSearch() {
+    this.isSearch = false;
+  }
+  doSearch(ev) {
+    console.log(ev.detail.value);
+    let searchTerm = ev.detail.value.toLowerCase();
+    if (searchTerm === '') {
+      this.usersList = this.usersListBackUp;
+    } else {
+      this.usersList = this.usersListBackUp.filter(item => {
+        if (item.usr_username && item.usr_username.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
+          return true;
+        }else if (item.usr_lastname && item.usr_lastname.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
+          return true;
+        }else if (item.usr_firstname && item.usr_firstname.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
+          return true;
+        }else if (item.usr_role && item.usr_role.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      });
+    }
+  }
 }

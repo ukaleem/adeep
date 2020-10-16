@@ -89,7 +89,10 @@ export class PatientAssignTaskComponent implements OnInit {
     this.admin.startPathway(formData).subscribe(data=> {
       console.log(data);
       if(data.status){
-        this.mdlCtrl.dismiss(null,'ok');
+        setTimeout(() => {
+          this.mdlCtrl.dismiss(null,'ok');
+        }, 1000);
+        // this.mdlCtrl.dismiss(null,'ok');
         this.toastService.SuccessToast('Successfully',2000);
       }else{
         this.toastService.ErrorToast('Some Error',2000);

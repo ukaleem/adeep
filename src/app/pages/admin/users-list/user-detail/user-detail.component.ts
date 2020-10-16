@@ -35,9 +35,13 @@ export class UserDetailComponent implements OnInit {
     const modal = await this.modalController.create({
       component: AddUserComponent,
       cssClass: 'my-custom-class',
+      id: 'editUserModal',
       componentProps: {
         userId: this.userDetails.usr_uid,
       }
+    });
+    modal.onDidDismiss().then(data =>{
+      this.loadData();
     });
     return await modal.present();
   }

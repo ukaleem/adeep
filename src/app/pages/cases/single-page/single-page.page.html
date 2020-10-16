@@ -1,7 +1,9 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-buttons color="light" size="small" slot="start">
-      <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" color="light"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-item class='bg-none' lines="none">
       <ion-title color="light" class="ion-text-center">
@@ -24,6 +26,9 @@
           </ion-segment-button>
           <ion-segment-button value="guides">
             <ion-label>Guide</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="basic">
+            <ion-label>About</ion-label>
           </ion-segment-button>
         </ion-segment>
       </ion-col>
@@ -48,7 +53,7 @@
               Not Support on mobile Yet
             </ion-text>
             <ion-button *ngIf="step.step_type_obj == 'DYNAFORM'" shape='round' (click)="singleStep(step)">
-              Start
+              Open
             </ion-button>
           </ion-item>
         </ng-container>
@@ -58,7 +63,8 @@
         <ion-button *ngIf="showFeedBack" shape='round' fill="outline" shape='round' (click)="feedBack()" expand="block">
           Add FeedBack
         </ion-button>
-        <ion-button *ngIf="showFeedBack" shape='round' fill="outline" shape='round' (click)="reAssignCase()" expand="block">
+        <ion-button *ngIf="showFeedBack" shape='round' fill="outline" shape='round' (click)="reAssignCase()"
+          expand="block">
           Re-Assign
         </ion-button>
       </ion-col>
@@ -95,6 +101,75 @@
       </ion-col>
     </ion-row>
 
+
+
+    <ion-row *ngIf="activeSegment == 'basic'">
+      <ion-col size='12'>
+        <div class="label-div">
+          <ion-label>Create Time</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{ taskData.app_create_date }}</ion-label>
+        </div>
+      </ion-col>
+
+      <ion-col size='12'>
+        <div class="label-div">
+          <ion-label>Init User</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{ taskData.app_init_usr_username }}</ion-label>
+        </div>
+      </ion-col>
+
+      <ion-col size='12'>
+        <div class="label-div">
+          <ion-label>PathWay Name</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{ taskData.pro_name }}</ion-label>
+        </div>
+      </ion-col>
+
+      <h2 style="margin: 6px 6px;
+      padding: 6px 6px;
+      font-size: large;
+      background-color: #02b4d069;
+      width: 100%;
+      border-radius: 10px;">Current Task(s)</h2>
+      <ng-container *ngFor="let task12 of taskData.current_task">
+        <ion-col size='12'>
+          <div class="label-div">
+            <ion-label>Task Title</ion-label>
+          </div>
+          <div class="data-div">
+            <ion-label>{{ task12.tas_title }}</ion-label>
+          </div>
+        </ion-col>
+
+
+        <ion-col size='12'>
+          <div class="label-div">
+            <ion-label>Task Init Date</ion-label>
+          </div>
+          <div class="data-div">
+            <ion-label>{{ task12.del_init_date }}</ion-label>
+          </div>
+        </ion-col>
+
+        <ion-col size='12'>
+          <div class="label-div">
+            <ion-label>Task User</ion-label>
+          </div>
+          <div class="data-div">
+            <ion-label>{{ task12.usr_name }}</ion-label>
+          </div>
+        </ion-col>
+      </ng-container>
+
+
+
+    </ion-row>
 
 
     <!-- <ion-row *ngIf="activeSegment == 'steps_old'">
@@ -258,4 +333,3 @@
     </ion-row> -->
   </ion-grid>
 </ion-content>
-

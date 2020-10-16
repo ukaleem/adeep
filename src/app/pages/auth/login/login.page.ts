@@ -5,6 +5,14 @@ import { Router } from "@angular/router";
 import { NavController } from "@ionic/angular";
 import { AppComponent } from "src/app/app.component";
 import { ToastService } from 'src/app/services/toast.service';
+import { NotificationsService } from 'src/app/services/extra/notifications.service';
+// import {
+//   Plugins,
+//   PushNotification,
+//   PushNotificationToken,
+//   PushNotificationActionPerformed } from '@capacitor/core';
+
+// const { PushNotifications } = Plugins;
 @Component({
   selector: "app-login",
   templateUrl: "./login.page.html",
@@ -24,7 +32,8 @@ export class LoginPage implements OnInit {
     private router: Router,
     private navCtrl: NavController,
     private app: AppComponent,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private noti: NotificationsService,
   ) //  private firebaseX: FirebaseX,
   //  private firebaseConfig: FirebaseConfig
   {}
@@ -102,6 +111,9 @@ export class LoginPage implements OnInit {
           this.navCtrl.navigateRoot("/");
           this.toastService.ErrorToast('Login failed', 1000);
         }
+        this.noti.registerToken();
+        // this.noti. showToast('Login Successful');
+        // this.noti.localNotifications('Login Successful');
         this.app.loadData();
       } catch (error) {
         this.navCtrl.navigateRoot("/");
