@@ -46,7 +46,7 @@ export class HomePage implements OnInit {
         }
         return false;
       });
-    }   
+    }
   }
   doRefresh(event) {
     this.ionViewWillEnter();
@@ -55,5 +55,4 @@ export class HomePage implements OnInit {
       event.target.complete();
     }, 2000);
   }
-
 }
