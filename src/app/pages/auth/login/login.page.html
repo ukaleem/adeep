@@ -77,9 +77,9 @@
                               <!-- <span class="span-error" *ngIf="!passwordCtrl.valid && passwordCtrl.touched">✖</span>
                               <span class="span-success" *ngIf="passwordCtrl.valid && passwordCtrl.touched">✔</span> -->
                           </ion-label>
-                          <ion-input name="password" [type]="passwordType" ngModel required></ion-input>
+                          <ion-input style="width: 85%;"name="password" [type]="passwordType" ngModel required></ion-input>
                           <div class="keep-eye-on" slot="end" (click)="managePassword()">
-                              <ion-icon size='medium' color="dark" size="small" name="{{passeye}}"></ion-icon>
+                              <ion-icon style="height: 30px;width: 30px;margin-top: 5px;" size='medium' color="dark" size="small" name="{{passeye}}"></ion-icon>
                           </div>
                       </ion-item>
                       <!-- <ion-label class='ion-label'>

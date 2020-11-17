@@ -91,3 +91,7 @@ ion-list ion-item {
     font-weight: 700;
     color: #9e0e21;
 }
+
+.ion-touched.ion-invalid {
+     border: 1px solid #e5dddd !important; 
+}

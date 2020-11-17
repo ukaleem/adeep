@@ -14,6 +14,16 @@ import { AddNoteComponent } from './add-note/add-note.component';
   styleUrls: ['./single-page.page.scss'],
 })
 export class SinglePagePage implements OnInit {
+  constructor(
+    private router: ActivatedRoute,
+    private rout: Router,
+    private navCtrl: NavController,
+    private iab: InAppBrowser,
+    private casesService: CasesService,
+    private toaster: ToastService,
+    private alertController: AlertController,
+    private modalCtrl: ModalController
+  ) { }
 
   caseData: any = [];
   allForms: any = [];
@@ -33,21 +43,17 @@ export class SinglePagePage implements OnInit {
 
   guide = `Loading data...`;
   nodata = false;
-  constructor(
-    private router: ActivatedRoute,
-    private rout: Router,
-    private navCtrl: NavController,
-    private iab: InAppBrowser,
-    private casesService: CasesService,
-    private toaster: ToastService,
-    private alertController: AlertController,
-    private modalCtrl: ModalController
-  ) { }
+
+  activeSegment = 'steps';
+  allNotes = [];
+  notePermission = true;
+
+  isExternal = false;
+
+  showFeedBack = false;
 
   ngOnInit() {
   }
-
-  activeSegment = 'steps';
   segmentChanged(ev: any) {
     this.activeSegment = ev.detail.value;
   }
@@ -59,7 +65,7 @@ export class SinglePagePage implements OnInit {
       }
       this.caseId = paramMap.get('caseId');
       this.loadCaseData();
-        this.getCaseNotes();
+      this.getCaseNotes();
     });
   }
 
@@ -81,8 +87,6 @@ export class SinglePagePage implements OnInit {
       this.guide = `Sorry, we Are Working on this....to Load guide`;
     })
   }
-  allNotes = [];
-  notePermission = true;
   getCaseNotes(){
     this.casesService.caseNotes(this.caseId).subscribe(data => {
       console.log(data);
@@ -117,7 +121,7 @@ export class SinglePagePage implements OnInit {
       try {
         this.projectId = data.pro_uid;
         this.application_id = data.app_uid
-        this.caseFeeds();
+        // this.caseFeeds();
         this.currentTaskId = data.current_task[0].tas_uid;
         this.loadGuide();
         this.showFeedBack = true;
@@ -497,8 +501,6 @@ export class SinglePagePage implements OnInit {
       // this.rout.navigateByUrl('cases/all-cases');
     })
   }
-
-  isExternal = false;
   showExternal() {
     this.isExternal = true;
     this.presentAlert()
@@ -522,8 +524,6 @@ export class SinglePagePage implements OnInit {
     console.log(item);
     console.log(this.addNewGridOption);
   }
-
-  showFeedBack = false;
   async feedBack() {
     const modal = await this.modalCtrl.create({
       component: AddFeedComponent,
@@ -543,6 +543,7 @@ export class SinglePagePage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: AddNoteComponent,
       cssClass: 'my-custom-class',
+      id : 'add_notes_form',
       componentProps: {
         taskID: this.currentTaskId,
          ProjectID: this.projectId,

@@ -51,6 +51,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'scheduled',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./scheduled/scheduled.module').then( m => m.ScheduledPageModule),
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/cases/tabs/inbox',
         pathMatch: 'full'
@@ -77,7 +86,12 @@ const routes: Routes = [
     path: '',
     redirectTo: '/cases/tabs/inbox',
     pathMatch: 'full'
+  },
+  {
+    path: 'scheduled',
+    loadChildren: () => import('./scheduled/scheduled.module').then( m => m.ScheduledPageModule)
   }
+
 ];
 
 @NgModule({
