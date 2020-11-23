@@ -314,3 +314,31 @@ ion-segment-button ion-label{
 .my_loader_custom{
   --background: #ffffff33 !important;
 }
+
+// .fc-daygrid{
+//   height: 100% !important;
+//   min-height: 500px !important;
+// }
+.fc-scroller-harness{
+  width: 100% !important;
+}
+.fc-scroller{
+  width: 100% !important;
+}
+
+
+full-calendar .fc-view-harness .fc-daygrid .fc-scrollgrid thead .fc-scrollgrid-section td .fc-scroller-harness .fc-scroller{
+  // height: 100% !important;
+  // min-height: 500px !important;
+.fc-col-header  {
+    width: 100% !important;
+}
+}
+.fc-scrollgrid-sync-table{
+  height: 100% !important;
+  width: 100% !important;
+}
+.fc-daygrid-body{
+  height: 100% !important;
+  width: 100% !important;
+}

@@ -23,6 +23,9 @@ export class EndpointsService {
   GET_SINGLE_CASE = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases';
   START_CASE = ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases';
   GET_CURRENT_TASK = 'current-task';
+
+  CASE_SCHEDULE =  ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_schedule';
+  CASE_SCHEDULE_SINGLE =  ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'extrarest/get_schedule_single';
   GET_CURRENT_TASKS(TASK_ID){
     return ConfigService.SERVER_ADDRESS+'/api/1.0/'+ConfigService.WORKSPACE+'cases/'+TASK_ID+'/tasks';
   }

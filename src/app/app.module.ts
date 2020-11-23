@@ -13,6 +13,7 @@ import { FeedBackSortingFilterPopoverPage } from './shared/popovers/feed-backsor
 import { AddFeedComponent } from './pages/admin/feedbacks/add-feed/add-feed.component';
 import { AddUserComponent } from './pages/admin/users-list/add-user/add-user.component';
 import { UserDetailComponent } from './pages/admin/users-list/user-detail/user-detail.component';
+
 // import { CustomSearchComponent } from './shared/custom-search/custom-search.component';
 
 @NgModule({
@@ -23,7 +24,14 @@ import { UserDetailComponent } from './pages/admin/users-list/user-detail/user-d
     AddUserComponent,
     UserDetailComponent,
   ],
-  imports: [HttpClientModule,FormsModule, BrowserModule, IonicModule.forRoot(), SharedModule, AppRoutingModule],
+  imports: [HttpClientModule,
+    FormsModule,
+    BrowserModule,
+    IonicModule.forRoot(),
+    SharedModule,
+    AppRoutingModule,
+
+  ],
   providers: [
     StatusBar,
     SplashScreen,

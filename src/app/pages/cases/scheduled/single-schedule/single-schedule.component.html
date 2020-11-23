@@ -1,0 +1,110 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons color="light" size="small" slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon
+          (click)="closeModal()"
+          color="light"
+          name="arrow-back"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-item class="bg-none" lines="none">
+      <ion-title color="light" class="ion-text-center"> Case Detail </ion-title>
+    </ion-item>
+
+    <ion-buttons color="light" size="small" slot="end">
+      <ion-button style="color: white;" (click)="openCase()">
+        Open
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-segment
+          class="my-segment"
+          [(ngModel)]="activeSegment"
+          (ionChange)="segmentChanged($event)"
+        >
+          <ion-segment-button value="detail">
+            <ion-label>Detail</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="schedule">
+            <ion-label>Scheduled</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="complete">
+            <ion-label>Complete</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="activeSegment == 'detail'">
+      <ion-col size="12">
+        <div class="label-div">
+          <ion-label>Pathway</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{ allDetail.APP_PRO_TITLE }}</ion-label>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <div class="label-div">
+          <ion-label>Task</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{ allDetail.APP_TAS_TITLE }}</ion-label>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <div class="label-div">
+          <ion-label>Patient</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{ allDetail.PAITEINT_NAME }}</ion-label>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <div class="label-div">
+          <ion-label>Due Date</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{ allDetail.DEL_TASK_DUE_DATE }}</ion-label>
+        </div>
+      </ion-col>
+
+    </ion-row>
+
+    <!-- steps -->
+    <ion-row *ngIf="activeSegment == 'complete'">
+      <ion-col size="12" *ngFor="let single of allScheduledList">
+        <div class="label-div">
+          <ion-label>Date and Time</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{ single }}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="activeSegment == 'schedule'">
+      <ion-col size="12" *ngFor="let single of allScheduledCombing">
+        <div class="label-div">
+          <ion-label>Date and Time</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-label>{{ single }}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
