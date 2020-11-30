@@ -29,7 +29,13 @@ export class ScheduledPage implements OnInit {
 
   calendarOptions: CalendarOptions = {
     initialView: "dayGridMonth",
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,listWeek'
+    },
     height: 500,
+    editable : true,
     dateClick: this.handleDateClick.bind(this), // bind is important!
     eventClick: this.handleEventClick.bind(this),
     // plugins: [ dayGridPlugin ],
@@ -77,12 +83,15 @@ export class ScheduledPage implements OnInit {
     this.cases.getCalender().subscribe((data) => {
       ////Data is Ok!!!
       data.data.expired.forEach((element) => {
-        let currentDate = element.DEL_INIT_DATE
-          ? new Date(element.DEL_INIT_DATE).toISOString()
-          : new Date().toISOString();
-        let dueDate = new Date(element.DEL_INIT_DATE).toISOString();
-        console.log(currentDate);
-        let events: any = {
+     
+
+          let  currentDate = element.TASK_START_TIME;
+          if (!currentDate){
+              currentDate = element.DEL_INIT_DATE
+              ? new Date(element.DEL_INIT_DATE).toISOString()
+              : new Date(element.DEL_TASK_DUE_DATE).toISOString();
+          }
+          let events: any = {
           title: element.APP_TAS_TITLE + "(" + " " + element.USR_LASTNAME + ")",
           start: currentDate, // a property!
           backgroundColor: "red",
@@ -91,17 +100,19 @@ export class ScheduledPage implements OnInit {
           id: element.AUTO_ID,
           groupId: element.APP_UID,
         };
-        if (element.DEL_TASK_DUE_DATE) {
+          if (element.DEL_TASK_DUE_DATE) {
           events.end = new Date(element.DEL_TASK_DUE_DATE).toISOString();
         }
-        console.log(events);
-        allEvents.push(events);
+          console.log(events);
+          allEvents.push(events);
       });
       data.data.new.forEach((element) => {
-        let currentDate = element.DEL_INIT_DATE
-          ? new Date(element.DEL_INIT_DATE).toISOString()
-          : new Date().toISOString();
-        let dueDate = new Date(element.DEL_INIT_DATE).toISOString();
+        let  currentDate = element.TASK_START_TIME;
+        if (!currentDate){
+            currentDate = element.DEL_INIT_DATE
+            ? new Date(element.DEL_INIT_DATE).toISOString()
+            : new Date(element.DEL_TASK_DUE_DATE).toISOString();
+        }
         console.log(currentDate);
         let events: any = {
           title: element.APP_TAS_TITLE + "(" + " " + element.USR_LASTNAME + ")",
@@ -119,10 +130,12 @@ export class ScheduledPage implements OnInit {
         allEvents.push(events);
       });
       data.data.scheduled.forEach((element) => {
-        let currentDate = element.DEL_INIT_DATE
-          ? new Date(element.DEL_INIT_DATE).toISOString()
-          : new Date().toISOString();
-        let dueDate = new Date(element.DEL_INIT_DATE).toISOString();
+        let  currentDate = element.TASK_START_TIME;
+        if (!currentDate){
+            currentDate = element.DEL_INIT_DATE
+            ? new Date(element.DEL_INIT_DATE).toISOString()
+            : new Date(element.DEL_TASK_DUE_DATE).toISOString();
+        }
 
         let events: any = {
           title: element.APP_TAS_TITLE + "(" + " " + element.USR_LASTNAME + ")",
@@ -139,11 +152,6 @@ export class ScheduledPage implements OnInit {
         console.log(events);
         allEvents.push(events);
       });
-      // const nowDate = new Date();
-      // const yearMonth = nowDate.getUTCFullYear() + '-' + (nowDate.getUTCMonth() + 1);
-
-      // console.log(this.calendarOptions);
-      // console.log(this.calendarOptions.events);
       this.calendarOptions.events = allEvents;
     });
   }
@@ -167,13 +175,13 @@ export class ScheduledPage implements OnInit {
       component: SingleScheduleComponent,
       cssClass: 'my-custom-class',
       componentProps: {
-        id:id,
+        id: id,
         // 'APP_ID': p.APP_UID,
       }
     });
-    modal.onDidDismiss().then(data =>{
+    modal.onDidDismiss().then(data => {
       // this.loadData();
-      if(data.role == 'ok'){
+      if (data.role == 'ok'){
           this.navCtrl.navigateForward(['/', 'cases', 'single-page', data.data]);
       }
     });

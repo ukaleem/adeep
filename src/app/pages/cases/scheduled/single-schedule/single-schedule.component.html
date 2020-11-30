@@ -14,11 +14,8 @@
     </ion-item>
 
     <ion-buttons color="light" size="small" slot="end">
-      <ion-button style="color: white;" (click)="openCase()">
-        Open
-      </ion-button>
+      <ion-button style="color: white" (click)="openCase()"> Open </ion-button>
     </ion-buttons>
-
   </ion-toolbar>
 </ion-header>
 
@@ -36,9 +33,6 @@
           </ion-segment-button>
           <ion-segment-button value="schedule">
             <ion-label>Scheduled</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="complete">
-            <ion-label>Complete</ion-label>
           </ion-segment-button>
         </ion-segment>
       </ion-col>
@@ -74,37 +68,83 @@
 
       <ion-col size="12">
         <div class="label-div">
+          <ion-label>Start Time</ion-label>
+        </div>
+        <div class="data-div">
+          <ion-datetime
+            [(ngModel)]="currentDateWas"
+            displayFormat="YYYY-MM-DD HH:mm"
+          ></ion-datetime>
+          <!-- <ion-label>{{ allDetail.DEL_TASK_DUE_DATE }}</ion-label> -->
+          <!-- <ion-button slot="end">change</ion-button> -->
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <div class="label-div">
           <ion-label>Due Date</ion-label>
         </div>
         <div class="data-div">
-          <ion-label>{{ allDetail.DEL_TASK_DUE_DATE }}</ion-label>
+          <ion-datetime
+            [(ngModel)]="currentDueDate"
+            [min]="currentDate"
+            displayFormat="YYYY-MM-DD HH:mm"
+          ></ion-datetime>
+          <!-- <ion-label>{{ allDetail.DEL_TASK_DUE_DATE }}</ion-label> -->
+          <!-- <ion-button slot="end">change</ion-button> -->
         </div>
       </ion-col>
-
+      <ion-col size="12">
+        <ion-button
+          *ngIf="isUpdate()"
+          (click)="updateSchedule()"
+          size="small"
+          shape="round"
+          expand="block"
+          >Update Schedule Time</ion-button
+        >
+      </ion-col>
     </ion-row>
 
     <!-- steps -->
-    <ion-row *ngIf="activeSegment == 'complete'">
-      <ion-col size="12" *ngFor="let single of allScheduledList">
-        <div class="label-div">
-          <ion-label>Date and Time</ion-label>
-        </div>
-        <div class="data-div">
-          <ion-label>{{ single }}</ion-label>
-        </div>
-      </ion-col>
-    </ion-row>
-
     <ion-row *ngIf="activeSegment == 'schedule'">
-      <ion-col size="12" *ngFor="let single of allScheduledCombing">
-        <div class="label-div">
+      <ion-col size="12" *ngFor="let single of allScheduledList">
+        <ion-item>
+          <ion-label>
+            <h3>{{ single.start_time }}</h3>
+            <p *ngIf="
+                single.schedule_status == '1' &&
+                allDetail.ALL_COUNT == single.sequence">
+              Current
+            </p>
+            <p
+              *ngIf="
+                single.schedule_status == '1' &&
+                allDetail.ALL_COUNT != single.sequence
+              "
+            >
+              Initial
+            </p>
+            <p *ngIf="single.schedule_status == '2'">Passed</p>
+            <p *ngIf="single.schedule_status == '3'">Skipped</p>
+          </ion-label>
+          <ion-button
+            (click)="skipTask(single.time_id)"
+            *ngIf="
+              single.schedule_status == '1' &&
+              allDetail.ALL_COUNT == single.sequence
+            "
+          >
+            Skip
+          </ion-button>
+        </ion-item>
+        <!-- <div class="label-div">
           <ion-label>Date and Time</ion-label>
         </div>
         <div class="data-div">
           <ion-label>{{ single }}</ion-label>
-        </div>
+        </div> -->
       </ion-col>
     </ion-row>
-
   </ion-grid>
 </ion-content>

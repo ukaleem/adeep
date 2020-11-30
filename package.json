@@ -24,6 +24,8 @@
     "@fullcalendar/angular": "^5.4.0",
     "@fullcalendar/daygrid": "^5.4.0",
     "@fullcalendar/interaction": "^5.4.0",
+    "@fullcalendar/list": "^5.4.0",
+    "@fullcalendar/timegrid": "^5.4.0",
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/file-path": "^5.28.0",
     "@ionic-native/in-app-browser": "^5.28.0",
