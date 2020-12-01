@@ -1,3 +1,4 @@
+import { ToastService } from './../../../../services/toast.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FeedsService } from 'src/app/services/pages-apis/feeds.service';
@@ -15,6 +16,7 @@ export class AddFeedComponent implements OnInit {
   @Input() fromType: any;
   @Input() i: any;
   constructor(private feed: FeedsService,
+    private toast: ToastService,
      private modalCtrl : ModalController ) { }
   to_admin = true;
   to_patient = true;
@@ -55,9 +57,12 @@ export class AddFeedComponent implements OnInit {
     }
     this.feed.addFeedBack(frmData).subscribe(data=> {
       console.log(data);
+      this.toast.SuccessToast('Feedback added Successfully',2000);
       setTimeout(() => {
         this.modalCtrl.dismiss(null,'ok');
       }, 1000);
+    }, error=> {
+      this.toast.ErrorToast('Some Error Occurred',2000);
     })
   }
 

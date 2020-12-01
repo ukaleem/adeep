@@ -52,12 +52,19 @@
         <ion-row>
           <ion-col>
             <ion-label for="user" class="ion-label">Password*</ion-label>
-            <ion-input class="input" minlength="6" maxlength="30" required type="password" name="password" ngModel #searchTagCtrl="ngModel"
+            <ion-input class="input" minlength="6" maxlength="30" required [type]="inPutType" name="password" ngModel #searchTagCtrl="ngModel"
               [(ngModel)]="password">
             </ion-input>
+            
           </ion-col>
         </ion-row>
-  
+        <ion-icon (click)="changePasswordType()" style="position: absolute;
+          right: 23px;
+          top: bo;
+          z-index: 4;
+          margin-top: -52px;
+          height: 30px;
+          width: 30px;" [name]="iconName"></ion-icon>
         <ion-row>
           <ion-col>
             <ion-label for="user" class="ion-label">Confirm Password </ion-label>

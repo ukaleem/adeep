@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { AdminService } from 'src/app/services/pages-apis/admin.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-diseases',
@@ -8,22 +9,25 @@ import { AdminService } from 'src/app/services/pages-apis/admin.service';
   styleUrls: ['./diseases.page.scss'],
 })
 export class DiseasesPage implements OnInit {
+  constructor(
+    private admin: AdminService, 
+    private alertController: AlertController,
+    private toast: ToastService,
+  ) { }
 
   segmentVelue = 'disease';
   searchTerm = '';
   isSearch = false;
   isLoading = true;
   result = false;
-  diseaseList : any = [];
+  diseaseList: any = [];
   filterDisease: any = [];
-  specilatiesList : any = [];
-  allRestaurants:any = [];
+  specilatiesList: any = [];
+  allRestaurants: any = [];
   filteredRestaurants: any = [];
-  specilatiesListFilter : any = [];
-  constructor(
-    private admin: AdminService, 
-    private alertController : AlertController,
-  ) { }
+  specilatiesListFilter: any = [];
+
+  searched = '';
   ngOnInit() {
   }
   changeSegment(ev) {
@@ -43,8 +47,6 @@ export class DiseasesPage implements OnInit {
   ionViewWillEnter(){
     this.loadData();
   }
-
-  searched = '';
   loadData(){
     // this.admin.allDisease().subscribe(data=> {
     //   console.log('Disease List');
@@ -111,7 +113,6 @@ export class DiseasesPage implements OnInit {
         });
       }
     }
-   
   }
 
   addDisease(){
@@ -123,7 +124,10 @@ export class DiseasesPage implements OnInit {
     }
     this.admin.deleteDisease(disease).subscribe(data=> {
       console.log(data);
+      this.toast.SuccessToast('Delete Successfully',2000);
       this.loadData();
+    }, error=> {
+      this.toast.ErrorToast('Some Error Occurred',2000);
     });
   }
   deleteSpecilaity(SPECIALTY_ID) {
@@ -132,8 +136,11 @@ export class DiseasesPage implements OnInit {
     }
     this.admin.deleteSpecialty(spec).subscribe(data=> {
       console.log(data);
+      this.toast.SuccessToast('Delete Successfully',2000);
       this.loadData();
-    });
+  }, error=> {
+    this.toast.ErrorToast('Some Error Occurred',2000);
+  });
   }
 
   async editSpeciality(specialityId: any , spName) {
@@ -206,9 +213,11 @@ export class DiseasesPage implements OnInit {
               disease_name:dataForm.disease_name
             }
             this.admin.editDisease(disease).subscribe(data=> {
-              console.log(data);
+              this.toast.SuccessToast('Update Successfully',2000);
 
               this.loadData();
+            }, error => {
+              this.toast.ErrorToast('Some Error Occurred',2000);
             });
             console.log('Confirm Ok');
           }
@@ -254,10 +263,12 @@ export class DiseasesPage implements OnInit {
             }
             this.admin.addDisease(disease).subscribe(data=> {
               // console.log(data);
-
+              this.toast.SuccessToast('Add Successfully',2000);
               this.loadData();
+            }, error=> {
+              this.toast.ErrorToast('Error in new Add',2000);
             });
-            console.log('Confirm Ok');
+            // console.log('Confirm Ok');
           }
         }
       ]

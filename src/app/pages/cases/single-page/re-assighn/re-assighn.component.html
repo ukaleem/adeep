@@ -24,7 +24,7 @@
           </ion-label>
           <div>
             <ion-select class="input" required name="p_disease" [(ngModel)]="selectCareTacker" ngModel
-              #categoryValueCtrl="ngModel" placeholder="select Disease">
+              #categoryValueCtrl="ngModel" placeholder="Select Care Tacker">
               <ion-select-option [value]="p.id" *ngFor="let p of allUsers">{{p.name}}</ion-select-option>
             </ion-select>
           </div>

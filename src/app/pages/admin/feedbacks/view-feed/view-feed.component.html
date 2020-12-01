@@ -18,7 +18,7 @@
   <ion-grid>
 
     <!-- this one -->
-    <ion-row>
+    <ion-row *ngIf="allData.USR_FIRSTNAME">
       <ion-col>
         <div class="label-div">
           <ion-label>From</ion-label>
@@ -29,7 +29,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row *ngIf="allData.PRJ_NAME">
       <ion-col>
         <div class="label-div">
           <ion-label>Process</ion-label>
@@ -40,7 +40,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row *ngIf="allData.TAS_TITLE">
       <ion-col>
         <div class="label-div">
           <ion-label>Task</ion-label>
@@ -51,7 +51,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row *ngIf="allData.FEED_CONTENT">
       <ion-col>
         <div class="label-div">
           <ion-label>Content</ion-label>

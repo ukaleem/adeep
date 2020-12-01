@@ -1,5 +1,7 @@
+import { ToastService } from './../../../../services/toast.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/pages-apis/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-profile',
@@ -13,7 +15,7 @@ export class EditProfilePage implements OnInit {
   passwordUpdate = false;
   password: any;
   confirmPassword: any;
-  constructor(private auth : AuthService) { }
+  constructor(private auth : AuthService,private location: Location,private toast:ToastService) { }
 
   ngOnInit() {
   }
@@ -27,13 +29,20 @@ export class EditProfilePage implements OnInit {
       frmData.usr_new_pass = this.password;
       frmData.usr_cnf_pass = this.confirmPassword;
     }
+    
     console.log(frmData);
     this.auth.updateUser(frmData).subscribe(data=> {
       console.log(data);
+      this.location.back();
+      this.toast.SuccessToast('Profile Update Successfully', 2000);
+    }, error=> {
+      this.toast.ErrorToast('Profile Can\'t Update Successfully', 2000);
     })
     //updateUser
   }
 
+  iconName = 'eye';
+  inPutType = 'password';
   isPasswordOK(){
     if(this.passwordUpdate && this.password != this.confirmPassword)
       return false;return true;
@@ -43,6 +52,11 @@ export class EditProfilePage implements OnInit {
     this.loadData();
   }
 
+  changePasswordType(){
+    console.log('click');
+    this.iconName = this.iconName == 'eye' ? 'eye-off' : 'eye';
+    this.inPutType = this.inPutType == 'password' ? 'text' : 'password';
+  }
   loadData(){
     const user = localStorage.getItem('id');
     this.auth.get_user_information(user).subscribe(data=> {

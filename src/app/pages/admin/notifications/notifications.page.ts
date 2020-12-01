@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ActionSheetController, ModalController } from '@ionic/angular';
+import { ActionSheetController, ModalController, PopoverController } from '@ionic/angular';
 import { NotificationsService } from 'src/app/services/pages-apis/notifications.service';
 import { PatientSingleTaskComponent } from '../patients/patient-single-task/patient-single-task.component';
+import { FilterNotificationComponent } from './filter-notofication/filter-notofication.component';
 
 @Component({
   selector: 'app-notifications',
@@ -11,10 +12,17 @@ import { PatientSingleTaskComponent } from '../patients/patient-single-task/pati
 })
 export class NotificationsPage implements OnInit {
 
+  caseFilter = {
+      newCase : true,
+      caseData: true,
+      // caseSchedule : false,
+      caseDerivate : true,
+    };
   constructor(private not : NotificationsService , 
-    private modalCtrl: ModalController,
-    private actionSheetController: ActionSheetController,
-    private router: Router) { }
+              private modalCtrl: ModalController,
+              private actionSheetController: ActionSheetController,
+              private popoverController:PopoverController,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -30,6 +38,12 @@ export class NotificationsPage implements OnInit {
     })
   }
 
+  filterNotification(note_type){
+    if ((note_type == '1' || note_type == '4') && this.caseFilter.caseData) { return true; }
+    else if (( note_type == '2') && this.caseFilter.newCase) { return true; }
+    else if (( note_type == '3') && this.caseFilter.caseDerivate) { return true; }
+    
+  }
   async viewNotifications(data){
     console.log(data);
     this.changeStatus(data.note_id,2);
@@ -60,7 +74,7 @@ export class NotificationsPage implements OnInit {
     let ViewButton = {
       text: 'Detail View',
         role: 'destructive',
-        icon: 'eye',
+        icon: 'open',
         handler: () => {
           this.viewNotifications(data);
         }
@@ -69,7 +83,7 @@ export class NotificationsPage implements OnInit {
     let readButton = {
       text: 'Mark as Read',
         role: 'destructive',
-        icon: 'glasses',
+        icon: 'mail-open',
         handler: () => {
           this.changeStatus(id,2);
         }
@@ -141,6 +155,17 @@ export class NotificationsPage implements OnInit {
     setTimeout(() => {
       event.target.complete();
     }, 2000);
+  }
+
+  async presentPopover(ev: any) {
+    const popover = await this.popoverController.create({
+      component: FilterNotificationComponent,
+      cssClass: 'my-custom-class',
+      event: ev,
+      componentProps : {filterData: this.caseFilter},
+      translucent: true
+    });
+    return await popover.present();
   }
 
 }

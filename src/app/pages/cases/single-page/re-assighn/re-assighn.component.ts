@@ -1,3 +1,4 @@
+import { ToastService } from './../../../../services/toast.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AlertsService } from 'src/app/services/alerts.service';
@@ -19,6 +20,7 @@ export class ReAssignComponent implements OnInit {
   allUsers : any = [];
   constructor(private mdlCtrl:  ModalController,
     private showAlerts: AlertsService,
+    private toast: ToastService,
     private cases: CasesService) { 
       
      }
@@ -46,6 +48,7 @@ export class ReAssignComponent implements OnInit {
   saveFeed(f){
     this.cases.reAssignCase(this.AppID , {usr_uid_target:this.selectCareTacker}).subscribe(data=> {
       console.log(data);
+      this.toast.SuccessToast('Reassign case Successfully',2000);
       this.mdlCtrl.dismiss([],'ok');
     },err=> {
       this.showAlerts.showAlertNormal('Error Occurred!', '1:Internat Problem\n2:Limited Permission\n3:Target and Origin user are the same')

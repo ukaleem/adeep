@@ -1,0 +1,18 @@
+<ion-content>
+  <ion-item>
+    Filters Notifications
+  </ion-item>
+
+   <ion-item>
+    <ion-label>New Case Assign</ion-label>
+    <ion-checkbox slot="end" [(ngModel)]="filterData.newCase"></ion-checkbox>
+  </ion-item>
+  <ion-item>
+    <ion-label>Case Derivate</ion-label>
+    <ion-checkbox slot="end" [(ngModel)]="filterData.caseDerivate"></ion-checkbox>
+  </ion-item>
+  <ion-item>
+    <ion-label>Case Data</ion-label>
+    <ion-checkbox slot="end" [(ngModel)]="filterData.caseData"></ion-checkbox>
+  </ion-item>
+</ion-content>

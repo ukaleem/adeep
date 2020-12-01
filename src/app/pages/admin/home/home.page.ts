@@ -48,7 +48,7 @@ export class HomePage implements OnInit {
     this.allPatients = this.allPatientsBackUp.filter(t => {
       if (t.PAITEINT_NAME && t.PAITEINT_NAME.toLowerCase().indexOf(val) > -1) {
         return true;
-      }else if (t.PAT_DISEASE_NAME && t.PAT_DISEASE_NAME.toLowerCase().indexOf(val) > -1) {
+      }else if (t.descriptions && t.descriptions.toLowerCase().indexOf(val) > -1) {
         return true;
       }
       return false;

@@ -1,3 +1,4 @@
+import { ToastService } from './../../../../services/toast.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AdminService } from 'src/app/services/pages-apis/admin.service';
@@ -14,6 +15,7 @@ export class AddUserComponent implements OnInit {
     private mdlCtrl: ModalController,
     private admin: AdminService,
     private location: Location,
+    private toast: ToastService,
   ) { }
   @Input() userId: any;
   userDetails = [];
@@ -85,20 +87,26 @@ export class AddUserComponent implements OnInit {
     if (this.userId) {
       this.admin.editUser(this.frmData, this.userId).subscribe(data => {
         console.log(data);
+        this.toast.SuccessToast('User Update Successfully', 2000);
         setTimeout(() => {
           this.closeModal();
         }, 1000);
 
 
+      }, err=> {
+        this.toast.ErrorToast('User Can\'t Updated', 2000);
       });
     } else {
       this.admin.createUser(this.frmData).subscribe(data => {
         if (data) {
+          this.toast.SuccessToast('User Add Successfully', 2000);
           setTimeout(() => {
             this.closeModal();
           }, 1000);
           // this.closeModal();
         }
+      }, err=> {
+        this.toast.ErrorToast('User Can\'t Added', 2000);
       });
     }
   }

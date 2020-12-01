@@ -1,30 +1,31 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-      <ion-buttons color="light" size="small" slot="start">
-          <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
-      </ion-buttons>
-      <ion-item class='bg-none' lines="none">
-          <!-- <ion-icon slot='start' color="primary" name="menu"  routerDirection='backward'></ion-icon> -->
-          <ion-title color="light" class="ion-text-center">
-           Notifications
-              <!-- <div class='ion-text-center'>
+    <ion-buttons color="light" size="small" slot="start">
+      <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
+    </ion-buttons>
+    <ion-item class="bg-none" lines="none">
+      <!-- <ion-icon slot='start' color="primary" name="menu"  routerDirection='backward'></ion-icon> -->
+      <ion-title color="light" class="ion-text-center">
+        Notifications
+        <!-- <div class='ion-text-center'>
                   <img class='Logo-img' src="../../../../assets/images/Logo/skill-experts-white-01.svg" alt="" />
               </div> -->
-          </ion-title>
-          <ion-icon color="light" name="none"
-              slot="end">
-          </ion-icon>
-      </ion-item>
+      </ion-title>
+
+      <ion-buttons color="light" size="small" slot="end">
+        <ion-button (click)="presentPopover($event)">
+          <ion-icon color="light" name="filter"> </ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content [fullscreen]="true">
-
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  
+
   <ion-grid>
     <!-- <ion-row class='timeline-row'>
       <ion-col clas='ion-no-padding ion-no-margin'>
@@ -34,28 +35,50 @@
       </ion-col>
     </ion-row> -->
 
-    <ion-row class='list-bg' *ngFor="let n of allNotifications">
-      <ion-col>
-        <ion-item class="bg-none" lines='none'>
-          <ion-label class='cno-wrap ion-no-marin ion-no-padding'>
-            <b>{{n.USR_USERNAME}}: </b> {{n.note_content}}
-          </ion-label>
-          <ion-icon (click)="presentActionSheet(n)" color="primary" name="ellipsis-horizontal" slot='end'></ion-icon>
-          <ion-note style="position: absolute; font-size: 9px; color: #9E9E9E;" class="ion-float-right"><span class="time-step">{{n.created_at}} </span></ion-note>
-        </ion-item>
-        <ion-item class="bg-none details2" lines='none'>
-          <ion-label>
-            <ion-text ><b>Patient:</b> {{n.PAITEINT_NAME}}</ion-text>
-            <!-- <ion-icon name='thumbs-up' side='small' color='primary'></ion-icon> -->
-          </ion-label>
-          <ion-icon *ngIf="n.current_status == '0'" name="ellipse" size='small' color='success' slot='end' class='new'></ion-icon>
-        </ion-item>
-        <ion-item class="bg-none details3" lines='none'>
-          <ion-text style='font-size: smaller;'><b>Pathway:</b> {{n.PRO_TITLE}} </ion-text>
-          <ion-text style='font-size: x-small;' slot="end">{{n.TAS_TITLE}}</ion-text>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+    <ng-container *ngFor="let n of allNotifications">
+      <ion-row class="list-bg" *ngIf="filterNotification(n.note_type)">
+        <ion-col>
+          <ion-item class="bg-none" lines="none">
+            <ion-label class="cno-wrap ion-no-marin ion-no-padding">
+              <b>{{n.USR_USERNAME}}: </b> {{n.note_content}}
+            </ion-label>
+            <ion-icon
+              (click)="presentActionSheet(n)"
+              color="primary"
+              name="ellipsis-horizontal"
+              slot="end"
+            ></ion-icon>
+            <ion-note
+              style="position: absolute; font-size: 9px; color: #9e9e9e"
+              class="ion-float-right"
+              ><span class="time-step">{{n.created_at}} </span></ion-note
+            >
+          </ion-item>
+          <ion-item class="bg-none details2" lines="none">
+            <ion-label>
+              <ion-text><b>Patient:</b> {{n.PAITEINT_NAME}}</ion-text>
+              <!-- <ion-icon name='thumbs-up' side='small' color='primary'></ion-icon> -->
+            </ion-label>
+            <ion-icon
+              *ngIf="n.current_status == '0'"
+              name="ellipse"
+              size="small"
+              color="success"
+              slot="end"
+              class="new"
+            ></ion-icon>
+          </ion-item>
+          <ion-item class="bg-none details3" lines="none">
+            <ion-text style="font-size: smaller"
+              ><b>Pathway:</b> {{n.PRO_TITLE}}
+            </ion-text>
+            <ion-text style="font-size: x-small" slot="end"
+              >{{n.TAS_TITLE}}</ion-text
+            >
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ng-container>
 
     <!-- <ion-row class='list-bg'>
       <ion-col>
@@ -83,13 +106,18 @@
         <ion-img src="../../../../assets/alerts/NoDataFound.svg"></ion-img>
       </ion-col>
     </ion-row>
-    <ion-row class='white-bg'>
+    <ion-row class="white-bg">
       <ion-col>
-        <ion-item class='bg-none' lines='none'>
-          <ion-icon slot='start' name="alert-circle" color='danger'></ion-icon>
+        <ion-item class="bg-none" lines="none">
+          <ion-icon slot="start" name="alert-circle" color="danger"></ion-icon>
           <ion-label> You have no data! </ion-label>
-          <ion-button (click)='loadData()' slot='end' fill='clear' shape='round'>
-            <ion-icon name='reload'></ion-icon>
+          <ion-button
+            (click)="loadData()"
+            slot="end"
+            fill="clear"
+            shape="round"
+          >
+            <ion-icon name="reload"></ion-icon>
             Refresh
           </ion-button>
         </ion-item>

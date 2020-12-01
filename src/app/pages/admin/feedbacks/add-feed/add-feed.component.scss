@@ -20,9 +20,11 @@
  }
  .input-textarea {
    border:none;
-  padding:41px;
+//   padding:41px;
   border-radius:5px;
    color: black;
+   font-size: 1.4em;
+   height: 150px;
    // height: 60px;
  background:rgba(247, 247, 247);
  background:var(--ion-color-secondary);
