@@ -1,106 +1,169 @@
-<!-- <ion-content [fullscreen]="true">
+
+<!-- 
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+      <ion-item class='bg-none' lines="none">
+     
+          <ion-title color="light" class="ion-text-center">
+            Logion
+          </ion-title>
+         
+      </ion-item>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content ion-content [fullscreen]="true">
+  <ion-item lines="none" style="background: transparent;--background: transparent;margin-top: 4px;">
+    <ion-button slot="end" fill="clear" (click)="showSetting($event)">
+      <ion-icon slot="icon-only" name="settings"></ion-icon>
+    </ion-button>
+  </ion-item>
+   
   <form #form="ngForm" (ngSubmit)="register(form)">
-    <ion-item *ngIf=false>
-      <ion-label>Grant type</ion-label>
-      <ion-input name="grant_type" type="text" readonly ngModel value="password"></ion-input>
-    </ion-item> 
-    <ion-item *ngIf=false>
-      <ion-input name="scope" type="text" readonly  ngModel value="*"></ion-input>
-    </ion-item> 
-    <ion-item *ngIf=false>
-      <ion-input name="client_id" type="text" readonly ngModel  value="MOEPIIKPXCZPHZETAZTTJMGYYTLLWARH"></ion-input>
-    </ion-item> 
-    <ion-item *ngIf=false>
-      <ion-input name="client_secret" type="text" readonly  ngModel value="6787116325f3dffbfa69216052519218"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">User name</ion-label>
-      <ion-input name="username" type="text" ngModel required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input name="password" type="password" ngModel required></ion-input>
-    </ion-item>
-    
-    <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">Register</ion-button>
-  </form>
-</ion-content>  -->
-<ion-content>
-
-  <form  #form="ngForm" (ngSubmit)="register(form)">
-      <ion-grid class="ion-no-padding ion-no-margin">
-        <ion-row class="lg-image-row ion-align-items-baseline">
-          <ion-col class="lg-image ion-no-padding ion-no-margin">
-              <div class="image-overlay-div">
-                  <div style="margin-top: 20%;">
-                      <ion-img src="../../../../assets/logo/addedfull.png"></ion-img>
-                  </div>
-              </div>
-          </ion-col>
+    <ion-grid class="ion-no-padding ion-no-margin">
+      <ion-row class="lg-image-row ion-align-items-baseline">
+        <ion-col class="lg-image ion-no-padding ion-no-margin">
+          <div class="image-overlay-div">
+            <div style="margin-top: 15%">
+              <ion-img src="../../../../assets/logo/addedfull.png"></ion-img>
+            </div>
+          </div>
+        </ion-col>
       </ion-row>
-          <ion-row class="ion-margin">
-              <ion-col size="12" size-sm="6" offset-sm="3">
-                  <ion-list>
+      <ion-row class="ion-margin">
+        <ion-col size="12" size-sm="6" offset-sm="3">
+          <ion-list>
+            <ion-item *ngIf="false" lines="none">
+              <ion-label>Grant type</ion-label>
+              <ion-input
+                name="grant_type"
+                type="text"
+                readonly
+                ngModel
+                value="password"
+              ></ion-input>
+            </ion-item>
+            <ion-item *ngIf="false" lines="none">
+              <ion-input
+                name="scope"
+                type="text"
+                readonly
+                ngModel
+                value="*"
+              ></ion-input>
+            </ion-item>
+            <ion-item *ngIf="false" lines="none">
+              <ion-input
+                name="client_id"
+                type="text"
+                readonly
+                ngModel
+                value="MOEPIIKPXCZPHZETAZTTJMGYYTLLWARH"
+              ></ion-input>
+            </ion-item>
+            <ion-item *ngIf="false" lines="none">
+              <ion-input
+                name="client_secret"
+                type="text"
+                readonly
+                ngModel
+                value="6787116325f3dffbfa69216052519218"
+              ></ion-input>
+            </ion-item>
 
-                    <ion-item *ngIf=false lines="none">
-                      <ion-label>Grant type</ion-label>
-                      <ion-input name="grant_type" type="text" readonly ngModel value="password"></ion-input>
-                    </ion-item> 
-                    <ion-item *ngIf=false lines="none">
-                      <ion-input name="scope" type="text" readonly  ngModel value="*"></ion-input>
-                    </ion-item> 
-                    <ion-item *ngIf=false lines="none">
-                      <ion-input name="client_id" type="text" readonly ngModel  value="MOEPIIKPXCZPHZETAZTTJMGYYTLLWARH"></ion-input>
-                    </ion-item> 
-                    <ion-item *ngIf=false lines="none">
-                      <ion-input name="client_secret" type="text" readonly  ngModel value="6787116325f3dffbfa69216052519218"></ion-input>
-                    </ion-item>
-
-                      <ion-item lines="none">
-                          <ion-label position="floating">User Name
-                              <!-- <span class="span-error" *ngIf="!emailCtrl.valid && emailCtrl.touched">✖</span>
+            <ion-item lines="none">
+              <ion-label position="floating"
+                >User Name
+                <!-- <span class="span-error" *ngIf="!emailCtrl.valid && emailCtrl.touched">✖</span>
                               <span class="span-success" *ngIf="emailCtrl.valid && emailCtrl.touched">✔</span> -->
-                          </ion-label>
-                          <ion-input name="username" type="text" ngModel required></ion-input>
-                          <span class="validity"></span>
-                      </ion-item>
-                      <!-- <ion-label class='ion-label'>
+              </ion-label>
+              <ion-input
+                name="username"
+                type="text"
+                ngModel
+                required
+              ></ion-input>
+              <span class="validity"></span>
+            </ion-item>
+            <!-- <ion-label class='ion-label'>
                           User Name should be like Max                     
                        </ion-label> -->
-                  </ion-list>
-              </ion-col>
+          </ion-list>
+        </ion-col>
 
-              <ion-col size="12" size-sm="6" offset-sm="3">
-                  <ion-list>
-                      <ion-item lines="none">
-                          <ion-label position="floating">Password 
-                              <!-- <span class="span-error" *ngIf="!passwordCtrl.valid && passwordCtrl.touched">✖</span>
+        <ion-col size="12" size-sm="6" offset-sm="3">
+          <ion-list>
+            <ion-item lines="none">
+              <ion-label position="floating"
+                >Password
+                <!-- <span class="span-error" *ngIf="!passwordCtrl.valid && passwordCtrl.touched">✖</span>
                               <span class="span-success" *ngIf="passwordCtrl.valid && passwordCtrl.touched">✔</span> -->
-                          </ion-label>
-                          <ion-input style="width: 85%;"name="password" [type]="passwordType" ngModel required></ion-input>
-                          <div class="keep-eye-on" slot="end" (click)="managePassword()">
-                              <ion-icon style="height: 30px;width: 30px;margin-top: 5px;" size='medium' color="dark" size="small" name="{{passeye}}"></ion-icon>
-                          </div>
-                      </ion-item>
-                      <!-- <ion-label class='ion-label'>
+              </ion-label>
+              <ion-input
+                style="width: 85%"
+                name="password"
+                [type]="passwordType"
+                ngModel
+                required
+              ></ion-input>
+              <div class="keep-eye-on" slot="end" (click)="managePassword()">
+                <ion-icon
+                  style="height: 30px; width: 30px; margin-top: 5px"
+                  size="medium"
+                  color="dark"
+                  size="small"
+                  name="{{passeye}}"
+                ></ion-icon>
+              </div>
+            </ion-item>
+            <!-- <ion-label class='ion-label'>
                           Password should be 5 characters long.
                       </ion-label> -->
-                  </ion-list>
-              </ion-col>
-          </ion-row>
-          <ion-row class="ion-margin">
-              <ion-col size-sm="6" offset-sm="3">
-                  <!-- <ion-button type="button" color="primary" fill="clear" expand="block">
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-margin">
+        <ion-col size-sm="6" offset-sm="3">
+          <!-- <ion-button type="button" color="primary" fill="clear" expand="block">
                       forget Password?
                   </ion-button> -->
-                  <ion-button type="submit" color="primary" expand="block" type="submit" [disabled]="form.invalid" expand="block">
-                      Login
-                  </ion-button>
-                  <!-- <ion-button fill='outline' color="primary" expand="block">
+          <ion-button
+            type="submit"
+            color="primary"
+            expand="block"
+            type="submit"
+            [disabled]="form.invalid"
+            expand="block"
+          >
+            Login
+          </ion-button>
+          <!-- <ion-button fill='outline' color="primary" expand="block">
                       Register
                   </ion-button> -->
-              </ion-col>
-          </ion-row>
-      </ion-grid>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-radio-group (ionChange)="cahgeValue($event)" [(ngModel)]="serverType" [ngModelOptions]="{standalone: true}">
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-radio value="1"></ion-radio>
+              <ion-label>Live</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-radio value="2"></ion-radio>
+              <ion-label>Testing</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-radio-group> -->
+    </ion-grid>
   </form>
 </ion-content>

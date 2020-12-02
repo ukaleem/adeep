@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
+import { LoginSettingComponent } from '../login-setting/login-setting.component';
 
 @NgModule({
   imports: [
@@ -13,9 +14,9 @@ import { LoginPage } from './login.page';
     LoginPageRoutingModule,
   
   ],
-  entryComponents: [
+  entryComponents: [LoginSettingComponent
   ],
-  declarations: [LoginPage],
+  declarations: [LoginPage,LoginSettingComponent],
   providers: [],
 })
 export class LoginPageModule {}

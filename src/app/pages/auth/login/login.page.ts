@@ -1,11 +1,12 @@
+import { ToastService } from './../../../services/toast.service';
 import { Component, OnInit } from "@angular/core";
 import { HttpHeaders, HttpClient } from "@angular/common/http";
 import { AuthService } from "src/app/services/pages-apis/auth.service";
 import { Router } from "@angular/router";
-import { NavController } from "@ionic/angular";
-import { AppComponent } from "src/app/app.component";
-import { ToastService } from 'src/app/services/toast.service';
+import { NavController, PopoverController } from "@ionic/angular";
+import { AppComponent } from "src/app/app.component";;
 import { NotificationsService } from 'src/app/services/extra/notifications.service';
+import { LoginSettingComponent } from '../login-setting/login-setting.component';
 // import {
 //   Plugins,
 //   PushNotification,
@@ -27,6 +28,8 @@ export class LoginPage implements OnInit {
     }),
   };
 
+  serverType = "1";
+  serverType2 = "1";
   constructor(
     private loginService: AuthService,
     private router: Router,
@@ -34,6 +37,7 @@ export class LoginPage implements OnInit {
     private app: AppComponent,
     private toastService: ToastService,
     private noti: NotificationsService,
+    private popoverController: PopoverController,
   ) //  private firebaseX: FirebaseX,
   //  private firebaseConfig: FirebaseConfig
   {}
@@ -53,7 +57,7 @@ export class LoginPage implements OnInit {
       (data) => {
         console.log(data);
         if (data.access_token) {
-          localStorage.setItem("token", JSON.stringify(data));
+          localStorage.setItem('token', JSON.stringify(data));
           localStorage.setItem("token_access", data.access_token);
           localStorage.setItem("token_time", new Date().toDateString());
           this.getUserRoles();
@@ -66,8 +70,15 @@ export class LoginPage implements OnInit {
     );
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    localStorage.setItem('server', '1');
+  }
 
+  cahgeValue(ev){
+    console.log(this.serverType);
+    const loginSever = this.serverType === '1' ? 'Live' : 'Test';
+    this.toastService.SuccessToast('Now login with ' + loginSever + ' Server', 2000);
+  }
   getUserRoles() {
     this.loginService.get_user_id().subscribe((data) => {
       try {
@@ -132,5 +143,18 @@ export class LoginPage implements OnInit {
       this.passwordType = "password";
       this.passeye = "eye";
     }
+  }
+  // serverType;
+  async showSetting(ev: any){
+    this.serverType2 = localStorage.getItem('server');
+
+    const popover = await this.popoverController.create({
+      component: LoginSettingComponent,
+      cssClass: 'my-custom-class',
+      event: ev,
+      componentProps : {serverType: this.serverType2},
+      translucent: true
+    });
+    return await popover.present();
   }
 }
