@@ -38,6 +38,13 @@ export class PatientAssignTaskComponent implements OnInit {
     this.mdlCtrl.dismiss();
   }
 
+  getActionSheetHeader(header){
+    const customActionSheetOptions: any = {
+      header,
+    };
+    return customActionSheetOptions;
+  }
+
   async patientAssignTask(f) {
     const modal = await this.mdlCtrl.create({
       component: CustomSearchComponent,

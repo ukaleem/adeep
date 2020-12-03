@@ -57,7 +57,7 @@
             </ion-button>
           </ion-item>
         </ng-container>
-        <ion-button shape='round' shape='round' (click)="doNextStep(null)" expand="block">
+        <ion-button shape='round' shape='round' (click)="doNextStepCheck(null)" expand="block">
           Submit Case
         </ion-button>
         <ion-button *ngIf="showFeedBack" shape='round' fill="outline" shape='round' (click)="feedBack()" expand="block">
@@ -72,11 +72,35 @@
       <ion-col size="12">
         <ion-card>
           <ion-card-header>
-            <ion-card-title>
+            <ion-card-title class="ion-text-center">
               Feedbacks
             </ion-card-title>
           </ion-card-header>
           <ion-card-content>
+
+            <ion-row class='list-bg' style="margin-top: 5px;" *ngFor="let item of allFeedBacks">
+              <ion-col (click)="viewFeedBack(item.FEED_ID , item.FOR_TAKER)">
+      
+                <ion-item class="bg-none" lines='none'>
+                  <ion-label class='cno-wrap'>
+                    <h2><span style="color:#3d7db0">From:</span> {{item.USR_FIRSTNAME}}</h2>
+                    {{item.FEED_CONTENT}}
+                  </ion-label>
+                  <div *ngIf="item.FEED_STATUS == '1'">
+                    <ion-icon name="ellipse" size='small' color='danger' slot='end' class='new'></ion-icon>
+                    <span class="ion-float-right">Open</span>
+                  </div>
+                  <div *ngIf="item.FEED_STATUS == '2'">
+                    <span color="danger" class="ion-float-right">Reject</span>
+                  </div>
+                  <div *ngIf="item.FEED_STATUS == '3'">
+                    <span color="success" class="ion-float-right">Accept</span>
+                  </div>
+                </ion-item>
+                <!-- <ion-item class="bg-none details2" lines='none'>
+                </ion-item> -->
+              </ion-col>
+            </ion-row>
 
           </ion-card-content>
         </ion-card>

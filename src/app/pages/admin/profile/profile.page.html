@@ -18,6 +18,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" *ngIf="isPermission">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
   <ion-grid>
     <!-- Personal Info -->
     <ion-row *ngIf="segmentVelue==='personalInfo'">
@@ -30,7 +35,7 @@
                   <ion-label>First Name</ion-label>
                 </div>
                 <div class="data-div">
-                  <ion-label>{{allData.usr_firstname}}</ion-label>
+                  <ion-label>{{allData.firstname}}</ion-label>
                 </div>
               </ion-col>
             </ion-row>
@@ -41,7 +46,7 @@
                   <ion-label>Last Name</ion-label>
                 </div>
                 <div class="data-div">
-                  <ion-label>{{allData.usr_lastname}}</ion-label>
+                  <ion-label>{{allData.lastname}}</ion-label>
                 </div>
               </ion-col>
             </ion-row>
@@ -52,7 +57,7 @@
                   <ion-label>Email</ion-label>
                 </div>
                 <div class="data-div">
-                  <ion-label>{{allData.usr_email}}</ion-label>
+                  <ion-label>{{allData.mail}}</ion-label>
                 </div>
               </ion-col>
             </ion-row>
@@ -63,7 +68,7 @@
                   <ion-label>Login Name</ion-label>
                 </div>
                 <div class="data-div">
-                  <ion-label>{{allData.usr_username}}</ion-label>
+                  <ion-label>{{allData.username}}</ion-label>
                 </div>
               </ion-col>
             </ion-row>
@@ -74,7 +79,7 @@
                   <ion-label>Position/Role</ion-label>
                 </div>
                 <div class="data-div">
-                  <ion-label>{{allData.usr_role}}</ion-label>
+                  <ion-label>{{allData.user_role}}</ion-label>
                 </div>
               </ion-col>
             </ion-row>
@@ -85,7 +90,7 @@
                   <ion-label>BirthDay</ion-label>
                 </div>
                 <div class="data-div">
-                  <ion-label>{{allData.usr_birthday}}</ion-label>
+                  <ion-label>{{allData.birthday}}</ion-label>
                 </div>
               </ion-col>
             </ion-row>
@@ -96,7 +101,7 @@
                   <ion-label>Address</ion-label>
                 </div>
                 <div class="data-div">
-                  <ion-label>{{allData.usr_address}}</ion-label>
+                  <ion-label>{{allData.address}}</ion-label>
                 </div>
               </ion-col>
             </ion-row>

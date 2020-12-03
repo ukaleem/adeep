@@ -43,7 +43,7 @@
             Select Pathway
           </ion-label>
           <div>
-            <ion-select (ionChange)="changeProcess($event)" class="input" required name="p_disease2" [(ngModel)]="selectPathway" ngModel
+            <ion-select (ionChange)="changeProcess($event)" [interfaceOptions]="getActionSheetHeader('Pathway')" class="input" required name="p_disease2" [(ngModel)]="selectPathway" ngModel
               #categoryValueCtrl="ngModel" placeholder="select Pathway">
               <ion-select-option [value]="p.PRO_UID" *ngFor="let p of allProcess">{{p.PRO_TITLE}}</ion-select-option>
             </ion-select>
@@ -57,7 +57,7 @@
             Select CareTacker
           </ion-label>
           <div>
-            <ion-select class="input" required name="p_disease" [(ngModel)]="selectPatient" ngModel
+            <ion-select [interfaceOptions]="getActionSheetHeader('Care Tacker')" class="input" required name="p_disease" [(ngModel)]="selectPatient" ngModel
               #categoryValueCtrl="ngModel" placeholder="select Disease">
               <ion-select-option [value]="p.id" *ngFor="let p of allUsers">{{p.name}}</ion-select-option>
             </ion-select>

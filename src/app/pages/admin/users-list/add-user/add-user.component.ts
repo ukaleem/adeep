@@ -35,7 +35,7 @@ export class AddUserComponent implements OnInit {
   selectDices = {
     id: null,
     name: '',
-  }
+  };
 
   frmData = {
     usr_firstname: '',
@@ -50,8 +50,16 @@ export class AddUserComponent implements OnInit {
     usr_role: '',
     usr_due_date: '2020-09-10',
 
-  }
+  };
 
+  getActionSheetHeader(header){
+    let customActionSheetOptions: any = {
+      header: header,
+      // subHeader: 'Select your favorite color'
+    };
+    return customActionSheetOptions;
+  }
+  
   topTitle = 'Add New User';
   ngOnInit() {
     if (this.userId) {

@@ -91,7 +91,7 @@ export class LoginPage implements OnInit {
         localStorage.setItem("username", data.username);
         this.app.userName = data.firstname;  
         this.app.USER_ROLE_NAME = data.user_role;
-
+        localStorage.setItem('allVisitTask','[]');
         if (data.user_role == "ADMIN_OFFICE" || data.user_role == "admin_office") {
           this.app.casesShow = true;
           this.app.ADMIN_OFFICE = true;

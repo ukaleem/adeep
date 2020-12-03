@@ -72,6 +72,7 @@
         </div>
         <div class="data-div">
           <ion-datetime
+            class="dateInput"
             [(ngModel)]="currentDateWas"
             displayFormat="YYYY-MM-DD HH:mm"
           ></ion-datetime>
@@ -86,6 +87,7 @@
         </div>
         <div class="data-div">
           <ion-datetime
+            class="dateInput"
             [(ngModel)]="currentDueDate"
             [min]="currentDate"
             displayFormat="YYYY-MM-DD HH:mm"
@@ -108,43 +110,49 @@
 
     <!-- steps -->
     <ion-row *ngIf="activeSegment == 'schedule'">
-      <ion-col size="12" *ngFor="let single of allScheduledList">
-        <ion-item>
-          <ion-label>
-            <h3>{{ single.start_time }}</h3>
-            <p *ngIf="
-                single.schedule_status == '1' &&
-                allDetail.ALL_COUNT == single.sequence">
-              Current
-            </p>
-            <p
+      <ng-container *ngIf="allScheduledList.length">
+        <ion-col size="12" *ngFor="let single of allScheduledList">
+          <ion-item>
+            <ion-label>
+              <h3>{{ single.start_time }}</h3>
+              <p *ngIf="
+                  single.schedule_status == '1' &&
+                  allDetail.ALL_COUNT == single.sequence">
+                Current
+              </p>
+              <p
+                *ngIf="
+                  single.schedule_status == '1' &&
+                  allDetail.ALL_COUNT != single.sequence
+                "
+              >
+                Initial
+              </p>
+              <p *ngIf="single.schedule_status == '2'">Passed</p>
+              <p *ngIf="single.schedule_status == '3'">Skipped</p>
+            </ion-label>
+            <ion-button
+              (click)="skipTask(single.time_id)"
               *ngIf="
                 single.schedule_status == '1' &&
-                allDetail.ALL_COUNT != single.sequence
+                allDetail.ALL_COUNT == single.sequence
               "
             >
-              Initial
-            </p>
-            <p *ngIf="single.schedule_status == '2'">Passed</p>
-            <p *ngIf="single.schedule_status == '3'">Skipped</p>
-          </ion-label>
-          <ion-button
-            (click)="skipTask(single.time_id)"
-            *ngIf="
-              single.schedule_status == '1' &&
-              allDetail.ALL_COUNT == single.sequence
-            "
-          >
-            Skip
-          </ion-button>
-        </ion-item>
-        <!-- <div class="label-div">
-          <ion-label>Date and Time</ion-label>
-        </div>
-        <div class="data-div">
-          <ion-label>{{ single }}</ion-label>
-        </div> -->
-      </ion-col>
+              Skip
+            </ion-button>
+          </ion-item>
+        </ion-col>
+
+      </ng-container>
+      <ng-container *ngIf="!allScheduledList.length">
+        <ion-col size="12">
+          <ion-card>
+            <ion-content color="primary">
+              <span>No Any Scheduled Data or this Task is Not Schedule Task</span>
+            </ion-content>
+          </ion-card>
+        </ion-col>
+      </ng-container>
     </ion-row>
   </ion-grid>
 </ion-content>

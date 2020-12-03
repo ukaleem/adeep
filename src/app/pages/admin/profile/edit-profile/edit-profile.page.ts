@@ -58,12 +58,20 @@ export class EditProfilePage implements OnInit {
     this.inPutType = this.inPutType == 'password' ? 'text' : 'password';
   }
   loadData(){
-    const user = localStorage.getItem('id');
-    this.auth.get_user_information(user).subscribe(data=> {
-      this.firstName= data.usr_firstname;
-      this.lastName= data.usr_lastname;
-      this.userAddress= data.usr_address;
-    })
+    // const user = localStorage.getItem('id');
+    // this.auth.get_user_information(user).subscribe(data=> {
+    //   this.firstName= data.usr_firstname;
+    //   this.lastName= data.usr_lastname;
+    //   this.userAddress= data.usr_address;
+    // })
+
+    this.auth.get_user_id().subscribe(data => {
+      console.log(data);
+      this.firstName = data.firstname;
+      this.lastName = data.lastname;
+      this.userAddress = data.address;
+    });
+
   }
 
 }

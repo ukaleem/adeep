@@ -147,6 +147,7 @@ export class DiseasesPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Set Specialty Name',
       message: 'Specialty Name',
+      cssClass : 'updateDisease',
       inputs: [
         {
           name: 'specialty_name',
@@ -187,6 +188,7 @@ export class DiseasesPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Set Disease Name',
       message: 'Disease Name',
+      cssClass : 'updateDisease',
       inputs: [
         {
           name: 'disease_name',

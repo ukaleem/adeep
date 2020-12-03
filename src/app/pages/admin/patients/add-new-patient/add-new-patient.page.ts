@@ -10,6 +10,11 @@ import { Location } from '@angular/common';
   styleUrls: ['./add-new-patient.page.scss'],
 })
 export class AddNewPatientPage implements OnInit {
+
+  constructor(
+    private admin: AdminService,
+    private location: Location,
+    private mdlCtrl: ModalController) { }
   firstName: any;
   lastName: any;
   patientAge: any;
@@ -43,10 +48,7 @@ export class AddNewPatientPage implements OnInit {
     usr_phone: ''
   }
 
-  constructor(
-    private admin: AdminService,
-    private location: Location,
-    private mdlCtrl: ModalController) { }
+
 
   ngOnInit() {
   }
@@ -78,7 +80,6 @@ export class AddNewPatientPage implements OnInit {
       }
     });
   }
-
   async patientAssignTask() {
     const modal = await this.mdlCtrl.create({
       component: CustomSearchComponent,

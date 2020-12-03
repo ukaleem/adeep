@@ -7,6 +7,7 @@ import { ToastService } from 'src/app/services/toast.service';
 import { AddFeedComponent } from '../../admin/feedbacks/add-feed/add-feed.component';
 import { ReAssignComponent } from './re-assighn/re-assighn.component';
 import { AddNoteComponent } from './add-note/add-note.component';
+import { ViewFeedComponent } from '../../admin/feedbacks/view-feed/view-feed.component';
 
 @Component({
   selector: 'app-single-page',
@@ -100,9 +101,11 @@ export class SinglePagePage implements OnInit {
     })
   }
 
+  allFeedBacks = [];
   caseFeeds(){
-    this.casesService.caseFeeds(this.caseId ,this.projectId).subscribe(data => {
-      console.log(data);
+    this.casesService.caseFeeds(this.currentTaskId,this.application_id).subscribe(data => {
+      console.log('lllFeeds' ,data['data']);
+      this.allFeedBacks = data['data'] as any;
     }, error=> {
       this.notePermission = false;
       console.log(error.error);
@@ -121,9 +124,10 @@ export class SinglePagePage implements OnInit {
       try {
         this.projectId = data.pro_uid;
         this.application_id = data.app_uid
-        // this.caseFeeds();
+    
         this.currentTaskId = data.current_task[0].tas_uid;
         this.loadGuide();
+        this.caseFeeds();
         this.showFeedBack = true;
       } catch (ex) {
         this.guide = `Unable to Load`;
@@ -425,7 +429,62 @@ export class SinglePagePage implements OnInit {
     }
     item.itemValue = this.checkBoxOptions;
   }
+
+  async doNextStepCheck(form){
+    let allTasks = localStorage.getItem('allVisitTask');
+    let allTasksResult = [];
+    if(allTasks){
+      allTasksResult = JSON.parse(allTasks);
+    }
+
+    let isGo = true;
+    let misNotFound = true;
+    this.caseData.forEach(element => {
+      if (element.step_type_obj === 'DYNAFORM'){
+        isGo = false;
+
+        if (misNotFound){
+          allTasksResult.forEach(element2 => {
+            if (element.step_uid_obj == element2){
+              isGo = true;
+            }
+          });
+          if (!isGo) { misNotFound = false; }
+        }
+      }
+    });
+
+    if(!misNotFound){
+
+      const alert = await this.alertController.create({
+        cssClass: 'confirm-case-submit',
+        header: 'Confirm!',
+        message: 'Strongly Recommended!!, Please open Task and Submit form before Submit Task.....<strong>Continue Anyway!!!</strong>',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: (blah) => {
+              console.log('Confirm Cancel: blah');
+            }
+          }, {
+            text: 'Submit',
+            cssClass: 'danger',
+            handler: () => {
+              console.log('Confirm Okay');
+            }
+          },
+        ]
+      });
+      await alert.present();
+    }else{
+      this.doNextStep(null);
+    }
+  }
   doNextStep(form) {
+   
+
     this.casesService.caseRoute(null, this.caseId).subscribe(data2 => {
       this.toaster.SuccessToast('Success Fully Submit Case', 2000);
       this.navCtrl.back();
@@ -460,7 +519,15 @@ export class SinglePagePage implements OnInit {
   }
 
   loadExternal(task_id) {
-    var xyz: InAppBrowserOptions = {
+    const allTasksData = localStorage.getItem('allVisitTask');
+    let allTasks = [];
+    if(allTasksData){
+      allTasks = JSON.parse(allTasksData);
+    }
+    allTasks.push(task_id);
+
+    localStorage.setItem('allVisitTask',JSON.stringify(allTasks));
+    let xyz: InAppBrowserOptions = {
       // location: 'no',
       // closebuttoncolor: 'red',
       closebuttoncaption: 'Close',
@@ -470,15 +537,19 @@ export class SinglePagePage implements OnInit {
       hidenavigationbuttons: 'yes'
 
     }
-    var allToken = localStorage.getItem('token_access');
+    let allToken = localStorage.getItem('token_access');
+    const server = localStorage.getItem('server');
     // let url = 'http://192.236.147.77:8082/pm/loadpage.php';
+    // tslint:disable-next-line: max-line-length
     //  var url2 = 'http://192.236.147.77:8084/sysworkflow/en/classic/cases/cases_Step?TYPE=DYNAFORM&UID=6343624405f362b93c5ef77004296138&POSITION=1&ACTION=EDIT&sid=' + '5254092845f4494fd103856033432596';
-    var url3 = 'http://192.236.147.77:8082/pm/PMDForms'
+    let url3 = 'http://192.236.147.77:8082/pm/PMDForms'
     url3 += '?case=' + this.caseId;
     url3 += '&dynaID=' + task_id;
     // url3 += '&dynaID=' + this.caseUid;
     url3 += '&project=' + this.projectId;
     url3 += '&token=' + allToken;
+    url3 += '&server=' + server;
+
     const browser = this.iab.create(url3, '_self', xyz);
     browser.on('exit').subscribe(test => {
       console.log('Broswe Close now backe');
@@ -536,6 +607,9 @@ export class SinglePagePage implements OnInit {
           i: 2
       }
     });
+    modal.onDidDismiss().then(data =>{
+      this.caseFeeds();
+    });
     return await modal.present();
   }
 
@@ -585,6 +659,27 @@ export class SinglePagePage implements OnInit {
   }
   goBack(){
     this.rout.navigateByUrl('/cases/tabs/inbox');
+  }
+
+  async viewFeedBack(id,forTacker) {
+
+    if(forTacker != '1'){
+      this.toaster.SuccessToast('This is not for Care Tacker, So you can\'t view It',2000);
+      return;
+    }
+    const modal = await this.modalCtrl.create({
+      component: ViewFeedComponent,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        'feedId': id,
+        // 'APP_ID': p.APP_UID,
+      }
+    });
+    modal.onDidDismiss().then(data =>{
+      // this.feedBack();
+      this.caseFeeds()
+    });
+    return await modal.present();
   }
 
 }

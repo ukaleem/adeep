@@ -73,7 +73,7 @@ export class NotificationsPage implements OnInit {
 
     let ViewButton = {
       text: 'Detail View',
-        role: 'destructive',
+        // role: 'destructive',
         icon: 'open',
         handler: () => {
           this.viewNotifications(data);
@@ -82,7 +82,7 @@ export class NotificationsPage implements OnInit {
 
     let readButton = {
       text: 'Mark as Read',
-        role: 'destructive',
+        // role: 'destructive',
         icon: 'mail-open',
         handler: () => {
           this.changeStatus(id,2);
@@ -91,7 +91,7 @@ export class NotificationsPage implements OnInit {
 
     let delButton = {
       text: 'Delete',
-        role: 'destructive',
+        // role: 'destructive',
         icon: 'trash',
         handler: () => {
           this.changeStatus(id,3);
@@ -118,7 +118,7 @@ export class NotificationsPage implements OnInit {
 
     let taskButton = {
       text: 'Delete',
-        role: 'destructive',
+        // role: 'destructive',
         icon: 'trash',
         handler: () => {
           console.log('Delete clicked');
