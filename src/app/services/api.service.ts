@@ -56,7 +56,7 @@ export class ApiService {
             if (response && response['error']) {
               this.showAlerts.showAlertNormal(
                 response['error'],
-                response['message']
+                response['message'] || response['error_description'] 
               );
               this.toast.ErrorToast('Try Again', 1500);
             }

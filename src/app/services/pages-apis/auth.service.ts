@@ -10,6 +10,7 @@ export class AuthService {
   constructor(private api: ApiService , private endPoints: EndpointsService) { }
 
   login(frmData) {
+  //  console.log(this.endPoints.GET_TOKEN);
     return this.api.commonPost(frmData,{isToken :false,endPointUrl : this.endPoints.GET_TOKEN,showLoading : true, showError : true});
   } 
   get_user_id() {

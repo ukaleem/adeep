@@ -15,6 +15,7 @@ export class AlertsService {
       header: title,
       // subHeader: 'Subtitle',
       message: messageOb,
+      cssClass: 'apiAlert',
       buttons: ['OK'],
     });
 

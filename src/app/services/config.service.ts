@@ -9,17 +9,24 @@ export class ConfigService {
   // static SERVER_ADDRESS = 'http://workflow';
 
   static SERVER_ADDRESS = 'http://adeedcps.iibtech.com';
+  static SERVER_ADDRESS2 = 'http://cpstest.iibtech.com';
+
   static WORKSPACE = 'workflow/';
 
-  static SERVER_ADDRESS2 = 'http://cpstest.iibtech.com';
-  static WORKSPACE2 = 'workflow/';
-  public get SERVER_API(): string {
+  public get SERVER(): string{
     const serverType = localStorage.getItem('server');
-    console.log(serverType)
-    if(serverType == '2'){
-      return ConfigService.SERVER_ADDRESS2 + '/' + ConfigService.WORKSPACE2;
+    console.log(serverType);
+    if (serverType == '2'){
+      return ConfigService.SERVER_ADDRESS2;
     }
-    return ConfigService.SERVER_ADDRESS + '/' + ConfigService.WORKSPACE;
+    return ConfigService.SERVER_ADDRESS;
   }
+
+  public get SERVER_API(): string {
+    console.log(this.SERVER);
+    return this.SERVER + '/' + ConfigService.WORKSPACE;
+  }
+
+
   constructor() { }
 }
