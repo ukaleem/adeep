@@ -353,10 +353,12 @@ full-calendar
   border: 1px solid;
   background: var(--ion-color-primary);
   color: white;
+  border-radius: 10px;
 }
 .alert-button-group .alert-button.alert-button-role-cancel {
   border: 1px solid;
   background: none;
+  border-radius: 10px;
   color: var(--ion-color-primary);
 }
 .alert-wrapper .alert-head {
@@ -403,6 +405,7 @@ full-calendar
   margin: 0px 10px;
   background:var(--ion-color-primary);
   color: white;
+  border-radius: 10px;
   button{
     color: white;
   }
@@ -417,6 +420,7 @@ full-calendar
   .picker-button{
     color:var(--ion-color-primary) !important;
   }
+  border-radius: 10px;
 }
 .confirm-case-submit .alert-message{
   margin-top: 10px;

@@ -67,6 +67,20 @@
 
       <ion-row>
         <ion-col>
+          <ion-label for="user" class="ion-label">
+            Select Doctor
+          </ion-label>
+          <div>
+            <ion-select [interfaceOptions]="getActionSheetHeader('Select Doctor')" class="input" required name="selectDoctor" [(ngModel)]="selectDoctor" ngModel
+              #categoryValueCtrl="ngModel" placeholder="select Disease">
+              <ion-select-option [value]="p.USR_UID" *ngFor="let p of allDoctors">{{p.USR_FIRSTNAME}} {{p.USR_LASTNAME}}</ion-select-option>
+            </ion-select>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
           <ion-button type="submit" [disabled]="!f.valid" expand="block" fill="solid" shape="round" color="primary">Save</ion-button>
         </ion-col>
       </ion-row>

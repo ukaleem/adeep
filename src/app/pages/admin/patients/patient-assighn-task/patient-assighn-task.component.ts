@@ -16,10 +16,12 @@ export class PatientAssignTaskComponent implements OnInit {
   // allSpecialty : any = [];
   allProcess : any = [];
   allUsers : any = [];
+  allDoctors:any = [];
 
   selectedDisease :any;
   selectPathway ;
   selectPatient ;
+  selectDoctor ;
   selectDisease = {
     id : null,
     name: '',
@@ -87,12 +89,19 @@ export class PatientAssignTaskComponent implements OnInit {
     })
   }
 
+  ionViewWillEnter(){
+    this.admin.getAllDoctors().subscribe(data => {
+      console.log(data);
+      this.allDoctors = data.data;
+    });
+  }
   savePatient(f){
-    let formData ={
+    let formData = {
       pid : this.patientID,
       guid: this.selectPathway,
       uid: this.selectPatient,
-    }
+      did : this.selectDoctor
+    };
     this.admin.startPathway(formData).subscribe(data=> {
       console.log(data);
       if(data.status){

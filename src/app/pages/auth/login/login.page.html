@@ -73,7 +73,7 @@
 
             <ion-item lines="none">
               <ion-label position="floating"
-                >User Name
+                > {{ "AUTH.USR_NAME_LBL" | translate }}
                 <!-- <span class="span-error" *ngIf="!emailCtrl.valid && emailCtrl.touched">✖</span>
                               <span class="span-success" *ngIf="emailCtrl.valid && emailCtrl.touched">✔</span> -->
               </ion-label>
@@ -95,7 +95,7 @@
           <ion-list>
             <ion-item lines="none">
               <ion-label position="floating"
-                >Password
+                > {{ "AUTH.PASSWORD_LBL" | translate }}
                 <!-- <span class="span-error" *ngIf="!passwordCtrl.valid && passwordCtrl.touched">✖</span>
                               <span class="span-success" *ngIf="passwordCtrl.valid && passwordCtrl.touched">✔</span> -->
               </ion-label>
@@ -135,7 +135,7 @@
             [disabled]="form.invalid"
             expand="block"
           >
-            Login
+          {{ "AUTH.LOGIN_BTN" | translate }}
           </ion-button>
           <!-- <ion-button fill='outline' color="primary" expand="block">
                       Register

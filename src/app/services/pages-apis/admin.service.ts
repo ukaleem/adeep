@@ -69,5 +69,8 @@ export class AdminService {
   addDisease(frmData) {
     return this.api.commonPost(frmData, {isToken :false,endPointUrl: this.endPoints.ADD_DISEASE_SPECIAL,showLoading : true, showError : true});
   }
+  getAllDoctors() {
+    return this.api.commonGet({isToken :false,endPointUrl : this.endPoints.ALL_DOCTORS,showLoading : false, showError : true});
+  } 
 }
 

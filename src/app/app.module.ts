@@ -13,9 +13,14 @@ import { FeedBackSortingFilterPopoverPage } from './shared/popovers/feed-backsor
 import { AddFeedComponent } from './pages/admin/feedbacks/add-feed/add-feed.component';
 import { AddUserComponent } from './pages/admin/users-list/add-user/add-user.component';
 import { UserDetailComponent } from './pages/admin/users-list/user-detail/user-detail.component';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 // import { CustomSearchComponent } from './shared/custom-search/custom-search.component';
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +35,13 @@ import { UserDetailComponent } from './pages/admin/users-list/user-detail/user-d
     IonicModule.forRoot(),
     SharedModule,
     AppRoutingModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  })
 
   ],
   providers: [

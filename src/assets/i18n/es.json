@@ -1,0 +1,57 @@
+{
+    "STARTER": {
+        "slogan": "Ingrese su código postal para encontrar restaurantes cerca de usted",
+        "heading1": "Servico A Domicilio",
+        "heading2": "Disfruta de nuestros productos en casa con nuestro servicio de entrega a domicilio",
+        "orderButton": "HAZ TU PEDIDO",
+        "sloganStart": "Tierra de",
+        "sloganEnd": "Restaurantes",
+        "searchHint": "Codigo postal",
+        "searchHint1": "Ingrese el código postal de su dirección y el motor de búsqueda encontrará el lugar más cercano para realizar el pedido.",
+        "searchResultLabel": "Cerca de usted"
+    },
+    "MENU": {
+        "Item1": { 
+            "name": "Sobre nosotras",
+            "description": "Quienes somos.",
+            "pgHeaderLabel": "Sobre nosotras",
+            "pgContentHeading": "Cómo estamos ?",
+            "pgContentParagraph": "El mejor kebab turco es único y único en su clase. Trae el sabor maravilloso y delicioso del sabor del mundo histórico de 2000 años en el estilo de vida actual. Creemos en servirle la mejor comida de calidad y garantizar la satisfacción del cliente con nuestros productos mientras operamos. Tenga la seguridad de que recibirá lo mejor de lo que podemos ofrecerle a un precio razonable y asequible. Estamos orgullosos de servirle los kebabs turcos más sanos y sabrosos. Nuestros kebabs se preparan en el momento, utilizando recetas auténticas, los métodos de cocción más avanzados con los mejores ingredientes… …maxima calidad es nuestra razon de existir"
+        },
+        "Item2": { "name": "Franquicia con nosotras", "description": " Lea los términos y condiciones." },
+        "Item3": { "name": "Cambiar idioma", "description": " Idioma seleccionado" },
+        "Item4": { "name": "Contacta con nosotras", "description": " Enviar un correo electrónico" },
+        "Item5": { "name": "Compartir aplicación", "description": "Con tu familia y amigas" },
+        "Item6": { "name": "Comentarios", "description": "Envianos tu comentario" },
+        "Item7": { "name": "Pedidos", "description": "Todo el historial de pedidos" },
+        "Item8": { "name": "Mi carrito", "description": "Ver carrito y artículos" },
+        "Item9": { "name": "Descubrir", "description": "Buscar restaurante y artículos" },
+        "Item10": { "name": "Cerrar sesión", "description": "Cerrar sesión de usuario" },
+        "Item11": { "name": "Iniciar sesión", "description": "Ingrese a su cuenta" },
+        "Item12": { "name": "Perfil", "description": "Ver tu cuenta" },
+        "Item13": { "name": "Salir de la aplicación", "description": "¡Sal de la aplicación!" }
+    },
+    "PICKED_RESTAURANTS":{
+        "MENU_CATEGORYS": "Categorías de menú",
+        "SEE_ALL": "Ver todo",
+        "DEALS": "Ofertas",
+        "REVIEWS": "Comentarios",
+        "ABOUT": "Sobre el restaurante"
+    },
+    "HOME": {
+        "TITLE": "Hola señor",
+        "TITLE_2": "Hola {{value}}",
+        "description": "Ooohh .... acabas de traducir este texto?",
+        "data": { "name": "Me llamo {{name_value}}" },
+        "greatings": "Servico A Domicilio",
+        "btn": "HAZ TU PEDIDO"
+    },
+    "ALERT": {
+        "header": "Error",
+        "message": "Please check thier is some issue"
+    },
+    "CART": {
+       
+    }
+
+}

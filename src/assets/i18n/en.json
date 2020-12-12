@@ -1,0 +1,8 @@
+{
+    "AUTH": {
+        "LOGIN_BTN" : "Login",
+        "USR_NAME_LBL" : "User Name",
+        "PASSWORD_LBL" : "Password"
+    }
+
+}

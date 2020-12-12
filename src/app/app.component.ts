@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AdminService } from './services/pages-apis/admin.service';
 
 import { Plugins } from '@capacitor/core';
+import { LanguageService } from './services/language.service';
 const { SplashScreen } = Plugins;
 
 @Component({
@@ -21,7 +22,8 @@ export class AppComponent {
     // private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private navCtrl: NavController,
-    private admin : AdminService
+    private admin : AdminService,
+    private languageService: LanguageService
   ) {
     // SplashScreen.show({
     //   autoHide: false
@@ -50,6 +52,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       SplashScreen.hide();
+      this.languageService.setInitialAppLanguage();
       // this.splashScreen.hide();
       // this.loadData();
       return;

@@ -10,6 +10,7 @@ export class ConfigService {
 
   static SERVER_ADDRESS = 'http://adeedcps.iibtech.com';
   static SERVER_ADDRESS2 = 'http://cpstest.iibtech.com';
+  static SERVER_ADDRESS3 = 'http://192.236.147.77:8084';
 
   static WORKSPACE = 'workflow/';
 
@@ -18,6 +19,8 @@ export class ConfigService {
     console.log(serverType);
     if (serverType == '2'){
       return ConfigService.SERVER_ADDRESS2;
+    }else if (serverType == '3'){
+      return ConfigService.SERVER_ADDRESS3;
     }
     return ConfigService.SERVER_ADDRESS;
   }

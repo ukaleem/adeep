@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
 import { LoginSettingComponent } from '../login-setting/login-setting.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { LoginSettingComponent } from '../login-setting/login-setting.component'
     FormsModule,
     IonicModule,
     LoginPageRoutingModule,
+    TranslateModule
   
   ],
   entryComponents: [LoginSettingComponent
