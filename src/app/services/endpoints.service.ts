@@ -422,6 +422,14 @@ export class EndpointsService {
     );
   }
 
+  public get ALL_DOCTORS() {
+    return (
+      this.config.SERVER +
+      '/api/1.0/' +
+      ConfigService.WORKSPACE +
+      'extrarest/doctor_list'
+    );
+  }
   public GET_ALL_PATIENTSs(): any {
     return (
       this.config.SERVER +

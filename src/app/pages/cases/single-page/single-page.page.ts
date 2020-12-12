@@ -73,7 +73,8 @@ export class SinglePagePage implements OnInit {
   singleStep(step) {
     console.log(step);
     if (step.step_type_obj == 'DYNAFORM') {
-      this.loadExternal(step.step_uid_obj)
+      this.loadExternal(step.step_uid_obj);
+      // this.loadExternal(step.step_uid);step_uid
     }
   }
 
@@ -472,6 +473,7 @@ export class SinglePagePage implements OnInit {
             text: 'Submit',
             cssClass: 'danger',
             handler: () => {
+              this.doNextStep(null);
               console.log('Confirm Okay');
             }
           },
