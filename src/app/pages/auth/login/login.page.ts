@@ -96,28 +96,28 @@ export class LoginPage implements OnInit {
           this.app.casesShow = true;
           this.app.ADMIN_OFFICE = true;
           this.navCtrl.navigateRoot("/admin/tabs/dashboard");
-          this.toastService.SuccessToast('' + data.user_role + ' Login Successfully!', 2000);
+          this.toastService.SuccessToast('Login Successfully!', 2000);
         } else if ( data.user_role == "PROCESSMAKER_ADMIN" || data.user_role == "processmaker_admin") {
           this.app.casesShow = true;
           this.app.PROCESSMAKER_ADMIN = true;
           this.navCtrl.navigateRoot("/admin/tabs/dashboard");
-          this.toastService.SuccessToast('' + data.user_role + ' Login Successfully!', 2000);
+          this.toastService.SuccessToast('Login Successfully!', 2000);
         } else if (data.user_role == "DOCTOR" || data.user_role == "doctor") {
           this.app.DOCTOR = true;
           this.navCtrl.navigateRoot("/cases");
-          this.toastService.SuccessToast('' + data.user_role + ' Login Successfully!', 2000);
+          this.toastService.SuccessToast('Login Successfully!', 2000);
         } else if (data.user_role == "PATIENT_ROLES" || data.user_role == "patient_roles") {
           this.app.PATIENT = true;
           this.navCtrl.navigateRoot("/patient");
-          this.toastService.SuccessToast('' + data.user_role + ' Login Successfully!', 2000);
+          this.toastService.SuccessToast('Login Successfully!', 2000);
         } else if (data.user_role == "Caretaker" ||data.user_role == "CARETAKER") {
           this.app.CARETAKER = true;
           this.navCtrl.navigateRoot("/cases");
-          this.toastService.SuccessToast('' + data.user_role + ' Login Successfully!', 2000);
+          this.toastService.SuccessToast('Login Successfully!', 2000);
         } else if ( data.user_role == "Physician" || data.user_role == "PHYSICIAN") {
           this.app.PHYSICIAN = true;
           this.navCtrl.navigateRoot("/cases");
-          this.toastService.SuccessToast('' + data.user_role + ' Login Successfully!', 2000);
+          this.toastService.SuccessToast('Login Successfully!', 2000);
         }  else {
           this.navCtrl.navigateRoot("/");
           this.toastService.ErrorToast('Login failed', 1000);

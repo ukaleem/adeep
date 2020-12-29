@@ -649,6 +649,7 @@ export class SinglePagePage implements OnInit {
       }
     });
     modal.onDidDismiss().then(data=> {
+      console.log(data);
       if(data.role == 'ok'){
         this.rout.navigateByUrl('/cases/tabs/inbox');
       }

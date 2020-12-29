@@ -71,7 +71,7 @@
             Select Doctor
           </ion-label>
           <div>
-            <ion-select [interfaceOptions]="getActionSheetHeader('Select Doctor')" class="input" required name="selectDoctor" [(ngModel)]="selectDoctor" ngModel
+            <ion-select [interfaceOptions]="getActionSheetHeader('Select Doctor')" class="input" name="selectDoctor" [(ngModel)]="selectDoctor" ngModel
               #categoryValueCtrl="ngModel" placeholder="select Disease">
               <ion-select-option [value]="p.USR_UID" *ngFor="let p of allDoctors">{{p.USR_FIRSTNAME}} {{p.USR_LASTNAME}}</ion-select-option>
             </ion-select>

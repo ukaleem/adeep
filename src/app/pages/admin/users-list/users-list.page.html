@@ -1,83 +1,88 @@
 <ion-header class="ion-no-border">
   <ion-toolbar *ngIf="!isSearch">
-      <ion-buttons color="light" size="small" slot="start">
-          <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
-      </ion-buttons>
-      <ion-item class='bg-none' lines="none">
-           <ion-title color="light" class="ion-text-center">
-            Users List
-          </ion-title>
-          <ion-icon (click)="showSearch()" color="light" name="search"
-              slot="end">
-          </ion-icon>
-      </ion-item>
+    <ion-buttons color="light" size="small" slot="start">
+      <ion-menu-button color="light" size="small" menu="m1"></ion-menu-button>
+    </ion-buttons>
+    <ion-item class="bg-none" lines="none">
+      <ion-title color="light" class="ion-text-center"> Users List </ion-title>
+      <ion-icon (click)="showSearch()" color="light" name="search" slot="end">
+      </ion-icon>
+    </ion-item>
   </ion-toolbar>
 
   <ion-toolbar *ngIf="isSearch">
-    <ion-searchbar (ionChange)="doSearch($event)" autofocus="true" (ionCancel)="closeSearch()" showCancelButton="always">
+    <ion-searchbar
+      (ionChange)="doSearch($event)"
+      autofocus="true"
+      (ionCancel)="closeSearch()"
+      showCancelButton="always"
+    >
     </ion-searchbar>
   </ion-toolbar>
-
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-grid>
-    <ion-row class='list-bg2' *ngFor="let user of usersList" (click)="userDetails(user.usr_uid)">
-      <ion-col size="6">
-        <div>
-          <ion-item class='bg-none' lines='none'>
-            <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon> -->
-            <ion-label class="af-icon-label">
-              <h4 class="name-header">Login Name</h4>
-              <p>  {{user.usr_username}}</p>  
-              <!-- {{user.usr_username}} -->
-            </ion-label>
-          </ion-item>
-        </div>
-      </ion-col>
-      <ion-col size="6">
-        <div>
-          <ion-item class='bg-none' lines='none' >
-            <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon> -->
-            <ion-label class="af-icon-label">  
-              <h4 class="name-header">User Name</h4>
-              <p>{{ getUserFullName(user.usr_firstname ,user.usr_lastname)}}</p>  
-
-            </ion-label>
-          </ion-item>
-        </div>
-      </ion-col>
-      <ion-col size="6">
-        <div>
-          <ion-item class='bg-none' lines='none' >
-            <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon> -->
-            <ion-label class="af-icon-label">
-          
-             <h4 class="name-header">User Role/Position</h4>
-             <p>   {{user.usr_role}}</p>  
-            </ion-label>
-          </ion-item>
-        </div>
-      </ion-col>
-      <ion-col size="6">
-        <div>
-          <ion-item class='bg-none' lines='none' >
-            <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon> -->
-            <ion-label class="af-icon-label"> 
-              <h4 class="name-header">Status</h4>
-              <p> {{user.usr_status}}</p> 
-            </ion-label>
-          </ion-item>
-        </div>
-      </ion-col>
-    </ion-row>
+    <ng-container  *ngFor="let user of usersList">
+      <ion-row *ngIf="user.usr_username"
+        class="list-bg2"
+        (click)="userDetails(user.usr_uid)"
+      >
+        <ion-col size="6">
+          <div>
+            <ion-item class="bg-none" lines="none">
+              <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/name.svg"></ion-icon> -->
+              <ion-label class="af-icon-label">
+                <h4 class="name-header">Login Name</h4>
+                <p>{{user.usr_username}}</p>
+                <!-- {{user.usr_username}} -->
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class="bg-none" lines="none">
+              <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/height (1).svg"></ion-icon> -->
+              <ion-label class="af-icon-label">
+                <h4 class="name-header">User Name</h4>
+                <p>
+                  {{ getUserFullName(user.usr_firstname ,user.usr_lastname)}}
+                </p>
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class="bg-none" lines="none">
+              <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/file-medical-coronavirus-healthcare-hospital.svg"></ion-icon> -->
+              <ion-label class="af-icon-label">
+                <h4 class="name-header">User Role/Position</h4>
+                <p>{{user.usr_role}}</p>
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-item class="bg-none" lines="none">
+              <!-- <ion-icon class="detail-icon" src="../../../assets/list-icons/time (1).svg"></ion-icon> -->
+              <ion-label class="af-icon-label">
+                <h4 class="name-header">Status</h4>
+                <p>{{user.usr_status}}</p>
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ng-container>
   </ion-grid>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-   <ion-fab-button (click)="presentModal()">
+    <ion-fab-button (click)="presentModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
