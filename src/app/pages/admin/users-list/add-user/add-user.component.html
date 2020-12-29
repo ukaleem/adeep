@@ -154,8 +154,8 @@
           <ion-label for="user_status_label" class="ion-label">Status</ion-label>
             <ion-select  [interfaceOptions]="getActionSheetHeader('User Status')" value="{{frmData.usr_status}}" name="usr_status" [(ngModel)]="frmData.usr_status" class="ion-select">
               <ion-select-option mode="ios" value="ACTIVE">ACTIVE</ion-select-option>
-              <ion-select-option mode="ios" value="UNACTIVE">UNACTIVE</ion-select-option>
-              <ion-select-option mode="ios" value="VACATION">VACATION</ion-select-option>
+              <ion-select-option mode="ios" value="UNACTIVE">INACTIVE</ion-select-option>
+              <!-- <ion-select-option mode="ios" value="VACATION">VACATION</ion-select-option> -->
             </ion-select>
         </ion-col>
       </ion-row>
@@ -166,7 +166,7 @@
             <ion-select [interfaceOptions]="getActionSheetHeader('User Role')" value="{{frmData.usr_role}}" name="usr_role" [(ngModel)]="frmData.usr_role" class="ion-select">
               <ion-select-option mode="ios" value="ADMIN_OFFICE">Admin Office</ion-select-option>
               <ion-select-option mode="ios" value="DOCTOR">Doctor</ion-select-option>
-              <ion-select-option mode="ios" value="PHYSICIAN">Physician</ion-select-option>
+              <!-- <ion-select-option mode="ios" value="PHYSICIAN">Physician</ion-select-option> -->
               <ion-select-option mode="ios" value="CARETAKER">Caretaker</ion-select-option>
               <ion-select-option mode="ios" value="PATIENT_ROLES">Patient</ion-select-option>
             </ion-select>
