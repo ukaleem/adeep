@@ -85,6 +85,9 @@ export class PatientsPage implements OnInit {
     return await modal.present();
   }
 
+  returnUrl(lat,lng){
+    return `https://maps.google.com/maps?q=`+lat+`%2C`+lng+`&z=17&hl=en`;
+  }
 
 
 }
