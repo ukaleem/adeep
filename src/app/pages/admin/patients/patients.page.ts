@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController, NavController } from '@ionic/angular';
 import { AdminService } from 'src/app/services/pages-apis/admin.service';
+import { AddNewPatientPage } from './add-new-patient/add-new-patient.page';
 import { PatientAssignTaskComponent } from './patient-assighn-task/patient-assighn-task.component';
 import { PatientSingleTaskComponent } from './patient-single-task/patient-single-task.component';
 
@@ -87,6 +88,22 @@ export class PatientsPage implements OnInit {
 
   returnUrl(lat,lng){
     return `https://maps.google.com/maps?q=`+lat+`%2C`+lng+`&z=17&hl=en`;
+  }
+  async editUser(){
+    const modal = await this.modalController.create({
+      component: AddNewPatientPage,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        'patientID': this.patientID,
+         'fromEdit': 1,
+         'olderData': this.patientDetail,
+      }
+    });
+
+    modal.onDidDismiss().then(data =>{
+      this.loadData();
+    })
+    return await modal.present();
   }
 
 

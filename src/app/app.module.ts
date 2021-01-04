@@ -15,6 +15,8 @@ import { AddUserComponent } from './pages/admin/users-list/add-user/add-user.com
 import { UserDetailComponent } from './pages/admin/users-list/user-detail/user-detail.component';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+
 
 // import { CustomSearchComponent } from './shared/custom-search/custom-search.component';
 
@@ -27,7 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FeedBackSortingFilterPopoverPage,
     AddFeedComponent,
     AddUserComponent,
-    UserDetailComponent,
+    UserDetailComponent
   ],
   imports: [HttpClientModule,
     FormsModule,
@@ -46,6 +48,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     StatusBar,
+    NativeGeocoder,
     // SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

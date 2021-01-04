@@ -1,6 +1,6 @@
 {
-    "appId": "io.intellog.adeed",
-    "appName": "adeed",
+    "appId": "io.intellog.adeeb",
+    "appName": "Adeed",
     "bundledWebRuntime": false,
     "npmClient": "npm",
     "webDir": "www",

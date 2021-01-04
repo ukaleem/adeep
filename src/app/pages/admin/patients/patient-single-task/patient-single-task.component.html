@@ -106,10 +106,15 @@
             <p class="ion-no-padding">{{getUserName(p.task)}}</p>
           </div>
           <ion-item class='bg-none' lines='none' *ngFor="let xm of p.variables">
-            <ion-label>
+            <ion-label *ngIf="xm.currentValueType != 'array'">
               <h2><b>Label</b>:{{xm.field}}</h2>
-              <p>Current:{{xm.currentValue}}</p>
-              <p>Previous:{{xm.previousValue}}</p>
+              <p><span style="color: #3e7eb1" color="primary">Current:</span>{{xm.currentValue}}</p>
+              <p><span style="color: #3e7eb1" color="primary">Previous:</span>{{xm.previousValue}}</p>
+            </ion-label>
+            <ion-label *ngIf="xm.currentValueType == 'array'">
+              <h2><b>Label</b>:{{xm.field}}</h2>
+              <p><span style="color: #3e7eb1" color="primary">Current:</span> <span [innerHTML]="getValueGrid(xm.currentValue)"></span></p>
+              <p><span style="color: #3e7eb1" color="primary">Previous:</span><span [innerHTML]="getValueGrid(xm.previousValue)"></span></p>
             </ion-label>
           </ion-item>
         </div>

@@ -1,0 +1,62 @@
+<ion-header class="ion-no-border">
+
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="2">
+        <ion-button (click)="closeModel()">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size="8">
+        <ion-input maxlength="30" [(ngModel)]="searchAddress" id="serach1" type="search">
+
+        </ion-input>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button (click)="searchLocation()">
+          <ion-icon name="search"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-button color="success" (click)="saveAddress()" expand="block">
+      Save Address
+    </ion-button>
+  </ion-toolbar>
+</ion-header> 
+
+<ion-content [fullscreen]="true">
+
+  <div class="map-wrapper">
+    <div #map id="map"></div>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3">
+        <b>Lattitude</b>
+      </ion-col>
+      <ion-col>
+        {{latitude}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3">
+        <b>Longitude</b>
+      </ion-col>
+      <ion-col>
+        {{longitude}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3">
+        <b>Address</b>
+      </ion-col>
+      <ion-col>
+        {{address}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>

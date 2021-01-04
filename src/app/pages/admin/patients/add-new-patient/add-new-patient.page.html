@@ -1,12 +1,15 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
       <ion-buttons color="light" size="small" slot="start">
-          <ion-back-button color="light" size="small" defaultHref='/admin/tabs/home'></ion-back-button>
+          <ion-back-button (click)="closeMosal()" color="light" size="small" defaultHref='/admin/tabs/home'></ion-back-button>
       </ion-buttons>
       <ion-item class='bg-none' lines="none">
-          <ion-title color="light" class="ion-text-center">
-           Add Patient
+          <ion-title color="light" class="ion-text-center" *ngIf="!isNew">
+           Update Patient
           </ion-title>
+          <ion-title color="light" class="ion-text-center" *ngIf="isNew">
+            Add Patient
+           </ion-title>
       </ion-item>
   </ion-toolbar>
 </ion-header>
@@ -16,7 +19,8 @@
     <ion-grid class='main-grid'>
       <ion-row>
         <ion-col>
-          <ion-label for="user" class="ion-label"> First Name* </ion-label>
+          <ion-label for="user" class="ion-label" *ngIf="isNew"> First Name* </ion-label>
+          <ion-label for="user" class="ion-label" *ngIf="!isNew"> Full Name* </ion-label>
           <ion-input
             required
             minlength="3"
@@ -34,7 +38,7 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row *ngIf="isNew">
         <ion-col>
           <ion-label for="user" class="ion-label">Last Name*</ion-label>
             <ion-input
@@ -76,7 +80,7 @@
       </ion-row>
 
 
-      <ion-row>
+      <ion-row *ngIf="isNew">
         <ion-col>
           <ion-label for="user" class="ion-label"> Patient Email* </ion-label>
           <ion-input
@@ -96,7 +100,7 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row *ngIf="isNew">
         <ion-col (click)="patientAssignTask()">
           <ion-label for="user" class="ion-label"> Select Disease* </ion-label>
           <ion-input required minlength="3" maxlength="140" readonly name="p_email2" [(ngModel)]="selectDices.name"
@@ -105,7 +109,7 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row *ngIf="isNew">
         <ion-col>
           <ion-label for="user" class="ion-label"> Registration Date* </ion-label>
           <ion-input
@@ -147,7 +151,7 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row *ngIf="isNew">
         <ion-col>
           <ion-label for="user" class="ion-label"> Postal Code* </ion-label>
           <ion-input
@@ -170,6 +174,7 @@
       <ion-row>
         <ion-col>
           <ion-label for="user" class="ion-label"> Address* </ion-label>
+          <ion-button style="margin-top: -6px" color="success" size="small" (click)="googleMap()">ADD Map Coordinates</ion-button>
           <ion-textarea
             required
             minlength="20"
@@ -185,6 +190,9 @@
             rows="7"
           >
           </ion-textarea>
+          <!-- <ion-button (click)="googleMap()">
+            Map
+          </ion-button> -->
         </ion-col>
       </ion-row>
 

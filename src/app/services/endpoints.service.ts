@@ -446,6 +446,14 @@ export class EndpointsService {
       'extrarest/add_patients'
     );
   }
+  UPDATE_PATIENTS() {
+    return (
+      this.config.SERVER +
+      '/api/1.0/' +
+      ConfigService.WORKSPACE +
+      'extrarest/update_patients'
+    );
+  }
   ADD_USERS() {
     return this.config.SERVER + '/api/1.0/' + ConfigService.WORKSPACE + 'user';
   }
